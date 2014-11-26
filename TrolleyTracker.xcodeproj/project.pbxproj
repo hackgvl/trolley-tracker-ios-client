@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		EFA4B1FC1A1C201F00BEA42C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA4B1FB1A1C201F00BEA42C /* AppDelegate.swift */; };
 		EFA4B1FE1A1C201F00BEA42C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA4B1FD1A1C201F00BEA42C /* ViewController.swift */; };
-		EFA4B2011A1C201F00BEA42C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFA4B1FF1A1C201F00BEA42C /* Main.storyboard */; };
 		EFA4B2031A1C201F00BEA42C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFA4B2021A1C201F00BEA42C /* Images.xcassets */; };
 		EFA4B2061A1C201F00BEA42C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFA4B2041A1C201F00BEA42C /* LaunchScreen.xib */; };
 		EFA4B2121A1C201F00BEA42C /* TrolleyTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA4B2111A1C201F00BEA42C /* TrolleyTrackerTests.swift */; };
+		EFA4B21C1A1C230300BEA42C /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA4B21B1A1C230300BEA42C /* MapTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,12 +30,12 @@
 		EFA4B1FA1A1C201F00BEA42C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EFA4B1FB1A1C201F00BEA42C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EFA4B1FD1A1C201F00BEA42C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		EFA4B2001A1C201F00BEA42C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EFA4B2021A1C201F00BEA42C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EFA4B2051A1C201F00BEA42C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		EFA4B20B1A1C201F00BEA42C /* TrolleyTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrolleyTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFA4B2101A1C201F00BEA42C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EFA4B2111A1C201F00BEA42C /* TrolleyTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrolleyTrackerTests.swift; sourceTree = "<group>"; };
+		EFA4B21B1A1C230300BEA42C /* MapTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +79,7 @@
 			children = (
 				EFA4B1FB1A1C201F00BEA42C /* AppDelegate.swift */,
 				EFA4B1FD1A1C201F00BEA42C /* ViewController.swift */,
-				EFA4B1FF1A1C201F00BEA42C /* Main.storyboard */,
+				EFA4B21B1A1C230300BEA42C /* MapTableViewCell.swift */,
 				EFA4B2021A1C201F00BEA42C /* Images.xcassets */,
 				EFA4B2041A1C201F00BEA42C /* LaunchScreen.xib */,
 				EFA4B1F91A1C201F00BEA42C /* Supporting Files */,
@@ -192,7 +192,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EFA4B2011A1C201F00BEA42C /* Main.storyboard in Resources */,
 				EFA4B2061A1C201F00BEA42C /* LaunchScreen.xib in Resources */,
 				EFA4B2031A1C201F00BEA42C /* Images.xcassets in Resources */,
 			);
@@ -214,6 +213,7 @@
 			files = (
 				EFA4B1FE1A1C201F00BEA42C /* ViewController.swift in Sources */,
 				EFA4B1FC1A1C201F00BEA42C /* AppDelegate.swift in Sources */,
+				EFA4B21C1A1C230300BEA42C /* MapTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,14 +236,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		EFA4B1FF1A1C201F00BEA42C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EFA4B2001A1C201F00BEA42C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		EFA4B2041A1C201F00BEA42C /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
