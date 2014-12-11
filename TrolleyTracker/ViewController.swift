@@ -11,6 +11,9 @@ import CoreLocation
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    let dataController = TrolleyDataController()
+    var tableView: UITableView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -33,11 +36,27 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.registerClass(MapTableViewCell.classForCoder(), forCellReuseIdentifier: "Map")
         
         self.view.addSubview(tableView)
+        
+        self.tableView = tableView
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Bookmarks, target: self, action: "listButtonTapped:")
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let indexPath = tableView?.indexPathForSelectedRow() {
+            tableView?.deselectRowAtIndexPath(indexPath, animated: true)
+        }
+    }
+    
+    func listButtonTapped(sender: UIBarButtonItem) {
+        
+        let controller = TrolleyListViewController()
+        controller.modalPresentationStyle = UIModalPresentationStyle.FullScreen
+        controller.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
+        controller.dataController = dataController
+        presentViewController(controller, animated: true, completion: nil)
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -55,18 +74,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if (indexPath.section == 0) {
-            var cell: AnyObject = tableView.dequeueReusableCellWithIdentifier("Map", forIndexPath: indexPath)
+            var cell = tableView.dequeueReusableCellWithIdentifier("Map", forIndexPath: indexPath) as UITableViewCell
             
-            cell.textLabel.text = "Austin Doesn't have WatchKit"
+            cell.textLabel?.text = "Austin Doesn't have WatchKit"
             
-            return cell as UITableViewCell
+            return cell
         }
         else {
-            var cell: AnyObject = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+            var cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
             
-            cell.textLabel.text = "Austin Doesn't have WatchKit"
+            let trolley = dataController.trolleys[indexPath.row]
+            cell.textLabel?.text = trolley.name
             
-            return cell as UITableViewCell
+            return cell
         }
     }
     

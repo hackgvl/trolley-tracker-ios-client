@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4133C79E1A3A323900895448 /* TrolleyList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4133C79D1A3A323900895448 /* TrolleyList.storyboard */; };
+		4133C7A11A3A33BF00895448 /* TrolleyListHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4133C7A01A3A33BF00895448 /* TrolleyListHeaderCell.swift */; };
+		419ADCB31A38FDE700198D44 /* TrolleyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419ADCB21A38FDE700198D44 /* TrolleyListViewController.swift */; };
+		419ADCB71A3900DE00198D44 /* TrolleyListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419ADCB61A3900DE00198D44 /* TrolleyListTableViewCell.swift */; };
+		41B773741A360312007D83B0 /* Trolley.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B773731A360312007D83B0 /* Trolley.swift */; };
+		41B773761A36037B007D83B0 /* TrolleyDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B773751A36037B007D83B0 /* TrolleyDataController.swift */; };
 		EFA4B1FC1A1C201F00BEA42C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA4B1FB1A1C201F00BEA42C /* AppDelegate.swift */; };
 		EFA4B1FE1A1C201F00BEA42C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA4B1FD1A1C201F00BEA42C /* ViewController.swift */; };
 		EFA4B2031A1C201F00BEA42C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFA4B2021A1C201F00BEA42C /* Images.xcassets */; };
@@ -26,6 +32,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4133C79D1A3A323900895448 /* TrolleyList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TrolleyList.storyboard; sourceTree = "<group>"; };
+		4133C7A01A3A33BF00895448 /* TrolleyListHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyListHeaderCell.swift; sourceTree = "<group>"; };
+		419ADCB21A38FDE700198D44 /* TrolleyListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyListViewController.swift; sourceTree = "<group>"; };
+		419ADCB61A3900DE00198D44 /* TrolleyListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyListTableViewCell.swift; sourceTree = "<group>"; };
+		41B773731A360312007D83B0 /* Trolley.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trolley.swift; sourceTree = "<group>"; };
+		41B773751A36037B007D83B0 /* TrolleyDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyDataController.swift; sourceTree = "<group>"; };
 		EFA4B1F61A1C201F00BEA42C /* TrolleyTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrolleyTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFA4B1FA1A1C201F00BEA42C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EFA4B1FB1A1C201F00BEA42C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +68,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4133C79F1A3A327600895448 /* TrolleyList */ = {
+			isa = PBXGroup;
+			children = (
+				4133C79D1A3A323900895448 /* TrolleyList.storyboard */,
+				419ADCB21A38FDE700198D44 /* TrolleyListViewController.swift */,
+				419ADCB61A3900DE00198D44 /* TrolleyListTableViewCell.swift */,
+				4133C7A01A3A33BF00895448 /* TrolleyListHeaderCell.swift */,
+			);
+			name = TrolleyList;
+			sourceTree = "<group>";
+		};
+		4133C7D41A3A462D00895448 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				41B773751A36037B007D83B0 /* TrolleyDataController.swift */,
+				41B773731A360312007D83B0 /* Trolley.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		EFA4B1ED1A1C201F00BEA42C = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +109,8 @@
 		EFA4B1F81A1C201F00BEA42C /* TrolleyTracker */ = {
 			isa = PBXGroup;
 			children = (
+				4133C7D41A3A462D00895448 /* Model */,
+				4133C79F1A3A327600895448 /* TrolleyList */,
 				EFA4B1FB1A1C201F00BEA42C /* AppDelegate.swift */,
 				EFA4B1FD1A1C201F00BEA42C /* ViewController.swift */,
 				EFA4B21B1A1C230300BEA42C /* MapTableViewCell.swift */,
@@ -194,6 +228,7 @@
 			files = (
 				EFA4B2061A1C201F00BEA42C /* LaunchScreen.xib in Resources */,
 				EFA4B2031A1C201F00BEA42C /* Images.xcassets in Resources */,
+				4133C79E1A3A323900895448 /* TrolleyList.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,8 +246,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				419ADCB31A38FDE700198D44 /* TrolleyListViewController.swift in Sources */,
 				EFA4B1FE1A1C201F00BEA42C /* ViewController.swift in Sources */,
 				EFA4B1FC1A1C201F00BEA42C /* AppDelegate.swift in Sources */,
+				419ADCB71A3900DE00198D44 /* TrolleyListTableViewCell.swift in Sources */,
+				41B773741A360312007D83B0 /* Trolley.swift in Sources */,
+				41B773761A36037B007D83B0 /* TrolleyDataController.swift in Sources */,
+				4133C7A11A3A33BF00895448 /* TrolleyListHeaderCell.swift in Sources */,
 				EFA4B21C1A1C230300BEA42C /* MapTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -397,6 +437,7 @@
 				EFA4B2171A1C201F00BEA42C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EFA4B2181A1C201F00BEA42C /* Build configuration list for PBXNativeTarget "TrolleyTrackerTests" */ = {
 			isa = XCConfigurationList;
@@ -405,6 +446,7 @@
 				EFA4B21A1A1C201F00BEA42C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

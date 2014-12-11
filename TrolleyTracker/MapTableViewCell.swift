@@ -24,7 +24,7 @@ class MapTableViewCell: UITableViewCell {
         
         self.contentView.addSubview(mapView)
         
-        self.textLabel.hidden = true
+        self.textLabel?.hidden = true
     }
 
     required init(coder aDecoder: NSCoder) {
