@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C81f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="m1q-ft-TOF">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6246"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Trolley List View Controller-->
         <scene sceneID="NHE-xB-SFL">
             <objects>
-                <viewController id="MXc-eO-mqI" sceneMemberID="viewController">
+                <viewController id="MXc-eO-mqI" customClass="TrolleyListViewController" customModule="TrolleyTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1lv-fI-EGM"/>
                         <viewControllerLayoutGuide type="bottom" id="XdY-rE-YhQ"/>
@@ -34,7 +34,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Trolley Title and Destination]" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="osw-hk-2qo">
-                                                    <rect key="frame" x="70" y="22" width="228" height="20.5"/>
+                                                    <rect key="frame" x="70" y="22" width="228" height="21"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -50,7 +50,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="imageView" destination="JMP-Rk-HPt" id="Erg-bW-39w"/>
+                                            <outlet property="iconImageView" destination="JMP-Rk-HPt" id="Nwv-R8-uya"/>
                                             <outlet property="labelForTrolleyTitle" destination="osw-hk-2qo" id="kIE-3V-BxA"/>
                                         </connections>
                                     </tableViewCell>
@@ -65,20 +65,20 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mins" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdJ-0y-gVL">
-                                                    <rect key="frame" x="11" y="36" width="36.5" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="mins" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdJ-0y-gVL">
+                                                    <rect key="frame" x="12" y="36" width="37" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNy-zO-rgm">
-                                                    <rect key="frame" x="58" y="22" width="44.5" height="21.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNy-zO-rgm">
+                                                    <rect key="frame" x="58" y="23" width="45" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cgy-IX-ebP">
-                                                    <rect key="frame" x="546" y="23" width="37.5" height="18"/>
+                                                    <rect key="frame" x="546" y="23" width="38" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -91,6 +91,7 @@
                                                 <constraint firstAttribute="centerY" secondItem="cgy-IX-ebP" secondAttribute="centerY" id="I0Q-61-b6M"/>
                                                 <constraint firstItem="qNy-zO-rgm" firstAttribute="leading" secondItem="JU9-3L-lPv" secondAttribute="trailing" constant="11" id="NH2-cg-wMG"/>
                                                 <constraint firstAttribute="centerY" secondItem="qNy-zO-rgm" secondAttribute="centerY" id="Nie-fH-LPI"/>
+                                                <constraint firstItem="cgy-IX-ebP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qNy-zO-rgm" secondAttribute="trailing" constant="12" id="brp-Gt-KdO"/>
                                                 <constraint firstItem="JU9-3L-lPv" firstAttribute="leading" secondItem="p0l-xy-vq7" secondAttribute="leadingMargin" id="gHU-Ee-vwk"/>
                                                 <constraint firstItem="tdJ-0y-gVL" firstAttribute="top" secondItem="JU9-3L-lPv" secondAttribute="bottom" constant="4" id="yyd-JL-vPj"/>
                                             </constraints>
@@ -103,6 +104,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="MXc-eO-mqI" id="Sb1-yo-FVT"/>
+                                    <outlet property="delegate" destination="MXc-eO-mqI" id="Cpn-Sw-uKD"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -123,8 +128,36 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="WUk-8D-cgn">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="DMH-0I-y3s">
+                            <connections>
+                                <action selector="closeButtonTapped:" destination="MXc-eO-mqI" id="90B-aK-1Eg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="91r-Q3-zCK" id="XoA-hl-ffw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3zx-5W-c82" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1328" y="472"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ymQ-nN-GNu">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="m1q-ft-TOF" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="R4L-0C-MHO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="MXc-eO-mqI" kind="relationship" relationship="rootViewController" id="gSl-xd-LB0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4dV-d2-9nz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="516" y="472"/>
         </scene>

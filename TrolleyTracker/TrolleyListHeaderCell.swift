@@ -10,7 +10,8 @@ import UIKit
 
 class TrolleyListHeaderCell: UITableViewCell {
 
-    @IBOutlet weak var imageView: UIImageView!
+    
+    @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var labelForTrolleyTitle: UILabel!
     
     

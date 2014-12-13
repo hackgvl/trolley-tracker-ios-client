@@ -14,19 +14,9 @@ class TrolleyListViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBOutlet weak var tableView: UITableView!
     
-    override init() {
-        super.init(nibName: "TrolleyListViewController", bundle: nil)
-    }
-
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let cellNib = UINib(nibName: "TrolleyListTableViewCell", bundle: nil)
-        tableView?.registerNib(cellNib, forCellReuseIdentifier: NSStringFromClass(TrolleyListTableViewCell.self))
     }
 
     // MARK: Actions
@@ -42,15 +32,38 @@ class TrolleyListViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return dataController.trolleys[section].upcomingStops.count + 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(TrolleyListTableViewCell.self)) as TrolleyListTableViewCell
         let trolley = dataController.trolleys[indexPath.section]
         
-        return cell
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as TrolleyListHeaderCell
+            
+            cell.labelForTrolleyTitle.text = trolley.name
+            
+            return cell
+        }
+        else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("StopCell", forIndexPath: indexPath) as TrolleyListTableViewCell
+            
+            let trolleyStop = trolley.upcomingStops[indexPath.row - 1]
+            
+            cell.labelForNextDestination.text = trolleyStop.name
+            cell.labelForTimeDescription.text = "mins"
+            
+            if let trolleyLocation = trolley.currentLocation {
+                cell.labelForTrolleyDestinationTime.text = trolleyStop.travelTimeFromLocation(trolleyLocation, transportationType: .Trolley)
+            }
+            
+            if let userLocation = User.currentLocation {
+                cell.labelForUserDestinationTime.text = trolleyStop.travelTimeFromLocation(userLocation, transportationType: .Walking)
+            }
+            
+            return cell
+        }
     }
     
 

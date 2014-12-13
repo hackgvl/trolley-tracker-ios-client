@@ -13,6 +13,10 @@
 		419ADCB71A3900DE00198D44 /* TrolleyListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419ADCB61A3900DE00198D44 /* TrolleyListTableViewCell.swift */; };
 		41B773741A360312007D83B0 /* Trolley.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B773731A360312007D83B0 /* Trolley.swift */; };
 		41B773761A36037B007D83B0 /* TrolleyDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B773751A36037B007D83B0 /* TrolleyDataController.swift */; };
+		41BDFAFD1A3A4C2D00166CAC /* TrolleyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BDFAFC1A3A4C2D00166CAC /* TrolleyViewModel.swift */; };
+		41BDFAFF1A3A4C3A00166CAC /* TrolleyStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BDFAFE1A3A4C3A00166CAC /* TrolleyStop.swift */; };
+		41BDFB011A3A4E1400166CAC /* TrolleyStopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BDFB001A3A4E1400166CAC /* TrolleyStopViewModel.swift */; };
+		41BDFB031A3B558D00166CAC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BDFB021A3B558D00166CAC /* User.swift */; };
 		EFA4B1FC1A1C201F00BEA42C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA4B1FB1A1C201F00BEA42C /* AppDelegate.swift */; };
 		EFA4B1FE1A1C201F00BEA42C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA4B1FD1A1C201F00BEA42C /* ViewController.swift */; };
 		EFA4B2031A1C201F00BEA42C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFA4B2021A1C201F00BEA42C /* Images.xcassets */; };
@@ -38,6 +42,10 @@
 		419ADCB61A3900DE00198D44 /* TrolleyListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyListTableViewCell.swift; sourceTree = "<group>"; };
 		41B773731A360312007D83B0 /* Trolley.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trolley.swift; sourceTree = "<group>"; };
 		41B773751A36037B007D83B0 /* TrolleyDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyDataController.swift; sourceTree = "<group>"; };
+		41BDFAFC1A3A4C2D00166CAC /* TrolleyViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyViewModel.swift; sourceTree = "<group>"; };
+		41BDFAFE1A3A4C3A00166CAC /* TrolleyStop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyStop.swift; sourceTree = "<group>"; };
+		41BDFB001A3A4E1400166CAC /* TrolleyStopViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyStopViewModel.swift; sourceTree = "<group>"; };
+		41BDFB021A3B558D00166CAC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EFA4B1F61A1C201F00BEA42C /* TrolleyTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrolleyTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFA4B1FA1A1C201F00BEA42C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EFA4B1FB1A1C201F00BEA42C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -82,10 +90,21 @@
 		4133C7D41A3A462D00895448 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				41B773751A36037B007D83B0 /* TrolleyDataController.swift */,
 				41B773731A360312007D83B0 /* Trolley.swift */,
+				41BDFAFE1A3A4C3A00166CAC /* TrolleyStop.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		41BDFAFB1A3A4C0F00166CAC /* ModelLogic */ = {
+			isa = PBXGroup;
+			children = (
+				41B773751A36037B007D83B0 /* TrolleyDataController.swift */,
+				41BDFAFC1A3A4C2D00166CAC /* TrolleyViewModel.swift */,
+				41BDFB001A3A4E1400166CAC /* TrolleyStopViewModel.swift */,
+				41BDFB021A3B558D00166CAC /* User.swift */,
+			);
+			name = ModelLogic;
 			sourceTree = "<group>";
 		};
 		EFA4B1ED1A1C201F00BEA42C = {
@@ -110,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				4133C7D41A3A462D00895448 /* Model */,
+				41BDFAFB1A3A4C0F00166CAC /* ModelLogic */,
 				4133C79F1A3A327600895448 /* TrolleyList */,
 				EFA4B1FB1A1C201F00BEA42C /* AppDelegate.swift */,
 				EFA4B1FD1A1C201F00BEA42C /* ViewController.swift */,
@@ -249,9 +269,13 @@
 				419ADCB31A38FDE700198D44 /* TrolleyListViewController.swift in Sources */,
 				EFA4B1FE1A1C201F00BEA42C /* ViewController.swift in Sources */,
 				EFA4B1FC1A1C201F00BEA42C /* AppDelegate.swift in Sources */,
+				41BDFAFF1A3A4C3A00166CAC /* TrolleyStop.swift in Sources */,
+				41BDFAFD1A3A4C2D00166CAC /* TrolleyViewModel.swift in Sources */,
 				419ADCB71A3900DE00198D44 /* TrolleyListTableViewCell.swift in Sources */,
 				41B773741A360312007D83B0 /* Trolley.swift in Sources */,
 				41B773761A36037B007D83B0 /* TrolleyDataController.swift in Sources */,
+				41BDFB031A3B558D00166CAC /* User.swift in Sources */,
+				41BDFB011A3A4E1400166CAC /* TrolleyStopViewModel.swift in Sources */,
 				4133C7A11A3A33BF00895448 /* TrolleyListHeaderCell.swift in Sources */,
 				EFA4B21C1A1C230300BEA42C /* MapTableViewCell.swift in Sources */,
 			);

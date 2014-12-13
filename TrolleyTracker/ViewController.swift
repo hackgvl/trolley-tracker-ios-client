@@ -52,11 +52,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func listButtonTapped(sender: UIBarButtonItem) {
         
-        let controller = TrolleyListViewController()
-        controller.modalPresentationStyle = UIModalPresentationStyle.FullScreen
-        controller.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
+        let nc = UIStoryboard(name: "TrolleyList", bundle: nil).instantiateInitialViewController() as UINavigationController
+        nc.modalPresentationStyle = UIModalPresentationStyle.FullScreen
+        nc.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
+        
+        let controller = nc.topViewController as TrolleyListViewController
         controller.dataController = dataController
-        presentViewController(controller, animated: true, completion: nil)
+        
+        presentViewController(nc, animated: true, completion: nil)
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
