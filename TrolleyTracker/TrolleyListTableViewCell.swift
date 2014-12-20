@@ -15,6 +15,15 @@ class TrolleyListTableViewCell: UITableViewCell {
     @IBOutlet weak var labelForNextDestination: UILabel!
     @IBOutlet weak var labelForUserDestinationTime: UILabel!
     
+    var viewModel: TrolleyStopViewModel? {
+        didSet {
+            labelForNextDestination.text = viewModel?.name
+            labelForTimeDescription.text = "mins"
+            labelForTrolleyDestinationTime.text = viewModel?.trolleyTime
+            labelForUserDestinationTime.text = viewModel?.walkingTime
+        }
+    }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

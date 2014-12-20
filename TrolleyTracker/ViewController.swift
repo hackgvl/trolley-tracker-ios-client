@@ -7,23 +7,17 @@
 //
 
 import UIKit
-import CoreLocation
+import MapKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TrolleyDataControllerDelegate {
     
     let dataController = TrolleyDataController()
     var tableView: UITableView?
+    let mapCell = MapTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Map")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        let locationManager = CLLocationManager()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        //        locationManager.startUpdatingLocation()
-        
-        
+
         self.title = "Track the Trolley"
         
         self.view.backgroundColor = UIColor.redColor()
@@ -32,7 +26,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: "Cell")
+        tableView.registerNib(UINib(nibName: "TrolleyStopCell", bundle: nil), forCellReuseIdentifier: "TrolleyStopCell")
         tableView.registerClass(MapTableViewCell.classForCoder(), forCellReuseIdentifier: "Map")
         
         self.view.addSubview(tableView)
@@ -40,6 +34,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.tableView = tableView
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Bookmarks, target: self, action: "listButtonTapped:")
+        
+        dataController.startTrackingTrolleys()
+        
+        updateTrolleysOnMap()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -48,6 +46,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if let indexPath = tableView?.indexPathForSelectedRow() {
             tableView?.deselectRowAtIndexPath(indexPath, animated: true)
         }
+        
+        dataController.delegate = self
     }
     
     func listButtonTapped(sender: UIBarButtonItem) {
@@ -63,31 +63,28 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return dataController.trolleys.count + 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (section == 0) {
-            return 1
-        }
-        
-        return 2
+        return 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if (indexPath.section == 0) {
-            var cell = tableView.dequeueReusableCellWithIdentifier("Map", forIndexPath: indexPath) as UITableViewCell
+            var cell = mapCell
             
             cell.textLabel?.text = "Austin Doesn't have WatchKit"
             
             return cell
         }
         else {
-            var cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+            var cell = tableView.dequeueReusableCellWithIdentifier("TrolleyStopCell", forIndexPath: indexPath) as TrolleyListTableViewCell
             
-            let trolley = dataController.trolleys[indexPath.row]
-            cell.textLabel?.text = trolley.name
+            let trolleyStop = dataController.trolleys[indexPath.section - 1].upcomingStops.first
+            
+            cell.viewModel = trolleyStop
             
             return cell
         }
@@ -100,6 +97,50 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         return 64.0
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return nil
+        }
+        else {
+            return dataController.trolleys[section - 1].name
+        }
+    }
+    
+    // MARK: Trolley Locations
+    
+    func updateTrolleysOnMap() {
+        
+        mapCell.mapView?.removeAnnotations(mapCell.mapView?.annotations)
+        
+        for trolley in dataController.trolleys {
+            addTrolleyToMap(trolley)
+        }
+    }
+    
+    func addTrolleyToMap(trolley: TrolleyViewModel) {
+        if let location = trolley.currentLocation {
+            
+            let annotation = TrolleyMapAnnotation(coordinate: location.coordinate)
+            annotation.title = trolley.name
+            
+            mapCell.mapView?.addAnnotation(annotation)
+        }
+    }
+    
+    // MARK: TrolleyDataController Delegate
+    
+    func controller(_: TrolleyDataController, didUpdateTrolleyLocation trolley: TrolleyViewModel) {
+        updateTrolleysOnMap()
+    }
+    
+    func controller(_: TrolleyDataController, didUpdateTrolleyStop stop: TrolleyStopViewModel) {
+        tableView?.reloadSections(NSIndexSet(indexesInRange: NSMakeRange(1, dataController.trolleys.count)), withRowAnimation: UITableViewRowAnimation.Automatic)
+    }
+    
+    func controllerDidChangeTrolleyStops(controller: TrolleyDataController) {
+        tableView?.reloadSections(NSIndexSet(indexesInRange: NSMakeRange(1, dataController.trolleys.count)), withRowAnimation: UITableViewRowAnimation.Automatic)
     }
 
 }

@@ -11,24 +11,30 @@ import MapKit
 
 class MapTableViewCell: UITableViewCell {
     
+    var mapView: MKMapView?
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        var mapView = MKMapView(frame: self.contentView.bounds)
-        mapView.autoresizingMask = UIViewAutoresizing.FlexibleHeight|UIViewAutoresizing.FlexibleWidth
+        self.mapView = MKMapView(frame: self.contentView.bounds)
         
-        let region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(34.851887, -82.398366), MKCoordinateSpanMake(0.001, 0.001))
-        mapView.region = region
-        mapView.showsUserLocation = true
-        //mapView.userLocation.coordinate
-        
-        self.contentView.addSubview(mapView)
+        if let mapView = self.mapView {
+            mapView.autoresizingMask = UIViewAutoresizing.FlexibleHeight|UIViewAutoresizing.FlexibleWidth
+            
+            let region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(34.851887, -82.398366), MKCoordinateSpanMake(0.001, 0.001))
+            mapView.region = region
+            mapView.showsUserLocation = true
+            //mapView.userLocation.coordinate
+            
+            self.contentView.addSubview(mapView)
+        }
         
         self.textLabel?.hidden = true
     }
 
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func setSelected(selected: Bool, animated: Bool) {

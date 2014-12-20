@@ -8,15 +8,20 @@
 
 import UIKit
 
-class TrolleyListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TrolleyListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TrolleyDataControllerDelegate {
 
-    var dataController: TrolleyDataController!
+    var dataController: TrolleyDataController! {
+        didSet {
+            dataController.delegate = self
+        }
+    }
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.registerNib(UINib(nibName: "TrolleyStopCell", bundle: nil), forCellReuseIdentifier: "TrolleyStopCell")
     }
 
     // MARK: Actions
@@ -47,24 +52,27 @@ class TrolleyListViewController: UIViewController, UITableViewDelegate, UITableV
             return cell
         }
         else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("StopCell", forIndexPath: indexPath) as TrolleyListTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("TrolleyStopCell", forIndexPath: indexPath) as TrolleyListTableViewCell
             
             let trolleyStop = trolley.upcomingStops[indexPath.row - 1]
-            
-            cell.labelForNextDestination.text = trolleyStop.name
-            cell.labelForTimeDescription.text = "mins"
-            
-            if let trolleyLocation = trolley.currentLocation {
-                cell.labelForTrolleyDestinationTime.text = trolleyStop.travelTimeFromLocation(trolleyLocation, transportationType: .Trolley)
-            }
-            
-            if let userLocation = User.currentLocation {
-                cell.labelForUserDestinationTime.text = trolleyStop.travelTimeFromLocation(userLocation, transportationType: .Walking)
-            }
+
+            cell.viewModel = trolleyStop
             
             return cell
         }
     }
     
+    
+    func controller(_: TrolleyDataController, didUpdateTrolleyStop stop: TrolleyStopViewModel) {
+        tableView.reloadData()
+    }
+    
+    func controllerDidChangeTrolleyStops(controller: TrolleyDataController) {
+        tableView.reloadData()
+    }
+    
+    func controller(_: TrolleyDataController, didUpdateTrolleyLocation trolley: TrolleyViewModel) {
+        
+    }
 
 }
