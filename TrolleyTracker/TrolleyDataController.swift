@@ -13,15 +13,17 @@ protocol TrolleyDataControllerDelegate: class {
     func controller(_:TrolleyDataController, didUpdateTrolleyStop stop: TrolleyStopViewModel)
     func controller(_:TrolleyDataController, didUpdateTrolleyLocation trolley: TrolleyViewModel)
     func controllerDidChangeTrolleyStops(controller: TrolleyDataController)
+    func controllerDidUpdateTrolleyList(controller: TrolleyDataController)
 }
 
-class TrolleyDataController {
+class TrolleyDataController: NetworkControllerDelegate {
     
     var trolleys: [TrolleyViewModel]
     var updateTimerWalkingTimes: NSTimer?
     var updateTimerTrolleyTimes: NSTimer?
     var updateTimerTrolleyLocations: NSTimer?
     let locationManager = CLLocationManager()
+    let networkController = NetworkController()
     weak var delegate: TrolleyDataControllerDelegate?
     
     init(trolleys: [Trolley]) {
@@ -30,13 +32,24 @@ class TrolleyDataController {
     }
     
     init() {
-        let trolley1 = Trolley(name: "Trolley 1", route: [])
-        let trolley2 = Trolley(name: "Trolley 2", route: [])
-        let trolleyModels = [trolley1, trolley2]
-        
-        self.trolleys = trolleyModels.map({TrolleyViewModel(trolley: $0)})
-        
+        trolleys = [TrolleyViewModel]()
+        self.networkController.delegate = self
         self.locationManager.requestWhenInUseAuthorization()
+        updateTrolleyList()
+    }
+    
+    func updateTrolleyList() {
+        
+        networkController.downloadTrolleyList { (downloadedTrolleys) -> () in
+            self.trolleys = downloadedTrolleys.map({TrolleyViewModel(trolley: $0)})
+            if let delegate = self.delegate {
+                delegate.controllerDidUpdateTrolleyList(self)
+            }
+            
+            for trolley in downloadedTrolleys {
+                self.networkController.startTrackingTrolley(trolley)
+            }
+        }
     }
     
     func startTrackingTrolleys() {
@@ -81,9 +94,25 @@ class TrolleyDataController {
     
     @objc func updateTrolleyLocations() {
         
+        for (index, trolleyViewModel) in enumerate(trolleys) {
+            
+            let operation = TrackTrolleyOperation(trolley: trolleyViewModel.model)
+            operation.trolleyUpdateHandler = { (trolley: TrolleyViewModel, location: CLLocation) in
+                trolley.currentLocation = location
+                if let delegate = self.delegate {
+                    delegate.controller(self, didUpdateTrolleyLocation: trolleyViewModel)
+                }
+            }
+        }
+        
+        for trolleyViewModel in trolleys {
+            
+            
+        }
+        
         //////////////// Just for simulation /////////////////////////////
         for index in 0..<self.trolleys.count {
-            let routePoints = (index == 0) ? TrolleyViewModel.route1 : TrolleyViewModel.route2
+            let routePoints = (index == 0) ? DummyData.route1 : DummyData.route1
             let locations = routePoints.map({$0.location})
             if (self.trolleys[index].currentLocation == nil) {
                 self.trolleys[index].currentLocation = locations[0]
@@ -103,6 +132,11 @@ class TrolleyDataController {
                 delegate.controller(self, didUpdateTrolleyLocation: trolley)
             }
         }
+    }
+    
+    // MARK: NetworkController Delegate
+    func controller(_: NetworkController, didUpdateTrolley trolley: Trolley, withLocation location: CLLocation) {
+        
     }
     
 }

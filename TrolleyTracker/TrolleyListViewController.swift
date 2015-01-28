@@ -74,5 +74,9 @@ class TrolleyListViewController: UIViewController, UITableViewDelegate, UITableV
     func controller(_: TrolleyDataController, didUpdateTrolleyLocation trolley: TrolleyViewModel) {
         
     }
+    
+    func controllerDidUpdateTrolleyList(controller: TrolleyDataController) {
+        
+    }
 
 }

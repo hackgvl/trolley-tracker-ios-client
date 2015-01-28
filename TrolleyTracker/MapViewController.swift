@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TrolleyDataControllerDelegate {
+class MapViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TrolleyDataControllerDelegate {
     
     let dataController = TrolleyDataController()
     var tableView: UITableView?
@@ -141,6 +141,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func controllerDidChangeTrolleyStops(controller: TrolleyDataController) {
         tableView?.reloadSections(NSIndexSet(indexesInRange: NSMakeRange(1, dataController.trolleys.count)), withRowAnimation: UITableViewRowAnimation.Automatic)
+    }
+    
+    func controllerDidUpdateTrolleyList(controller: TrolleyDataController) {
+        
     }
 
 }

@@ -8,10 +8,18 @@
 
 import Foundation
 
-struct Trolley {
+class Trolley : NSObject {
     
     let name: String
     
     let route: [TrolleyStop]
+    
+    init(name: String) {
+        
+        self.name = name
+        self.route = [TrolleyStop]()
+        
+        super.init()
+    }
 }
 
