@@ -52,11 +52,11 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     func listButtonTapped(sender: UIBarButtonItem) {
         
-        let nc = UIStoryboard(name: "TrolleyList", bundle: nil).instantiateInitialViewController() as UINavigationController
+        let nc = UIStoryboard(name: "TrolleyList", bundle: nil).instantiateInitialViewController() as! UINavigationController
         nc.modalPresentationStyle = UIModalPresentationStyle.FullScreen
         nc.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
         
-        let controller = nc.topViewController as TrolleyListViewController
+        let controller = nc.topViewController as! TrolleyListViewController
         controller.dataController = dataController
         
         presentViewController(nc, animated: true, completion: nil)
@@ -80,7 +80,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
             return cell
         }
         else {
-            var cell = tableView.dequeueReusableCellWithIdentifier("TrolleyStopCell", forIndexPath: indexPath) as TrolleyListTableViewCell
+            var cell = tableView.dequeueReusableCellWithIdentifier("TrolleyStopCell", forIndexPath: indexPath) as! TrolleyListTableViewCell
             
             let trolleyStop = dataController.trolleys[indexPath.section - 1].upcomingStops.first
             

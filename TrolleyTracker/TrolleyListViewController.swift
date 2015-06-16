@@ -21,7 +21,8 @@ class TrolleyListViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.registerNib(UINib(nibName: "TrolleyStopCell", bundle: nil), forCellReuseIdentifier: "TrolleyStopCell")
+        tableView.registerClass(TrolleyListHeaderCell.self, forCellReuseIdentifier: headerCellIdentifier)
+        tableView.registerClass(TrolleyListTableViewCell.self, forCellReuseIdentifier: TrolleyStopCellIdentifier)
     }
 
     // MARK: Actions
@@ -30,7 +31,12 @@ class TrolleyListViewController: UIViewController, UITableViewDelegate, UITableV
         presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    // MARK: UITableView
+    //==========================================================================
+    // mark: UITableViewDataSource
+    //==========================================================================
+    
+    let headerCellIdentifier = "HeaderCell"
+    let TrolleyStopCellIdentifier = "TrolleyStopCell"
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return dataController.trolleys.count
@@ -45,14 +51,14 @@ class TrolleyListViewController: UIViewController, UITableViewDelegate, UITableV
         let trolley = dataController.trolleys[indexPath.section]
         
         if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as TrolleyListHeaderCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(headerCellIdentifier, forIndexPath: indexPath) as! TrolleyListHeaderCell
             
             cell.labelForTrolleyTitle.text = trolley.name
             
             return cell
         }
         else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("TrolleyStopCell", forIndexPath: indexPath) as TrolleyListTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(TrolleyStopCellIdentifier, forIndexPath: indexPath) as! TrolleyListTableViewCell
             
             let trolleyStop = trolley.upcomingStops[indexPath.row - 1]
 
