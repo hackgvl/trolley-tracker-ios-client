@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import MessageUI
+
 
 class TTSettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -22,6 +24,7 @@ class TTSettingsViewController: UIViewController, UITableViewDataSource, UITable
       NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[tableview]|", options: nil, metrics: nil, views: views))
     }
  
+  
   ///MARK: TableView
   
   lazy var tableView: UITableView = {
@@ -65,12 +68,28 @@ class TTSettingsViewController: UIViewController, UITableViewDataSource, UITable
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
    
     if indexPath.section == 0 {
-      //feedback
+      giveFeedBackButton()
     }
     else if indexPath.section == 1 {
       //tell friends
     }
   }
+  
+  
+  func giveFeedBackButton() {
+   
+    var emailTitle = "TrolleyTracker Feedback"
+    var messageBody = "Hi TrolleyTracker,\n\nI have some feedback to provide about my application using experience:\n\n"
+    var toRecipents = ["YeahThatTrolley@gmail.com"]
+    
+    var mc: MFMailComposeViewController = MFMailComposeViewController()
+    mc.setSubject(emailTitle)
+    mc.setMessageBody(messageBody, isHTML: false)
+    mc.setToRecipients(toRecipents)
+    
+    self.presentViewController(mc, animated: true, completion: nil)
+  }
+  
  
  /// MARK: Actions
   
