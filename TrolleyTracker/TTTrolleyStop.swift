@@ -9,9 +9,13 @@
 import Foundation
 import CoreLocation
 
-struct TTTrolleyStop {
+class TTTrolleyStop: NSObject {
+    
+    init(name: String, location: CLLocation) {
+        self.name = name
+        self.location = location
+    }
     
     let name: String
-    let identifier: String
     let location: CLLocation
 }

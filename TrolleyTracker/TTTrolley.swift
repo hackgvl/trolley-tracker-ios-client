@@ -9,8 +9,15 @@
 import Foundation
 import CoreLocation
 
-struct TTTrolley {
+class TTTrolley: NSObject {
+    
+    init(name: String, identifier: String, location: CLLocation) {
+        self.name = name
+        self.identifier = identifier
+        self.location = location
+    }
     
     let name: String
+    let identifier: String
     let location: CLLocation
 }
