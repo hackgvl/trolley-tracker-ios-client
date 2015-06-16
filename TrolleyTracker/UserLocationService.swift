@@ -7,8 +7,11 @@
 //
 
 import Foundation
+import CoreLocation
 
 class TTUserLocationService {
     
     static var sharedService = TTUserLocationService()
+    
+    
 }

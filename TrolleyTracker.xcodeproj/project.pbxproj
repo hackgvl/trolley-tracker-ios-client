@@ -21,6 +21,8 @@
 		D914FAE21B30DF14002DACF8 /* TrolleyLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FAE11B30DF14002DACF8 /* TrolleyLocationService.swift */; };
 		D914FAE41B30DFA8002DACF8 /* TTTrolley.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FAE31B30DFA8002DACF8 /* TTTrolley.swift */; };
 		D914FAE61B30DFC0002DACF8 /* TTTrolleyStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FAE51B30DFC0002DACF8 /* TTTrolleyStop.swift */; };
+		D914FAE81B30E3FE002DACF8 /* TTRequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FAE71B30E3FE002DACF8 /* TTRequestController.swift */; };
+		D914FAF91B30E62B002DACF8 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D914FAF21B30E55A002DACF8 /* Alamofire.framework */; };
 		D927E8E11A4623000010D781 /* TrackTrolleyOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D927E8E01A4623000010D781 /* TrackTrolleyOperation.swift */; };
 		D927E8E31A4623100010D781 /* DownloadTrolleysOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D927E8E21A4623100010D781 /* DownloadTrolleysOperation.swift */; };
 		D9329FAA1A46210000B90670 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9329FA91A46210000B90670 /* NetworkController.swift */; };
@@ -41,6 +43,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		D914FAF11B30E55A002DACF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D914FAEA1B30E559002DACF8 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8111E3319A95C8B0040E7D1;
+			remoteInfo = "Alamofire iOS";
+		};
+		D914FAF31B30E55A002DACF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D914FAEA1B30E559002DACF8 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4DD67C0B1A5C55C900ED2280;
+			remoteInfo = "Alamofire OSX";
+		};
+		D914FAF51B30E55A002DACF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D914FAEA1B30E559002DACF8 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8111E3E19A95C8B0040E7D1;
+			remoteInfo = "Alamofire iOS Tests";
+		};
+		D914FAF71B30E55A002DACF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D914FAEA1B30E559002DACF8 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F829C6B21A7A94F100A2CD59;
+			remoteInfo = "Alamofire OSX Tests";
+		};
 		EFA4B20C1A1C201F00BEA42C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EFA4B1EE1A1C201F00BEA42C /* Project object */;
@@ -65,6 +95,8 @@
 		D914FAE11B30DF14002DACF8 /* TrolleyLocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyLocationService.swift; sourceTree = "<group>"; };
 		D914FAE31B30DFA8002DACF8 /* TTTrolley.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTTrolley.swift; sourceTree = "<group>"; };
 		D914FAE51B30DFC0002DACF8 /* TTTrolleyStop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTTrolleyStop.swift; sourceTree = "<group>"; };
+		D914FAE71B30E3FE002DACF8 /* TTRequestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTRequestController.swift; sourceTree = "<group>"; };
+		D914FAEA1B30E559002DACF8 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = SOURCE_ROOT; };
 		D927E8E01A4623000010D781 /* TrackTrolleyOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackTrolleyOperation.swift; sourceTree = "<group>"; };
 		D927E8E21A4623100010D781 /* DownloadTrolleysOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadTrolleysOperation.swift; sourceTree = "<group>"; };
 		D9329FA91A46210000B90670 /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
@@ -93,6 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D914FAF91B30E62B002DACF8 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,11 +183,23 @@
 		D914FADC1B30DEB4002DACF8 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D914FAE71B30E3FE002DACF8 /* TTRequestController.swift */,
 				D914FADD1B30DEF0002DACF8 /* UserLocationService.swift */,
 				D914FADF1B30DEFE002DACF8 /* TrolleyStopService.swift */,
 				D914FAE11B30DF14002DACF8 /* TrolleyLocationService.swift */,
 			);
 			name = Services;
+			sourceTree = "<group>";
+		};
+		D914FAEB1B30E559002DACF8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D914FAF21B30E55A002DACF8 /* Alamofire.framework */,
+				D914FAF41B30E55A002DACF8 /* Alamofire.framework */,
+				D914FAF61B30E55A002DACF8 /* Alamofire iOS Tests.xctest */,
+				D914FAF81B30E55A002DACF8 /* Alamofire OSX Tests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		D9329FA81A4620E500B90670 /* Network */ = {
@@ -193,6 +238,7 @@
 		EFA4B1ED1A1C201F00BEA42C = {
 			isa = PBXGroup;
 			children = (
+				D914FAEA1B30E559002DACF8 /* Alamofire.xcodeproj */,
 				EFA4B1F81A1C201F00BEA42C /* TrolleyTracker */,
 				EFA4B20E1A1C201F00BEA42C /* TrolleyTrackerTests */,
 				EFA4B1F71A1C201F00BEA42C /* Products */,
@@ -318,6 +364,12 @@
 			mainGroup = EFA4B1ED1A1C201F00BEA42C;
 			productRefGroup = EFA4B1F71A1C201F00BEA42C /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D914FAEB1B30E559002DACF8 /* Products */;
+					ProjectRef = D914FAEA1B30E559002DACF8 /* Alamofire.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				EFA4B1F51A1C201F00BEA42C /* TrolleyTracker */,
@@ -325,6 +377,37 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D914FAF21B30E55A002DACF8 /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = D914FAF11B30E55A002DACF8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D914FAF41B30E55A002DACF8 /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = D914FAF31B30E55A002DACF8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D914FAF61B30E55A002DACF8 /* Alamofire iOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Alamofire iOS Tests.xctest";
+			remoteRef = D914FAF51B30E55A002DACF8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D914FAF81B30E55A002DACF8 /* Alamofire OSX Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Alamofire OSX Tests.xctest";
+			remoteRef = D914FAF71B30E55A002DACF8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		EFA4B1F41A1C201F00BEA42C /* Resources */ = {
@@ -363,6 +446,7 @@
 				E71A678E1B30DCEF0036FE10 /* TTSettingsViewController.swift in Sources */,
 				41BDFAFF1A3A4C3A00166CAC /* TrolleyStop.swift in Sources */,
 				41BDFAFD1A3A4C2D00166CAC /* TrolleyViewModel.swift in Sources */,
+				D914FAE81B30E3FE002DACF8 /* TTRequestController.swift in Sources */,
 				D9A0FB491A4627D00058EBCF /* DownloadTrolleyRoutesOperation.swift in Sources */,
 				419ADCB71A3900DE00198D44 /* TrolleyListTableViewCell.swift in Sources */,
 				D914FAE61B30DFC0002DACF8 /* TTTrolleyStop.swift in Sources */,

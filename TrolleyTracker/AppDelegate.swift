@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,6 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let navController = UINavigationController(rootViewController: TTMapViewController())
         self.window?.rootViewController = navController
+        
+        Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders = [
+            "Cache-Control":"no-cache",
+            "Authorization":"Basic SU9TQ2xpZW50OklPU2lzdGhlYmVzdCEx",
+            "Content-Type":"application/json",
+        ]
         
         return true
     }
