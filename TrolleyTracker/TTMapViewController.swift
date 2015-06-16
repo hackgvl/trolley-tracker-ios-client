@@ -9,17 +9,36 @@
 import UIKit
 import MapKit
 
-class TTMapViewController: UIViewController {
+// TODO: Add tracking button that toggles MKUserTrackingMode like native maps
+
+class TTMapViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        title = "Trolly Tracker"
+        
+        view.backgroundColor = UIColor.whiteColor()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func loadStops() {
+        // TODO: Plot each stop as an annotation on the MapView
+    }
+    
+    func loadTrolleys() {
+        // TODO: Plot each Trolley as an annotation on the MapView
+    }
+    
+    func updateTrolleys() {
+        // TODO: Move Trolley annotations to current locations
+    }
+    
+    //==========================================================================
+    // mark: MKMapViewDelegate
+    //==========================================================================
+    
+    func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
+        // TODO: Adjust DetailViewController information to show the current selected object (trolley or stop)
     }
     
     //==========================================================================
@@ -29,6 +48,13 @@ class TTMapViewController: UIViewController {
     lazy var mapView: MKMapView = {
         let mapView = MKMapView()
         mapView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        
+        mapView.mapType = MKMapType.Standard
+        
+        mapView.showsUserLocation = true
+        
+        mapView.delegate = self
+        
         return mapView
     }()
     
