@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+class TTTrolleyLocationService {
+    
+    static var sharedService = TTTrolleyLocationService()
+}

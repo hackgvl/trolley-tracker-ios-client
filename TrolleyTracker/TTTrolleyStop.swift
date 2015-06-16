@@ -7,3 +7,11 @@
 //
 
 import Foundation
+import CoreLocation
+
+struct TTTrolleyStop {
+    
+    let name: String
+    let identifier: String
+    let location: CLLocation
+}

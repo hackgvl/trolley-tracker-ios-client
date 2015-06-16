@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+class TTTrolleyStopService {
+ 
+    static var sharedService = TTTrolleyStopService() 
+}
