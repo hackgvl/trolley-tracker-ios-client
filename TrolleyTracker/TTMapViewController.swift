@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class TTMapViewController: UIViewController {
     
@@ -21,15 +22,19 @@ class TTMapViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //==========================================================================
+    // mark: Views
+    //==========================================================================
     
-    /*
-    // MARK: - Navigation
+    lazy var mapView: MKMapView = {
+        let mapView = MKMapView()
+        mapView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        return mapView
+    }()
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
-    
+    lazy var detailView: UIView = {
+        let detailView = UIView()
+        detailView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        return detailView
+    }()
 }
