@@ -19,6 +19,10 @@ class TTMapViewController: UIViewController, MKMapViewDelegate {
         title = "Trolly Tracker"
         
         view.backgroundColor = UIColor.whiteColor()
+        
+        // TODO: Add DetailViewController as childViewController to detailView container view
+        // TODO: Add subviews
+        // TODO: Setup AutoLayout
     }
     
     func loadStops() {
