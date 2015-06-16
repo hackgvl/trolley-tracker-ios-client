@@ -51,12 +51,21 @@ class TTMapViewController: UIViewController, MKMapViewDelegate {
         title = "Trolly Tracker"
         
         view.backgroundColor = UIColor.whiteColor()
+        let detailViewController: TTDetailViewController = TTDetailViewController();
+        self.view.addSubview(detailView)
+        view.addSubview(mapView)
         
-        // TODO: Add DetailViewController as childViewController to detailView container view
-        // TODO: Add subviews
-        // TODO: Setup AutoLayout
-      
       self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Settings", comment: "Settings"), style: .Plain, target: self, action:"showSettings")
+        self.addChildViewController(detailViewController)
+        view.addSubview(detailViewController.view)
+        detailViewController.didMoveToParentViewController(self)
+        
+        let views = ["detailView": detailView, "mapView": mapView]
+        
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[detailView]|", options: nil, metrics: nil, views: views))
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[mapView]|", options: nil, metrics: nil, views: views))
+        
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[mapView][detailView(==mapView)]|", options: nil, metrics: nil, views: views))
     }
     
     func loadStops() {
