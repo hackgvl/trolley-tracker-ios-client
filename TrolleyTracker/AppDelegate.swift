@@ -11,18 +11,18 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
+    var window: UIWindow? = UIWindow(frame: UIScreen.mainScreen().bounds)
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window?.backgroundColor = UIColor.blackColor()
-        
         self.window?.makeKeyAndVisible()
         
-        self.window?.rootViewController = UINavigationController(rootViewController: MapViewController())
+        
+        let navController = UINavigationController(rootViewController: TTMapViewController())
+        self.window?.rootViewController = navController
         
         return true
     }

@@ -24,6 +24,9 @@
 		D9A0FB471A46274E0058EBCF /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A0FB461A46274E0058EBCF /* DummyData.swift */; };
 		D9A0FB491A4627D00058EBCF /* DownloadTrolleyRoutesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A0FB481A4627D00058EBCF /* DownloadTrolleyRoutesOperation.swift */; };
 		D9B3ED231A3E7B490076B8B8 /* TrolleyRoutePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B3ED221A3E7B490076B8B8 /* TrolleyRoutePoint.swift */; };
+		E71A678A1B30DCD30036FE10 /* TTMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71A67891B30DCD30036FE10 /* TTMapViewController.swift */; };
+		E71A678C1B30DCE60036FE10 /* TTDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71A678B1B30DCE60036FE10 /* TTDetailViewController.swift */; };
+		E71A678E1B30DCEF0036FE10 /* TTSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71A678D1B30DCEF0036FE10 /* TTSettingsViewController.swift */; };
 		EFA4B1FC1A1C201F00BEA42C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA4B1FB1A1C201F00BEA42C /* AppDelegate.swift */; };
 		EFA4B1FE1A1C201F00BEA42C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA4B1FD1A1C201F00BEA42C /* MapViewController.swift */; };
 		EFA4B2031A1C201F00BEA42C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFA4B2021A1C201F00BEA42C /* Images.xcassets */; };
@@ -60,6 +63,9 @@
 		D9A0FB461A46274E0058EBCF /* DummyData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
 		D9A0FB481A4627D00058EBCF /* DownloadTrolleyRoutesOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadTrolleyRoutesOperation.swift; sourceTree = "<group>"; };
 		D9B3ED221A3E7B490076B8B8 /* TrolleyRoutePoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyRoutePoint.swift; sourceTree = "<group>"; };
+		E71A67891B30DCD30036FE10 /* TTMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTMapViewController.swift; sourceTree = "<group>"; };
+		E71A678B1B30DCE60036FE10 /* TTDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTDetailViewController.swift; sourceTree = "<group>"; };
+		E71A678D1B30DCEF0036FE10 /* TTSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTSettingsViewController.swift; sourceTree = "<group>"; };
 		EFA4B1F61A1C201F00BEA42C /* TrolleyTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrolleyTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFA4B1FA1A1C201F00BEA42C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EFA4B1FB1A1C201F00BEA42C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -141,6 +147,20 @@
 			name = "Dummy Data";
 			sourceTree = "<group>";
 		};
+		E71A67881B30DCBB0036FE10 /* Old */ = {
+			isa = PBXGroup;
+			children = (
+				D9329FA81A4620E500B90670 /* Network */,
+				4133C7D41A3A462D00895448 /* Model */,
+				41BDFAFB1A3A4C0F00166CAC /* ModelLogic */,
+				4133C79F1A3A327600895448 /* TrolleyList */,
+				D95FD39F1A3E4F5C00F5D6BF /* TrolleyStopCell.xib */,
+				EFA4B1FD1A1C201F00BEA42C /* MapViewController.swift */,
+				EFA4B21B1A1C230300BEA42C /* MapTableViewCell.swift */,
+			);
+			name = Old;
+			sourceTree = "<group>";
+		};
 		EFA4B1ED1A1C201F00BEA42C = {
 			isa = PBXGroup;
 			children = (
@@ -162,14 +182,11 @@
 		EFA4B1F81A1C201F00BEA42C /* TrolleyTracker */ = {
 			isa = PBXGroup;
 			children = (
-				D9329FA81A4620E500B90670 /* Network */,
-				4133C7D41A3A462D00895448 /* Model */,
-				41BDFAFB1A3A4C0F00166CAC /* ModelLogic */,
-				4133C79F1A3A327600895448 /* TrolleyList */,
-				D95FD39F1A3E4F5C00F5D6BF /* TrolleyStopCell.xib */,
 				EFA4B1FB1A1C201F00BEA42C /* AppDelegate.swift */,
-				EFA4B1FD1A1C201F00BEA42C /* MapViewController.swift */,
-				EFA4B21B1A1C230300BEA42C /* MapTableViewCell.swift */,
+				E71A67891B30DCD30036FE10 /* TTMapViewController.swift */,
+				E71A678B1B30DCE60036FE10 /* TTDetailViewController.swift */,
+				E71A678D1B30DCEF0036FE10 /* TTSettingsViewController.swift */,
+				E71A67881B30DCBB0036FE10 /* Old */,
 				EFA4B2021A1C201F00BEA42C /* Images.xcassets */,
 				EFA4B2041A1C201F00BEA42C /* LaunchScreen.xib */,
 				EFA4B1F91A1C201F00BEA42C /* Supporting Files */,
@@ -309,11 +326,14 @@
 				419ADCB31A38FDE700198D44 /* TrolleyListViewController.swift in Sources */,
 				EFA4B1FE1A1C201F00BEA42C /* MapViewController.swift in Sources */,
 				EFA4B1FC1A1C201F00BEA42C /* AppDelegate.swift in Sources */,
+				E71A678C1B30DCE60036FE10 /* TTDetailViewController.swift in Sources */,
+				E71A678E1B30DCEF0036FE10 /* TTSettingsViewController.swift in Sources */,
 				41BDFAFF1A3A4C3A00166CAC /* TrolleyStop.swift in Sources */,
 				41BDFAFD1A3A4C2D00166CAC /* TrolleyViewModel.swift in Sources */,
 				D9A0FB491A4627D00058EBCF /* DownloadTrolleyRoutesOperation.swift in Sources */,
 				419ADCB71A3900DE00198D44 /* TrolleyListTableViewCell.swift in Sources */,
 				41B773741A360312007D83B0 /* Trolley.swift in Sources */,
+				E71A678A1B30DCD30036FE10 /* TTMapViewController.swift in Sources */,
 				D9B3ED231A3E7B490076B8B8 /* TrolleyRoutePoint.swift in Sources */,
 				41B773761A36037B007D83B0 /* TrolleyDataController.swift in Sources */,
 				41BDFB011A3A4E1400166CAC /* TrolleyStopViewModel.swift in Sources */,
