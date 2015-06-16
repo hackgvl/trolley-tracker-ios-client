@@ -84,7 +84,30 @@ class TTMapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func updateTrolleys() {
-        // TODO: Move Trolley annotations to current locations
+        // TODO: Get Trolley Updates
+        
+        // Get Trolley Annotations
+        let trolleyFilter: ((AnyObject) -> (Bool)) = { (annotation) -> Bool in
+            return self.isKindOfClass(TTTrolley.self)
+        }
+        
+        if let trolleyAnnotations = mapView.annotations.filter(trolleyFilter) as? [TTTrolley] {
+            
+            // TODO: Move Trolley annotations to current locations
+            trolleyAnnotations.map {
+                trolleyAnnotation -> () in
+                
+                let annotationView = self.mapView.viewForAnnotation(trolleyAnnotation)
+                
+                let mapPoint = MKMapPointForCoordinate(trolleyAnnotation.coordinate)
+                let zoomFactor = self.mapView.visibleMapRect.size.width / Double(self.mapView.bounds.width)
+                let point = CGPoint(x: mapPoint.x/zoomFactor, y: mapPoint.y/zoomFactor)
+                
+                annotationView.center = point
+            }
+            
+        }
+
     }
     
     //==========================================================================
