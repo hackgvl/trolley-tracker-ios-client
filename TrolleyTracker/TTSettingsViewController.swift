@@ -71,7 +71,10 @@ class TTSettingsViewController: UIViewController, UITableViewDataSource, UITable
       giveFeedBackButton()
     }
     else if indexPath.section == 1 {
-      //tell friends
+      //show share sheet
+      var shareSheetViewController = UIActivityViewController(activityItems: [NSLocalizedString("Check out Trolley Tracker!", comment: "Share Action"), NSLocalizedString("https://yeahthattrolley.com", comment: "Marketing URL")], applicationActivities: nil)
+      
+      self.presentViewController(shareSheetViewController, animated: true, completion: nil)
     }
   }
   
