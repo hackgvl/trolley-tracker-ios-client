@@ -23,6 +23,8 @@ class TTMapViewController: UIViewController, MKMapViewDelegate {
         // TODO: Add DetailViewController as childViewController to detailView container view
         // TODO: Add subviews
         // TODO: Setup AutoLayout
+      
+      self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Settings", comment: "Settings"), style: .Plain, target: self, action:"showSettings")
     }
     
     func loadStops() {
@@ -67,4 +69,14 @@ class TTMapViewController: UIViewController, MKMapViewDelegate {
         detailView.setTranslatesAutoresizingMaskIntoConstraints(false)
         return detailView
     }()
+  
+  //==========================================================================
+  // mark: Actions
+  //==========================================================================
+  
+  func showSettings() {
+    var settingsViewController = TTSettingsViewController()
+    
+    self.navigationController?.pushViewController(settingsViewController, animated: true)
+  }
 }
