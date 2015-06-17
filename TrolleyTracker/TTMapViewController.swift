@@ -149,6 +149,11 @@ class TTMapViewController: UIViewController, MKMapViewDelegate {
         // TODO: Adjust DetailViewController information to show the current selected object (trolley or stop)
     }
     
+    func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
+        let region = MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.01, 0.01))
+        mapView.setRegion(region, animated: true)
+    }
+    
     //==========================================================================
     // mark: Views
     //==========================================================================
@@ -160,6 +165,8 @@ class TTMapViewController: UIViewController, MKMapViewDelegate {
         mapView.mapType = MKMapType.Standard
         
         mapView.showsUserLocation = true
+        mapView.zoomEnabled = true
+        mapView.scrollEnabled = true
         
         mapView.delegate = self
         
