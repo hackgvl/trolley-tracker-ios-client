@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-class TTTrolleyStop: NSObject {
+class TTTrolleyStop: NSObject, Equatable {
     
     init(name: String, location: CLLocation) {
         self.name = name
@@ -18,4 +18,8 @@ class TTTrolleyStop: NSObject {
     
     let name: String
     let location: CLLocation
+}
+
+func ==(lhs: TTTrolleyStop, rhs: TTTrolleyStop) -> Bool {
+    return lhs.name == rhs.name
 }

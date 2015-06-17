@@ -12,32 +12,31 @@ import MapKit
 extension TTTrolley: MKAnnotation {
     
     var coordinate: CLLocationCoordinate2D {
-        return CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)
+        return location.coordinate
     }
     
     var title: String! {
-        // TODO: Return Trolley Name
-        return "Trolley"
+        return name
     }
     
     var subTitle: String! {
-        return "The One"
+        return identifier
     }
 }
 
 extension TTTrolleyStop: MKAnnotation {
     
     var coordinate: CLLocationCoordinate2D {
-        return CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)
+        return location.coordinate
     }
     
     var title: String! {
         // TODO: Return Trolley Name
-        return "Trolley"
+        return name
     }
     
     var subTitle: String! {
-        return "The One"
+        return ""
     }
 }
 
@@ -66,6 +65,16 @@ class TTMapViewController: UIViewController, MKMapViewDelegate {
         NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[mapView]|", options: nil, metrics: nil, views: views))
         
         NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[mapView][detailView(==mapView)]|", options: nil, metrics: nil, views: views))
+        
+        
+        TTTrolleyLocationService.sharedService.trolleyObservers.add(updateTrolley)
+        TTTrolleyLocationService.sharedService.startTrackingTrolleys()
+    }
+    
+    func updateTrolley(trolley: TTTrolley) {
+        println("updateTroller")
+        
+        self.mapView.addAnnotation(trolley)
     }
     
     func loadStops() {
@@ -126,33 +135,33 @@ class TTMapViewController: UIViewController, MKMapViewDelegate {
     let trolleyAnnotationReuseIdentifier = "TrolleyAnnotation"
     let stopAnnotationReuseIdentifier = "StopAnnotation"
     
-    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
-        
-        // Handle Trolleys
-        if let trolleyAnnotation = annotation as? TTTrolley {
-            let annotationView = MKAnnotationView(annotation: trolleyAnnotation, reuseIdentifier: trolleyAnnotationReuseIdentifier)
-            
-            return annotationView
-        }
-        
-        // Handle Stops
-        if let stopAnnotation = annotation as? TTTrolleyStop {
-            let annotationView = MKAnnotationView(annotation: stopAnnotation, reuseIdentifier: trolleyAnnotationReuseIdentifier)
-            
-            return annotationView
-        }
-        
-        return nil
-    }
+//    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+//        
+//        // Handle Trolleys
+//        if let trolleyAnnotation = annotation as? TTTrolley {
+//            let annotationView = MKAnnotationView(annotation: trolleyAnnotation, reuseIdentifier: trolleyAnnotationReuseIdentifier)
+//            
+//            return annotationView
+//        }
+//        
+//        // Handle Stops
+//        if let stopAnnotation = annotation as? TTTrolleyStop {
+//            let annotationView = MKAnnotationView(annotation: stopAnnotation, reuseIdentifier: trolleyAnnotationReuseIdentifier)
+//            
+//            return annotationView
+//        }
+//        
+//        return nil
+//    }
     
     func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
         // TODO: Adjust DetailViewController information to show the current selected object (trolley or stop)
     }
     
-    func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
-        let region = MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.01, 0.01))
-        mapView.setRegion(region, animated: true)
-    }
+//    func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
+//        let region = MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.01, 0.01))
+//        mapView.setRegion(region, animated: true)
+//    }
     
     //==========================================================================
     // mark: Views
@@ -167,6 +176,8 @@ class TTMapViewController: UIViewController, MKMapViewDelegate {
         mapView.showsUserLocation = true
         mapView.zoomEnabled = true
         mapView.scrollEnabled = true
+        
+        mapView.region = MKCoordinateRegion(center: CLLocationCoordinate2DMake(34.851887, -82.398366), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
         
         mapView.delegate = self
         

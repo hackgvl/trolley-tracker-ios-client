@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-class TTTrolley: NSObject {
+class TTTrolley: NSObject, Equatable {
     
     init(name: String, identifier: String, location: CLLocation) {
         self.name = name
@@ -34,4 +34,8 @@ class TTTrolley: NSObject {
     let name: String
     let identifier: String
     let location: CLLocation
+}
+
+func ==(lhs: TTTrolley, rhs: TTTrolley) -> Bool {
+    return lhs.identifier == rhs.identifier
 }
