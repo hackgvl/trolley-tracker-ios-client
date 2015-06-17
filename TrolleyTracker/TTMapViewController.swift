@@ -50,13 +50,16 @@ class TTMapViewController: UIViewController, MKMapViewDelegate {
         title = "Trolly Tracker"
         
         view.backgroundColor = UIColor.whiteColor()
-        let detailViewController: TTDetailViewController = TTDetailViewController();
-        self.view.addSubview(detailView)
+
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Settings", comment: "Settings"), style: .Plain, target: self, action:"showSettings")
+
+        let detailViewController = TTDetailViewController();
+        view.addSubview(detailView)
         view.addSubview(mapView)
-        
-      self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Settings", comment: "Settings"), style: .Plain, target: self, action:"showSettings")
+
         self.addChildViewController(detailViewController)
-        view.addSubview(detailViewController.view)
+        detailView.addSubview(detailViewController.view)
+        detailViewController.view.frame = detailView.bounds
         detailViewController.didMoveToParentViewController(self)
         
         let views = ["detailView": detailView, "mapView": mapView]
