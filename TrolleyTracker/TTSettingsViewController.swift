@@ -14,7 +14,9 @@ class TTSettingsViewController: UIViewController, UITableViewDataSource, UITable
 
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+     
+      self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Done", comment: "Back button on settings"), style: .Done, target: self, action: "dismissSettings")
+        
       self.view.addSubview(self.tableView)
       
       let views = ["tableview": self.tableView]
@@ -28,8 +30,8 @@ class TTSettingsViewController: UIViewController, UITableViewDataSource, UITable
   ///MARK: TableView
   
   lazy var tableView: UITableView = {
-    var tableView = UITableView()
-   
+    var tableView = UITableView(frame: CGRectZero, style: .Grouped)
+    
     tableView.setTranslatesAutoresizingMaskIntoConstraints(false)
     
     tableView.dataSource = self
@@ -49,7 +51,7 @@ class TTSettingsViewController: UIViewController, UITableViewDataSource, UITable
       cell.textLabel?.text = NSLocalizedString("Feedback", comment: "Feedback Button")
     }
     else if indexPath.section == 1 {
-      cell.textLabel?.text = NSLocalizedString("Tell Friends", comment: "Feedback Button")
+      cell.textLabel?.text = NSLocalizedString("Tell Friends", comment: "Share Button")
     }
     
     return cell
@@ -72,7 +74,7 @@ class TTSettingsViewController: UIViewController, UITableViewDataSource, UITable
     }
     else if indexPath.section == 1 {
       //show share sheet
-      var shareSheetViewController = UIActivityViewController(activityItems: [NSLocalizedString("Check out Trolley Tracker!", comment: "Share Action"), NSLocalizedString("https://yeahthattrolley.com", comment: "Marketing URL")], applicationActivities: nil)
+      var shareSheetViewController = UIActivityViewController(activityItems: [NSLocalizedString("Check out Trolley Tracker!", comment: "Share Action"), NSLocalizedString("http://yeahthattrolley.com", comment: "Marketing URL")], applicationActivities: nil)
       
       self.presentViewController(shareSheetViewController, animated: true, completion: nil)
     }
@@ -96,7 +98,7 @@ class TTSettingsViewController: UIViewController, UITableViewDataSource, UITable
  
  /// MARK: Actions
   
-  func dismiss() {
+  func dismissSettings() {
     self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
   }
 }

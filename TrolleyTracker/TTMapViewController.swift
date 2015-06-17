@@ -185,7 +185,9 @@ class TTMapViewController: UIViewController, MKMapViewDelegate {
   
   func showSettings() {
     var settingsViewController = TTSettingsViewController()
+   
+    var navController = UINavigationController(rootViewController: settingsViewController)
     
-    self.navigationController?.pushViewController(settingsViewController, animated: true)
+    self.presentViewController(navController, animated: true, completion: nil)
   }
 }
