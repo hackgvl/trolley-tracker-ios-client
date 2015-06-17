@@ -17,6 +17,20 @@ class TTTrolley: NSObject {
         self.location = location
     }
     
+    init?(jsonData: AnyObject) {
+        
+        let json = JSON(jsonData)
+        
+        let name = json["name"].stringValue
+        let lat = json["where"]["lat"].stringValue
+        let lon = json["where"]["lon"].stringValue
+        let identifier = json["who"].numberValue.stringValue
+        
+        self.location = CLLocation(latitude: (lat as NSString).doubleValue, longitude: (lon as NSString).doubleValue)
+        self.identifier = identifier
+        self.name = name
+    }
+    
     let name: String
     let identifier: String
     let location: CLLocation

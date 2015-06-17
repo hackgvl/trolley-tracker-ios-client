@@ -23,6 +23,8 @@
 		D914FAE61B30DFC0002DACF8 /* TTTrolleyStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FAE51B30DFC0002DACF8 /* TTTrolleyStop.swift */; };
 		D914FAE81B30E3FE002DACF8 /* TTRequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FAE71B30E3FE002DACF8 /* TTRequestController.swift */; };
 		D914FAF91B30E62B002DACF8 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D914FAF21B30E55A002DACF8 /* Alamofire.framework */; };
+		D914FAFC1B30EA84002DACF8 /* ObserverSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FAFB1B30EA84002DACF8 /* ObserverSet.swift */; };
+		D914FB021B30EE11002DACF8 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FB011B30EE11002DACF8 /* SwiftyJSON.swift */; };
 		D927E8E11A4623000010D781 /* TrackTrolleyOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D927E8E01A4623000010D781 /* TrackTrolleyOperation.swift */; };
 		D927E8E31A4623100010D781 /* DownloadTrolleysOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D927E8E21A4623100010D781 /* DownloadTrolleysOperation.swift */; };
 		D9329FAA1A46210000B90670 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9329FA91A46210000B90670 /* NetworkController.swift */; };
@@ -97,6 +99,8 @@
 		D914FAE51B30DFC0002DACF8 /* TTTrolleyStop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTTrolleyStop.swift; sourceTree = "<group>"; };
 		D914FAE71B30E3FE002DACF8 /* TTRequestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTRequestController.swift; sourceTree = "<group>"; };
 		D914FAEA1B30E559002DACF8 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = SOURCE_ROOT; };
+		D914FAFB1B30EA84002DACF8 /* ObserverSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObserverSet.swift; sourceTree = "<group>"; };
+		D914FB011B30EE11002DACF8 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		D927E8E01A4623000010D781 /* TrackTrolleyOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackTrolleyOperation.swift; sourceTree = "<group>"; };
 		D927E8E21A4623100010D781 /* DownloadTrolleysOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadTrolleysOperation.swift; sourceTree = "<group>"; };
 		D9329FA91A46210000B90670 /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
@@ -257,6 +261,7 @@
 		EFA4B1F81A1C201F00BEA42C /* TrolleyTracker */ = {
 			isa = PBXGroup;
 			children = (
+				D914FB011B30EE11002DACF8 /* SwiftyJSON.swift */,
 				D914FADC1B30DEB4002DACF8 /* Services */,
 				D914FADB1B30DEA4002DACF8 /* Models */,
 				EFA4B1FB1A1C201F00BEA42C /* AppDelegate.swift */,
@@ -268,6 +273,7 @@
 				EFA4B2041A1C201F00BEA42C /* LaunchScreen.xib */,
 				EFA4B1F91A1C201F00BEA42C /* Supporting Files */,
 				D95FD3A11A3E5A5E00F5D6BF /* TrolleyMapAnnotation.swift */,
+				D914FAFB1B30EA84002DACF8 /* ObserverSet.swift */,
 			);
 			path = TrolleyTracker;
 			sourceTree = "<group>";
@@ -439,6 +445,7 @@
 				D927E8E31A4623100010D781 /* DownloadTrolleysOperation.swift in Sources */,
 				419ADCB31A38FDE700198D44 /* TrolleyListViewController.swift in Sources */,
 				D914FADE1B30DEF0002DACF8 /* UserLocationService.swift in Sources */,
+				D914FAFC1B30EA84002DACF8 /* ObserverSet.swift in Sources */,
 				D914FAE21B30DF14002DACF8 /* TrolleyLocationService.swift in Sources */,
 				EFA4B1FE1A1C201F00BEA42C /* MapViewController.swift in Sources */,
 				EFA4B1FC1A1C201F00BEA42C /* AppDelegate.swift in Sources */,
@@ -460,6 +467,7 @@
 				D914FAE01B30DEFE002DACF8 /* TrolleyStopService.swift in Sources */,
 				4133C7A11A3A33BF00895448 /* TrolleyListHeaderCell.swift in Sources */,
 				D9329FAA1A46210000B90670 /* NetworkController.swift in Sources */,
+				D914FB021B30EE11002DACF8 /* SwiftyJSON.swift in Sources */,
 				EFA4B21C1A1C230300BEA42C /* MapTableViewCell.swift in Sources */,
 				D9A0FB471A46274E0058EBCF /* DummyData.swift in Sources */,
 			);

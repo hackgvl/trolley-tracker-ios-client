@@ -9,31 +9,41 @@
 import Foundation
 import Alamofire
 
-protocol TrolleyLocationServiceDelegate {
-    
-}
-
 class TTTrolleyLocationService {
     
     static var sharedService = TTTrolleyLocationService()
     
-//    func addDelegate(delegate: TrolleyLocationServiceDelegate) {
-//        
-//    }
-//    
-//    func getTrolleys() {
-//        // Fetch Request
-//        Alamofire.request(.GET, "http://104.131.44.166/api/v1/trolly/1/location", parameters: nil)
-//            .validate(statusCode: 200..<300)
-//            .responseJSON{(request, response, JSON, error) in
-//                if (error == nil)
-//                {
-//                    println("HTTP Response Body: \(JSON)")
-//                }
-//                else
-//                {
-//                    println("HTTP HTTP Request failed: \(error)")
-//                }
-//        }
-//    }
+    var trolleyObservers = ObserverSet<TTTrolley>()
+    
+    private var updateTimer: NSTimer?
+    
+    func startTrackingTrolleys() {
+        updateTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "getTrolleys", userInfo: nil, repeats: true)
+    }
+    
+    func stopTrackingTrolley() {
+        updateTimer?.invalidate()
+    }
+    
+    @objc private func getTrolleys() {
+
+        Alamofire.request(.GET, "http://104.131.44.166/api/v1/trolly/1/location", parameters: nil)
+            .validate(statusCode: 200..<300)
+            .responseJSON{(request, response, JSON, error) in
+                
+                if let JSON: AnyObject = JSON, let trolley = TTTrolley(jsonData: JSON) {
+                    self.trolleyObservers.notify(trolley)
+                    println("Trolley: \(trolley)")
+                }
+                
+                if (error == nil)
+                {
+                    println("HTTP Response Body: \(JSON)")
+                }
+                else
+                {
+                    println("HTTP HTTP Request failed: \(error)")
+                }
+        }
+    }
 }
