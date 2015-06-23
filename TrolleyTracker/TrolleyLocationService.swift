@@ -32,7 +32,9 @@ class TTTrolleyLocationService {
             .responseJSON{(request, response, JSON, error) in
                 
                 if let JSON: AnyObject = JSON, let trolley = TTTrolley(jsonData: JSON) {
-                    self.trolleyObservers.notify(trolley)
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.trolleyObservers.notify(trolley)
+                    })
                     println("Trolley: \(trolley)")
                 }
                 

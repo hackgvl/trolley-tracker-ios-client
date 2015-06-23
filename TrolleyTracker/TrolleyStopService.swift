@@ -9,6 +9,12 @@
 import Foundation
 
 class TTTrolleyStopService {
+    
+    typealias LoadTrolleyStopCompletion = (stops: [TTTrolleyStop]) -> Void
  
-    static var sharedService = TTTrolleyStopService() 
+    static var sharedService = TTTrolleyStopService()
+    
+    func loadTrolleyStops(completion: LoadTrolleyStopCompletion) {
+        
+    }
 }
