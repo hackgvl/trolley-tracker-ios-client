@@ -16,6 +16,17 @@ class TTTrolleyStop: NSObject, Equatable {
         self.location = location
     }
     
+    init?(jsonData: AnyObject) {
+        
+        let json = JSON(jsonData)
+
+        let lat = json["where"]["lat"].stringValue
+        let lon = json["where"]["lon"].stringValue
+        
+        self.name = json["name"].stringValue
+        self.location = CLLocation(latitude: (lat as NSString).doubleValue, longitude: (lon as NSString).doubleValue)
+    }
+    
     let name: String
     let location: CLLocation
 }
