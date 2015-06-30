@@ -81,15 +81,16 @@ class TTMapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func loadStops() {
-        // TODO: Get Stops
-        let stops: [TTTrolleyStop] = []
-        
-        // Plot each stop as an annotation on the MapView
-        stops.map {
-            trolleyStop -> () in
-            
-            self.mapView.addAnnotation(trolleyStop)
+        // Get Stops
+        TTTrolleyStopService.sharedService.loadTrolleyStops { (stops) -> Void in
+            // Plot each stop as an annotation on the MapView
+            stops.map {
+                trolleyStop -> () in
+                
+                self.mapView.addAnnotation(trolleyStop)
+            }
         }
+        
     }
     
     func loadTrolleys() {
@@ -98,9 +99,9 @@ class TTMapViewController: UIViewController, MKMapViewDelegate {
         
         // Plot each Trolley as an annotation on the MapView
         trolleys.map {
-            trolleyStop -> () in
+            trolley -> () in
             
-            self.mapView.addAnnotation(trolleyStop)
+            self.mapView.addAnnotation(trolley)
         }
     }
     
