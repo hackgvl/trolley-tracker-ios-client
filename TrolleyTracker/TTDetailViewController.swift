@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class TTDetailViewController: UIViewController {
 
@@ -90,7 +91,7 @@ class TTDetailViewController: UIViewController {
     lazy var directionsButton: UIButton = {
         let button = UIButton(frame: CGRectZero)
         button.setTranslatesAutoresizingMaskIntoConstraints(false)
-        button.backgroundColor = UIColor.blueColor()
+        button.backgroundColor = UIColor.lightGrayColor()
         button.addTarget(self, action: "handleDirectionsButton:", forControlEvents: UIControlEvents.TouchUpInside)
         
         return button
@@ -108,5 +109,12 @@ class TTDetailViewController: UIViewController {
     
     func handleDirectionsButton(sender: UIButton) {
         NSLog("Directions Button Clicked...")
+        getDirections()
+    }
+
+    func getDirections(pointB: CLLocation) {
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking]
+        let mapItem = MKMapItem()
+        pointB.mapItem().openMapsWithItems(pointB, launchOptions: launchOptions)
     }
 }
