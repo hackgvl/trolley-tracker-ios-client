@@ -10,7 +10,7 @@ import UIKit
 import MessageUI
 
 
-class TTSettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TTSettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,9 +91,27 @@ class TTSettingsViewController: UIViewController, UITableViewDataSource, UITable
     mc.setSubject(emailTitle)
     mc.setMessageBody(messageBody, isHTML: false)
     mc.setToRecipients(toRecipents)
-    
+    mc.mailComposeDelegate = self
     self.presentViewController(mc, animated: true, completion: nil)
   }
+  
+  func mailComposeController(controller:MFMailComposeViewController, didFinishWithResult result:MFMailComposeResult, error:NSError) {
+    switch result.value {
+    case MFMailComposeResultCancelled.value:
+      NSLog("Mail cancelled")
+    case MFMailComposeResultSaved.value:
+      NSLog("Mail saved")
+    case MFMailComposeResultSent.value:
+      NSLog("Mail sent")
+    case MFMailComposeResultFailed.value:
+      NSLog("Mail sent failure: %@", [error.localizedDescription])
+    default:
+      break
+    }
+    self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    // self.dismissViewControllerAnimated(true, completion: nil)
+  }
+  
   
  
  /// MARK: Actions
