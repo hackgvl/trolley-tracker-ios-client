@@ -109,12 +109,20 @@ class TTDetailViewController: UIViewController {
     
     func handleDirectionsButton(sender: UIButton) {
         NSLog("Directions Button Clicked...")
-        getDirections()
+        let pointB = TTTrolleyStopService().dummyTrolleyStops[0]
+        getDirections(pointB.location.coordinate)
     }
 
-    func getDirections(pointB: CLLocation) {
+    func getDirections(pointB: CLLocationCoordinate2D) {
+        let placeMark = MKPlacemark(coordinate: pointB, addressDictionary: nil)
+        let currentLocation = MKMapItem.mapItemForCurrentLocation()
         let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking]
-        let mapItem = MKMapItem()
-        pointB.mapItem().openMapsWithItems(pointB, launchOptions: launchOptions)
+        let mapItem = MKMapItem(placemark: placeMark)
+        
+        //TODO: Make this the name of the stop or Trolley 
+        mapItem.name = "Trolley"
+        
+        MKMapItem.openMapsWithItems([currentLocation, mapItem], launchOptions: launchOptions)
+        //mapItem.openInMapsWithLaunchOptions(launchOptions)
     }
 }
