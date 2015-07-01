@@ -72,6 +72,9 @@ class TTMapViewController: UIViewController, MKMapViewDelegate {
         
         TTTrolleyLocationService.sharedService.trolleyObservers.add(updateTrolley)
         TTTrolleyLocationService.sharedService.startTrackingTrolleys()
+        
+        loadStops()
+        loadTrolleys()
     }
     
     func updateTrolley(trolley: TTTrolley) {
@@ -117,20 +120,33 @@ class TTMapViewController: UIViewController, MKMapViewDelegate {
                 trolleyStop -> () in
                 
                 self.mapView.addAnnotation(trolleyStop)
+                println("stops \(trolleyStop)")
+                
+                self.mapView.viewForAnnotation(trolleyStop)
             }
         }
-        
     }
     
-    //==========================================================================
-    // mark: MKMapViewDelegate
-    //==========================================================================
-    
-    let trolleyAnnotationReuseIdentifier = "TrolleyAnnotation"
-    let stopAnnotationReuseIdentifier = "StopAnnotation"
-    
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        if (annotation is MKUserLocation) {
+            //if annotation is not an MKPointAnnotation (eg. MKUserLocation),
+            //return nil so map draws default view for it (eg. blue dot)...
+            return nil
+        }
         
+        let stopViewID = "stopView"
+        let trolleyViewID = "trolleyViewID"
+        
+        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(stopViewID)
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: stopViewID)
+            annotationView.image = UIImage(named:"Stop_sign")
+            annotationView.canShowCallout = true
+        }
+        else {
+            //we are re-using a view, update its annotation reference...
+            annotationView.annotation = annotation
+        }
         
         // Handle Trolleys
         if let trolleyAnnotation = annotation as? TTTrolley {
@@ -144,16 +160,56 @@ class TTMapViewController: UIViewController, MKMapViewDelegate {
             
             return annotationView
         }
-        
-        // Handle Stops
-//        if let stopAnnotation = annotation as? TTTrolleyStop {
-//            let annotationView = MKAnnotationView(annotation: stopAnnotation, reuseIdentifier: trolleyAnnotationReuseIdentifier)
-//            
-//            return annotationView
-//        }
-        
-        return nil
+
+        return annotationView
     }
+    
+    func loadTrolleys() {
+        // TODO: Get Trolleys
+        let trolleys: [TTTrolley] = []
+        
+        // Plot each Trolley as an annotation on the MapView
+        trolleys.map {
+            trolley -> () in
+            
+            self.mapView.addAnnotation(trolley)
+            self.mapView.viewForAnnotation(trolley)
+        }
+    }
+    
+    func updateTrolleys() {
+        // TODO: Get Trolley Updates
+        
+        // Get Trolley Annotations
+        let trolleyFilter: ((AnyObject) -> (Bool)) = { (annotation) -> Bool in
+            return self.isKindOfClass(TTTrolley.self)
+        }
+        
+        if let trolleyAnnotations = mapView.annotations.filter(trolleyFilter) as? [TTTrolley] {
+            
+            // TODO: Move Trolley annotations to current locations
+            trolleyAnnotations.map {
+                trolleyAnnotation -> () in
+                
+                let annotationView = self.mapView.viewForAnnotation(trolleyAnnotation)
+                
+                let mapPoint = MKMapPointForCoordinate(trolleyAnnotation.coordinate)
+                let zoomFactor = self.mapView.visibleMapRect.size.width / Double(self.mapView.bounds.width)
+                let point = CGPoint(x: mapPoint.x/zoomFactor, y: mapPoint.y/zoomFactor)
+                
+                annotationView.center = point
+            }
+            
+        }
+
+    }
+    
+    //==========================================================================
+    // mark: MKMapViewDelegate
+    //==========================================================================
+    
+    let trolleyAnnotationReuseIdentifier = "TrolleyAnnotation"
+    let stopAnnotationReuseIdentifier = "StopAnnotation"
     
     func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
         // TODO: Adjust DetailViewController information to show the current selected object (trolley or stop)
