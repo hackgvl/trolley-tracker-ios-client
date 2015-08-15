@@ -17,6 +17,8 @@
 		D914FAFC1B30EA84002DACF8 /* ObserverSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FAFB1B30EA84002DACF8 /* ObserverSet.swift */; };
 		D914FB021B30EE11002DACF8 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FB011B30EE11002DACF8 /* SwiftyJSON.swift */; };
 		D95DAFC51B7F60EE00BBC906 /* TrolleyRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95DAFC41B7F60EE00BBC906 /* TrolleyRequests.swift */; };
+		D95DAFD61B7FF92B00BBC906 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D914FAF21B30E55A002DACF8 /* Alamofire.framework */; };
+		D95DAFD71B7FF92B00BBC906 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D914FAF21B30E55A002DACF8 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D95FD3A21A3E5A5E00F5D6BF /* TrolleyMapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95FD3A11A3E5A5E00F5D6BF /* TrolleyMapAnnotation.swift */; };
 		E71A678A1B30DCD30036FE10 /* TTMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71A67891B30DCD30036FE10 /* TTMapViewController.swift */; };
 		E71A678C1B30DCE60036FE10 /* TTDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71A678B1B30DCE60036FE10 /* TTDetailViewController.swift */; };
@@ -56,6 +58,13 @@
 			remoteGlobalIDString = F829C6B21A7A94F100A2CD59;
 			remoteInfo = "Alamofire OSX Tests";
 		};
+		D95DAFD81B7FF92B00BBC906 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D914FAEA1B30E559002DACF8 /* Alamofire.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
+			remoteInfo = "Alamofire iOS";
+		};
 		EFA4B20C1A1C201F00BEA42C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EFA4B1EE1A1C201F00BEA42C /* Project object */;
@@ -64,6 +73,20 @@
 			remoteInfo = TrolleyTracker;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D95DAFDA1B7FF92B00BBC906 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D95DAFD71B7FF92B00BBC906 /* Alamofire.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		D914FADD1B30DEF0002DACF8 /* UserLocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocationService.swift; sourceTree = "<group>"; };
@@ -96,6 +119,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D914FAF91B30E62B002DACF8 /* Alamofire.framework in Frameworks */,
+				D95DAFD61B7FF92B00BBC906 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,10 +238,12 @@
 				EFA4B1F21A1C201F00BEA42C /* Sources */,
 				EFA4B1F31A1C201F00BEA42C /* Frameworks */,
 				EFA4B1F41A1C201F00BEA42C /* Resources */,
+				D95DAFDA1B7FF92B00BBC906 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D95DAFD91B7FF92B00BBC906 /* PBXTargetDependency */,
 			);
 			name = TrolleyTracker;
 			productName = TrolleyTracker;
@@ -368,6 +394,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		D95DAFD91B7FF92B00BBC906 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Alamofire iOS";
+			targetProxy = D95DAFD81B7FF92B00BBC906 /* PBXContainerItemProxy */;
+		};
 		EFA4B20D1A1C201F00BEA42C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = EFA4B1F51A1C201F00BEA42C /* TrolleyTracker */;
