@@ -42,34 +42,29 @@ extension TTTrolleyStop: MKAnnotation {
 
 // TODO: Add tracking button that toggles MKUserTrackingMode like native maps
 
-class TTMapViewController: UIViewController, MKMapViewDelegate {
+class TTMapViewController: UIViewController, MKMapViewDelegate, TTDetailViewControllerDelegate {
+    
+    //==================================================================
+    // MARK: - Properties
+    //==================================================================
+    
+    lazy var detailViewController: TTDetailViewController = {
+        let controller = TTDetailViewController()
+        controller.delegate = self
+        return controller
+    }()
+    
+    private var detailViewVisibleConstraint: NSLayoutConstraint?
+    private var detailViewHiddenConstraint: NSLayoutConstraint?
+    
+    //==================================================================
+    // MARK: - Lifecycle
+    //==================================================================
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Trolly Tracker"
-        
-        view.backgroundColor = UIColor.whiteColor()
-
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Settings", comment: "Settings"), style: .Plain, target: self, action:"showSettings")
-
-        let detailViewController = TTDetailViewController();
-        view.addSubview(detailView)
-        view.addSubview(mapView)
-
-        self.addChildViewController(detailViewController)
-        detailView.addSubview(detailViewController.view)
-        detailViewController.view.frame = detailView.bounds
-        detailViewController.didMoveToParentViewController(self)
-        
-        let views = ["detailView": detailView, "mapView": mapView]
-        
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[detailView]|", options: nil, metrics: nil, views: views))
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[mapView]|", options: nil, metrics: nil, views: views))
-        
-        NSLayoutConstraint.activateConstraints([NSLayoutConstraint(item: mapView, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.7, constant: 0.0)])
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[mapView][detailView]|", options: nil, metrics: nil, views: views))
-        
+        setupViews()
         
         TTTrolleyLocationService.sharedService.trolleyObservers.add(updateTrolley)
         TTTrolleyLocationService.sharedService.startTrackingTrolleys()
@@ -77,7 +72,14 @@ class TTMapViewController: UIViewController, MKMapViewDelegate {
         loadStops()
     }
     
-    func updateTrolley(trolley: TTTrolley) {
+    //==================================================================
+    // MARK: - Actions
+    //==================================================================
+    
+    private func updateTrolley(trolley: TTTrolley) {
+        
+        // Grab a reference to the detailViewController's currentAnnotation (if any), before it disappears when we remove the current annotation.
+        let detailViewAnnotation = detailViewController.currentlyShowingAnnotation
         
         // Get our Trolley Annotations
         let trolleyAnnotations = mapView.annotations.filter { $0 is TTTrolley }.map { $0 as! TTTrolley }
@@ -89,10 +91,13 @@ class TTMapViewController: UIViewController, MKMapViewDelegate {
         
         mapView.addAnnotation(trolley)
         
-        // TODO: Update detailView with new trolley if detailView is currently showing this Trolley
+        // If the detailViewController was showing this trolley, update it
+        if let annotation = detailViewAnnotation as? TTTrolley where annotation == trolley {
+            detailViewController.showDetailForAnnotation(trolley)
+        }
     }
     
-    func loadStops() {
+    private func loadStops() {
         
         // Get Stops
         TTTrolleyStopService.sharedService.loadTrolleyStops { (stops) -> Void in
@@ -102,6 +107,24 @@ class TTMapViewController: UIViewController, MKMapViewDelegate {
             }
         }
     }
+    
+    private func setDetailViewVisible(visible: Bool, animated: Bool) {
+        
+        detailViewHiddenConstraint?.active = !visible
+        detailViewVisibleConstraint?.active = visible
+        
+        let updateAction = { self.view.layoutIfNeeded() }
+        
+        if animated { UIView.animateWithDuration(0.25, animations: updateAction) }
+        else { updateAction() }
+    }
+    
+    //==========================================================================
+    // MARK: - MKMapViewDelegate
+    //==========================================================================
+    
+    let trolleyAnnotationReuseIdentifier = "TrolleyAnnotation"
+    let stopAnnotationReuseIdentifier = "StopAnnotation"
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         if (annotation is MKUserLocation) {
@@ -117,7 +140,7 @@ class TTMapViewController: UIViewController, MKMapViewDelegate {
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: stopViewID)
             annotationView.image = UIImage(named:"Stop_sign")
-            annotationView.canShowCallout = true
+            //            annotationView.canShowCallout = true
         }
         else {
             //we are re-using a view, update its annotation reference...
@@ -136,19 +159,16 @@ class TTMapViewController: UIViewController, MKMapViewDelegate {
             
             return annotationView
         }
-
+        
         return annotationView
     }
     
-    //==========================================================================
-    // mark: MKMapViewDelegate
-    //==========================================================================
-    
-    let trolleyAnnotationReuseIdentifier = "TrolleyAnnotation"
-    let stopAnnotationReuseIdentifier = "StopAnnotation"
-    
     func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
-        // TODO: Adjust DetailViewController information to show the current selected object (trolley or stop)
+        detailViewController.showDetailForAnnotation(view.annotation)
+    }
+    
+    func mapView(mapView: MKMapView!, didDeselectAnnotationView view: MKAnnotationView!) {
+        detailViewController.showDetailForAnnotation(nil)
     }
     
 //    func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
@@ -156,9 +176,51 @@ class TTMapViewController: UIViewController, MKMapViewDelegate {
 //        mapView.setRegion(region, animated: true)
 //    }
     
+    //==================================================================
+    // MARK: - TTDetailViewControllerDelegate
+    //==================================================================
+    
+    func detailViewControllerWantsToShow(controller: TTDetailViewController) {
+        setDetailViewVisible(true, animated: true)
+    }
+    
+    func detailViewControllerWantsToHide(controller: TTDetailViewController) {
+        setDetailViewVisible(false, animated: true)
+    }
+    
     //==========================================================================
     // mark: Views
     //==========================================================================
+    
+    private func setupViews() {
+        
+        title = "Trolly Tracker"
+        
+        view.backgroundColor = UIColor.whiteColor()
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Settings", comment: "Settings"), style: .Plain, target: self, action:"showSettings")
+        
+        view.addSubview(detailView)
+        view.addSubview(mapView)
+        
+        self.addChildViewController(detailViewController)
+        detailView.addSubview(detailViewController.view)
+        detailViewController.view.frame = detailView.bounds
+        detailViewController.didMoveToParentViewController(self)
+        
+        let views = ["detailView": detailView, "mapView": mapView]
+        
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[detailView]|", options: nil, metrics: nil, views: views))
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[mapView]|", options: nil, metrics: nil, views: views))
+        
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[mapView][detailView]", options: nil, metrics: nil, views: views))
+        NSLayoutConstraint.activateConstraints([NSLayoutConstraint(item: detailView, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.3, constant: 0.0)])
+        
+        detailViewVisibleConstraint = NSLayoutConstraint(item: detailView, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
+        detailViewHiddenConstraint = NSLayoutConstraint(item: detailView, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
+        
+        setDetailViewVisible(false, animated: false)
+    }
     
     lazy var mapView: MKMapView = {
         let mapView = MKMapView()
@@ -175,23 +237,23 @@ class TTMapViewController: UIViewController, MKMapViewDelegate {
         mapView.delegate = self
         
         return mapView
-    }()
+        }()
     
     lazy var detailView: UIView = {
         let detailView = UIView()
         detailView.setTranslatesAutoresizingMaskIntoConstraints(false)
         return detailView
-    }()
-  
-  //==========================================================================
-  // mark: Actions
-  //==========================================================================
-  
-  func showSettings() {
-    var settingsViewController = TTSettingsViewController()
-   
-    var navController = UINavigationController(rootViewController: settingsViewController)
+        }()
     
-    self.presentViewController(navController, animated: true, completion: nil)
-  }
+    //==========================================================================
+    // mark: Actions
+    //==========================================================================
+    
+    func showSettings() {
+        var settingsViewController = TTSettingsViewController()
+        
+        var navController = UINavigationController(rootViewController: settingsViewController)
+        
+        self.presentViewController(navController, animated: true, completion: nil)
+    }
 }

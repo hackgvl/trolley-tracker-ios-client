@@ -9,10 +9,94 @@
 import UIKit
 import MapKit
 
+protocol TTDetailViewControllerDelegate: class {
+    
+    func detailViewControllerWantsToShow(controller: TTDetailViewController)
+    func detailViewControllerWantsToHide(controller: TTDetailViewController)
+}
+
 class TTDetailViewController: UIViewController {
 
+    //==================================================================
+    // MARK: - Lifecycle
+    //==================================================================
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupViews()
+    }
+    
+    //==================================================================
+    // MARK: - API
+    //==================================================================
+ 
+    weak var delegate: TTDetailViewControllerDelegate?
+    
+    var currentlyShowingAnnotation: MKAnnotation?
+    
+    func showDetailForAnnotation(annotation: MKAnnotation?) {
+        
+        currentlyShowingAnnotation = annotation
+        
+        if let trolley = annotation as? TTTrolley { displayTrolley(trolley) }
+        else if let stop = annotation as? TTTrolleyStop { displayStop(stop) }
+
+        // If we can't show this annotation, we should just request to hide, and set the currentlyShowingAnnotation to nil
+        else {
+            delegate?.detailViewControllerWantsToHide(self)
+            currentlyShowingAnnotation = nil
+        }
+    }
+    
+    //==================================================================
+    // MARK: - Dislaying Annotations
+    //==================================================================
+    
+    private func displayTrolley(trolley: TTTrolley) {
+        
+        titleLabel.text = trolley.name
+        delegate?.detailViewControllerWantsToShow(self)
+    }
+    
+    private func displayStop(stop: TTTrolleyStop) {
+        
+        titleLabel.text = stop.name
+        delegate?.detailViewControllerWantsToShow(self)
+    }
+    
+    //==================================================================
+    // MARK: - Actions
+    //==================================================================
+    
+    @objc private func handleDirectionsButton(sender: UIButton) {
+        
+        var location: CLLocation?
+        
+        if let trolley = currentlyShowingAnnotation as? TTTrolley { location = trolley.location }
+        else if let stop = currentlyShowingAnnotation as? TTTrolleyStop { location = stop.location }
+
+        if let pointB = location { getDirections(pointB.coordinate) }
+    }
+    
+    private func getDirections(pointB: CLLocationCoordinate2D) {
+        let placeMark = MKPlacemark(coordinate: pointB, addressDictionary: nil)
+        let currentLocation = MKMapItem.mapItemForCurrentLocation()
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking]
+        let mapItem = MKMapItem(placemark: placeMark)
+        
+        //TODO: Make this the name of the stop or Trolley
+        mapItem.name = "Trolley"
+        
+        MKMapItem.openMapsWithItems([currentLocation, mapItem], launchOptions: launchOptions)
+        //mapItem.openInMapsWithLaunchOptions(launchOptions)
+    }
+
+    //==================================================================
+    // MARK: - Views
+    //==================================================================
+
+    private func setupViews() {
         
         view.addSubview(titleLabel)
         view.addSubview(timeLabel)
@@ -43,24 +127,21 @@ class TTDetailViewController: UIViewController {
         NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[directions]-(<=1)-[buttonLabel]", options: NSLayoutFormatOptions.AlignAllCenterY,
             metrics: nil, views: views))
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
-
-    lazy var titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel(frame: CGRectZero)
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.font = UIFont.boldSystemFontOfSize(30.0)
         label.textColor = UIColor.blackColor()
         label.text = "Trolly or Stop Name"
+        label.numberOfLines = 0
+        label.minimumScaleFactor = 0.5
+        label.adjustsFontSizeToFitWidth = true
     
         return label
     }()
     
-    lazy var timeLabel: UILabel = {
+    private lazy var timeLabel: UILabel = {
         let label = UILabel(frame: CGRectZero)
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.font = UIFont.boldSystemFontOfSize(30.0)
@@ -70,7 +151,7 @@ class TTDetailViewController: UIViewController {
         return label
     }()
     
-    lazy var distanceLabel: UILabel = {
+    private lazy var distanceLabel: UILabel = {
         let label = UILabel(frame: CGRectZero)
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.font = UIFont.boldSystemFontOfSize(30.0)
@@ -80,7 +161,7 @@ class TTDetailViewController: UIViewController {
         return label
     }()
     
-    lazy var shareButton: UIView = {
+    private lazy var shareButton: UIView = {
         let placeHolderForView = UIView(frame: CGRectZero)
         placeHolderForView.setTranslatesAutoresizingMaskIntoConstraints(false)
         placeHolderForView.backgroundColor = UIColor.redColor()
@@ -88,7 +169,7 @@ class TTDetailViewController: UIViewController {
         return placeHolderForView
     }()
     
-    lazy var directionsButton: UIButton = {
+    private lazy var directionsButton: UIButton = {
         let button = UIButton(frame: CGRectZero)
         button.setTranslatesAutoresizingMaskIntoConstraints(false)
         button.backgroundColor = UIColor.lightGrayColor()
@@ -97,7 +178,7 @@ class TTDetailViewController: UIViewController {
         return button
     }()
     
-    lazy var directionsButtonLabel: UILabel = {
+    private lazy var directionsButtonLabel: UILabel = {
         let label = UILabel(frame: CGRectZero)
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.textColor = UIColor.blackColor()
@@ -106,23 +187,4 @@ class TTDetailViewController: UIViewController {
         
         return label
     }()
-    
-    func handleDirectionsButton(sender: UIButton) {
-        NSLog("Directions Button Clicked...")
-//        let pointB = TTTrolleyStopService().dummyTrolleyStops[0]
-//        getDirections(pointB.location.coordinate)
-    }
-
-    func getDirections(pointB: CLLocationCoordinate2D) {
-        let placeMark = MKPlacemark(coordinate: pointB, addressDictionary: nil)
-        let currentLocation = MKMapItem.mapItemForCurrentLocation()
-        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking]
-        let mapItem = MKMapItem(placemark: placeMark)
-        
-        //TODO: Make this the name of the stop or Trolley 
-        mapItem.name = "Trolley"
-        
-        MKMapItem.openMapsWithItems([currentLocation, mapItem], launchOptions: launchOptions)
-        //mapItem.openInMapsWithLaunchOptions(launchOptions)
-    }
 }

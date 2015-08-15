@@ -30,7 +30,7 @@ class TTTrolleyStop: NSObject, Equatable {
         let lat = json["Lat"].stringValue
         let lon = json["Lon"].stringValue
         
-        self.name = json["name"].stringValue
+        self.name = json["Name"].stringValue
         self.stopDescription = json["Description"].stringValue
         self.location = CLLocation(latitude: (lat as NSString).doubleValue, longitude: (lon as NSString).doubleValue)
         self.stopID = json["ID"].intValue
