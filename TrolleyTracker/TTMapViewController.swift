@@ -20,7 +20,7 @@ extension TTTrolley: MKAnnotation {
     }
     
     var subTitle: String! {
-        return identifier
+        return ""
     }
 }
 
@@ -67,52 +67,33 @@ class TTMapViewController: UIViewController, MKMapViewDelegate {
         NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[detailView]|", options: nil, metrics: nil, views: views))
         NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[mapView]|", options: nil, metrics: nil, views: views))
         
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[mapView][detailView(==mapView)]|", options: nil, metrics: nil, views: views))
+        NSLayoutConstraint.activateConstraints([NSLayoutConstraint(item: mapView, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.7, constant: 0.0)])
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[mapView][detailView]|", options: nil, metrics: nil, views: views))
         
         
         TTTrolleyLocationService.sharedService.trolleyObservers.add(updateTrolley)
         TTTrolleyLocationService.sharedService.startTrackingTrolleys()
         
         loadStops()
-        loadTrolleys()
     }
     
     func updateTrolley(trolley: TTTrolley) {
+        
         // Get our Trolley Annotations
-        let trolleyAnnotations = mapView.annotations.filter { (annotation) -> Bool in
-            return annotation.isKindOfClass(TTTrolley.self)
-        }.map {
-            aTrolley -> TTTrolley in
-            return aTrolley as! TTTrolley
+        let trolleyAnnotations = mapView.annotations.filter { $0 is TTTrolley }.map { $0 as! TTTrolley }
+        
+        if let index = find(trolleyAnnotations, trolley) {
+            let existingAnnotation = trolleyAnnotations[index]
+            mapView.removeAnnotation(existingAnnotation)
         }
         
-        // Check if it exists to avoid a crash pre iOS9
+        mapView.addAnnotation(trolley)
         
-        let annotationExists = contains(trolleyAnnotations, trolley)
-        
-        if annotationExists {
-            let trolleyView = mapView.viewForAnnotation(trolley)
-            
-            if trolleyView != nil {
-                println("Move Trolley: \(trolley.identifier)")
-                
-                let mapPoint = MKMapPointForCoordinate(trolley.coordinate)
-                let zoomFactor = self.mapView.visibleMapRect.size.width / Double(self.mapView.bounds.width)
-                let point = CGPoint(x: mapPoint.x/zoomFactor, y: mapPoint.y/zoomFactor)
-                
-                trolleyView.center = point
-            }
-            else {
-                println("No View For Trolley: \(trolley.identifier)")
-            }
-        }
-        else {
-            println("Add Trolley: \(trolley.identifier)")
-            mapView.addAnnotation(trolley)
-        }
+        // TODO: Update detailView with new trolley if detailView is currently showing this Trolley
     }
     
     func loadStops() {
+        
         // Get Stops
         TTTrolleyStopService.sharedService.loadTrolleyStops { (stops) -> Void in
             // Plot each stop as an annotation on the MapView
@@ -162,46 +143,6 @@ class TTMapViewController: UIViewController, MKMapViewDelegate {
         }
 
         return annotationView
-    }
-    
-    func loadTrolleys() {
-        // TODO: Get Trolleys
-        let trolleys: [TTTrolley] = []
-        
-        // Plot each Trolley as an annotation on the MapView
-        trolleys.map {
-            trolley -> () in
-            
-            self.mapView.addAnnotation(trolley)
-            self.mapView.viewForAnnotation(trolley)
-        }
-    }
-    
-    func updateTrolleys() {
-        // TODO: Get Trolley Updates
-        
-        // Get Trolley Annotations
-        let trolleyFilter: ((AnyObject) -> (Bool)) = { (annotation) -> Bool in
-            return self.isKindOfClass(TTTrolley.self)
-        }
-        
-        if let trolleyAnnotations = mapView.annotations.filter(trolleyFilter) as? [TTTrolley] {
-            
-            // TODO: Move Trolley annotations to current locations
-            trolleyAnnotations.map {
-                trolleyAnnotation -> () in
-                
-                let annotationView = self.mapView.viewForAnnotation(trolleyAnnotation)
-                
-                let mapPoint = MKMapPointForCoordinate(trolleyAnnotation.coordinate)
-                let zoomFactor = self.mapView.visibleMapRect.size.width / Double(self.mapView.bounds.width)
-                let point = CGPoint(x: mapPoint.x/zoomFactor, y: mapPoint.y/zoomFactor)
-                
-                annotationView.center = point
-            }
-            
-        }
-
     }
     
     //==========================================================================

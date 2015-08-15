@@ -109,8 +109,8 @@ class TTDetailViewController: UIViewController {
     
     func handleDirectionsButton(sender: UIButton) {
         NSLog("Directions Button Clicked...")
-        let pointB = TTTrolleyStopService().dummyTrolleyStops[0]
-        getDirections(pointB.location.coordinate)
+//        let pointB = TTTrolleyStopService().dummyTrolleyStops[0]
+//        getDirections(pointB.location.coordinate)
     }
 
     func getDirections(pointB: CLLocationCoordinate2D) {

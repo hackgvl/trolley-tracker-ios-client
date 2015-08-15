@@ -11,26 +11,37 @@ import CoreLocation
 
 class TTTrolleyStop: NSObject, Equatable {
     
-    init(name: String, location: CLLocation) {
+    let stopID: Int
+    let name: String
+    let stopDescription: String
+    let location: CLLocation
+    
+    init(name: String, location: CLLocation, description: String, ID: Int) {
         self.name = name
         self.location = location
+        self.stopDescription = description
+        self.stopID = ID
     }
     
     init?(jsonData: AnyObject) {
         
         let json = JSON(jsonData)
 
-        let lat = json["where"]["lat"].stringValue
-        let lon = json["where"]["lon"].stringValue
+        let lat = json["Lat"].stringValue
+        let lon = json["Lon"].stringValue
         
         self.name = json["name"].stringValue
+        self.stopDescription = json["Description"].stringValue
         self.location = CLLocation(latitude: (lat as NSString).doubleValue, longitude: (lon as NSString).doubleValue)
+        self.stopID = json["ID"].intValue
+        
+        super.init()
+        
+        let ID = json["ID"].int
+        if ID == nil { return nil }
     }
-    
-    let name: String
-    let location: CLLocation
 }
 
 func ==(lhs: TTTrolleyStop, rhs: TTTrolleyStop) -> Bool {
-    return lhs.name == rhs.name
+    return lhs.stopID == rhs.stopID
 }
