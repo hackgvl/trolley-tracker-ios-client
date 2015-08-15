@@ -76,13 +76,7 @@ class TTTrolleyLocationService {
         if let json: AnyObject = json,
         trolleyObjects = JSON(json).arrayObject
         {
-            var trolleys: [TTTrolley?] = trolleyObjects.map({ TTTrolley(jsonData: $0) })
-            var returnTrolleys = [TTTrolley]()
-            for trolley in trolleys {
-                if let trolley = trolley { returnTrolleys.append(trolley) }
-            }
-            
-            return returnTrolleys
+            return trolleyObjects.map { TTTrolley(jsonData: $0) }.filter { $0 != nil }.map { $0! }
         }
         
         return nil

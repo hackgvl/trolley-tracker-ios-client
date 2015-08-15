@@ -97,13 +97,8 @@ class TTMapViewController: UIViewController, MKMapViewDelegate {
         // Get Stops
         TTTrolleyStopService.sharedService.loadTrolleyStops { (stops) -> Void in
             // Plot each stop as an annotation on the MapView
-            stops.map {
-                trolleyStop -> () in
-                
+            stops.map { trolleyStop -> () in
                 self.mapView.addAnnotation(trolleyStop)
-                println("stops \(trolleyStop)")
-                
-                self.mapView.viewForAnnotation(trolleyStop)
             }
         }
     }
