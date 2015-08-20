@@ -21,9 +21,7 @@ class TrolleyRequests {
     }
     
     class var RunningTrolleys: Request {
-        get {
-            return Alamofire.request(.GET, BaseURL + APIVersion + "/Trolleys/Running", parameters: nil).ttLog.ttValidate
-        }
+        get { return Alamofire.request(.GET, BaseURL + APIVersion + "/Trolleys/Running", parameters: nil).ttLog.ttValidate }
     }
     
     class var AllTrolleys: Request {
@@ -32,6 +30,14 @@ class TrolleyRequests {
     
     class var Stops: Request {
         get { return Alamofire.request(.GET, self.BaseURL + self.APIVersion + "/Stops", parameters: nil).ttLog.ttValidate }
+    }
+    
+    class var Routes: Request {
+        get { return Alamofire.request(.GET, self.BaseURL + self.APIVersion + "/Routes", parameters: nil).ttLog.ttValidate }
+    }
+    
+    class func RouteDetail(routeID: String) -> Request {
+        return Alamofire.request(.GET, self.BaseURL + self.APIVersion + "/Route/" + routeID, parameters: nil).ttLog.ttValidate
     }
 }
 

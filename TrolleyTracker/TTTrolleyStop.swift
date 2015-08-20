@@ -9,6 +9,8 @@
 import Foundation
 import CoreLocation
 
+
+/// Represents a point where the Trolleys stop for passengers.
 class TTTrolleyStop: NSObject, Equatable {
     
     let stopID: Int
@@ -23,10 +25,8 @@ class TTTrolleyStop: NSObject, Equatable {
         self.stopID = ID
     }
     
-    init?(jsonData: AnyObject) {
+    init?(json: JSON) {
         
-        let json = JSON(jsonData)
-
         let lat = json["Lat"].stringValue
         let lon = json["Lon"].stringValue
         
@@ -39,6 +39,10 @@ class TTTrolleyStop: NSObject, Equatable {
         
         let ID = json["ID"].int
         if ID == nil { return nil }
+    }
+    
+    convenience init?(jsonData: AnyObject) {
+        self.init(json: JSON(jsonData))
     }
 }
 
