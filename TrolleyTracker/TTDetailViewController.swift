@@ -39,8 +39,8 @@ class TTDetailViewController: UIViewController {
         
         currentlyShowingAnnotation = annotation
         
-        if let trolley = annotation as? TTTrolley { displayTrolley(trolley) }
-        else if let stop = annotation as? TTTrolleyStop { displayStop(stop) }
+        if let trolley = annotation as? Trolley { displayTrolley(trolley) }
+        else if let stop = annotation as? TrolleyStop { displayStop(stop) }
 
         // If we can't show this annotation, we should just request to hide, and set the currentlyShowingAnnotation to nil
         else {
@@ -53,13 +53,13 @@ class TTDetailViewController: UIViewController {
     // MARK: - Dislaying Annotations
     //==================================================================
     
-    private func displayTrolley(trolley: TTTrolley) {
+    private func displayTrolley(trolley: Trolley) {
         
         titleLabel.text = trolley.name
         delegate?.detailViewControllerWantsToShow(self)
     }
     
-    private func displayStop(stop: TTTrolleyStop) {
+    private func displayStop(stop: TrolleyStop) {
         
         titleLabel.text = stop.name
         delegate?.detailViewControllerWantsToShow(self)
@@ -73,8 +73,8 @@ class TTDetailViewController: UIViewController {
         
         var location: CLLocation?
         
-        if let trolley = currentlyShowingAnnotation as? TTTrolley { location = trolley.location }
-        else if let stop = currentlyShowingAnnotation as? TTTrolleyStop { location = stop.location }
+        if let trolley = currentlyShowingAnnotation as? Trolley { location = trolley.location }
+        else if let stop = currentlyShowingAnnotation as? TrolleyStop { location = stop.location }
 
         if let pointB = location { getDirections(pointB.coordinate) }
     }

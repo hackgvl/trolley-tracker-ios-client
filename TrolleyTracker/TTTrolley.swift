@@ -1,5 +1,5 @@
 //
-//  TTTrolley.swift
+//  Trolley.swift
 //  TrolleyTracker
 //
 //  Created by Austin Younts on 6/16/15.
@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-class TTTrolley: NSObject, Equatable {
+class Trolley: NSObject, Equatable {
     
     let ID: Int
     let location: CLLocation
@@ -40,7 +40,7 @@ class TTTrolley: NSObject, Equatable {
         self.number = json["Number"].int
     }
     
-    init(trolley: TTTrolley, location: CLLocation) {
+    init(trolley: Trolley, location: CLLocation) {
         
         self.ID = trolley.ID
         self.location = location
@@ -49,6 +49,6 @@ class TTTrolley: NSObject, Equatable {
     }
 }
 
-func ==(lhs: TTTrolley, rhs: TTTrolley) -> Bool {
+func ==(lhs: Trolley, rhs: Trolley) -> Bool {
     return lhs.ID == rhs.ID
 }

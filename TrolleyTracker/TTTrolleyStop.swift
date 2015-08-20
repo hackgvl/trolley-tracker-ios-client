@@ -1,5 +1,5 @@
 //
-//  TTTrolleyStop.swift
+//  TrolleyStop.swift
 //  TrolleyTracker
 //
 //  Created by Austin Younts on 6/16/15.
@@ -11,7 +11,7 @@ import CoreLocation
 
 
 /// Represents a point where the Trolleys stop for passengers.
-class TTTrolleyStop: NSObject, Equatable {
+class TrolleyStop: NSObject, Equatable {
     
     let stopID: Int
     let name: String
@@ -46,6 +46,6 @@ class TTTrolleyStop: NSObject, Equatable {
     }
 }
 
-func ==(lhs: TTTrolleyStop, rhs: TTTrolleyStop) -> Bool {
+func ==(lhs: TrolleyStop, rhs: TrolleyStop) -> Bool {
     return lhs.stopID == rhs.stopID
 }

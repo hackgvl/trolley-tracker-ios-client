@@ -37,7 +37,7 @@ class TrolleyRequests {
     }
     
     class func RouteDetail(routeID: String) -> Request {
-        return Alamofire.request(.GET, self.BaseURL + self.APIVersion + "/Route/" + routeID, parameters: nil).ttLog.ttValidate
+        return Alamofire.request(.GET, self.BaseURL + self.APIVersion + "/Routes/" + routeID, parameters: nil).ttLog.ttValidate
     }
 }
 

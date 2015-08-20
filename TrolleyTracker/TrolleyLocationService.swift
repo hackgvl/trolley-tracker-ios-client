@@ -9,15 +9,15 @@
 import Foundation
 import Alamofire
 
-class TTTrolleyLocationService {
+class TrolleyLocationService {
     
-    static var sharedService = TTTrolleyLocationService()
+    static var sharedService = TrolleyLocationService()
     
-    var trolleyObservers = ObserverSet<TTTrolley>()
+    var trolleyObservers = ObserverSet<Trolley>()
     
     private var updateTimer: NSTimer?
     
-    private var allTrolleys: [TTTrolley]?
+    private var allTrolleys: [Trolley]?
     
     func startTrackingTrolleys() {
         
@@ -48,7 +48,7 @@ class TTTrolleyLocationService {
         }
     }
     
-    private func updateTrolleysWithTrolley(trolley: TTTrolley) {
+    private func updateTrolleysWithTrolley(trolley: Trolley) {
        
         if self.allTrolleys == nil { return }
         var trolleys = self.allTrolleys!
@@ -57,7 +57,7 @@ class TTTrolleyLocationService {
         if let index = find(trolleys, trolley) {
             
             // Create a new trolley with an updated location
-            let updatedTrolley = TTTrolley(trolley: trolleys[index], location: trolley.location)
+            let updatedTrolley = Trolley(trolley: trolleys[index], location: trolley.location)
             
             // Store that back in the array
             trolleys.removeAtIndex(index)
@@ -71,12 +71,12 @@ class TTTrolleyLocationService {
         }
     }
     
-    private func parseTrolleysFromJSON(json: AnyObject?) -> [TTTrolley]? {
+    private func parseTrolleysFromJSON(json: AnyObject?) -> [Trolley]? {
         
         if let json: AnyObject = json,
         trolleyObjects = JSON(json).arrayObject
         {
-            return trolleyObjects.map { TTTrolley(jsonData: $0) }.filter { $0 != nil }.map { $0! }
+            return trolleyObjects.map { Trolley(jsonData: $0) }.filter { $0 != nil }.map { $0! }
         }
         
         return nil

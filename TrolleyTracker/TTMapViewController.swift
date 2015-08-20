@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-extension TTTrolley: MKAnnotation {
+extension Trolley: MKAnnotation {
     
     var coordinate: CLLocationCoordinate2D {
         return location.coordinate
@@ -24,7 +24,7 @@ extension TTTrolley: MKAnnotation {
     }
 }
 
-extension TTTrolleyStop: MKAnnotation {
+extension TrolleyStop: MKAnnotation {
     
     var coordinate: CLLocationCoordinate2D {
         return location.coordinate
@@ -66,23 +66,23 @@ class TTMapViewController: UIViewController, MKMapViewDelegate, TTDetailViewCont
         
         setupViews()
         
-        TTTrolleyLocationService.sharedService.trolleyObservers.add(updateTrolley)
-        TTTrolleyLocationService.sharedService.startTrackingTrolleys()
+        TrolleyLocationService.sharedService.trolleyObservers.add(updateTrolley)
+        TrolleyLocationService.sharedService.startTrackingTrolleys()
         
-        loadStops()
+        loadRoutes()
     }
     
     //==================================================================
     // MARK: - Actions
     //==================================================================
     
-    private func updateTrolley(trolley: TTTrolley) {
+    private func updateTrolley(trolley: Trolley) {
         
         // Grab a reference to the detailViewController's currentAnnotation (if any), before it disappears when we remove the current annotation.
         let detailViewAnnotation = detailViewController.currentlyShowingAnnotation
         
         // Get our Trolley Annotations
-        let trolleyAnnotations = mapView.annotations.filter { $0 is TTTrolley }.map { $0 as! TTTrolley }
+        let trolleyAnnotations = mapView.annotations.filter { $0 is Trolley }.map { $0 as! Trolley }
         
         if let index = find(trolleyAnnotations, trolley) {
             let existingAnnotation = trolleyAnnotations[index]
@@ -92,19 +92,18 @@ class TTMapViewController: UIViewController, MKMapViewDelegate, TTDetailViewCont
         mapView.addAnnotation(trolley)
         
         // If the detailViewController was showing this trolley, update it
-        if let annotation = detailViewAnnotation as? TTTrolley where annotation == trolley {
+        if let annotation = detailViewAnnotation as? Trolley where annotation == trolley {
             detailViewController.showDetailForAnnotation(trolley)
         }
     }
     
-    private func loadStops() {
+    private func loadRoutes() {
         
         // Get Stops
-        TTTrolleyStopService.sharedService.loadTrolleyStops { (stops) -> Void in
+        TrolleyRouteService.sharedService.loadTrolleyRoutes { routes in
             // Plot each stop as an annotation on the MapView
-            stops.map { trolleyStop -> () in
-                self.mapView.addAnnotation(trolleyStop)
-            }
+            println(routes)
+//                self.mapView.addAnnotation(trolleyStop)
         }
     }
     
@@ -148,7 +147,7 @@ class TTMapViewController: UIViewController, MKMapViewDelegate, TTDetailViewCont
         }
         
         // Handle Trolleys
-        if let trolleyAnnotation = annotation as? TTTrolley {
+        if let trolleyAnnotation = annotation as? Trolley {
             var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(trolleyAnnotationReuseIdentifier)
             
             if annotationView == nil {

@@ -9,32 +9,60 @@
 import Foundation
 import CoreLocation
 
-class TTTrolleyStopService {
+class TrolleyRouteService {
     
-    typealias LoadTrolleyStopCompletion = (stops: [TTTrolleyStop]) -> Void
+    let group = dispatch_group_create()
+    
+    typealias LoadTrolleyRouteCompletion = (routes: [TrolleyRoute]) -> Void
  
-    static var sharedService = TTTrolleyStopService()
+    static var sharedService = TrolleyRouteService()
     
-    func loadTrolleyStops(completion: LoadTrolleyStopCompletion) {
+    func loadTrolleyRoutes(completion: LoadTrolleyRouteCompletion) {
         
         // Call "/Stops" to get the list of stops
-        
-        TrolleyRequests.Stops.responseJSON { (request, response, json, error) -> Void in
+        TrolleyRequests.Routes.responseJSON { (request, response, json, error) -> Void in
             
-            completion(stops: self.parseStopsFromJSON(json))
+            if let json: AnyObject = json {
+                self.loadRouteDetailForRoutes(JSON(json), completion: completion)
+            }
         }
     }
     
-    private func parseStopsFromJSON(json: AnyObject?) -> [TTTrolleyStop] {
+    private func loadRouteDetailForRoutes(routes: JSON, completion: LoadTrolleyRouteCompletion) {
         
-        var stops = [TTTrolleyStop]()
+        var routeObjects = [TrolleyRoute]()
         
-        if let json: AnyObject = json,
-        stopObjects = JSON(json).arrayObject
-        {
-            stops = stopObjects.map { TTTrolleyStop(jsonData: $0) }.filter { $0 != nil }.map {$0!}
+        for route in routes.arrayValue {
+            if let routeID = route["ID"].int {
+
+                dispatch_group_enter(group)
+                
+                TrolleyRequests.RouteDetail("\(routeID)").responseJSON { (request, response, json, error) -> Void in
+
+                    if let json: AnyObject = json,
+                    route = TrolleyRoute(json: JSON(json)) {
+                        routeObjects.append(route)
+                    }
+                    
+                    dispatch_group_leave(self.group)
+                }
+            }
         }
         
-        return stops
+        dispatch_group_notify(group, dispatch_get_main_queue()) {
+            completion(routes: routeObjects)
+        }
+    }
+    
+    private func parseRoutesFromJSON(json: AnyObject?) -> [TrolleyRoute] {
+        
+        var routes = [TrolleyRoute]()
+        
+        if let json: AnyObject = json
+        {
+            routes = JSON(json).arrayValue.map { TrolleyRoute(json: $0) }.filter { $0 != nil }.map { $0! }
+        }
+        
+        return routes
     }
 }

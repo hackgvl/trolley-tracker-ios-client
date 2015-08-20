@@ -1,5 +1,5 @@
 //
-//  TTTrolleyRoute.swift
+//  TrolleyRoute.swift
 //  TrolleyTracker
 //
 //  Created by Austin Younts on 8/19/15.
@@ -10,13 +10,13 @@ import Foundation
 import CoreLocation
 
 
-func ==(lhs: TTTrolleyRoute, rhs: TTTrolleyRoute) -> Bool {
+func ==(lhs: TrolleyRoute, rhs: TrolleyRoute) -> Bool {
     return lhs.ID == rhs.ID
 }
 
 
 /// Represents a route that trolleys follow. 
-struct TTTrolleyRoute {
+struct TrolleyRoute {
     
     let ID: Int
     let shortName: String
@@ -24,7 +24,7 @@ struct TTTrolleyRoute {
     let routeDescription: String
     let flagStopsOnly: Bool
     
-    let stops: [TTTrolleyStop]
+    let stops: [TrolleyStop]
     let shapePoints: [CLLocation]
     
     init?(json: JSON) {
@@ -35,7 +35,7 @@ struct TTTrolleyRoute {
         self.routeDescription = json["Description"].stringValue
         self.flagStopsOnly = json["FlagStopsOnly"].boolValue
         
-        self.stops = json["Stops"].arrayValue.map { TTTrolleyStop(json: $0) }.filter { $0 != nil }.map { $0! }
+        self.stops = json["Stops"].arrayValue.map { TrolleyStop(json: $0) }.filter { $0 != nil }.map { $0! }
 
         var points = [CLLocation]()
         var jsonPoints = json["RouteShape"].arrayValue
