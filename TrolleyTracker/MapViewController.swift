@@ -122,7 +122,8 @@ class TTMapViewController: UIViewController, MKMapViewDelegate, TTDetailViewCont
             
             annotationView.annotation = annotation
             annotationView.tintColor = UIColor.routeColorForIndex(stopAnnotation.colorIndex)
-            annotationView.image = UIImage(named:"Stop_sign")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+            annotationView.setTintedImage(UIImage.ttTrolleyPin)
+            annotationView.centerOffset = CGPointMake(0, -(annotationView.image.size.height / 2))
             
             return annotationView
         }
