@@ -9,37 +9,6 @@
 import UIKit
 import MapKit
 
-extension Trolley: MKAnnotation {
-    
-    var coordinate: CLLocationCoordinate2D {
-        return location.coordinate
-    }
-    
-    var title: String! {
-        return name
-    }
-    
-    var subTitle: String! {
-        return ""
-    }
-}
-
-extension TrolleyStop: MKAnnotation {
-    
-    var coordinate: CLLocationCoordinate2D {
-        return location.coordinate
-    }
-    
-    var title: String! {
-        // TODO: Return Trolley Name
-        return name
-    }
-    
-    var subTitle: String! {
-        return ""
-    }
-}
-
 // TODO: Add tracking button that toggles MKUserTrackingMode like native maps
 
 class TTMapViewController: UIViewController, MKMapViewDelegate, TTDetailViewControllerDelegate {
@@ -101,9 +70,20 @@ class TTMapViewController: UIViewController, MKMapViewDelegate, TTDetailViewCont
         
         // Get Stops
         TrolleyRouteService.sharedService.loadTrolleyRoutes { routes in
-            // Plot each stop as an annotation on the MapView
-            println(routes)
-//                self.mapView.addAnnotation(trolleyStop)
+            // For each route,
+            for (index, var route) in enumerate(routes) {
+                
+                // -- Assign a color
+                let routeColor = UIColor.routeColors[index % routes.count]
+                
+                // -- Add overlays
+                self.mapView.addOverlay(route.overlay)
+                
+                // -- Add stops
+                for stop in route.stops {
+                    self.mapView.addAnnotation(stop)
+                }
+            }
         }
     }
     
@@ -132,19 +112,21 @@ class TTMapViewController: UIViewController, MKMapViewDelegate, TTDetailViewCont
             return nil
         }
         
-        let stopViewID = "stopView"
-        let trolleyViewID = "trolleyViewID"
-        
-        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(stopViewID)
-        if annotationView == nil {
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: stopViewID)
-            annotationView.image = UIImage(named:"Stop_sign")
-            //            annotationView.canShowCallout = true
-        }
-        else {
-            //we are re-using a view, update its annotation reference...
+        // Handle Stops
+        if let stopAnnotation = annotation as? TrolleyStop {
+            
+            var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(stopAnnotationReuseIdentifier)
+            if annotationView == nil {
+                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: stopAnnotationReuseIdentifier)
+            }
+            
             annotationView.annotation = annotation
+            annotationView.tintColor = UIColor.routeColorForIndex(stopAnnotation.colorIndex)
+            annotationView.image = UIImage(named:"Stop_sign")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+            
+            return annotationView
         }
+        
         
         // Handle Trolleys
         if let trolleyAnnotation = annotation as? Trolley {
@@ -159,7 +141,20 @@ class TTMapViewController: UIViewController, MKMapViewDelegate, TTDetailViewCont
             return annotationView
         }
         
-        return annotationView
+        return nil
+    }
+    
+    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+        
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        
+        renderer.lineWidth = 6.0
+        
+        if let routeOverlay = overlay as? TrolleyRouteOverlay {
+            renderer.strokeColor = UIColor.routeColorForIndex(routeOverlay.colorIndex)
+        }
+        
+        return renderer
     }
     
     func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {

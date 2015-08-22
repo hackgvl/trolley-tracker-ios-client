@@ -32,7 +32,7 @@ class TrolleyRouteService {
         
         var routeObjects = [TrolleyRoute]()
         
-        for route in routes.arrayValue {
+        for (index, route) in enumerate(routes.arrayValue) {
             if let routeID = route["ID"].int {
 
                 dispatch_group_enter(group)
@@ -40,7 +40,7 @@ class TrolleyRouteService {
                 TrolleyRequests.RouteDetail("\(routeID)").responseJSON { (request, response, json, error) -> Void in
 
                     if let json: AnyObject = json,
-                    route = TrolleyRoute(json: JSON(json)) {
+                        route = TrolleyRoute(json: JSON(json), colorIndex: index) {
                         routeObjects.append(route)
                     }
                     
@@ -52,17 +52,5 @@ class TrolleyRouteService {
         dispatch_group_notify(group, dispatch_get_main_queue()) {
             completion(routes: routeObjects)
         }
-    }
-    
-    private func parseRoutesFromJSON(json: AnyObject?) -> [TrolleyRoute] {
-        
-        var routes = [TrolleyRoute]()
-        
-        if let json: AnyObject = json
-        {
-            routes = JSON(json).arrayValue.map { TrolleyRoute(json: $0) }.filter { $0 != nil }.map { $0! }
-        }
-        
-        return routes
     }
 }

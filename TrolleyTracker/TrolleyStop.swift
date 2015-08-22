@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import CoreLocation
+import MapKit
 
 
 /// Represents a point where the Trolleys stop for passengers.
@@ -17,15 +17,17 @@ class TrolleyStop: NSObject, Equatable {
     let name: String
     let stopDescription: String
     let location: CLLocation
+    let colorIndex: Int
     
-    init(name: String, location: CLLocation, description: String, ID: Int) {
+    init(name: String, location: CLLocation, description: String, ID: Int, colorIndex: Int) {
         self.name = name
         self.location = location
         self.stopDescription = description
         self.stopID = ID
+        self.colorIndex = colorIndex
     }
     
-    init?(json: JSON) {
+    init?(json: JSON, colorIndex: Int) {
         
         let lat = json["Lat"].stringValue
         let lon = json["Lon"].stringValue
@@ -34,6 +36,7 @@ class TrolleyStop: NSObject, Equatable {
         self.stopDescription = json["Description"].stringValue
         self.location = CLLocation(latitude: (lat as NSString).doubleValue, longitude: (lon as NSString).doubleValue)
         self.stopID = json["ID"].intValue
+        self.colorIndex = colorIndex
         
         super.init()
         
@@ -41,8 +44,24 @@ class TrolleyStop: NSObject, Equatable {
         if ID == nil { return nil }
     }
     
-    convenience init?(jsonData: AnyObject) {
-        self.init(json: JSON(jsonData))
+    convenience init?(jsonData: AnyObject, colorIndex: Int) {
+        self.init(json: JSON(jsonData), colorIndex: colorIndex)
+    }
+}
+
+extension TrolleyStop: MKAnnotation {
+    
+    var coordinate: CLLocationCoordinate2D {
+        return location.coordinate
+    }
+    
+    var title: String! {
+        // TODO: Return Trolley Name
+        return name
+    }
+    
+    var subTitle: String! {
+        return ""
     }
 }
 

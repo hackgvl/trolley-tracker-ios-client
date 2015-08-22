@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../TrolleyTracker/TrolleyRouteOverlay.swift">
+   </FileRef>
+   <FileRef
       location = "self:TrolleyTracker.xcodeproj">
    </FileRef>
 </Workspace>

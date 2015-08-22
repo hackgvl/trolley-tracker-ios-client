@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import CoreLocation
+import MapKit
 
 class Trolley: NSObject, Equatable {
     
@@ -46,6 +46,21 @@ class Trolley: NSObject, Equatable {
         self.location = location
         self.name = trolley.name
         self.number = trolley.number
+    }
+}
+
+extension Trolley: MKAnnotation {
+    
+    var coordinate: CLLocationCoordinate2D {
+        return location.coordinate
+    }
+    
+    var title: String! {
+        return name
+    }
+    
+    var subTitle: String! {
+        return ""
     }
 }
 
