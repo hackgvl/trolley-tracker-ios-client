@@ -16,6 +16,10 @@ extension UIImage {
         get { return imageOrBlank("TrolleyPin") }
     }
     
+    class var ttTrolleyStopPin: UIImage {
+        get { return imageOrBlank("TrolleyStopPin") }
+    }
+    
     private class func imageOrBlank(named: String) -> UIImage {
         
         if let image = UIImage(named: named) {

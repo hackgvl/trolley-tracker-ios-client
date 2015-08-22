@@ -122,7 +122,7 @@ class TTMapViewController: UIViewController, MKMapViewDelegate, TTDetailViewCont
             
             annotationView.annotation = annotation
             annotationView.tintColor = UIColor.routeColorForIndex(stopAnnotation.colorIndex)
-            annotationView.setTintedImage(UIImage.ttTrolleyPin)
+            annotationView.setTintedImage(UIImage.ttTrolleyStopPin)
             annotationView.centerOffset = CGPointMake(0, -(annotationView.image.size.height / 2))
             
             return annotationView
@@ -134,10 +134,13 @@ class TTMapViewController: UIViewController, MKMapViewDelegate, TTDetailViewCont
             var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(trolleyAnnotationReuseIdentifier)
             
             if annotationView == nil {
-                annotationView = MKPinAnnotationView(annotation: trolleyAnnotation, reuseIdentifier: trolleyAnnotationReuseIdentifier)
+                annotationView = MKAnnotationView(annotation: trolleyAnnotation, reuseIdentifier: trolleyAnnotationReuseIdentifier)
             }
             
+            annotationView.tintColor = UIColor.ttDarkGreen()
+            annotationView.setTintedImage(UIImage.ttTrolleyPin)
             annotationView.annotation = trolleyAnnotation
+            mapView.bringSubviewToFront(annotationView)
             
             return annotationView
         }
