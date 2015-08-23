@@ -79,6 +79,11 @@ class TTDetailViewController: UIViewController {
         if let pointB = location { getDirections(pointB.coordinate) }
     }
     
+    @objc private func handleWalkingTimeButton(sender: UIButton) {
+        
+        
+    }
+    
     private func getDirections(pointB: CLLocationCoordinate2D) {
         let placeMark = MKPlacemark(coordinate: pointB, addressDictionary: nil)
         let currentLocation = MKMapItem.mapItemForCurrentLocation()
@@ -98,41 +103,28 @@ class TTDetailViewController: UIViewController {
 
     private func setupViews() {
         
+        view.backgroundColor = UIColor.ttDarkGreen()
+        
         view.addSubview(titleLabel)
         view.addSubview(timeLabel)
         view.addSubview(distanceLabel)
-        view.addSubview(shareButton)
+        view.addSubview(walkingTimeButton)
         view.addSubview(directionsButton)
-        directionsButton.addSubview(directionsButtonLabel)
         
-        let views = ["title": titleLabel, "time": timeLabel, "distance": distanceLabel, "share": shareButton, "directions": directionsButton, "buttonLabel": directionsButtonLabel]
-        
-        let metrics = ["bottomMargin": 20.0, "sideMargin": 10.0]
-        
-        
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[title]-(bottomMargin)-[time]-(>=bottomMargin)-[directions]-(bottomMargin)-|", options: nil, metrics: metrics, views: views))
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[title]-(bottomMargin)-[distance]-(>=bottomMargin)-[directions]-(bottomMargin)-|", options: nil, metrics: metrics, views: views))
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[share(44)]-(bottomMargin)-[distance]-(>=bottomMargin)-[directions]-(bottomMargin)-|", options: nil, metrics: metrics, views: views))
-        
-        NSLayoutConstraint(item: shareButton, attribute: .Top, relatedBy: .Equal, toItem: titleLabel, attribute: .Top, multiplier: 1.0, constant: 0.0).active = true
-        
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(sideMargin)-[title]-[share(44)]-(sideMargin)-|", options: nil, metrics: metrics, views: views))
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(sideMargin)-[time]-(sideMargin)-[distance]", options: nil, metrics: metrics, views: views))
-        
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(sideMargin)-[directions]-(sideMargin)-|", options: nil, metrics: metrics, views: views))
-        
-        
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[directions]-(<=1)-[buttonLabel]", options: NSLayoutFormatOptions.AlignAllCenterX,
-            metrics: nil, views: views))
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[directions]-(<=1)-[buttonLabel]", options: NSLayoutFormatOptions.AlignAllCenterY,
-            metrics: nil, views: views))
+        let views = ["titleLabel": titleLabel, "timeLabel": timeLabel, "distanceLabel": distanceLabel, "directionsButton": directionsButton, "timeButton": walkingTimeButton]
+        let metrics = ["verticalMargin": 20.0, "horizontalMargin": 10.0, "verticalPadding": 10.0, "horizontalPadding": 10.0]
+
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(verticalMargin)-[titleLabel]-(verticalPadding)-[timeLabel]-(>=verticalPadding)-[directionsButton]-(verticalMargin)-|", options: .AlignAllLeft, metrics: metrics, views: views))
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(horizontalMargin)-[titleLabel]-(>=horizontalMargin)-|", options: nil, metrics: metrics, views: views))
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[timeLabel]-(horizontalPadding)-[distanceLabel]-(horizontalPadding)-|", options: .AlignAllCenterY, metrics: metrics, views: views))
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[directionsButton]-(>=horizontalPadding)-[timeButton]-(horizontalPadding)-|", options: .AlignAllCenterY, metrics: metrics, views: views))
     }
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel(frame: CGRectZero)
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.font = UIFont.boldSystemFontOfSize(30.0)
-        label.textColor = UIColor.blackColor()
+        label.textColor = UIColor.ttLightTextColor()
         label.text = "Trolly or Stop Name"
         label.numberOfLines = 0
         label.minimumScaleFactor = 0.5
@@ -145,8 +137,8 @@ class TTDetailViewController: UIViewController {
         let label = UILabel(frame: CGRectZero)
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.font = UIFont.boldSystemFontOfSize(30.0)
-        label.textColor = UIColor.blackColor()
-        label.text = "7 Minutes"
+        label.textColor = UIColor.ttLightTextColor()
+        label.text = ""
         
         return label
     }()
@@ -155,36 +147,27 @@ class TTDetailViewController: UIViewController {
         let label = UILabel(frame: CGRectZero)
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.font = UIFont.boldSystemFontOfSize(30.0)
-        label.textColor = UIColor.blackColor()
-        label.text = "7 Miles"
+        label.textColor = UIColor.ttLightTextColor()
+        label.text = ""
         
         return label
     }()
     
-    private lazy var shareButton: UIView = {
-        let placeHolderForView = UIView(frame: CGRectZero)
-        placeHolderForView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        placeHolderForView.backgroundColor = UIColor.redColor()
+    private lazy var walkingTimeButton: UIButton = {
+        let button = UIButton(frame: CGRectZero)
+        button.setTranslatesAutoresizingMaskIntoConstraints(false)
+        button.addTarget(self, action: "handleWalkingTimeButton:", forControlEvents: UIControlEvents.TouchUpInside)
+        button.setTitle("Get Walking Time", forState: .Normal)
         
-        return placeHolderForView
+        return button
     }()
     
     private lazy var directionsButton: UIButton = {
         let button = UIButton(frame: CGRectZero)
         button.setTranslatesAutoresizingMaskIntoConstraints(false)
-        button.backgroundColor = UIColor.lightGrayColor()
         button.addTarget(self, action: "handleDirectionsButton:", forControlEvents: UIControlEvents.TouchUpInside)
+        button.setTitle("Directions", forState: .Normal)
         
         return button
-    }()
-    
-    private lazy var directionsButtonLabel: UILabel = {
-        let label = UILabel(frame: CGRectZero)
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
-        label.textColor = UIColor.blackColor()
-        label.font = UIFont.boldSystemFontOfSize(18.0)
-        label.text = "Directions"
-        
-        return label
     }()
 }

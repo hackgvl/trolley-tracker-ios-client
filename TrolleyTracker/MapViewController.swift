@@ -140,7 +140,6 @@ class TTMapViewController: UIViewController, MKMapViewDelegate, TTDetailViewCont
             annotationView.tintColor = UIColor.ttDarkGreen()
             annotationView.setTintedImage(UIImage.ttTrolleyPin)
             annotationView.annotation = trolleyAnnotation
-            mapView.bringSubviewToFront(annotationView)
             
             return annotationView
         }

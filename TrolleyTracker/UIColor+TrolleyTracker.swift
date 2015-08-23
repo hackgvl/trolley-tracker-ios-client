@@ -22,6 +22,8 @@ extension UIColor {
     class func ttRouteColorPurple() -> UIColor { return UIColor(red:0.396, green:0.047, blue:0.909, alpha:1) }
     class func ttRouteColorBlue() -> UIColor { return UIColor(red:0.05, green:0.721, blue:1, alpha:1) }
     
+    class func ttLightTextColor() -> UIColor { return UIColor(white: 0.8, alpha: 1.0) }
+    
 //    class func tt<#Name#>() -> UIColor { return <#Color#> }
 //    class func tt<#Name#>() -> UIColor { return <#Color#> }
 //    class func tt<#Name#>() -> UIColor { return <#Color#> }
