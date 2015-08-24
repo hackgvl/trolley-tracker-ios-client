@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor.ttDarkGreen()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.ttLightTextColor()]
         
-        let navController = UINavigationController(rootViewController: TTMapViewController())
+        let navController = UINavigationController(rootViewController: MapViewController())
         self.window?.rootViewController = navController
         
         Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders = [

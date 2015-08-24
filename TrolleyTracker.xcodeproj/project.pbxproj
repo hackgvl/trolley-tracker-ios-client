@@ -23,6 +23,9 @@
 		D95EF76C1B889B00009B5779 /* UIImage+TrolleyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95EF76B1B889B00009B5779 /* UIImage+TrolleyTracker.swift */; };
 		D9650C9A1B8559EA0004A2AF /* TrolleyRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9650C991B8559EA0004A2AF /* TrolleyRoute.swift */; };
 		D9650CA41B86A9F10004A2AF /* UIColor+TrolleyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9650CA31B86A9F10004A2AF /* UIColor+TrolleyTracker.swift */; };
+		D98715411B8A7D8200489594 /* TimeAndDistanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98715401B8A7D8200489594 /* TimeAndDistanceService.swift */; };
+		D98715471B8A7DDC00489594 /* ConcurrentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98715461B8A7DDC00489594 /* ConcurrentOperation.swift */; };
+		D98715491B8A7E0C00489594 /* GetETAOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98715481B8A7E0C00489594 /* GetETAOperation.swift */; };
 		E71A678A1B30DCD30036FE10 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71A67891B30DCD30036FE10 /* MapViewController.swift */; };
 		E71A678C1B30DCE60036FE10 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71A678B1B30DCE60036FE10 /* DetailViewController.swift */; };
 		E71A678E1B30DCEF0036FE10 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71A678D1B30DCEF0036FE10 /* SettingsViewController.swift */; };
@@ -106,6 +109,9 @@
 		D95EF76B1B889B00009B5779 /* UIImage+TrolleyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+TrolleyTracker.swift"; sourceTree = "<group>"; };
 		D9650C991B8559EA0004A2AF /* TrolleyRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyRoute.swift; sourceTree = "<group>"; };
 		D9650CA31B86A9F10004A2AF /* UIColor+TrolleyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+TrolleyTracker.swift"; sourceTree = "<group>"; };
+		D98715401B8A7D8200489594 /* TimeAndDistanceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeAndDistanceService.swift; sourceTree = "<group>"; };
+		D98715461B8A7DDC00489594 /* ConcurrentOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcurrentOperation.swift; sourceTree = "<group>"; };
+		D98715481B8A7E0C00489594 /* GetETAOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetETAOperation.swift; sourceTree = "<group>"; };
 		E71A67891B30DCD30036FE10 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		E71A678B1B30DCE60036FE10 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		E71A678D1B30DCEF0036FE10 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -157,6 +163,7 @@
 				D914FADF1B30DEFE002DACF8 /* TrolleyStopService.swift */,
 				D914FAE11B30DF14002DACF8 /* TrolleyLocationService.swift */,
 				D95DAFC41B7F60EE00BBC906 /* TrolleyRequests.swift */,
+				D98715401B8A7D8200489594 /* TimeAndDistanceService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -189,6 +196,15 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		D98715451B8A7DA100489594 /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				D98715481B8A7E0C00489594 /* GetETAOperation.swift */,
+				D98715461B8A7DDC00489594 /* ConcurrentOperation.swift */,
+			);
+			name = Operations;
+			sourceTree = "<group>";
+		};
 		EFA4B1ED1A1C201F00BEA42C = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +227,7 @@
 		EFA4B1F81A1C201F00BEA42C /* TrolleyTracker */ = {
 			isa = PBXGroup;
 			children = (
+				D98715451B8A7DA100489594 /* Operations */,
 				D914FB011B30EE11002DACF8 /* SwiftyJSON.swift */,
 				D914FADC1B30DEB4002DACF8 /* Services */,
 				D914FADB1B30DEA4002DACF8 /* Models */,
@@ -394,8 +411,10 @@
 				D95EF76C1B889B00009B5779 /* UIImage+TrolleyTracker.swift in Sources */,
 				D95EF7671B87302F009B5779 /* TrolleyRouteOverlay.swift in Sources */,
 				D914FADE1B30DEF0002DACF8 /* UserLocationService.swift in Sources */,
+				D98715491B8A7E0C00489594 /* GetETAOperation.swift in Sources */,
 				D914FAFC1B30EA84002DACF8 /* ObserverSet.swift in Sources */,
 				D914FAE21B30DF14002DACF8 /* TrolleyLocationService.swift in Sources */,
+				D98715411B8A7D8200489594 /* TimeAndDistanceService.swift in Sources */,
 				EFA4B1FC1A1C201F00BEA42C /* AppDelegate.swift in Sources */,
 				E71A678C1B30DCE60036FE10 /* DetailViewController.swift in Sources */,
 				E71A678E1B30DCEF0036FE10 /* SettingsViewController.swift in Sources */,
@@ -404,6 +423,7 @@
 				D9650C9A1B8559EA0004A2AF /* TrolleyRoute.swift in Sources */,
 				D95DAFC51B7F60EE00BBC906 /* TrolleyRequests.swift in Sources */,
 				D914FAE41B30DFA8002DACF8 /* Trolley.swift in Sources */,
+				D98715471B8A7DDC00489594 /* ConcurrentOperation.swift in Sources */,
 				D9650CA41B86A9F10004A2AF /* UIColor+TrolleyTracker.swift in Sources */,
 				E71A678A1B30DCD30036FE10 /* MapViewController.swift in Sources */,
 				D914FAE01B30DEFE002DACF8 /* TrolleyStopService.swift in Sources */,

@@ -11,20 +11,22 @@ import MapKit
 
 // TODO: Add tracking button that toggles MKUserTrackingMode like native maps
 
-class TTMapViewController: UIViewController, MKMapViewDelegate, TTDetailViewControllerDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControllerDelegate {
     
     //==================================================================
     // MARK: - Properties
     //==================================================================
     
-    lazy var detailViewController: TTDetailViewController = {
-        let controller = TTDetailViewController()
+    lazy var detailViewController: DetailViewController = {
+        let controller = DetailViewController()
         controller.delegate = self
         return controller
     }()
     
     private var detailViewVisibleConstraint: NSLayoutConstraint?
     private var detailViewHiddenConstraint: NSLayoutConstraint?
+    
+    private let locationManager = CLLocationManager()
     
     //==================================================================
     // MARK: - Lifecycle
@@ -39,6 +41,8 @@ class TTMapViewController: UIViewController, MKMapViewDelegate, TTDetailViewCont
         TrolleyLocationService.sharedService.startTrackingTrolleys()
         
         loadRoutes()
+        
+        locationManager.requestWhenInUseAuthorization()
     }
     
     //==================================================================
@@ -62,7 +66,7 @@ class TTMapViewController: UIViewController, MKMapViewDelegate, TTDetailViewCont
         
         // If the detailViewController was showing this trolley, update it
         if let annotation = detailViewAnnotation as? Trolley where annotation == trolley {
-            detailViewController.showDetailForAnnotation(trolley)
+            detailViewController.showDetailForAnnotation(trolley, withUserLocation: mapView.userLocation)
         }
     }
     
@@ -161,11 +165,11 @@ class TTMapViewController: UIViewController, MKMapViewDelegate, TTDetailViewCont
     }
     
     func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
-        detailViewController.showDetailForAnnotation(view.annotation)
+        detailViewController.showDetailForAnnotation(view.annotation, withUserLocation: mapView.userLocation)
     }
     
     func mapView(mapView: MKMapView!, didDeselectAnnotationView view: MKAnnotationView!) {
-        detailViewController.showDetailForAnnotation(nil)
+        detailViewController.showDetailForAnnotation(nil, withUserLocation: nil)
     }
     
 //    func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
@@ -177,11 +181,11 @@ class TTMapViewController: UIViewController, MKMapViewDelegate, TTDetailViewCont
     // MARK: - TTDetailViewControllerDelegate
     //==================================================================
     
-    func detailViewControllerWantsToShow(controller: TTDetailViewController) {
+    func detailViewControllerWantsToShow(controller: DetailViewController) {
         setDetailViewVisible(true, animated: true)
     }
     
-    func detailViewControllerWantsToHide(controller: TTDetailViewController) {
+    func detailViewControllerWantsToHide(controller: DetailViewController) {
         setDetailViewVisible(false, animated: true)
     }
     
