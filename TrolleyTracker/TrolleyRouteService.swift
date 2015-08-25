@@ -19,13 +19,19 @@ class TrolleyRouteService {
     
     func loadTrolleyRoutes(completion: LoadTrolleyRouteCompletion) {
         
-        // Call "/Stops" to get the list of stops
-        TrolleyRequests.Routes.responseJSON { (request, response, json, error) -> Void in
+        TrolleyRequests.RoutesActive().responseJSON { (request, response, json, error) -> Void in
             
             if let json: AnyObject = json {
                 self.loadRouteDetailForRoutes(JSON(json), completion: completion)
             }
         }
+
+//        TrolleyRequests.Routes.responseJSON { (request, response, json, error) -> Void in
+//            
+//            if let json: AnyObject = json {
+//                self.loadRouteDetailForRoutes(JSON(json), completion: completion)
+//            }
+//        }
     }
     
     private func loadRouteDetailForRoutes(routes: JSON, completion: LoadTrolleyRouteCompletion) {

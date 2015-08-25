@@ -28,6 +28,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     
     private let locationManager = CLLocationManager()
     
+    private var lastRouteLoadTime: NSDate?
+    
     //==================================================================
     // MARK: - Lifecycle
     //==================================================================
@@ -40,9 +42,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         TrolleyLocationService.sharedService.trolleyObservers.add(updateTrolley)
         TrolleyLocationService.sharedService.startTrackingTrolleys()
         
-        loadRoutes()
-        
         locationManager.requestWhenInUseAuthorization()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let maxRouteTime: NSTimeInterval = 15 * 60
+        if lastRouteLoadTime == nil || lastRouteLoadTime?.timeIntervalSinceNow < -maxRouteTime {
+            loadRoutes()
+        }
     }
     
     //==================================================================
@@ -88,6 +97,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
                     self.mapView.addAnnotation(stop)
                 }
             }
+            self.lastRouteLoadTime = NSDate()
         }
     }
     
