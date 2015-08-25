@@ -36,8 +36,8 @@ class Trolley: NSObject, Equatable {
         self.ID = json["ID"].intValue
         self.location = CLLocation(latitude: (latitude! as NSString).doubleValue, longitude: (longitude! as NSString).doubleValue)
         
-        self.name = json["TrolleyName"].string
         self.number = json["Number"].int
+        self.name = json["TrolleyName"].stringValue + " - " + "\(self.ID)"
     }
     
     init(trolley: Trolley, location: CLLocation) {

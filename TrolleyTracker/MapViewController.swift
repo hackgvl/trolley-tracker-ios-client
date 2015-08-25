@@ -78,7 +78,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
             for (index, var route) in enumerate(routes) {
                 
                 // -- Assign a color
-                let routeColor = UIColor.routeColors[index % routes.count]
+                let routeColor = UIColor.routeColors[index % UIColor.routeColors.count]
                 
                 // -- Add overlays
                 self.mapView.addOverlay(route.overlay)
@@ -144,6 +144,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
             annotationView.tintColor = UIColor.ttDarkGreen()
             annotationView.setTintedImage(UIImage.ttTrolleyPin)
             annotationView.annotation = trolleyAnnotation
+            dispatch_async(dispatch_get_main_queue()) {
+                annotationView.superview?.bringSubviewToFront(annotationView)
+            }
             
             return annotationView
         }

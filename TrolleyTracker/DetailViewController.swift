@@ -49,6 +49,8 @@ class DetailViewController: UIViewController {
     
     func showDetailForAnnotation(annotation: MKAnnotation?, withUserLocation userLocation: MKUserLocation?) {
         
+        resetLabels()
+        
         var annotationToDisplay = annotation
         
         if let trolley = annotationToDisplay as? Trolley { displayTrolley(trolley) }
@@ -58,13 +60,13 @@ class DetailViewController: UIViewController {
         else {
             delegate?.detailViewControllerWantsToHide(self)
             annotationToDisplay = nil
-            resetLabels()
         }
         
         currentUserLocation = userLocation
         currentlyShowingAnnotation = annotationToDisplay
         
         showDistance()
+        getWalkingTime(true)
     }
     
     //==================================================================
@@ -73,19 +75,11 @@ class DetailViewController: UIViewController {
     
     private func displayTrolley(trolley: Trolley) {
         
-        if let currentTrolley = currentlyShowingAnnotation as? Trolley where currentTrolley != trolley {
-            resetLabels()
-        }
-        
         titleLabel.text = trolley.name
         delegate?.detailViewControllerWantsToShow(self)
     }
     
     private func displayStop(stop: TrolleyStop) {
-        
-        if let currentStop = currentlyShowingAnnotation as? TrolleyStop where currentStop != stop {
-            resetLabels()
-        }
         
         titleLabel.text = stop.name
         delegate?.detailViewControllerWantsToShow(self)
@@ -124,17 +118,23 @@ class DetailViewController: UIViewController {
     }
     
     @objc private func handleWalkingTimeButton(sender: UIButton) {
+        getWalkingTime(false)
+    }
+    
+    private func getWalkingTime(cacheResultsOnly: Bool) {
         
         if currentlyShowingAnnotation == nil { return }
+        if currentUserLocation?.location == nil { return }
         let annotation = currentlyShowingAnnotation!
+        let userLocation = currentUserLocation!.location
         
-        let source = MKMapItem.mapItemForCurrentLocation()
+        let source = MKMapItem(placemark: MKPlacemark(coordinate: userLocation.coordinate, addressDictionary: nil))
         let destination = MKMapItem(placemark: MKPlacemark(coordinate: annotation.coordinate, addressDictionary: nil))
         
         walkingTimeButton.enabled = false
         timeLoadingIndicator.startAnimating()
         
-        TimeAndDistanceService.walkingTravelTimeBetweenPoints(source, pointB: destination) { (rawTime, formattedTime) -> Void in
+        TimeAndDistanceService.walkingTravelTimeBetweenPoints(source, pointB: destination, cacheResultsOnly: cacheResultsOnly) { (rawTime, formattedTime) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
                 // Set time label with directions result
                 self.timeLabel.text = formattedTime
