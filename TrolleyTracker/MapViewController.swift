@@ -131,12 +131,20 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     
     let trolleyAnnotationReuseIdentifier = "TrolleyAnnotation"
     let stopAnnotationReuseIdentifier = "StopAnnotation"
+    let userAnnotationReuseIdentifier = "UserAnnotation"
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         if (annotation is MKUserLocation) {
-            //if annotation is not an MKPointAnnotation (eg. MKUserLocation),
-            //return nil so map draws default view for it (eg. blue dot)...
-            return nil
+            var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(userAnnotationReuseIdentifier)
+            if annotationView == nil {
+                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: userAnnotationReuseIdentifier)
+                annotationView.image = UIImage.ttUserPin
+                annotationView.centerOffset = CGPointMake(0, -(annotationView.image.size.height / 2))
+            }
+            
+            annotationView.annotation = annotation
+
+            return annotationView
         }
         
         // Handle Stops
