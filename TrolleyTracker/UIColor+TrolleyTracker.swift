@@ -42,10 +42,10 @@ extension UIColor {
         get {
             
             let colors = [
-                UIColor.ttRouteColor2(),
-                UIColor.ttRouteColor3(),
-                UIColor.ttRouteColor1(),
                 UIColor.ttRouteColor4(),
+                UIColor.ttRouteColor3(),
+                UIColor.ttRouteColor2(),
+                UIColor.ttRouteColor1(),
                 UIColor.ttRouteColor5()
             ]
             
@@ -57,10 +57,10 @@ extension UIColor {
         get {
             
             let colors = [
-                UIColor.ttStopColor2(),
-                UIColor.ttStopColor3(),
-                UIColor.ttStopColor1(),
                 UIColor.ttStopColor4(),
+                UIColor.ttStopColor3(),
+                UIColor.ttStopColor2(),
+                UIColor.ttStopColor1(),
                 UIColor.ttStopColor5()
             ]
             
