@@ -34,8 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             "Content-Type":"application/json",
         ]
         
-        EnvironmentVariables.currentBuildConfiguration()
-        
         return true
     }
 

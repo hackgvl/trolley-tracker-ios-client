@@ -4,10 +4,12 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>${PRODUCT_NAME}${BUNDLE_DISPLAY_NAME_SUFFIX}</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.CodeForGreenville.$(PRODUCT_NAME:rfc1034identifier)</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)${BUNDLE_ID_SUFFIX}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -25,7 +27,7 @@
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string></string>
 	<key>NSLocationUsageDescription</key>
-	<string>Beacuse Raisins</string>
+	<string>Your location will be used to show how far you are from the Trolley.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Beacuse Raisins</string>
 	<key>UIAppFonts</key>

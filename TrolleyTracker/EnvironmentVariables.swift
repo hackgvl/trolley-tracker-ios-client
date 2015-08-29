@@ -34,8 +34,6 @@ class EnvironmentVariables {
         config = .Release
         #endif
         
-        println("Current configuration: \(config.rawValue)")
-        
         return config
     }
 }

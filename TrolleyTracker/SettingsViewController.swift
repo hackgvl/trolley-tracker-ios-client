@@ -78,6 +78,8 @@ class TTSettingsViewController: UIViewController, UITableViewDataSource, UITable
       
       self.presentViewController(shareSheetViewController, animated: true, completion: nil)
     }
+    
+    tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
   
   
@@ -87,12 +89,23 @@ class TTSettingsViewController: UIViewController, UITableViewDataSource, UITable
     var messageBody = "Hi TrolleyTracker,\n\nI have some feedback to provide about my application using experience:\n\n"
     var toRecipents = ["YeahThatTrolley@gmail.com"]
     
-    var mc: MFMailComposeViewController = MFMailComposeViewController()
-    mc.setSubject(emailTitle)
-    mc.setMessageBody(messageBody, isHTML: false)
-    mc.setToRecipients(toRecipents)
-    mc.mailComposeDelegate = self
-    self.presentViewController(mc, animated: true, completion: nil)
+    if MFMailComposeViewController.canSendMail() {
+        var mc: MFMailComposeViewController = MFMailComposeViewController()
+        mc.setSubject(emailTitle)
+        mc.setMessageBody(messageBody, isHTML: false)
+        mc.setToRecipients(toRecipents)
+        mc.mailComposeDelegate = self
+        self.presentViewController(mc, animated: true, completion: nil)
+    }
+    else {
+        // Show error
+        let controller = UIAlertController(title: "Error", message: "No email accounts are available on this device.", preferredStyle: UIAlertControllerStyle.Alert)
+        controller.view.tintColor = UIColor.ttAlternateTintColor()
+        let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        controller.addAction(action)
+        self.presentViewController(controller, animated: true, completion: nil)
+    }
+    
   }
   
   func mailComposeController(controller:MFMailComposeViewController, didFinishWithResult result:MFMailComposeResult, error:NSError) {

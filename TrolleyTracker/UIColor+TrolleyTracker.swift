@@ -11,6 +11,7 @@ import UIKit
 extension UIColor {
     
     class func ttTintColor() -> UIColor { return UIColor.whiteColor() }
+    class func ttAlternateTintColor() -> UIColor { return UIColor.ttDarkPurple() }
     
     class func ttLightTextColor() -> UIColor { return UIColor.ttLightGray() }
     
