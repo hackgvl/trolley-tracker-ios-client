@@ -11,18 +11,16 @@
 		D90866F41B91C79F002A6F87 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D90866F21B91C633002A6F87 /* Montserrat-Bold.ttf */; };
 		D90866F71B91C8B8002A6F87 /* UIFont+TrolleyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90866F61B91C8B8002A6F87 /* UIFont+TrolleyTracker.swift */; };
 		D90866FB1B91D519002A6F87 /* String+TrolleyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90866FA1B91D519002A6F87 /* String+TrolleyTracker.swift */; };
+		D90867031B91F4D9002A6F87 /* EnvironmentVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90867021B91F4D9002A6F87 /* EnvironmentVariables.swift */; };
+		D908670C1B91FE3B002A6F87 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D908670B1B91FE3B002A6F87 /* Alamofire.framework */; };
 		D914FADE1B30DEF0002DACF8 /* UserLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FADD1B30DEF0002DACF8 /* UserLocationService.swift */; };
 		D914FAE01B30DEFE002DACF8 /* TrolleyRouteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FADF1B30DEFE002DACF8 /* TrolleyRouteService.swift */; };
 		D914FAE21B30DF14002DACF8 /* TrolleyLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FAE11B30DF14002DACF8 /* TrolleyLocationService.swift */; };
 		D914FAE41B30DFA8002DACF8 /* Trolley.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FAE31B30DFA8002DACF8 /* Trolley.swift */; };
 		D914FAE61B30DFC0002DACF8 /* TrolleyStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FAE51B30DFC0002DACF8 /* TrolleyStop.swift */; };
-		D914FAE81B30E3FE002DACF8 /* TTRequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FAE71B30E3FE002DACF8 /* TTRequestController.swift */; };
-		D914FAF91B30E62B002DACF8 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D914FAF21B30E55A002DACF8 /* Alamofire.framework */; };
 		D914FAFC1B30EA84002DACF8 /* ObserverSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FAFB1B30EA84002DACF8 /* ObserverSet.swift */; };
 		D914FB021B30EE11002DACF8 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FB011B30EE11002DACF8 /* SwiftyJSON.swift */; };
 		D95DAFC51B7F60EE00BBC906 /* TrolleyRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95DAFC41B7F60EE00BBC906 /* TrolleyRequests.swift */; };
-		D95DAFD61B7FF92B00BBC906 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D914FAF21B30E55A002DACF8 /* Alamofire.framework */; };
-		D95DAFD71B7FF92B00BBC906 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D914FAF21B30E55A002DACF8 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D95EF7671B87302F009B5779 /* TrolleyRouteOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95EF7661B87302F009B5779 /* TrolleyRouteOverlay.swift */; };
 		D95EF76C1B889B00009B5779 /* UIImage+TrolleyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95EF76B1B889B00009B5779 /* UIImage+TrolleyTracker.swift */; };
 		D9650C9A1B8559EA0004A2AF /* TrolleyRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9650C991B8559EA0004A2AF /* TrolleyRoute.swift */; };
@@ -40,41 +38,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D914FAF11B30E55A002DACF8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D914FAEA1B30E559002DACF8 /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F8111E3319A95C8B0040E7D1;
-			remoteInfo = "Alamofire iOS";
-		};
-		D914FAF31B30E55A002DACF8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D914FAEA1B30E559002DACF8 /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4DD67C0B1A5C55C900ED2280;
-			remoteInfo = "Alamofire OSX";
-		};
-		D914FAF51B30E55A002DACF8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D914FAEA1B30E559002DACF8 /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F8111E3E19A95C8B0040E7D1;
-			remoteInfo = "Alamofire iOS Tests";
-		};
-		D914FAF71B30E55A002DACF8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D914FAEA1B30E559002DACF8 /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F829C6B21A7A94F100A2CD59;
-			remoteInfo = "Alamofire OSX Tests";
-		};
-		D95DAFD81B7FF92B00BBC906 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D914FAEA1B30E559002DACF8 /* Alamofire.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
-			remoteInfo = "Alamofire iOS";
-		};
 		EFA4B20C1A1C201F00BEA42C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EFA4B1EE1A1C201F00BEA42C /* Project object */;
@@ -87,14 +50,13 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		D95DAFDA1B7FF92B00BBC906 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D95DAFD71B7FF92B00BBC906 /* Alamofire.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -103,13 +65,13 @@
 		D90866F21B91C633002A6F87 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		D90866F61B91C8B8002A6F87 /* UIFont+TrolleyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+TrolleyTracker.swift"; sourceTree = "<group>"; };
 		D90866FA1B91D519002A6F87 /* String+TrolleyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+TrolleyTracker.swift"; sourceTree = "<group>"; };
+		D90867021B91F4D9002A6F87 /* EnvironmentVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentVariables.swift; sourceTree = "<group>"; };
+		D908670B1B91FE3B002A6F87 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		D914FADD1B30DEF0002DACF8 /* UserLocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocationService.swift; sourceTree = "<group>"; };
 		D914FADF1B30DEFE002DACF8 /* TrolleyRouteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyRouteService.swift; sourceTree = "<group>"; };
 		D914FAE11B30DF14002DACF8 /* TrolleyLocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyLocationService.swift; sourceTree = "<group>"; };
 		D914FAE31B30DFA8002DACF8 /* Trolley.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trolley.swift; sourceTree = "<group>"; };
 		D914FAE51B30DFC0002DACF8 /* TrolleyStop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyStop.swift; sourceTree = "<group>"; };
-		D914FAE71B30E3FE002DACF8 /* TTRequestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTRequestController.swift; sourceTree = "<group>"; };
-		D914FAEA1B30E559002DACF8 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = SOURCE_ROOT; };
 		D914FAFB1B30EA84002DACF8 /* ObserverSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObserverSet.swift; sourceTree = "<group>"; };
 		D914FB011B30EE11002DACF8 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		D95DAFC41B7F60EE00BBC906 /* TrolleyRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyRequests.swift; sourceTree = "<group>"; };
@@ -138,8 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D914FAF91B30E62B002DACF8 /* Alamofire.framework in Frameworks */,
-				D95DAFD61B7FF92B00BBC906 /* Alamofire.framework in Frameworks */,
+				D908670C1B91FE3B002A6F87 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,7 +146,6 @@
 		D914FADC1B30DEB4002DACF8 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				D914FAE71B30E3FE002DACF8 /* TTRequestController.swift */,
 				D914FADD1B30DEF0002DACF8 /* UserLocationService.swift */,
 				D914FADF1B30DEFE002DACF8 /* TrolleyRouteService.swift */,
 				D914FAE11B30DF14002DACF8 /* TrolleyLocationService.swift */,
@@ -193,17 +153,6 @@
 				D98715401B8A7D8200489594 /* TimeAndDistanceService.swift */,
 			);
 			name = Services;
-			sourceTree = "<group>";
-		};
-		D914FAEB1B30E559002DACF8 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D914FAF21B30E55A002DACF8 /* Alamofire.framework */,
-				D914FAF41B30E55A002DACF8 /* Alamofire.framework */,
-				D914FAF61B30E55A002DACF8 /* Alamofire iOS Tests.xctest */,
-				D914FAF81B30E55A002DACF8 /* Alamofire OSX Tests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		D9650CA01B86A4030004A2AF /* Controllers */ = {
@@ -236,7 +185,7 @@
 		EFA4B1ED1A1C201F00BEA42C = {
 			isa = PBXGroup;
 			children = (
-				D914FAEA1B30E559002DACF8 /* Alamofire.xcodeproj */,
+				D908670B1B91FE3B002A6F87 /* Alamofire.framework */,
 				EFA4B1F81A1C201F00BEA42C /* TrolleyTracker */,
 				EFA4B20E1A1C201F00BEA42C /* TrolleyTrackerTests */,
 				EFA4B1F71A1C201F00BEA42C /* Products */,
@@ -277,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				EFA4B1FA1A1C201F00BEA42C /* Info.plist */,
+				D90867021B91F4D9002A6F87 /* EnvironmentVariables.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -309,11 +259,11 @@
 				EFA4B1F31A1C201F00BEA42C /* Frameworks */,
 				EFA4B1F41A1C201F00BEA42C /* Resources */,
 				D95DAFDA1B7FF92B00BBC906 /* Embed Frameworks */,
+				D908670D1B91FE59002A6F87 /* Carthage */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D95DAFD91B7FF92B00BBC906 /* PBXTargetDependency */,
 			);
 			name = TrolleyTracker;
 			productName = TrolleyTracker;
@@ -368,12 +318,6 @@
 			mainGroup = EFA4B1ED1A1C201F00BEA42C;
 			productRefGroup = EFA4B1F71A1C201F00BEA42C /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = D914FAEB1B30E559002DACF8 /* Products */;
-					ProjectRef = D914FAEA1B30E559002DACF8 /* Alamofire.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				EFA4B1F51A1C201F00BEA42C /* TrolleyTracker */,
@@ -381,37 +325,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		D914FAF21B30E55A002DACF8 /* Alamofire.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Alamofire.framework;
-			remoteRef = D914FAF11B30E55A002DACF8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D914FAF41B30E55A002DACF8 /* Alamofire.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Alamofire.framework;
-			remoteRef = D914FAF31B30E55A002DACF8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D914FAF61B30E55A002DACF8 /* Alamofire iOS Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Alamofire iOS Tests.xctest";
-			remoteRef = D914FAF51B30E55A002DACF8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D914FAF81B30E55A002DACF8 /* Alamofire OSX Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Alamofire OSX Tests.xctest";
-			remoteRef = D914FAF71B30E55A002DACF8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		EFA4B1F41A1C201F00BEA42C /* Resources */ = {
@@ -433,6 +346,24 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		D908670D1B91FE59002A6F87 /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+			);
+			name = Carthage;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EFA4B1F21A1C201F00BEA42C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -448,7 +379,7 @@
 				EFA4B1FC1A1C201F00BEA42C /* AppDelegate.swift in Sources */,
 				E71A678C1B30DCE60036FE10 /* DetailViewController.swift in Sources */,
 				E71A678E1B30DCEF0036FE10 /* SettingsViewController.swift in Sources */,
-				D914FAE81B30E3FE002DACF8 /* TTRequestController.swift in Sources */,
+				D90867031B91F4D9002A6F87 /* EnvironmentVariables.swift in Sources */,
 				D914FAE61B30DFC0002DACF8 /* TrolleyStop.swift in Sources */,
 				D9650C9A1B8559EA0004A2AF /* TrolleyRoute.swift in Sources */,
 				D90866F01B91292F002A6F87 /* TrolleyAnnotationView.swift in Sources */,
@@ -475,11 +406,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D95DAFD91B7FF92B00BBC906 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Alamofire iOS";
-			targetProxy = D95DAFD81B7FF92B00BBC906 /* PBXContainerItemProxy */;
-		};
 		EFA4B20D1A1C201F00BEA42C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = EFA4B1F51A1C201F00BEA42C /* TrolleyTracker */;
@@ -499,10 +425,12 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		EFA4B2131A1C201F00BEA42C /* Debug */ = {
+		D90866FC1B91E041002A6F87 /* Debug Test */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_DISPLAY_NAME_SUFFIX = "-T";
+				BUNDLE_ID_SUFFIX = .test;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -536,6 +464,156 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DDEBUGGING -DTEST";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = "Debug Test";
+		};
+		D90866FD1B91E041002A6F87 /* Debug Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = TrolleyTracker/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = "Debug Test";
+		};
+		D90866FE1B91E041002A6F87 /* Debug Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TrolleyTrackerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TrolleyTracker.app/TrolleyTracker";
+			};
+			name = "Debug Test";
+		};
+		D90866FF1B91E04B002A6F87 /* Release Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_DISPLAY_NAME_SUFFIX = "-T";
+				BUNDLE_ID_SUFFIX = .test;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_SWIFT_FLAGS = "-DTEST";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Release Test";
+		};
+		D90867001B91E04B002A6F87 /* Release Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = TrolleyTracker/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "3069be3d-6966-4bc1-be6d-b8f3faae297e";
+			};
+			name = "Release Test";
+		};
+		D90867011B91E04B002A6F87 /* Release Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TrolleyTrackerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TrolleyTracker.app/TrolleyTracker";
+			};
+			name = "Release Test";
+		};
+		EFA4B2131A1C201F00BEA42C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_DISPLAY_NAME_SUFFIX = "";
+				BUNDLE_ID_SUFFIX = "";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DDEBUGGING";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -545,6 +623,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_DISPLAY_NAME_SUFFIX = "";
+				BUNDLE_ID_SUFFIX = "";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -580,6 +660,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = TrolleyTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -591,6 +676,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = TrolleyTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -639,7 +729,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EFA4B2131A1C201F00BEA42C /* Debug */,
+				D90866FC1B91E041002A6F87 /* Debug Test */,
 				EFA4B2141A1C201F00BEA42C /* Release */,
+				D90866FF1B91E04B002A6F87 /* Release Test */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -648,7 +740,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EFA4B2161A1C201F00BEA42C /* Debug */,
+				D90866FD1B91E041002A6F87 /* Debug Test */,
 				EFA4B2171A1C201F00BEA42C /* Release */,
+				D90867001B91E04B002A6F87 /* Release Test */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -657,7 +751,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EFA4B2191A1C201F00BEA42C /* Debug */,
+				D90866FE1B91E041002A6F87 /* Debug Test */,
 				EFA4B21A1A1C201F00BEA42C /* Release */,
+				D90867011B91E04B002A6F87 /* Release Test */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

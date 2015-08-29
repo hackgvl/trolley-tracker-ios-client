@@ -162,10 +162,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
             var annotationView: TrolleyAnnotationView! = mapView.dequeueReusableAnnotationViewWithIdentifier(trolleyAnnotationReuseIdentifier) as? TrolleyAnnotationView
             if annotationView == nil {
                 annotationView = TrolleyAnnotationView(annotation: trolleyAnnotation, reuseIdentifier: trolleyAnnotationReuseIdentifier)
+                annotationView.frame = CGRectMake(0, 0, 50, 50)
             }
             
             annotationView.tintColor = UIColor.trolleyColorForID(trolleyAnnotation.ID)
-            annotationView.frame = CGRectMake(0, 0, 50, 50)
             annotationView.trolleyNumber = trolleyAnnotation.ID
             annotationView.annotation = trolleyAnnotation
             dispatch_async(dispatch_get_main_queue()) {

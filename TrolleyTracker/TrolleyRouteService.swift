@@ -18,20 +18,14 @@ class TrolleyRouteService {
     static var sharedService = TrolleyRouteService()
     
     func loadTrolleyRoutes(completion: LoadTrolleyRouteCompletion) {
-        
-        TrolleyRequests.RoutesActive().responseJSON { (request, response, json, error) -> Void in
+
+        let request = EnvironmentVariables.currentBuildConfiguration() == .Test ? TrolleyRequests.Routes : TrolleyRequests.RoutesActive()
+        request.responseJSON { (request, response, json, error) -> Void in
             
             if let json: AnyObject = json {
                 self.loadRouteDetailForRoutes(JSON(json), completion: completion)
             }
         }
-
-//        TrolleyRequests.Routes.responseJSON { (request, response, json, error) -> Void in
-//            
-//            if let json: AnyObject = json {
-//                self.loadRouteDetailForRoutes(JSON(json), completion: completion)
-//            }
-//        }
     }
     
     private func loadRouteDetailForRoutes(routes: JSON, completion: LoadTrolleyRouteCompletion) {
