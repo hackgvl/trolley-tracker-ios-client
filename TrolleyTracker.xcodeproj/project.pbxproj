@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D90866F01B91292F002A6F87 /* TrolleyAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90866EF1B91292F002A6F87 /* TrolleyAnnotationView.swift */; };
+		D90866F41B91C79F002A6F87 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D90866F21B91C633002A6F87 /* Montserrat-Bold.ttf */; };
+		D90866F71B91C8B8002A6F87 /* UIFont+TrolleyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90866F61B91C8B8002A6F87 /* UIFont+TrolleyTracker.swift */; };
+		D90866FB1B91D519002A6F87 /* String+TrolleyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90866FA1B91D519002A6F87 /* String+TrolleyTracker.swift */; };
 		D914FADE1B30DEF0002DACF8 /* UserLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FADD1B30DEF0002DACF8 /* UserLocationService.swift */; };
-		D914FAE01B30DEFE002DACF8 /* TrolleyStopService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FADF1B30DEFE002DACF8 /* TrolleyStopService.swift */; };
+		D914FAE01B30DEFE002DACF8 /* TrolleyRouteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FADF1B30DEFE002DACF8 /* TrolleyRouteService.swift */; };
 		D914FAE21B30DF14002DACF8 /* TrolleyLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FAE11B30DF14002DACF8 /* TrolleyLocationService.swift */; };
 		D914FAE41B30DFA8002DACF8 /* Trolley.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FAE31B30DFA8002DACF8 /* Trolley.swift */; };
 		D914FAE61B30DFC0002DACF8 /* TrolleyStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FAE51B30DFC0002DACF8 /* TrolleyStop.swift */; };
@@ -95,8 +99,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D90866EF1B91292F002A6F87 /* TrolleyAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyAnnotationView.swift; sourceTree = "<group>"; };
+		D90866F21B91C633002A6F87 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		D90866F61B91C8B8002A6F87 /* UIFont+TrolleyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+TrolleyTracker.swift"; sourceTree = "<group>"; };
+		D90866FA1B91D519002A6F87 /* String+TrolleyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+TrolleyTracker.swift"; sourceTree = "<group>"; };
 		D914FADD1B30DEF0002DACF8 /* UserLocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocationService.swift; sourceTree = "<group>"; };
-		D914FADF1B30DEFE002DACF8 /* TrolleyStopService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyStopService.swift; sourceTree = "<group>"; };
+		D914FADF1B30DEFE002DACF8 /* TrolleyRouteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyRouteService.swift; sourceTree = "<group>"; };
 		D914FAE11B30DF14002DACF8 /* TrolleyLocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyLocationService.swift; sourceTree = "<group>"; };
 		D914FAE31B30DFA8002DACF8 /* Trolley.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trolley.swift; sourceTree = "<group>"; };
 		D914FAE51B30DFC0002DACF8 /* TrolleyStop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyStop.swift; sourceTree = "<group>"; };
@@ -145,6 +153,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D90866F11B91C60F002A6F87 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				D90866F21B91C633002A6F87 /* Montserrat-Bold.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		D90866F81B91C8BF002A6F87 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D9650CA31B86A9F10004A2AF /* UIColor+TrolleyTracker.swift */,
+				D95EF76B1B889B00009B5779 /* UIImage+TrolleyTracker.swift */,
+				D90866F61B91C8B8002A6F87 /* UIFont+TrolleyTracker.swift */,
+				D90866FA1B91D519002A6F87 /* String+TrolleyTracker.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		D914FADB1B30DEA4002DACF8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,7 +187,7 @@
 			children = (
 				D914FAE71B30E3FE002DACF8 /* TTRequestController.swift */,
 				D914FADD1B30DEF0002DACF8 /* UserLocationService.swift */,
-				D914FADF1B30DEFE002DACF8 /* TrolleyStopService.swift */,
+				D914FADF1B30DEFE002DACF8 /* TrolleyRouteService.swift */,
 				D914FAE11B30DF14002DACF8 /* TrolleyLocationService.swift */,
 				D95DAFC41B7F60EE00BBC906 /* TrolleyRequests.swift */,
 				D98715401B8A7D8200489594 /* TimeAndDistanceService.swift */,
@@ -192,6 +219,7 @@
 		D9650CA11B86A40A0004A2AF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D90866EF1B91292F002A6F87 /* TrolleyAnnotationView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -239,8 +267,8 @@
 				EFA4B2041A1C201F00BEA42C /* LaunchScreen.xib */,
 				EFA4B1F91A1C201F00BEA42C /* Supporting Files */,
 				D914FAFB1B30EA84002DACF8 /* ObserverSet.swift */,
-				D9650CA31B86A9F10004A2AF /* UIColor+TrolleyTracker.swift */,
-				D95EF76B1B889B00009B5779 /* UIImage+TrolleyTracker.swift */,
+				D90866F81B91C8BF002A6F87 /* Extensions */,
+				D90866F11B91C60F002A6F87 /* Fonts */,
 			);
 			path = TrolleyTracker;
 			sourceTree = "<group>";
@@ -316,6 +344,7 @@
 		EFA4B1EE1A1C201F00BEA42C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Code For Greenville";
 				TargetAttributes = {
@@ -391,6 +420,7 @@
 			files = (
 				EFA4B2061A1C201F00BEA42C /* LaunchScreen.xib in Resources */,
 				EFA4B2031A1C201F00BEA42C /* Images.xcassets in Resources */,
+				D90866F41B91C79F002A6F87 /* Montserrat-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,12 +451,15 @@
 				D914FAE81B30E3FE002DACF8 /* TTRequestController.swift in Sources */,
 				D914FAE61B30DFC0002DACF8 /* TrolleyStop.swift in Sources */,
 				D9650C9A1B8559EA0004A2AF /* TrolleyRoute.swift in Sources */,
+				D90866F01B91292F002A6F87 /* TrolleyAnnotationView.swift in Sources */,
 				D95DAFC51B7F60EE00BBC906 /* TrolleyRequests.swift in Sources */,
+				D90866FB1B91D519002A6F87 /* String+TrolleyTracker.swift in Sources */,
 				D914FAE41B30DFA8002DACF8 /* Trolley.swift in Sources */,
 				D98715471B8A7DDC00489594 /* ConcurrentOperation.swift in Sources */,
 				D9650CA41B86A9F10004A2AF /* UIColor+TrolleyTracker.swift in Sources */,
+				D90866F71B91C8B8002A6F87 /* UIFont+TrolleyTracker.swift in Sources */,
 				E71A678A1B30DCD30036FE10 /* MapViewController.swift in Sources */,
-				D914FAE01B30DEFE002DACF8 /* TrolleyStopService.swift in Sources */,
+				D914FAE01B30DEFE002DACF8 /* TrolleyRouteService.swift in Sources */,
 				D914FB021B30EE11002DACF8 /* SwiftyJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -550,6 +583,7 @@
 				INFOPLIST_FILE = TrolleyTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -560,6 +594,7 @@
 				INFOPLIST_FILE = TrolleyTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "3069be3d-6966-4bc1-be6d-b8f3faae297e";
 			};
 			name = Release;
 		};

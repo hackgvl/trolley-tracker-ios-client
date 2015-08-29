@@ -39,6 +39,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         
         setupViews()
         
+        let titleView = UIView()
+        titleView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        navigationItem.titleView = titleView
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[title]-|", options: nil, metrics: nil, views: ["title" : titleView]))
+        NSLayoutConstraint.activateConstraints([NSLayoutConstraint(item: titleView, attribute: .CenterX, relatedBy: .Equal, toItem: titleView.superview!, attribute: .CenterX, multiplier: 1.0, constant: 0.0)])
+        
+        let titleImageView = UIImageView(image: UIImage.ttTrolleyTrackerLogo)
+        titleImageView.contentMode = UIViewContentMode.ScaleAspectFit
+        titleImageView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        titleView.addSubview(titleImageView)
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[image]|", options: nil, metrics: nil, views: ["image" : titleImageView]))
+        NSLayoutConstraint.activateConstraints([NSLayoutConstraint(item: titleImageView, attribute: .CenterX, relatedBy: .Equal, toItem: titleView, attribute: .CenterX, multiplier: 1.0, constant: 0.0)])
+        
         TrolleyLocationService.sharedService.trolleyObservers.add(updateTrolley)
         TrolleyLocationService.sharedService.startTrackingTrolleys()
         
@@ -135,7 +148,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
             }
             
             annotationView.annotation = annotation
-            annotationView.tintColor = UIColor.routeColorForIndex(stopAnnotation.colorIndex)
+            annotationView.tintColor = UIColor.stopColorForIndex(stopAnnotation.colorIndex)
             annotationView.setTintedImage(UIImage.ttTrolleyStopPin)
             annotationView.centerOffset = CGPointMake(0, -(annotationView.image.size.height / 2))
             
@@ -145,14 +158,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         
         // Handle Trolleys
         if let trolleyAnnotation = annotation as? Trolley {
-            var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(trolleyAnnotationReuseIdentifier)
             
+            var annotationView: TrolleyAnnotationView! = mapView.dequeueReusableAnnotationViewWithIdentifier(trolleyAnnotationReuseIdentifier) as? TrolleyAnnotationView
             if annotationView == nil {
-                annotationView = MKAnnotationView(annotation: trolleyAnnotation, reuseIdentifier: trolleyAnnotationReuseIdentifier)
+                annotationView = TrolleyAnnotationView(annotation: trolleyAnnotation, reuseIdentifier: trolleyAnnotationReuseIdentifier)
             }
             
-            annotationView.tintColor = UIColor.ttDarkGreen()
-            annotationView.setTintedImage(UIImage.ttTrolleyPin)
+            annotationView.tintColor = UIColor.trolleyColorForID(trolleyAnnotation.ID)
+            annotationView.frame = CGRectMake(0, 0, 50, 50)
+            annotationView.trolleyNumber = trolleyAnnotation.ID
             annotationView.annotation = trolleyAnnotation
             dispatch_async(dispatch_get_main_queue()) {
                 annotationView.superview?.bringSubviewToFront(annotationView)
@@ -264,10 +278,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     //==========================================================================
     
     func showSettings() {
-        var settingsViewController = TTSettingsViewController()
         
-        var navController = UINavigationController(rootViewController: settingsViewController)
-        
+        let settingsViewController = TTSettingsViewController()
+        let navController = UINavigationController(rootViewController: settingsViewController)
         self.presentViewController(navController, animated: true, completion: nil)
     }
 }

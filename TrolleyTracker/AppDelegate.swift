@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.backgroundColor = UIColor.blackColor()
         self.window?.makeKeyAndVisible()
         
-        UINavigationBar.appearance().barTintColor = UIColor.ttDarkGreen()
+        UINavigationBar.appearance().barTintColor = UIColor.ttMediumPurple()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.ttLightTextColor()]
         
         let navController = UINavigationController(rootViewController: MapViewController())

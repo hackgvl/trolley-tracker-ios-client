@@ -163,7 +163,7 @@ class DetailViewController: UIViewController {
 
     private func setupViews() {
         
-        view.backgroundColor = UIColor.ttDarkGreen()
+        view.backgroundColor = UIColor.ttMediumPurple()
         
         view.addSubview(titleLabel)
         view.addSubview(timeLabel)

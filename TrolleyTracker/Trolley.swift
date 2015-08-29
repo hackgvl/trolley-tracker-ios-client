@@ -27,10 +27,12 @@ class Trolley: NSObject, Equatable {
         
         let json = JSON(jsonData)
         
-        var latitude = json["CurrentLat"].string
+        var currentLat = json["CurrentLat"].float
+        var latitude: String? = currentLat != nil ? String(format: "%.7f", currentLat!) : nil
         if latitude == nil { latitude = json["Lat"].stringValue }
         
-        var longitude = json["CurrentLon"].string
+        var currentLon = json["CurrentLon"].float
+        var longitude: String? = currentLon != nil ? String(format: "%.7f", currentLon!) : nil
         if longitude == nil { longitude = json["Lon"].stringValue }
         
         self.ID = json["ID"].intValue

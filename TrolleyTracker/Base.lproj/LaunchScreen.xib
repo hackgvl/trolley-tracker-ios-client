@@ -13,7 +13,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QEG-Kh-3AM">
                     <rect key="frame" x="0.0" y="0.0" width="480" height="64"/>
                     <animations/>
-                    <color key="backgroundColor" red="0.16078431369999999" green="0.50980392159999999" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.31136780977249146" green="0.32982882857322693" blue="0.51706546545028687" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="64" id="iiN-Hd-RUu"/>
                     </constraints>

@@ -20,6 +20,30 @@ extension UIImage {
         get { return imageOrBlank("TrolleyStopPin") }
     }
     
+    class var ttTrolleyTrackerLogo: UIImage {
+        get { return imageOrBlank("TROLLEYTRACKER_logo") }
+    }
+    
+    class var ttUserPin: UIImage {
+        get { return imageOrBlank("YouAreHere") }
+    }
+    
+    class var ttTrolleyPin1: UIImage {
+        get { return imageOrBlank("Marker1") }
+    }
+    
+    class var ttTrolleyPin2: UIImage {
+        get { return imageOrBlank("Marker2") }
+    }
+    
+    class var ttTrolleyMarkerImage: UIImage {
+        get { return imageOrBlank("TrolleyMarkerImage") }
+    }
+//
+//    class var tt<#Name#>: UIImage {
+//    get { return imageOrBlank("<#Name#>") }
+//    }
+    
     private class func imageOrBlank(named: String) -> UIImage {
         
         if let image = UIImage(named: named) {
