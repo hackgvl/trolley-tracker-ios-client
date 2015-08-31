@@ -150,15 +150,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         // Handle Stops
         if let stopAnnotation = annotation as? TrolleyStop {
             
-            var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(stopAnnotationReuseIdentifier)
+            var annotationView: TrolleyStopAnnotationView! = mapView.dequeueReusableAnnotationViewWithIdentifier(stopAnnotationReuseIdentifier) as? TrolleyStopAnnotationView
             if annotationView == nil {
-                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: stopAnnotationReuseIdentifier)
+                annotationView = TrolleyStopAnnotationView(annotation: annotation, reuseIdentifier: stopAnnotationReuseIdentifier)
+                annotationView.frame = CGRectMake(0, 0, 30, 50)
+                annotationView.centerOffset = CGPointMake(0, -(CGRectGetHeight(annotationView.frame) / 2))
             }
             
             annotationView.annotation = annotation
             annotationView.tintColor = UIColor.stopColorForIndex(stopAnnotation.colorIndex)
-            annotationView.setTintedImage(UIImage.ttTrolleyStopPin)
-            annotationView.centerOffset = CGPointMake(0, -(annotationView.image.size.height / 2))
             
             return annotationView
         }

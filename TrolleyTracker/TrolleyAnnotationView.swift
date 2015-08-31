@@ -54,7 +54,6 @@ class TrolleyAnnotationView: MKAnnotationView {
         innerCircle.fill()
         
         // Trolley image
-        
         var imageRect = insetRect(rect, toPercent: imageInsetPercentage)
         imageRect = CGRectOffset(imageRect, 0, -(CGRectGetHeight(rect) * verticalImageOffsetPercent))
         let trolleyImage = UIImage.ttTrolleyMarkerImage
@@ -67,8 +66,6 @@ class TrolleyAnnotationView: MKAnnotationView {
         
         var paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
         paragraphStyle.alignment = NSTextAlignment.Center
-        
-        var lastGoodSize: Int = 6 // This will be the minimum font size
         
         var attributes: [NSObject : AnyObject] = [
             NSForegroundColorAttributeName : UIColor.whiteColor(),
@@ -86,10 +83,5 @@ class TrolleyAnnotationView: MKAnnotationView {
         super.setNeedsDisplay()
         
         backgroundColor = UIColor.clearColor()
-    }
-    
-    private func insetRect(rect: CGRect, toPercent percent: CGFloat) -> CGRect {
-        let insetAmount = (CGRectGetWidth(rect) * (1 - percent)) / 2
-        return CGRectInset(rect, insetAmount, insetAmount)
     }
 }

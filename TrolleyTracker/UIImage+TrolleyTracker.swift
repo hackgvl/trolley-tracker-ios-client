@@ -39,10 +39,20 @@ extension UIImage {
     class var ttTrolleyMarkerImage: UIImage {
         get { return imageOrBlank("TrolleyMarkerImage") }
     }
-//
-//    class var tt<#Name#>: UIImage {
-//    get { return imageOrBlank("<#Name#>") }
-//    }
+
+    class var ttTrolleyStopImage: UIImage {
+        get { return imageOrBlank("TrolleyStopRounded") }
+    }
+    
+    //
+    //    class var tt<#Name#>: UIImage {
+    //    get { return imageOrBlank("<#Name#>") }
+    //    }
+    
+    //
+    //    class var tt<#Name#>: UIImage {
+    //    get { return imageOrBlank("<#Name#>") }
+    //    }
     
     private class func imageOrBlank(named: String) -> UIImage {
         
