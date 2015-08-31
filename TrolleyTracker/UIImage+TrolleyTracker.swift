@@ -44,10 +44,10 @@ extension UIImage {
         get { return imageOrBlank("TrolleyStopRounded") }
     }
     
-    //
-    //    class var tt<#Name#>: UIImage {
-    //    get { return imageOrBlank("<#Name#>") }
-    //    }
+    
+    class var ttLocateMe: UIImage {
+        get { return imageOrBlank("LocateMe") }
+    }
     
     //
     //    class var tt<#Name#>: UIImage {

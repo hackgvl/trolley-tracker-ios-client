@@ -225,7 +225,30 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     }
     
     //==========================================================================
-    // mark: Views
+    // MARK: - Actions
+    //==========================================================================
+    
+    func showSettings() {
+        
+        let settingsViewController = TTSettingsViewController()
+        let navController = UINavigationController(rootViewController: settingsViewController)
+        self.presentViewController(navController, animated: true, completion: nil)
+    }
+    
+    func handleLocateMeButton(sender: UIButton) {
+        if let userLocation = mapView.userLocation?.coordinate where userLocation.latitude != 0 && userLocation.longitude != 0 {
+            mapView.setCenterCoordinate(userLocation, animated: true)
+        }
+        else {
+            let controller = UIAlertController(title: nil, message: "We're sorry, we can't find your current location right now.", preferredStyle: UIAlertControllerStyle.Alert)
+            controller.view.tintColor = UIColor.ttAlternateTintColor()
+            controller.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            presentViewController(controller, animated: true, completion: nil)
+        }
+    }
+    
+    //==========================================================================
+    // MARK: - Views
     //==========================================================================
     
     private func setupViews() {
@@ -239,15 +262,23 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         view.addSubview(detailView)
         view.addSubview(mapView)
         
+        mapView.addSubview(locateMeButton)
+        
         self.addChildViewController(detailViewController)
         detailView.addSubview(detailViewController.view)
         detailViewController.view.frame = detailView.bounds
         detailViewController.didMoveToParentViewController(self)
         
-        let views = ["detailView": detailView, "mapView": mapView]
+        let views = ["detailView": detailView, "mapView": mapView, "locateMe": locateMeButton]
         
         NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[detailView]|", options: nil, metrics: nil, views: views))
         NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[mapView]|", options: nil, metrics: nil, views: views))
+        
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[locateMe]-12-|", options: nil, metrics: nil, views: views))
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[locateMe]-12-|", options: nil, metrics: nil, views: views))
+        let buttonSize: CGFloat = 44
+        NSLayoutConstraint.activateConstraints([NSLayoutConstraint(item: locateMeButton, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: buttonSize)])
+        NSLayoutConstraint.activateConstraints([NSLayoutConstraint(item: locateMeButton, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: buttonSize)])
         
         NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[mapView][detailView]", options: nil, metrics: nil, views: views))
         NSLayoutConstraint.activateConstraints([NSLayoutConstraint(item: detailView, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.3, constant: 0.0)])
@@ -281,14 +312,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         return detailView
         }()
     
-    //==========================================================================
-    // mark: Actions
-    //==========================================================================
-    
-    func showSettings() {
-        
-        let settingsViewController = TTSettingsViewController()
-        let navController = UINavigationController(rootViewController: settingsViewController)
-        self.presentViewController(navController, animated: true, completion: nil)
-    }
+    lazy var locateMeButton: UIButton = {
+        let button = UIButton()
+        button.setTranslatesAutoresizingMaskIntoConstraints(false)
+        button.backgroundColor = UIColor.ttAlternateTintColor()
+        button.tintColor = UIColor.ttTintColor()
+        button.layer.cornerRadius = 5
+        button.setImage(UIImage.ttLocateMe, forState: .Normal)
+        button.addTarget(self, action: "handleLocateMeButton:", forControlEvents: .TouchUpInside)
+        return button
+        }()
 }
