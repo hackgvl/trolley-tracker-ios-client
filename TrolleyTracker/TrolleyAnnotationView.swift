@@ -84,4 +84,14 @@ class TrolleyAnnotationView: MKAnnotationView {
         
         backgroundColor = UIColor.clearColor()
     }
+    
+    override func setSelected(selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        layer.shadowOffset = CGSizeMake(2, 2)
+        layer.shadowRadius = 5.0
+        layer.shadowOpacity = 1.0
+        
+        layer.shadowColor = selected ? UIColor.blackColor().CGColor : UIColor.clearColor().CGColor
+    }
 }

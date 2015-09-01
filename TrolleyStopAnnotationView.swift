@@ -81,4 +81,14 @@ class TrolleyStopAnnotationView: MKAnnotationView {
 
         return path
     }
+    
+    override func setSelected(selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        layer.shadowOffset = CGSizeMake(3, 3)
+        layer.shadowRadius = 5.0
+        layer.shadowOpacity = 1.0
+        
+        layer.shadowColor = selected ? UIColor.blackColor().CGColor : UIColor.clearColor().CGColor
+    }
 }
