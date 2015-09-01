@@ -29,7 +29,7 @@
 	<key>NSLocationUsageDescription</key>
 	<string>Your location will be used to show how far you are from the Trolley.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Beacuse Raisins</string>
+	<string>Your location will be used to show how far you are from the Trolley.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Montserrat-Bold.ttf</string>
