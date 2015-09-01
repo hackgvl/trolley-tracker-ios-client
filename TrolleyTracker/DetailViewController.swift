@@ -173,9 +173,9 @@ class DetailViewController: UIViewController {
         view.addSubview(timeLoadingIndicator)
         
         let views = ["titleLabel": titleLabel, "timeLabel": timeLabel, "distanceLabel": distanceLabel, "directionsButton": directionsButton, "timeButton": walkingTimeButton, "timeLoading": timeLoadingIndicator]
-        let metrics = ["verticalMargin": 20.0, "horizontalMargin": 10.0, "verticalPadding": 10.0, "horizontalPadding": 10.0]
+        let metrics = ["upperVerticalMargin": 16.0, "lowerVerticalMargin": 8.0, "horizontalMargin": 10.0, "verticalPadding": 8.0, "horizontalPadding": 10.0]
 
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(verticalMargin)-[titleLabel]-(verticalPadding)-[distanceLabel]-(>=verticalPadding)-[directionsButton]-(verticalMargin)-|", options: .AlignAllLeft, metrics: metrics, views: views))
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(upperVerticalMargin)-[titleLabel]-(verticalPadding)-[distanceLabel]-(>=verticalPadding)-[directionsButton]-(lowerVerticalMargin)-|", options: .AlignAllLeft, metrics: metrics, views: views))
         NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(horizontalMargin)-[titleLabel]-(>=horizontalMargin)-|", options: nil, metrics: metrics, views: views))
         NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[distanceLabel]-(>=horizontalPadding)-[timeLabel]-(horizontalPadding)-|", options: .AlignAllCenterY, metrics: metrics, views: views))
         NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[directionsButton]-(>=horizontalPadding)-[timeButton]-(horizontalPadding)-|", options: .AlignAllCenterY, metrics: metrics, views: views))
