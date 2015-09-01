@@ -79,16 +79,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         // Get our Trolley Annotations
         let trolleyAnnotations = mapView.annotations.filter { $0 is Trolley }.map { $0 as! Trolley }
         
+        // If we're already showing this Trolly on the map, just update it
         if let index = find(trolleyAnnotations, trolley) {
-            let existingAnnotation = trolleyAnnotations[index]
-            mapView.removeAnnotation(existingAnnotation)
+            var existingAnnotation = trolleyAnnotations[index]
+            existingAnnotation.coordinate = trolley.location.coordinate
         }
-        
-        mapView.addAnnotation(trolley)
-        
-        // If the detailViewController was showing this trolley, update it
-        if let annotation = detailViewAnnotation as? Trolley where annotation == trolley {
-            detailViewController.showDetailForAnnotation(trolley, withUserLocation: mapView.userLocation)
+        // Otherwise, add it
+        else {
+            mapView.addAnnotation(trolley)
         }
     }
     

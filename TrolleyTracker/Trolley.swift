@@ -12,7 +12,7 @@ import MapKit
 class Trolley: NSObject, Equatable {
     
     let ID: Int
-    let location: CLLocation
+    var location: CLLocation
     let name: String?
     let number: Int?
     
@@ -53,8 +53,15 @@ class Trolley: NSObject, Equatable {
 
 extension Trolley: MKAnnotation {
     
-    var coordinate: CLLocationCoordinate2D {
-        return location.coordinate
+    dynamic var coordinate: CLLocationCoordinate2D {
+        get {
+            return location.coordinate
+        }
+        set(newValue) {
+            self.willChangeValueForKey("coordinate")
+            location = CLLocation(latitude: newValue.latitude, longitude: newValue.longitude)
+            self.didChangeValueForKey("coordinate")
+        }
     }
     
     var title: String! {
