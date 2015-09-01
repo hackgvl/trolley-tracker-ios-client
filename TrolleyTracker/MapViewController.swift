@@ -19,6 +19,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     
     lazy var detailViewController: DetailViewController = {
         let controller = DetailViewController()
+        controller.view.setTranslatesAutoresizingMaskIntoConstraints(false)
         controller.delegate = self
         return controller
     }()
@@ -114,8 +115,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     
     private func setDetailViewVisible(visible: Bool, animated: Bool) {
         
-        detailViewHiddenConstraint?.active = !visible
-        detailViewVisibleConstraint?.active = visible
+        if visible {
+            detailViewHiddenConstraint?.active = false
+            detailViewVisibleConstraint?.active = true
+        }
+        else {
+            detailViewVisibleConstraint?.active = false
+            detailViewHiddenConstraint?.active = true
+        }
         
         let updateAction = { self.view.layoutIfNeeded() }
         
@@ -262,21 +269,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         
         mapView.addSubview(locateMeButton)
         
-        self.addChildViewController(detailViewController)
-        detailView.addSubview(detailViewController.view)
-        detailViewController.view.frame = detailView.bounds
-        detailViewController.didMoveToParentViewController(self)
-        
-        let views = ["detailView": detailView, "mapView": mapView, "locateMe": locateMeButton]
+        let views = ["detailView": detailView, "detailControllerView" : detailViewController.view, "mapView": mapView, "locateMe": locateMeButton]
         
         NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[detailView]|", options: nil, metrics: nil, views: views))
         NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[mapView]|", options: nil, metrics: nil, views: views))
-        
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[locateMe]-12-|", options: nil, metrics: nil, views: views))
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[locateMe]-12-|", options: nil, metrics: nil, views: views))
-        let buttonSize: CGFloat = 44
-        NSLayoutConstraint.activateConstraints([NSLayoutConstraint(item: locateMeButton, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: buttonSize)])
-        NSLayoutConstraint.activateConstraints([NSLayoutConstraint(item: locateMeButton, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: buttonSize)])
         
         NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[mapView][detailView]", options: nil, metrics: nil, views: views))
         NSLayoutConstraint.activateConstraints([NSLayoutConstraint(item: detailView, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.3, constant: 0.0)])
@@ -285,6 +281,22 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         detailViewHiddenConstraint = NSLayoutConstraint(item: detailView, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
         
         setDetailViewVisible(false, animated: false)
+        
+        view.layoutIfNeeded()
+        detailView.layoutIfNeeded()
+        
+        self.addChildViewController(detailViewController)
+        detailView.addSubview(detailViewController.view)
+        detailViewController.didMoveToParentViewController(self)
+        
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[detailControllerView]|", options: nil, metrics: nil, views: views))
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[detailControllerView]|", options: nil, metrics: nil, views: views))
+        
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[locateMe]-12-|", options: nil, metrics: nil, views: views))
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[locateMe]-12-|", options: nil, metrics: nil, views: views))
+        let buttonSize: CGFloat = 44
+        NSLayoutConstraint.activateConstraints([NSLayoutConstraint(item: locateMeButton, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: buttonSize)])
+        NSLayoutConstraint.activateConstraints([NSLayoutConstraint(item: locateMeButton, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: buttonSize)])
     }
     
     lazy var mapView: MKMapView = {
