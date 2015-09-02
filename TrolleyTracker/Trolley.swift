@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 
-class Trolley: NSObject, Equatable {
+class Trolley: NSObject {
     
     let ID: Int
     var location: CLLocation
@@ -27,11 +27,11 @@ class Trolley: NSObject, Equatable {
         
         let json = JSON(jsonData)
         
-        var currentLat = json["CurrentLat"].float
+        let currentLat = json["CurrentLat"].float
         var latitude: String? = currentLat != nil ? String(format: "%.7f", currentLat!) : nil
         if latitude == nil { latitude = json["Lat"].stringValue }
         
-        var currentLon = json["CurrentLon"].float
+        let currentLon = json["CurrentLon"].float
         var longitude: String? = currentLon != nil ? String(format: "%.7f", currentLon!) : nil
         if longitude == nil { longitude = json["Lon"].stringValue }
         
@@ -49,6 +49,11 @@ class Trolley: NSObject, Equatable {
         self.name = trolley.name
         self.number = trolley.number
     }
+    
+    override func isEqual(object: AnyObject?) -> Bool {
+        if let object = object as? Trolley where object.ID == self.ID { return true }
+        return false
+    }
 }
 
 extension Trolley: MKAnnotation {
@@ -64,15 +69,11 @@ extension Trolley: MKAnnotation {
         }
     }
     
-    var title: String! {
+    var title: String? {
         return name
     }
     
     var subTitle: String! {
         return ""
     }
-}
-
-func ==(lhs: Trolley, rhs: Trolley) -> Bool {
-    return lhs.ID == rhs.ID
 }

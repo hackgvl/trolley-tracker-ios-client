@@ -37,14 +37,16 @@ class GetETAOperation: ConcurrentOperation {
             return
         }
         
-        var request = MKDirectionsRequest()
-        request.setSource(source)
-        request.setDestination(destination)
+        let request = MKDirectionsRequest()
+        request.source = source
+        request.destination = destination
         request.transportType = MKDirectionsTransportType.Walking
         
         let directions = MKDirections(request: request)
         
         directions.calculateETAWithCompletionHandler { (response, error) -> Void in
+            
+            guard let response = response else { self.finish(); return }
             
             let time = response.expectedTravelTime
             let travelTimeComponents = NSDateComponents()

@@ -90,7 +90,7 @@ class ConcurrentOperation: NSOperation {
     }
     
     func execute() {
-        print("\(self.dynamicType) must override `execute()`.")
+        print("\(self.dynamicType) must override `execute()`.", terminator: "")
         
         finish()
     }

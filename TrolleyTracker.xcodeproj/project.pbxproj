@@ -302,6 +302,7 @@
 		EFA4B1EE1A1C201F00BEA42C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Code For Greenville";

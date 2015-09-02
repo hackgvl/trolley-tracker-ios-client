@@ -30,17 +30,14 @@ class TimeAndDistanceService {
     
     static func walkingTravelTimeBetweenPoints(pointA: MKMapItem, pointB: MKMapItem, cacheResultsOnly: Bool, completion: TravelTimeCompletion) {
         
-        if pointA.placemark == nil || pointB.placemark == nil {
-            completion(rawTime: nil, formattedTime: nil)
-            return
-        }
-        
         for cacheResult in TimeAndDistanceService.etaCache {
             
-            let newPointALocation = pointA.placemark.location
-            let newPointBLocation = pointB.placemark.location
-            let cachedPointALocation = cacheResult.pointA.placemark.location
-            let cachedPointBLocation = cacheResult.pointB.placemark.location
+            let failure = { completion(rawTime: nil, formattedTime: nil) }
+            
+            guard let newPointALocation = pointA.placemark.location else { failure(); return }
+            guard let newPointBLocation = pointB.placemark.location else { failure(); return }
+            guard let cachedPointALocation = cacheResult.pointA.placemark.location else { failure(); return }
+            guard let cachedPointBLocation = cacheResult.pointB.placemark.location else { failure(); return }
             
             let pointADistance = newPointALocation.distanceFromLocation(cachedPointALocation)
             let pointBDistance = newPointBLocation.distanceFromLocation(cachedPointBLocation)
@@ -60,7 +57,7 @@ class TimeAndDistanceService {
             return
         }
         
-        var operation = GetETAOperation(source: pointA, destination: pointB)
+        let operation = GetETAOperation(source: pointA, destination: pointB)
         operation.completionBlock = { [unowned operation] in
             
             if let rawTime = operation.expectedTravelTime, formattedTime = operation.formattedTravelTime {

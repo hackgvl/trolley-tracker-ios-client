@@ -19,7 +19,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     
     lazy var detailViewController: DetailViewController = {
         let controller = DetailViewController()
-        controller.view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        controller.view.translatesAutoresizingMaskIntoConstraints = false
         controller.delegate = self
         return controller
     }()
@@ -44,16 +44,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         setupViews()
         
         let titleView = UIView()
-        titleView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        titleView.translatesAutoresizingMaskIntoConstraints = false
         navigationItem.titleView = titleView
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[title]-|", options: nil, metrics: nil, views: ["title" : titleView]))
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[title]-|", options: [], metrics: nil, views: ["title" : titleView]))
         NSLayoutConstraint.activateConstraints([NSLayoutConstraint(item: titleView, attribute: .CenterX, relatedBy: .Equal, toItem: titleView.superview!, attribute: .CenterX, multiplier: 1.0, constant: 0.0)])
         
         let titleImageView = UIImageView(image: UIImage.ttTrolleyTrackerLogo)
         titleImageView.contentMode = UIViewContentMode.ScaleAspectFit
-        titleImageView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        titleImageView.translatesAutoresizingMaskIntoConstraints = false
         titleView.addSubview(titleImageView)
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[image]|", options: nil, metrics: nil, views: ["image" : titleImageView]))
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[image]|", options: [], metrics: nil, views: ["image" : titleImageView]))
         NSLayoutConstraint.activateConstraints([NSLayoutConstraint(item: titleImageView, attribute: .CenterX, relatedBy: .Equal, toItem: titleView, attribute: .CenterX, multiplier: 1.0, constant: 0.0)])
         
         TrolleyLocationService.sharedService.trolleyPresentObservers.add(updateTrolleyPresent)
@@ -78,15 +78,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     
     private func updateTrolley(trolley: Trolley) {
         
-        // Grab a reference to the detailViewController's currentAnnotation (if any), before it disappears when we remove the current annotation.
-        let detailViewAnnotation = detailViewController.currentlyShowingAnnotation
-        
         // Get our Trolley Annotations
         let trolleyAnnotations = mapView.annotations.filter { $0 is Trolley }.map { $0 as! Trolley }
         
         // If we're already showing this Trolly on the map, just update it
-        if let index = find(trolleyAnnotations, trolley) {
-            var existingAnnotation = trolleyAnnotations[index]
+        if let index = trolleyAnnotations.indexOf(trolley) {
+            let existingAnnotation = trolleyAnnotations[index]
             existingAnnotation.coordinate = trolley.location.coordinate
         }
         // Otherwise, add it
@@ -104,10 +101,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         // Get Stops
         TrolleyRouteService.sharedService.loadTrolleyRoutes { routes in
             // For each route,
-            for (index, var route) in enumerate(routes) {
-                
-                // -- Assign a color
-                let routeColor = UIColor.routeColors[index % UIColor.routeColors.count]
+            for var route in routes {
                 
                 // -- Add overlays
                 self.mapView.addOverlay(route.overlay)
@@ -163,7 +157,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     let stopAnnotationReuseIdentifier = "StopAnnotation"
     let userAnnotationReuseIdentifier = "UserAnnotation"
     
-    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
         var returnView: MKAnnotationView?
         
@@ -171,11 +165,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
             var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(userAnnotationReuseIdentifier)
             if annotationView == nil {
                 annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: userAnnotationReuseIdentifier)
-                annotationView.image = UIImage.ttUserPin
-                annotationView.centerOffset = CGPointMake(0, -(annotationView.image.size.height / 2))
+                annotationView!.image = UIImage.ttUserPin
+                annotationView!.centerOffset = CGPointMake(0, -(annotationView!.image!.size.height / 2))
             }
             
-            annotationView.annotation = annotation
+            annotationView!.annotation = annotation
 
             returnView = annotationView
         }
@@ -220,7 +214,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         return returnView
     }
     
-    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         
         let renderer = MKPolylineRenderer(overlay: overlay)
         
@@ -233,12 +227,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         return renderer
     }
     
-    func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         detailViewController.showDetailForAnnotation(view.annotation, withUserLocation: mapView.userLocation)
         updateAnnotationZIndexes()
     }
     
-    func mapView(mapView: MKMapView!, didDeselectAnnotationView view: MKAnnotationView!) {
+    func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
         detailViewController.showDetailForAnnotation(nil, withUserLocation: nil)
         updateAnnotationZIndexes()
     }
@@ -257,8 +251,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
             }
         }
         
-        if let userAnnotation = mapView.userLocation,
-        view = mapView.viewForAnnotation(userAnnotation) {
+        if let view = mapView.viewForAnnotation(mapView.userLocation) {
             view.superview?.bringSubviewToFront(view)
         }
     }
@@ -287,7 +280,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     }
     
     func handleLocateMeButton(sender: UIButton) {
-        if let userLocation = mapView.userLocation?.coordinate where userLocation.latitude != 0 && userLocation.longitude != 0 {
+        let userLocation = mapView.userLocation.coordinate
+        if userLocation.latitude != 0 && userLocation.longitude != 0 {
             mapView.setCenterCoordinate(userLocation, animated: true)
         }
         else {
@@ -318,16 +312,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         
         let views = ["detailView": detailView, "detailControllerView" : detailViewController.view, "mapView": mapView, "locateMe": locateMeButton, "noTrolleyLabel": noTrolleyLabel]
         
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[detailView]|", options: nil, metrics: nil, views: views))
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[mapView]|", options: nil, metrics: nil, views: views))
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[detailView]|", options: [], metrics: nil, views: views))
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[mapView]|", options: [], metrics: nil, views: views))
         
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[mapView][detailView]", options: nil, metrics: nil, views: views))
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[mapView][detailView]", options: [], metrics: nil, views: views))
         NSLayoutConstraint.activateConstraints([NSLayoutConstraint(item: detailView, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.3, constant: 0.0)])
         
         detailViewVisibleConstraint = NSLayoutConstraint(item: detailView, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
         detailViewHiddenConstraint = NSLayoutConstraint(item: detailView, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
         
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[noTrolleyLabel]|", options: nil, metrics: nil, views: views))
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[noTrolleyLabel]|", options: [], metrics: nil, views: views))
         noTrolleyVisibleConstraint = NSLayoutConstraint(item: noTrolleyLabel, attribute: .Bottom, relatedBy: .Equal, toItem: detailView, attribute: .Top, multiplier: 1.0, constant: 0)
         noTrolleyHiddenConstraint = NSLayoutConstraint(item: noTrolleyLabel, attribute: .Top, relatedBy: .Equal, toItem: detailView, attribute: .Top, multiplier: 1.0, constant: 0)
         
@@ -341,11 +335,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         detailView.addSubview(detailViewController.view)
         detailViewController.didMoveToParentViewController(self)
         
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[detailControllerView]|", options: nil, metrics: nil, views: views))
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[detailControllerView]|", options: nil, metrics: nil, views: views))
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[detailControllerView]|", options: [], metrics: nil, views: views))
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[detailControllerView]|", options: [], metrics: nil, views: views))
         
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[locateMe]-12-|", options: nil, metrics: nil, views: views))
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[locateMe]-12-|", options: nil, metrics: nil, views: views))
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[locateMe]-12-|", options: [], metrics: nil, views: views))
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[locateMe]-12-|", options: [], metrics: nil, views: views))
         let buttonSize: CGFloat = 44
         NSLayoutConstraint.activateConstraints([NSLayoutConstraint(item: locateMeButton, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: buttonSize)])
         NSLayoutConstraint.activateConstraints([NSLayoutConstraint(item: locateMeButton, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: buttonSize)])
@@ -353,7 +347,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     
     lazy var mapView: MKMapView = {
         let mapView = MKMapView()
-        mapView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        mapView.translatesAutoresizingMaskIntoConstraints = false
         
         mapView.mapType = MKMapType.Standard
         
@@ -370,13 +364,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     
     lazy var detailView: UIView = {
         let detailView = UIView()
-        detailView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        detailView.translatesAutoresizingMaskIntoConstraints = false
         return detailView
         }()
     
     lazy var locateMeButton: UIButton = {
         let button = UIButton()
-        button.setTranslatesAutoresizingMaskIntoConstraints(false)
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor.ttAlternateTintColor()
         button.tintColor = UIColor.ttTintColor()
         button.layer.cornerRadius = 5
@@ -391,7 +385,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         label.textColor = UIColor.whiteColor()
         label.textAlignment = .Center
         label.text = "No Trolleys are being tracked right now."
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 }

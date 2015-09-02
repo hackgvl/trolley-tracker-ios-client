@@ -11,7 +11,7 @@ import MapKit
 
 
 /// Represents a point where the Trolleys stop for passengers.
-class TrolleyStop: NSObject, Equatable {
+class TrolleyStop: NSObject {
     
     let stopID: Int
     let name: String
@@ -47,6 +47,11 @@ class TrolleyStop: NSObject, Equatable {
     convenience init?(jsonData: AnyObject, colorIndex: Int) {
         self.init(json: JSON(jsonData), colorIndex: colorIndex)
     }
+    
+    override func isEqual(object: AnyObject?) -> Bool {
+        if let object = object as? TrolleyStop where object.stopID == self.stopID { return true }
+        return false
+    }
 }
 
 extension TrolleyStop: MKAnnotation {
@@ -55,7 +60,7 @@ extension TrolleyStop: MKAnnotation {
         return location.coordinate
     }
     
-    var title: String! {
+    var title: String? {
         // TODO: Return Trolley Name
         return name
     }
@@ -63,8 +68,4 @@ extension TrolleyStop: MKAnnotation {
     var subTitle: String! {
         return ""
     }
-}
-
-func ==(lhs: TrolleyStop, rhs: TrolleyStop) -> Bool {
-    return lhs.stopID == rhs.stopID
 }

@@ -24,7 +24,7 @@ class TrolleyStopAnnotationView: MKAnnotationView {
         
         // White inner circle
         var circleRect = insetRect(rect, toPercent: innerCirclePercentage)
-        circleRect.offset(dx: 0, dy: CGRectGetHeight(rect) * innerCircleVerticalOffsetPercentage)
+        circleRect.offsetInPlace(dx: 0, dy: CGRectGetHeight(rect) * innerCircleVerticalOffsetPercentage)
         circleRect.size.height = circleRect.size.width
         let circlePath = UIBezierPath(ovalInRect: circleRect)
         circlePath.lineWidth = CGRectGetWidth(rect) * innerCircleWidthPercentage

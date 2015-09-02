@@ -10,7 +10,7 @@ import UIKit
 
 extension String {
     
-    func maxFontSizeForSize(maxSize: CGSize, attributes: [NSObject : AnyObject]) -> CGFloat {
+    func maxFontSizeForSize(maxSize: CGSize, attributes: [String : AnyObject]) -> CGFloat {
         
         var newAttributes = attributes
         let font = newAttributes[NSFontAttributeName] as? UIFont ?? UIFont.systemFontOfSize(1)

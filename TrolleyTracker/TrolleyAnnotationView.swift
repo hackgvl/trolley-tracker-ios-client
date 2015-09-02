@@ -64,10 +64,10 @@ class TrolleyAnnotationView: MKAnnotationView {
         labelRect.origin.x = CGRectGetMidX(rect) - (CGRectGetWidth(labelRect) / 2)
         labelRect.origin.y = CGRectGetMaxY(imageRect) + (CGRectGetHeight(rect) * textHeightOffset)
         
-        var paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
+        let paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
         paragraphStyle.alignment = NSTextAlignment.Center
         
-        var attributes: [NSObject : AnyObject] = [
+        var attributes: [String : AnyObject] = [
             NSForegroundColorAttributeName : UIColor.whiteColor(),
             NSParagraphStyleAttributeName : paragraphStyle,
             NSFontAttributeName : UIFont.ttDefaultFont(6)

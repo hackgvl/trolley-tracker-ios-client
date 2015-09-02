@@ -23,7 +23,9 @@ class TrolleyLocationService {
     func startTrackingTrolleys() {
         
         // Retrieve list of all trolleys 
-        TrolleyRequests.AllTrolleys.responseJSON { (request, response, json, error) -> Void in
+        TrolleyRequests.AllTrolleys.responseJSON { (request, response, result) -> Void in
+
+            guard let json = result.value else { return }
             
             // -- Store the list so we can reference it later
             self.allTrolleys = self.parseTrolleysFromJSON(json)
@@ -43,7 +45,9 @@ class TrolleyLocationService {
     @objc private func getRunningTrolleys() {
 
         let request = EnvironmentVariables.currentBuildConfiguration() == .Test ? TrolleyRequests.AllTrolleys : TrolleyRequests.RunningTrolleys
-        request.responseJSON{(request, response, json, error) in
+        request.responseJSON{(request, response, result) in
+            
+            guard let json = result.value else { return }
             
             if let trolleys = self.parseTrolleysFromJSON(json) {
                 
@@ -61,11 +65,10 @@ class TrolleyLocationService {
     
     private func updateTrolleysWithTrolley(trolley: Trolley) {
        
-        if self.allTrolleys == nil { return }
-        var trolleys = self.allTrolleys!
+        guard var trolleys = self.allTrolleys else { return }
         
         // Find the matching trolley in the allTrolleys array
-        if let index = find(trolleys, trolley) {
+        if let index = trolleys.indexOf(trolley) {
             
             // Create a new trolley with an updated location
             let updatedTrolley = Trolley(trolley: trolleys[index], location: trolley.location)

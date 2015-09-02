@@ -60,7 +60,7 @@ extension UIImage {
             return image
         }
         else {
-            println("Error, could not find image named: \(named)")
+            print("Error, could not find image named: \(named)")
             return UIImage()
         }
     }
@@ -75,7 +75,7 @@ extension MKAnnotationView {
         imageView.tintColor = self.tintColor
         
         UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, imageView.opaque, 0.0)
-        imageView.layer.renderInContext(UIGraphicsGetCurrentContext())
+        imageView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         

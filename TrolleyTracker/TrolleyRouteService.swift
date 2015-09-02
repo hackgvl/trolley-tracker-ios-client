@@ -20,11 +20,9 @@ class TrolleyRouteService {
     func loadTrolleyRoutes(completion: LoadTrolleyRouteCompletion) {
 
         let request = EnvironmentVariables.currentBuildConfiguration() == .Test ? TrolleyRequests.Routes : TrolleyRequests.RoutesActive()
-        request.responseJSON { (request, response, json, error) -> Void in
-            
-            if let json: AnyObject = json {
-                self.loadRouteDetailForRoutes(JSON(json), completion: completion)
-            }
+        request.responseJSON { (request, response, result) -> Void in
+            guard let json = result.value else { return }
+            self.loadRouteDetailForRoutes(JSON(json), completion: completion)
         }
     }
     
@@ -32,15 +30,14 @@ class TrolleyRouteService {
         
         var routeObjects = [TrolleyRoute]()
         
-        for (index, route) in enumerate(routes.arrayValue) {
+        for (index, route) in routes.arrayValue.enumerate() {
             if let routeID = route["ID"].int {
 
                 dispatch_group_enter(group)
                 
-                TrolleyRequests.RouteDetail("\(routeID)").responseJSON { (request, response, json, error) -> Void in
-
-                    if let json: AnyObject = json,
-                        route = TrolleyRoute(json: JSON(json), colorIndex: index) {
+                TrolleyRequests.RouteDetail("\(routeID)").responseJSON { (request, response, result) -> Void in
+                    guard let json = result.value else { return }
+                    if let route = TrolleyRoute(json: JSON(json), colorIndex: index) {
                         routeObjects.append(route)
                     }
                     

@@ -15,7 +15,6 @@ func ==(lhs: TrolleyRoute, rhs: TrolleyRoute) -> Bool {
 }
 
 
-
 /// Represents a route that trolleys follow. 
 struct TrolleyRoute {
     
@@ -51,7 +50,7 @@ struct TrolleyRoute {
         self.stops = json["Stops"].arrayValue.map { TrolleyStop(json: $0, colorIndex: colorIndex) }.filter { $0 != nil }.map { $0! }
 
         var points = [CLLocation]()
-        var jsonPoints = json["RouteShape"].arrayValue
+        let jsonPoints = json["RouteShape"].arrayValue
 
         for point in jsonPoints {
             let lat = point["Lat"].doubleValue

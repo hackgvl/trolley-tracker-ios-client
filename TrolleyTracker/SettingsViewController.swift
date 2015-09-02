@@ -21,9 +21,9 @@ class TTSettingsViewController: UIViewController, UITableViewDataSource, UITable
       
       let views = ["tableview": self.tableView]
       
-      NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[tableview]|", options: nil, metrics: nil, views: views))
+      NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[tableview]|", options: [], metrics: nil, views: views))
       
-      NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[tableview]|", options: nil, metrics: nil, views: views))
+      NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[tableview]|", options: [], metrics: nil, views: views))
     }
  
   
@@ -32,7 +32,7 @@ class TTSettingsViewController: UIViewController, UITableViewDataSource, UITable
   lazy var tableView: UITableView = {
     var tableView = UITableView(frame: CGRectZero, style: .Grouped)
     
-    tableView.setTranslatesAutoresizingMaskIntoConstraints(false)
+    tableView.translatesAutoresizingMaskIntoConstraints = false
     
     tableView.dataSource = self
     tableView.delegate = self
@@ -45,7 +45,7 @@ class TTSettingsViewController: UIViewController, UITableViewDataSource, UITable
   /// MARK: UITableViewDataSource
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(UITableViewCell.self), forIndexPath: indexPath) as! UITableViewCell
+    let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(UITableViewCell.self), forIndexPath: indexPath) 
     
     if indexPath.section == 0 {
       cell.textLabel?.text = NSLocalizedString("Feedback", comment: "Feedback Button")
@@ -74,7 +74,7 @@ class TTSettingsViewController: UIViewController, UITableViewDataSource, UITable
     }
     else if indexPath.section == 1 {
       //show share sheet
-      var shareSheetViewController = UIActivityViewController(activityItems: [NSLocalizedString("Check out Trolley Tracker!", comment: "Share Action"), NSLocalizedString("http://yeahthattrolley.com", comment: "Marketing URL")], applicationActivities: nil)
+      let shareSheetViewController = UIActivityViewController(activityItems: [NSLocalizedString("Check out Trolley Tracker!", comment: "Share Action"), NSLocalizedString("http://yeahthattrolley.com", comment: "Marketing URL")], applicationActivities: nil)
       
       self.presentViewController(shareSheetViewController, animated: true, completion: nil)
     }
@@ -85,12 +85,12 @@ class TTSettingsViewController: UIViewController, UITableViewDataSource, UITable
   
   func giveFeedBackButton() {
    
-    var emailTitle = "TrolleyTracker Feedback"
-    var messageBody = "Hi TrolleyTracker,\n\nI have some feedback to provide about my application using experience:\n\n"
-    var toRecipents = ["YeahThatTrolley@gmail.com"]
+    let emailTitle = "TrolleyTracker Feedback"
+    let messageBody = "Hi TrolleyTracker,\n\nI have some feedback to provide about my application using experience:\n\n"
+    let toRecipents = ["YeahThatTrolley@gmail.com"]
     
     if MFMailComposeViewController.canSendMail() {
-        var mc: MFMailComposeViewController = MFMailComposeViewController()
+        let mc: MFMailComposeViewController = MFMailComposeViewController()
         mc.setSubject(emailTitle)
         mc.setMessageBody(messageBody, isHTML: false)
         mc.setToRecipients(toRecipents)
@@ -108,16 +108,16 @@ class TTSettingsViewController: UIViewController, UITableViewDataSource, UITable
     
   }
   
-  func mailComposeController(controller:MFMailComposeViewController, didFinishWithResult result:MFMailComposeResult, error:NSError) {
-    switch result.value {
-    case MFMailComposeResultCancelled.value:
+  func mailComposeController(controller:MFMailComposeViewController, didFinishWithResult result:MFMailComposeResult, error:NSError?) {
+    switch result.rawValue {
+    case MFMailComposeResultCancelled.rawValue:
       NSLog("Mail cancelled")
-    case MFMailComposeResultSaved.value:
+    case MFMailComposeResultSaved.rawValue:
       NSLog("Mail saved")
-    case MFMailComposeResultSent.value:
+    case MFMailComposeResultSent.rawValue:
       NSLog("Mail sent")
-    case MFMailComposeResultFailed.value:
-      NSLog("Mail sent failure: %@", [error.localizedDescription])
+    case MFMailComposeResultFailed.rawValue:
+      NSLog("Mail sent failure: %@", [error?.localizedDescription ?? ""])
     default:
       break
     }
