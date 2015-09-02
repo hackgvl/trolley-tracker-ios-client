@@ -27,6 +27,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     private var detailViewVisibleConstraint: NSLayoutConstraint?
     private var detailViewHiddenConstraint: NSLayoutConstraint?
     
+    private var noTrolleyHiddenConstraint: NSLayoutConstraint?
+    private var noTrolleyVisibleConstraint: NSLayoutConstraint?
+    
     private let locationManager = CLLocationManager()
     
     private var lastRouteLoadTime: NSDate?
@@ -53,6 +56,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[image]|", options: nil, metrics: nil, views: ["image" : titleImageView]))
         NSLayoutConstraint.activateConstraints([NSLayoutConstraint(item: titleImageView, attribute: .CenterX, relatedBy: .Equal, toItem: titleView, attribute: .CenterX, multiplier: 1.0, constant: 0.0)])
         
+        TrolleyLocationService.sharedService.trolleyPresentObservers.add(updateTrolleyPresent)
         TrolleyLocationService.sharedService.trolleyObservers.add(updateTrolley)
         TrolleyLocationService.sharedService.startTrackingTrolleys()
         
@@ -91,6 +95,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         }
     }
     
+    private func updateTrolleyPresent(present: Bool) {
+        setNoTrolleyMessageVisible(!present, animated: true)
+    }
+    
     private func loadRoutes() {
         
         // Get Stops
@@ -122,6 +130,23 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         else {
             detailViewVisibleConstraint?.active = false
             detailViewHiddenConstraint?.active = true
+        }
+        
+        let updateAction = { self.view.layoutIfNeeded() }
+        
+        if animated { UIView.animateWithDuration(0.25, animations: updateAction) }
+        else { updateAction() }
+    }
+    
+    private func setNoTrolleyMessageVisible(visible: Bool, animated: Bool) {
+        
+        if visible {
+            noTrolleyHiddenConstraint?.active = false
+            noTrolleyVisibleConstraint?.active = true
+        }
+        else {
+            noTrolleyVisibleConstraint?.active = false
+            noTrolleyHiddenConstraint?.active = true
         }
         
         let updateAction = { self.view.layoutIfNeeded() }
@@ -268,8 +293,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         view.addSubview(mapView)
         
         mapView.addSubview(locateMeButton)
+        mapView.insertSubview(noTrolleyLabel, belowSubview: detailView)
         
-        let views = ["detailView": detailView, "detailControllerView" : detailViewController.view, "mapView": mapView, "locateMe": locateMeButton]
+        let views = ["detailView": detailView, "detailControllerView" : detailViewController.view, "mapView": mapView, "locateMe": locateMeButton, "noTrolleyLabel": noTrolleyLabel]
         
         NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[detailView]|", options: nil, metrics: nil, views: views))
         NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[mapView]|", options: nil, metrics: nil, views: views))
@@ -280,6 +306,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         detailViewVisibleConstraint = NSLayoutConstraint(item: detailView, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
         detailViewHiddenConstraint = NSLayoutConstraint(item: detailView, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
         
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[noTrolleyLabel]|", options: nil, metrics: nil, views: views))
+        noTrolleyVisibleConstraint = NSLayoutConstraint(item: noTrolleyLabel, attribute: .Bottom, relatedBy: .Equal, toItem: detailView, attribute: .Top, multiplier: 1.0, constant: 0)
+        noTrolleyHiddenConstraint = NSLayoutConstraint(item: noTrolleyLabel, attribute: .Top, relatedBy: .Equal, toItem: detailView, attribute: .Top, multiplier: 1.0, constant: 0)
+        
+        setNoTrolleyMessageVisible(false, animated: false)
         setDetailViewVisible(false, animated: false)
         
         view.layoutIfNeeded()
@@ -332,4 +363,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         button.addTarget(self, action: "handleLocateMeButton:", forControlEvents: .TouchUpInside)
         return button
         }()
+    
+    lazy var noTrolleyLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = UIColor.ttLightGreen()
+        label.textColor = UIColor.whiteColor()
+        label.textAlignment = .Center
+        label.text = "No Trolleys are being tracked right now."
+        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        return label
+    }()
 }

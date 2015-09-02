@@ -14,6 +14,7 @@ class TrolleyLocationService {
     static var sharedService = TrolleyLocationService()
     
     var trolleyObservers = ObserverSet<Trolley>()
+    var trolleyPresentObservers = ObserverSet<Bool>()
     
     private var updateTimer: NSTimer?
     
@@ -45,6 +46,12 @@ class TrolleyLocationService {
         request.responseJSON{(request, response, json, error) in
             
             if let trolleys = self.parseTrolleysFromJSON(json) {
+                
+                let trolleysPresent = trolleys.count > 0 ? true : false
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.trolleyPresentObservers.notify(trolleysPresent)
+                }
+                
                 for trolley in trolleys {
                     self.updateTrolleysWithTrolley(trolley)
                 }
