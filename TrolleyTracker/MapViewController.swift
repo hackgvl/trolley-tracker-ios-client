@@ -164,6 +164,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     let userAnnotationReuseIdentifier = "UserAnnotation"
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        
+        var returnView: MKAnnotationView?
+        
         if (annotation is MKUserLocation) {
             var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(userAnnotationReuseIdentifier)
             if annotationView == nil {
@@ -174,11 +177,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
             
             annotationView.annotation = annotation
 
-            return annotationView
+            returnView = annotationView
         }
         
         // Handle Stops
-        if let stopAnnotation = annotation as? TrolleyStop {
+        else if let stopAnnotation = annotation as? TrolleyStop {
             
             var annotationView: TrolleyStopAnnotationView! = mapView.dequeueReusableAnnotationViewWithIdentifier(stopAnnotationReuseIdentifier) as? TrolleyStopAnnotationView
             if annotationView == nil {
@@ -190,12 +193,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
             annotationView.annotation = annotation
             annotationView.tintColor = UIColor.stopColorForIndex(stopAnnotation.colorIndex)
             
-            return annotationView
+            returnView = annotationView
         }
         
         
         // Handle Trolleys
-        if let trolleyAnnotation = annotation as? Trolley {
+        else if let trolleyAnnotation = annotation as? Trolley {
             
             var annotationView: TrolleyAnnotationView! = mapView.dequeueReusableAnnotationViewWithIdentifier(trolleyAnnotationReuseIdentifier) as? TrolleyAnnotationView
             if annotationView == nil {
@@ -206,14 +209,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
             annotationView.tintColor = UIColor.trolleyColorForID(trolleyAnnotation.ID)
             annotationView.trolleyNumber = trolleyAnnotation.ID
             annotationView.annotation = trolleyAnnotation
-            dispatch_async(dispatch_get_main_queue()) {
-                annotationView.superview?.bringSubviewToFront(annotationView)
-            }
             
-            return annotationView
+            returnView = annotationView
         }
         
-        return nil
+        dispatch_async(dispatch_get_main_queue()) {
+            self.updateAnnotationZIndexes()
+        }
+        
+        return returnView
     }
     
     func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
@@ -231,16 +235,33 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     
     func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
         detailViewController.showDetailForAnnotation(view.annotation, withUserLocation: mapView.userLocation)
+        updateAnnotationZIndexes()
     }
     
     func mapView(mapView: MKMapView!, didDeselectAnnotationView view: MKAnnotationView!) {
         detailViewController.showDetailForAnnotation(nil, withUserLocation: nil)
+        updateAnnotationZIndexes()
     }
     
 //    func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
 //        let region = MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.01, 0.01))
 //        mapView.setRegion(region, animated: true)
 //    }
+    
+    private func updateAnnotationZIndexes() {
+        
+        for annotation in mapView.annotations {
+            if let trolley = annotation as? Trolley,
+            view = mapView.viewForAnnotation(trolley) {
+                view.superview?.bringSubviewToFront(view)
+            }
+        }
+        
+        if let userAnnotation = mapView.userLocation,
+        view = mapView.viewForAnnotation(userAnnotation) {
+            view.superview?.bringSubviewToFront(view)
+        }
+    }
     
     //==================================================================
     // MARK: - TTDetailViewControllerDelegate
