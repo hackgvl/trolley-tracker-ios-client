@@ -13,7 +13,14 @@ import Alamofire
 class TrolleyRequests {
     
     private class var BaseURL: String {
-        get { return "http://tracker.wallinginfosystems.com/api" }
+        get {
+            switch EnvironmentVariables.currentBuildConfiguration() {
+            case .Test:
+                return "http://yeahthattrolley.azurewebsites.net/api"
+            default:
+                return "http://tracker.wallinginfosystems.com/api"
+            }
+        }
     }
     
     private class var APIVersion: String {

@@ -44,7 +44,7 @@ class TrolleyLocationService {
     
     @objc private func getRunningTrolleys() {
 
-        let request = EnvironmentVariables.currentBuildConfiguration() == .Test ? TrolleyRequests.AllTrolleys : TrolleyRequests.RunningTrolleys
+        let request = TrolleyRequests.RunningTrolleys
         request.responseJSON{(request, response, result) in
             
             guard let json = result.value else { return }

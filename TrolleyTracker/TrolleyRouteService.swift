@@ -19,7 +19,7 @@ class TrolleyRouteService {
     
     func loadTrolleyRoutes(completion: LoadTrolleyRouteCompletion) {
 
-        let request = EnvironmentVariables.currentBuildConfiguration() == .Test ? TrolleyRequests.Routes : TrolleyRequests.RoutesActive()
+        let request = TrolleyRequests.RoutesActive()
         request.responseJSON { (request, response, result) -> Void in
             guard let json = result.value else { return }
             self.loadRouteDetailForRoutes(JSON(json), completion: completion)
