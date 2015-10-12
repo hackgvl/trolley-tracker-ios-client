@@ -17,12 +17,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     // MARK: - Properties
     //==================================================================
     
-    lazy var detailViewController: DetailViewController = {
-        let controller = DetailViewController()
-        controller.view.translatesAutoresizingMaskIntoConstraints = false
-        controller.delegate = self
-        return controller
-    }()
+    var detailViewController: DetailViewController!
     
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var detailView: UIView!
@@ -39,6 +34,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     
     private var lastRouteLoadTime: NSDate?
     
+    private var mapViewDelegate: TrolleyMapViewDelegate!
+    
     //==================================================================
     // MARK: - Lifecycle
     //==================================================================
@@ -47,6 +44,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         super.viewDidLoad()
         
         setupViews()
+        
+        mapViewDelegate = TrolleyMapViewDelegate()
+        mapViewDelegate.annotationSelectionAction = { [unowned self] view in
+            self.detailViewController.showDetailForAnnotation(view.annotation, withUserLocation: self.mapView.userLocation)
+        }
+        mapViewDelegate.annotationDeselectionAction = { [unowned self] view in
+            self.detailViewController.showDetailForAnnotation(nil, withUserLocation: nil)
+        }
         
         TrolleyLocationService.sharedService.trolleyPresentObservers.add(updateTrolleyPresent)
         TrolleyLocationService.sharedService.trolleyObservers.add(updateTrolley)
@@ -63,6 +68,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         let maxRouteTime: NSTimeInterval = 15 * 60
         if lastRouteLoadTime == nil || lastRouteLoadTime?.timeIntervalSinceNow < -maxRouteTime {
             loadRoutes()
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let detailController = segue.destinationViewController as? DetailViewController {
+            self.detailViewController = detailController
         }
     }
     
@@ -141,113 +152,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         
         if animated { UIView.animateWithDuration(0.25, animations: updateAction) }
         else { updateAction() }
-    }
-    
-    //==========================================================================
-    // MARK: - MKMapViewDelegate
-    //==========================================================================
-    
-    let trolleyAnnotationReuseIdentifier = "TrolleyAnnotation"
-    let stopAnnotationReuseIdentifier = "StopAnnotation"
-    let userAnnotationReuseIdentifier = "UserAnnotation"
-    
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        var returnView: MKAnnotationView?
-        
-        if (annotation is MKUserLocation) {
-            var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(userAnnotationReuseIdentifier)
-            if annotationView == nil {
-                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: userAnnotationReuseIdentifier)
-                annotationView!.image = UIImage.ttUserPin
-                annotationView!.centerOffset = CGPointMake(0, -(annotationView!.image!.size.height / 2))
-            }
-            
-            annotationView!.annotation = annotation
-
-            returnView = annotationView
-        }
-        
-        // Handle Stops
-        else if let stopAnnotation = annotation as? TrolleyStop {
-            
-            var annotationView: TrolleyStopAnnotationView! = mapView.dequeueReusableAnnotationViewWithIdentifier(stopAnnotationReuseIdentifier) as? TrolleyStopAnnotationView
-            if annotationView == nil {
-                annotationView = TrolleyStopAnnotationView(annotation: annotation, reuseIdentifier: stopAnnotationReuseIdentifier)
-                annotationView.frame = CGRectMake(0, 0, 30, 50)
-                annotationView.centerOffset = CGPointMake(0, -(CGRectGetHeight(annotationView.frame) / 2))
-            }
-            
-            annotationView.annotation = annotation
-            annotationView.tintColor = UIColor.stopColorForIndex(stopAnnotation.colorIndex)
-            
-            returnView = annotationView
-        }
-        
-        
-        // Handle Trolleys
-        else if let trolleyAnnotation = annotation as? Trolley {
-            
-            var annotationView: TrolleyAnnotationView! = mapView.dequeueReusableAnnotationViewWithIdentifier(trolleyAnnotationReuseIdentifier) as? TrolleyAnnotationView
-            if annotationView == nil {
-                annotationView = TrolleyAnnotationView(annotation: trolleyAnnotation, reuseIdentifier: trolleyAnnotationReuseIdentifier)
-                annotationView.frame = CGRectMake(0, 0, 50, 50)
-            }
-            
-            annotationView.tintColor = UIColor.trolleyColorForID(trolleyAnnotation.ID)
-            annotationView.trolleyNumber = trolleyAnnotation.ID
-            annotationView.annotation = trolleyAnnotation
-            
-            returnView = annotationView
-        }
-        
-        dispatch_async(dispatch_get_main_queue()) {
-            self.updateAnnotationZIndexes()
-        }
-        
-        return returnView
-    }
-    
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-        
-        let renderer = MKPolylineRenderer(overlay: overlay)
-        
-        renderer.lineWidth = 6.0
-        
-        if let routeOverlay = overlay as? TrolleyRouteOverlay {
-            renderer.strokeColor = UIColor.routeColorForIndex(routeOverlay.colorIndex)
-        }
-        
-        return renderer
-    }
-    
-    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-        detailViewController.showDetailForAnnotation(view.annotation, withUserLocation: mapView.userLocation)
-        updateAnnotationZIndexes()
-    }
-    
-    func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
-        detailViewController.showDetailForAnnotation(nil, withUserLocation: nil)
-        updateAnnotationZIndexes()
-    }
-    
-//    func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
-//        let region = MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.01, 0.01))
-//        mapView.setRegion(region, animated: true)
-//    }
-    
-    private func updateAnnotationZIndexes() {
-        
-        for annotation in mapView.annotations {
-            if let trolley = annotation as? Trolley,
-            view = mapView.viewForAnnotation(trolley) {
-                view.superview?.bringSubviewToFront(view)
-            }
-        }
-        
-        if let view = mapView.viewForAnnotation(mapView.userLocation) {
-            view.superview?.bringSubviewToFront(view)
-        }
     }
     
     //==================================================================

@@ -24,6 +24,7 @@
 		D914FB021B30EE11002DACF8 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FB011B30EE11002DACF8 /* SwiftyJSON.swift */; };
 		D92876CB1BCB0CE5003333EA /* SettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92876CA1BCB0CE5003333EA /* SettingsDataSource.swift */; settings = {ASSET_TAGS = (); }; };
 		D92876CD1BCB21EE003333EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D92876CC1BCB21EE003333EA /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
+		D92876CF1BCB3737003333EA /* MapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92876CE1BCB3737003333EA /* MapViewDelegate.swift */; settings = {ASSET_TAGS = (); }; };
 		D95DAFC51B7F60EE00BBC906 /* TrolleyRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95DAFC41B7F60EE00BBC906 /* TrolleyRequests.swift */; };
 		D95EF7671B87302F009B5779 /* TrolleyRouteOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95EF7661B87302F009B5779 /* TrolleyRouteOverlay.swift */; };
 		D95EF76C1B889B00009B5779 /* UIImage+TrolleyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95EF76B1B889B00009B5779 /* UIImage+TrolleyTracker.swift */; };
@@ -83,6 +84,7 @@
 		D914FB011B30EE11002DACF8 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		D92876CA1BCB0CE5003333EA /* SettingsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsDataSource.swift; sourceTree = "<group>"; };
 		D92876CC1BCB21EE003333EA /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		D92876CE1BCB3737003333EA /* MapViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewDelegate.swift; sourceTree = "<group>"; };
 		D95DAFC41B7F60EE00BBC906 /* TrolleyRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyRequests.swift; sourceTree = "<group>"; };
 		D95EF7661B87302F009B5779 /* TrolleyRouteOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyRouteOverlay.swift; sourceTree = "<group>"; };
 		D95EF76B1B889B00009B5779 /* UIImage+TrolleyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+TrolleyTracker.swift"; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				E71A678B1B30DCE60036FE10 /* DetailViewController.swift */,
 				E71A678D1B30DCEF0036FE10 /* SettingsViewController.swift */,
 				D92876CA1BCB0CE5003333EA /* SettingsDataSource.swift */,
+				D92876CE1BCB3737003333EA /* MapViewDelegate.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				D98715411B8A7D8200489594 /* TimeAndDistanceService.swift in Sources */,
 				EFA4B1FC1A1C201F00BEA42C /* AppDelegate.swift in Sources */,
 				E71A678C1B30DCE60036FE10 /* DetailViewController.swift in Sources */,
+				D92876CF1BCB3737003333EA /* MapViewDelegate.swift in Sources */,
 				E71A678E1B30DCEF0036FE10 /* SettingsViewController.swift in Sources */,
 				D90867031B91F4D9002A6F87 /* EnvironmentVariables.swift in Sources */,
 				D914FAE61B30DFC0002DACF8 /* TrolleyStop.swift in Sources */,
