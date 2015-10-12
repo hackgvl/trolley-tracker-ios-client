@@ -23,6 +23,7 @@
 		D914FAFC1B30EA84002DACF8 /* ObserverSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FAFB1B30EA84002DACF8 /* ObserverSet.swift */; };
 		D914FB021B30EE11002DACF8 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FB011B30EE11002DACF8 /* SwiftyJSON.swift */; };
 		D92876CB1BCB0CE5003333EA /* SettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92876CA1BCB0CE5003333EA /* SettingsDataSource.swift */; settings = {ASSET_TAGS = (); }; };
+		D92876CD1BCB21EE003333EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D92876CC1BCB21EE003333EA /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
 		D95DAFC51B7F60EE00BBC906 /* TrolleyRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95DAFC41B7F60EE00BBC906 /* TrolleyRequests.swift */; };
 		D95EF7671B87302F009B5779 /* TrolleyRouteOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95EF7661B87302F009B5779 /* TrolleyRouteOverlay.swift */; };
 		D95EF76C1B889B00009B5779 /* UIImage+TrolleyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95EF76B1B889B00009B5779 /* UIImage+TrolleyTracker.swift */; };
@@ -81,6 +82,7 @@
 		D914FAFB1B30EA84002DACF8 /* ObserverSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObserverSet.swift; sourceTree = "<group>"; };
 		D914FB011B30EE11002DACF8 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		D92876CA1BCB0CE5003333EA /* SettingsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsDataSource.swift; sourceTree = "<group>"; };
+		D92876CC1BCB21EE003333EA /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D95DAFC41B7F60EE00BBC906 /* TrolleyRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyRequests.swift; sourceTree = "<group>"; };
 		D95EF7661B87302F009B5779 /* TrolleyRouteOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyRouteOverlay.swift; sourceTree = "<group>"; };
 		D95EF76B1B889B00009B5779 /* UIImage+TrolleyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+TrolleyTracker.swift"; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 		EFA4B1F81A1C201F00BEA42C /* TrolleyTracker */ = {
 			isa = PBXGroup;
 			children = (
+				D92876CC1BCB21EE003333EA /* Main.storyboard */,
 				D98715451B8A7DA100489594 /* Operations */,
 				D914FB011B30EE11002DACF8 /* SwiftyJSON.swift */,
 				D914FADC1B30DEB4002DACF8 /* Services */,
@@ -347,6 +350,7 @@
 				EFA4B2061A1C201F00BEA42C /* LaunchScreen.xib in Resources */,
 				EFA4B2031A1C201F00BEA42C /* Images.xcassets in Resources */,
 				D90866F41B91C79F002A6F87 /* Montserrat-Bold.ttf in Resources */,
+				D92876CD1BCB21EE003333EA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

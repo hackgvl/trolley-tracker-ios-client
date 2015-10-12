@@ -20,13 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window?.tintColor = UIColor.ttTintColor()
         self.window?.backgroundColor = UIColor.blackColor()
-        self.window?.makeKeyAndVisible()
         
+        UITabBar.appearance().barTintColor = UIColor.ttMediumPurple()
         UINavigationBar.appearance().barTintColor = UIColor.ttMediumPurple()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.ttLightTextColor()]
-        
-        let navController = UINavigationController(rootViewController: MapViewController())
-        self.window?.rootViewController = navController
         
         Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders = [
             "Cache-Control":"no-cache",

@@ -24,11 +24,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         return controller
     }()
     
-    private var detailViewVisibleConstraint: NSLayoutConstraint?
-    private var detailViewHiddenConstraint: NSLayoutConstraint?
+    @IBOutlet var mapView: MKMapView!
+    @IBOutlet var detailView: UIView!
+    @IBOutlet var locateMeButton: UIButton!
+    @IBOutlet var noTrolleyLabel: UILabel!
     
-    private var noTrolleyHiddenConstraint: NSLayoutConstraint?
-    private var noTrolleyVisibleConstraint: NSLayoutConstraint?
+    @IBOutlet var detailViewVisibleConstraint: NSLayoutConstraint!
+    private var detailViewHiddenConstraint: NSLayoutConstraint!
+    
+    private var noTrolleyHiddenConstraint: NSLayoutConstraint!
+    @IBOutlet var noTrolleyVisibleConstraint: NSLayoutConstraint!
     
     private let locationManager = CLLocationManager()
     
@@ -43,24 +48,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         
         setupViews()
         
-        let titleView = UIView()
-        titleView.translatesAutoresizingMaskIntoConstraints = false
-        navigationItem.titleView = titleView
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[title]-|", options: [], metrics: nil, views: ["title" : titleView]))
-        NSLayoutConstraint.activateConstraints([NSLayoutConstraint(item: titleView, attribute: .CenterX, relatedBy: .Equal, toItem: titleView.superview!, attribute: .CenterX, multiplier: 1.0, constant: 0.0)])
-        
-        let titleImageView = UIImageView(image: UIImage.ttTrolleyTrackerLogo)
-        titleImageView.contentMode = UIViewContentMode.ScaleAspectFit
-        titleImageView.translatesAutoresizingMaskIntoConstraints = false
-        titleView.addSubview(titleImageView)
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[image]|", options: [], metrics: nil, views: ["image" : titleImageView]))
-        NSLayoutConstraint.activateConstraints([NSLayoutConstraint(item: titleImageView, attribute: .CenterX, relatedBy: .Equal, toItem: titleView, attribute: .CenterX, multiplier: 1.0, constant: 0.0)])
-        
         TrolleyLocationService.sharedService.trolleyPresentObservers.add(updateTrolleyPresent)
         TrolleyLocationService.sharedService.trolleyObservers.add(updateTrolley)
         TrolleyLocationService.sharedService.startTrackingTrolleys()
         
         locationManager.requestWhenInUseAuthorization()
+        
+        mapView.region = MKCoordinateRegion(center: CLLocationCoordinate2DMake(34.851887, -82.398366), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -135,12 +129,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     private func setNoTrolleyMessageVisible(visible: Bool, animated: Bool) {
         
         if visible {
-            noTrolleyHiddenConstraint?.active = false
-            noTrolleyVisibleConstraint?.active = true
+            noTrolleyHiddenConstraint.active = false
+            noTrolleyVisibleConstraint.active = true
         }
         else {
-            noTrolleyVisibleConstraint?.active = false
-            noTrolleyHiddenConstraint?.active = true
+            noTrolleyVisibleConstraint.active = false
+            noTrolleyHiddenConstraint.active = true
         }
         
         let updateAction = { self.view.layoutIfNeeded() }
@@ -272,14 +266,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     // MARK: - Actions
     //==========================================================================
     
-    func showSettings() {
-        
-        let settingsViewController = TTSettingsViewController()
-        let navController = UINavigationController(rootViewController: settingsViewController)
-        self.presentViewController(navController, animated: true, completion: nil)
-    }
-    
-    func handleLocateMeButton(sender: UIButton) {
+    @IBAction func handleLocateMeButton(sender: UIButton) {
         let userLocation = mapView.userLocation.coordinate
         if userLocation.latitude != 0 && userLocation.longitude != 0 {
             mapView.setCenterCoordinate(userLocation, animated: true)
@@ -298,94 +285,22 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     
     private func setupViews() {
         
-        title = "Trolly Tracker"
+        title = "Map"
+        noTrolleyLabel.text = "No Trolleys are being tracked right now."
         
         view.backgroundColor = UIColor.whiteColor()
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Settings", comment: "Settings"), style: .Plain, target: self, action:"showSettings")
+        noTrolleyLabel.backgroundColor = UIColor.ttLightGreen()
+        noTrolleyLabel.textColor = UIColor.whiteColor()
         
-        view.addSubview(detailView)
-        view.addSubview(mapView)
+        locateMeButton.backgroundColor = UIColor.ttAlternateTintColor()
+        locateMeButton.tintColor = UIColor.ttTintColor()
+        locateMeButton.layer.cornerRadius = 5
         
-        mapView.addSubview(locateMeButton)
-        mapView.insertSubview(noTrolleyLabel, belowSubview: detailView)
-        
-        let views = ["detailView": detailView, "detailControllerView" : detailViewController.view, "mapView": mapView, "locateMe": locateMeButton, "noTrolleyLabel": noTrolleyLabel]
-        
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[detailView]|", options: [], metrics: nil, views: views))
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[mapView]|", options: [], metrics: nil, views: views))
-        
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[mapView][detailView]", options: [], metrics: nil, views: views))
-        NSLayoutConstraint.activateConstraints([NSLayoutConstraint(item: detailView, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.3, constant: 0.0)])
-        
-        detailViewVisibleConstraint = NSLayoutConstraint(item: detailView, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
         detailViewHiddenConstraint = NSLayoutConstraint(item: detailView, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
-        
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[noTrolleyLabel]|", options: [], metrics: nil, views: views))
-        noTrolleyVisibleConstraint = NSLayoutConstraint(item: noTrolleyLabel, attribute: .Bottom, relatedBy: .Equal, toItem: detailView, attribute: .Top, multiplier: 1.0, constant: 0)
-        noTrolleyHiddenConstraint = NSLayoutConstraint(item: noTrolleyLabel, attribute: .Top, relatedBy: .Equal, toItem: detailView, attribute: .Top, multiplier: 1.0, constant: 0)
+        noTrolleyHiddenConstraint = NSLayoutConstraint(item: noTrolleyLabel, attribute: .Top, relatedBy: .Equal, toItem: mapView, attribute: .Bottom, multiplier: 1.0, constant: 0)
         
         setNoTrolleyMessageVisible(false, animated: false)
         setDetailViewVisible(false, animated: false)
-        
-        view.layoutIfNeeded()
-        detailView.layoutIfNeeded()
-        
-        self.addChildViewController(detailViewController)
-        detailView.addSubview(detailViewController.view)
-        detailViewController.didMoveToParentViewController(self)
-        
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[detailControllerView]|", options: [], metrics: nil, views: views))
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[detailControllerView]|", options: [], metrics: nil, views: views))
-        
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[locateMe]-12-|", options: [], metrics: nil, views: views))
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[locateMe]-12-|", options: [], metrics: nil, views: views))
-        let buttonSize: CGFloat = 44
-        NSLayoutConstraint.activateConstraints([NSLayoutConstraint(item: locateMeButton, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: buttonSize)])
-        NSLayoutConstraint.activateConstraints([NSLayoutConstraint(item: locateMeButton, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: buttonSize)])
     }
-    
-    lazy var mapView: MKMapView = {
-        let mapView = MKMapView()
-        mapView.translatesAutoresizingMaskIntoConstraints = false
-        
-        mapView.mapType = MKMapType.Standard
-        
-        mapView.showsUserLocation = true
-        mapView.zoomEnabled = true
-        mapView.scrollEnabled = true
-        
-        mapView.region = MKCoordinateRegion(center: CLLocationCoordinate2DMake(34.851887, -82.398366), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
-        
-        mapView.delegate = self
-        
-        return mapView
-        }()
-    
-    lazy var detailView: UIView = {
-        let detailView = UIView()
-        detailView.translatesAutoresizingMaskIntoConstraints = false
-        return detailView
-        }()
-    
-    lazy var locateMeButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = UIColor.ttAlternateTintColor()
-        button.tintColor = UIColor.ttTintColor()
-        button.layer.cornerRadius = 5
-        button.setImage(UIImage.ttLocateMe, forState: .Normal)
-        button.addTarget(self, action: "handleLocateMeButton:", forControlEvents: .TouchUpInside)
-        return button
-        }()
-    
-    lazy var noTrolleyLabel: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = UIColor.ttLightGreen()
-        label.textColor = UIColor.whiteColor()
-        label.textAlignment = .Center
-        label.text = "No Trolleys are being tracked right now."
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
 }
