@@ -50,6 +50,10 @@ class TrolleyRequests {
     class func RoutesActive() -> Request {
         return Alamofire.request(.GET, self.BaseURL + self.APIVersion + "/Routes/Active", parameters: nil).ttLog.ttValidate
     }
+    
+    class func RouteSchedules() -> Request {
+        return Alamofire.request(.GET, self.BaseURL + self.APIVersion + "RouteSchedules").ttLog.ttValidate
+    }
 }
 
 private extension Request {
