@@ -31,6 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             "Content-Type":"application/json",
         ]
         
+        let service = TrolleyScheduleService.sharedService
+        
         return true
     }
 

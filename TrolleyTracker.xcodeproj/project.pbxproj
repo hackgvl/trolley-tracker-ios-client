@@ -28,11 +28,16 @@
 		D92876D11BCB3A53003333EA /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92876D01BCB3A53003333EA /* ScheduleViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		D92876D31BCB3A67003333EA /* TrolleyScheduleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92876D21BCB3A67003333EA /* TrolleyScheduleService.swift */; settings = {ASSET_TAGS = (); }; };
 		D92876D51BCC89BE003333EA /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92876D41BCC89BE003333EA /* Schedule.swift */; settings = {ASSET_TAGS = (); }; };
+		D92876D71BCD05A1003333EA /* ScheduleOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92876D61BCD05A1003333EA /* ScheduleOperations.swift */; settings = {ASSET_TAGS = (); }; };
 		D95DAFC51B7F60EE00BBC906 /* TrolleyRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95DAFC41B7F60EE00BBC906 /* TrolleyRequests.swift */; };
 		D95EF7671B87302F009B5779 /* TrolleyRouteOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95EF7661B87302F009B5779 /* TrolleyRouteOverlay.swift */; };
 		D95EF76C1B889B00009B5779 /* UIImage+TrolleyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95EF76B1B889B00009B5779 /* UIImage+TrolleyTracker.swift */; };
 		D9650C9A1B8559EA0004A2AF /* TrolleyRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9650C991B8559EA0004A2AF /* TrolleyRoute.swift */; };
 		D9650CA41B86A9F10004A2AF /* UIColor+TrolleyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9650CA31B86A9F10004A2AF /* UIColor+TrolleyTracker.swift */; };
+		D97055BB1BD6FB25002B9A8B /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97055BA1BD6FB25002B9A8B /* Box.swift */; settings = {ASSET_TAGS = (); }; };
+		D97055BE1BD70753002B9A8B /* HeadingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97055BD1BD70753002B9A8B /* HeadingLabel.swift */; settings = {ASSET_TAGS = (); }; };
+		D97055C01BD7077B002B9A8B /* BodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97055BF1BD7077B002B9A8B /* BodyLabel.swift */; settings = {ASSET_TAGS = (); }; };
+		D97055C21BD7078E002B9A8B /* SpacerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97055C11BD7078E002B9A8B /* SpacerView.swift */; settings = {ASSET_TAGS = (); }; };
 		D98715411B8A7D8200489594 /* TimeAndDistanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98715401B8A7D8200489594 /* TimeAndDistanceService.swift */; };
 		D98715471B8A7DDC00489594 /* ConcurrentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98715461B8A7DDC00489594 /* ConcurrentOperation.swift */; };
 		D98715491B8A7E0C00489594 /* GetETAOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98715481B8A7E0C00489594 /* GetETAOperation.swift */; };
@@ -91,11 +96,17 @@
 		D92876D01BCB3A53003333EA /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		D92876D21BCB3A67003333EA /* TrolleyScheduleService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyScheduleService.swift; sourceTree = "<group>"; };
 		D92876D41BCC89BE003333EA /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		D92876D61BCD05A1003333EA /* ScheduleOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleOperations.swift; sourceTree = "<group>"; };
+		D92876D81BCDCD0A003333EA /* InOut.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = InOut.playground; sourceTree = "<group>"; };
 		D95DAFC41B7F60EE00BBC906 /* TrolleyRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyRequests.swift; sourceTree = "<group>"; };
 		D95EF7661B87302F009B5779 /* TrolleyRouteOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyRouteOverlay.swift; sourceTree = "<group>"; };
 		D95EF76B1B889B00009B5779 /* UIImage+TrolleyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+TrolleyTracker.swift"; sourceTree = "<group>"; };
 		D9650C991B8559EA0004A2AF /* TrolleyRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyRoute.swift; sourceTree = "<group>"; };
 		D9650CA31B86A9F10004A2AF /* UIColor+TrolleyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+TrolleyTracker.swift"; sourceTree = "<group>"; };
+		D97055BA1BD6FB25002B9A8B /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
+		D97055BD1BD70753002B9A8B /* HeadingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeadingLabel.swift; sourceTree = "<group>"; };
+		D97055BF1BD7077B002B9A8B /* BodyLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BodyLabel.swift; sourceTree = "<group>"; };
+		D97055C11BD7078E002B9A8B /* SpacerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpacerView.swift; sourceTree = "<group>"; };
 		D98715401B8A7D8200489594 /* TimeAndDistanceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeAndDistanceService.swift; sourceTree = "<group>"; };
 		D98715461B8A7DDC00489594 /* ConcurrentOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcurrentOperation.swift; sourceTree = "<group>"; };
 		D98715481B8A7E0C00489594 /* GetETAOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetETAOperation.swift; sourceTree = "<group>"; };
@@ -171,6 +182,7 @@
 				D95DAFC41B7F60EE00BBC906 /* TrolleyRequests.swift */,
 				D98715401B8A7D8200489594 /* TimeAndDistanceService.swift */,
 				D92876D21BCB3A67003333EA /* TrolleyScheduleService.swift */,
+				D92876D81BCDCD0A003333EA /* InOut.playground */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -191,10 +203,21 @@
 		D9650CA11B86A40A0004A2AF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D97055BC1BD706CE002B9A8B /* Schedule */,
 				D90866EF1B91292F002A6F87 /* TrolleyAnnotationView.swift */,
 				D908670E1B921229002A6F87 /* TrolleyStopAnnotationView.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		D97055BC1BD706CE002B9A8B /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				D97055BD1BD70753002B9A8B /* HeadingLabel.swift */,
+				D97055BF1BD7077B002B9A8B /* BodyLabel.swift */,
+				D97055C11BD7078E002B9A8B /* SpacerView.swift */,
+			);
+			name = Schedule;
 			sourceTree = "<group>";
 		};
 		D98715451B8A7DA100489594 /* Operations */ = {
@@ -202,6 +225,7 @@
 			children = (
 				D98715481B8A7E0C00489594 /* GetETAOperation.swift */,
 				D98715461B8A7DDC00489594 /* ConcurrentOperation.swift */,
+				D92876D61BCD05A1003333EA /* ScheduleOperations.swift */,
 			);
 			name = Operations;
 			sourceTree = "<group>";
@@ -253,6 +277,7 @@
 			children = (
 				EFA4B1FA1A1C201F00BEA42C /* Info.plist */,
 				D90867021B91F4D9002A6F87 /* EnvironmentVariables.swift */,
+				D97055BA1BD6FB25002B9A8B /* Box.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -411,17 +436,22 @@
 				E71A678E1B30DCEF0036FE10 /* SettingsViewController.swift in Sources */,
 				D90867031B91F4D9002A6F87 /* EnvironmentVariables.swift in Sources */,
 				D914FAE61B30DFC0002DACF8 /* TrolleyStop.swift in Sources */,
+				D97055BB1BD6FB25002B9A8B /* Box.swift in Sources */,
 				D9650C9A1B8559EA0004A2AF /* TrolleyRoute.swift in Sources */,
 				D90866F01B91292F002A6F87 /* TrolleyAnnotationView.swift in Sources */,
 				D90867111B921431002A6F87 /* UIView+TrolleyTracker.swift in Sources */,
 				D92876CB1BCB0CE5003333EA /* SettingsDataSource.swift in Sources */,
 				D95DAFC51B7F60EE00BBC906 /* TrolleyRequests.swift in Sources */,
+				D97055BE1BD70753002B9A8B /* HeadingLabel.swift in Sources */,
 				D92876D51BCC89BE003333EA /* Schedule.swift in Sources */,
 				D90866FB1B91D519002A6F87 /* String+TrolleyTracker.swift in Sources */,
+				D92876D71BCD05A1003333EA /* ScheduleOperations.swift in Sources */,
 				D92876D11BCB3A53003333EA /* ScheduleViewController.swift in Sources */,
+				D97055C01BD7077B002B9A8B /* BodyLabel.swift in Sources */,
 				D914FAE41B30DFA8002DACF8 /* Trolley.swift in Sources */,
 				D908670F1B921229002A6F87 /* TrolleyStopAnnotationView.swift in Sources */,
 				D98715471B8A7DDC00489594 /* ConcurrentOperation.swift in Sources */,
+				D97055C21BD7078E002B9A8B /* SpacerView.swift in Sources */,
 				D92876D31BCB3A67003333EA /* TrolleyScheduleService.swift in Sources */,
 				D9650CA41B86A9F10004A2AF /* UIColor+TrolleyTracker.swift in Sources */,
 				D90866F71B91C8B8002A6F87 /* UIFont+TrolleyTracker.swift in Sources */,
@@ -517,7 +547,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = TrolleyTracker/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -592,7 +622,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = TrolleyTracker/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "3069be3d-6966-4bc1-be6d-b8f3faae297e";
@@ -707,7 +737,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = TrolleyTracker/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -725,7 +755,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = TrolleyTracker/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "e0df3dc7-5b59-4be3-b581-7597e172a8f8";

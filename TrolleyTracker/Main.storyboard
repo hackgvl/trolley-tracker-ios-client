@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B30a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="IIY-SQ-1lS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B38b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="IIY-SQ-1lS">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
@@ -19,26 +19,58 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5J1-wz-oCM">
-                                <rect key="frame" x="20" y="20" width="560" height="523"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jgQ-ba-tOg">
+                                <rect key="frame" x="0.0" y="20" width="600" height="531"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="500" translatesAutoresizingMaskIntoConstraints="NO" id="1sp-nr-ho9">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="500"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ly-73-uhg">
+                                                <rect key="frame" x="0.0" y="0.0" width="16" height="500"/>
+                                                <animations/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="16" id="5XA-jp-deH"/>
+                                                </constraints>
+                                            </view>
+                                            <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="500" axis="vertical" layoutMarginsRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2rl-hY-Tw6">
+                                                <rect key="frame" x="16" y="0.0" width="568" height="500"/>
+                                                <animations/>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="adA-ke-Xmy">
+                                                <rect key="frame" x="584" y="0.0" width="16" height="500"/>
+                                                <animations/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="16" id="VOB-oO-TRx"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <animations/>
+                                    </stackView>
+                                </subviews>
                                 <animations/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="1sp-nr-ho9" secondAttribute="bottom" id="UO2-wf-C2b"/>
+                                    <constraint firstAttribute="trailing" secondItem="1sp-nr-ho9" secondAttribute="trailing" id="UbF-0B-WhX"/>
+                                    <constraint firstItem="1sp-nr-ho9" firstAttribute="leading" secondItem="jgQ-ba-tOg" secondAttribute="leading" id="eMX-cr-8nV"/>
+                                    <constraint firstItem="1sp-nr-ho9" firstAttribute="top" secondItem="jgQ-ba-tOg" secondAttribute="top" id="rnw-Ll-x7T"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="7cx-Q9-SYB" firstAttribute="top" secondItem="5J1-wz-oCM" secondAttribute="bottom" constant="8" id="KPJ-MF-QQV"/>
-                            <constraint firstItem="5J1-wz-oCM" firstAttribute="leading" secondItem="2gs-QZ-FyR" secondAttribute="leadingMargin" id="KS6-o5-Ptv"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="5J1-wz-oCM" secondAttribute="trailing" id="Nvm-l9-6cG"/>
-                            <constraint firstItem="5J1-wz-oCM" firstAttribute="top" secondItem="Emc-4n-BCU" secondAttribute="bottom" id="XLZ-zr-UQx"/>
+                            <constraint firstAttribute="trailing" secondItem="jgQ-ba-tOg" secondAttribute="trailing" id="1l8-97-miL"/>
+                            <constraint firstItem="1sp-nr-ho9" firstAttribute="width" secondItem="2gs-QZ-FyR" secondAttribute="width" id="BNB-Pe-ZWy"/>
+                            <constraint firstItem="7cx-Q9-SYB" firstAttribute="top" secondItem="jgQ-ba-tOg" secondAttribute="bottom" id="ZCY-wz-uyw"/>
+                            <constraint firstItem="jgQ-ba-tOg" firstAttribute="top" secondItem="Emc-4n-BCU" secondAttribute="bottom" id="a1A-NZ-F6C"/>
+                            <constraint firstItem="jgQ-ba-tOg" firstAttribute="leading" secondItem="2gs-QZ-FyR" secondAttribute="leading" id="pOK-bh-XAa"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Schedule" id="iqx-Vk-ddR"/>
+                    <tabBarItem key="tabBarItem" title="Schedule" image="Schedule" id="iqx-Vk-ddR"/>
                     <connections>
-                        <outlet property="textView" destination="5J1-wz-oCM" id="cXR-fG-Fg9"/>
+                        <outlet property="stackView" destination="2rl-hY-Tw6" id="LNP-jj-WPg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nda-Sr-5MD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -92,7 +124,7 @@
                                 </connections>
                             </containerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="999" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfm-uk-9gA">
-                                <rect key="frame" x="0.0" y="530.5" width="600" height="20.5"/>
+                                <rect key="frame" x="0.0" y="531" width="600" height="20"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -130,7 +162,7 @@
                             <constraint firstAttribute="bottom" secondItem="fHa-9S-gQU" secondAttribute="bottom" priority="999" id="xnL-9q-2g2"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" id="Tcl-M5-Uey"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="Map" id="Tcl-M5-Uey"/>
                     <connections>
                         <outlet property="detailView" destination="fHa-9S-gQU" id="Ior-K4-JiI"/>
                         <outlet property="locateMeButton" destination="hqG-Mz-Kgv" id="Vhc-Ro-v7L"/>
@@ -167,6 +199,10 @@
         <scene sceneID="1yr-0M-XSw">
             <objects>
                 <viewController id="wzx-Jn-UCM" customClass="DetailViewController" customModule="TrolleyTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pT1-IB-c6u"/>
+                        <viewControllerLayoutGuide type="bottom" id="xVI-o6-Fet"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="r1Z-Pk-Cgg">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="210"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -181,5 +217,7 @@
     </scenes>
     <resources>
         <image name="LocateMe" width="30" height="30"/>
+        <image name="Map" width="30" height="30"/>
+        <image name="Schedule" width="30" height="30"/>
     </resources>
 </document>

@@ -52,7 +52,7 @@ class TrolleyRequests {
     }
     
     class func RouteSchedules() -> Request {
-        return Alamofire.request(.GET, self.BaseURL + self.APIVersion + "RouteSchedules").ttLog.ttValidate
+        return Alamofire.request(.GET, self.BaseURL + self.APIVersion + "/RouteSchedules").ttLog.ttValidate
     }
 }
 

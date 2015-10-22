@@ -10,43 +10,53 @@ import Foundation
 
 class TrolleyScheduleService {
     
-    private let UserDefaultsRouteScheduleKey = "UserDefaultsRouteScheduleKey"
-    
     typealias LoadScheduleCompletion = (schedules: [RouteSchedule]) -> Void
     
     static var sharedService = TrolleyScheduleService()
     
+    init() {
+
+    }
+    
     func loadTrolleySchedules(completion: LoadScheduleCompletion) {
         
         // check user defaults (should probably go in an operation)
-        if let dictionaries = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultsRouteScheduleKey) as? [[String : AnyObject]] {
-            var schedules = [RouteSchedule]()
-            for dictionary in dictionaries {
-                guard let schedule = RouteSchedule(dictionary: dictionary) else { continue }
-                schedules.append(schedule)
+        let localSchedulesOperation = LoadLocalSchedulesOperation()
+        localSchedulesOperation.completionBlock = { [weak localSchedulesOperation] in
+            guard let schedules = localSchedulesOperation?.loadedSchedules else { return }
+            dispatch_async(dispatch_get_main_queue()) {
+                completion(schedules: schedules)
             }
-            completion(schedules: schedules)
         }
+        NSOperationQueue.mainQueue().addOperation(localSchedulesOperation)
         
         // load from network
-        let request = TrolleyRequests.RouteSchedules()
-        request.responseJSON { (request, response, result) -> Void in
-            guard let json = result.value else { return }
-            
-        }
+        loadSchedulesFromNetwork(completion)
     }
     
-    private func loadSchedulesFromNetwork() {
-        
-        // Operations might be useful here
+    private func loadSchedulesFromNetwork(completion: LoadScheduleCompletion) {
         
         // Load all Routes so we have names for the RouteSchedules (associated by RouteID)
+        var routes = Box<[JSON]>(value: [JSON]())
+        let routesOperation = LoadRoutesFromNetworkOperation(results: &routes)
         
         // Load all schedules
+        var schedules = Box<[JSON]>(value: [JSON]())
+        let schedulesOperation = LoadSchedulesFromNetworkOperation(boxedResults: &schedules)
         
-        // Aggregate schedules by route ID (i.e. there should only be one schedule per route, but with multiple times per schedule)
-        // e.g. RouteID: 1, RouteName: "Main to Flour Field", times: ["Sunday 4-6", "Friday 6-10"]
+        // Aggregate schedules, assigning names from the Routes we retrieved
+        let aggregateOperation = AggregateSchedulesOperation(schedules: &schedules, routes: &routes)
+        aggregateOperation.addDependency(schedulesOperation)
+        aggregateOperation.addDependency(routesOperation)
+        aggregateOperation.completionBlock = { [weak aggregateOperation] in
+            guard let routeSchedules = aggregateOperation?.routeSchedules else { return }
+            dispatch_async(dispatch_get_main_queue()) {
+                completion(schedules: routeSchedules)
+            }
+        }
         
-        // For each schedule, add it's name from the Route list we loaded earlier. If we can't find a name, insert some default.
+        OperationQueues.networkQueue.addOperation(routesOperation)
+        OperationQueues.networkQueue.addOperation(schedulesOperation)
+        OperationQueues.computationQueue.addOperation(aggregateOperation)
     }
 }

@@ -24,13 +24,14 @@ struct RouteTime {
 extension RouteTime {
     
     init?(json: JSON) {
-        guard let day = json[RouteTimeJSONKeys.day.rawValue].string else { return nil }
-        guard let time = json[RouteTimeJSONKeys.time.rawValue].string else { return nil }
-        self.day = day; self.time = time;
+        guard let day = json[RouteTimeJSONKeys.DayOfWeek.rawValue].string else { return nil }
+        guard let startTime = json[RouteTimeJSONKeys.StartTime.rawValue].string else { return nil }
+        guard let endTime = json[RouteTimeJSONKeys.EndTime.rawValue].string else { return nil }
+        self.day = day; self.time = startTime + " - " + endTime;
     }
     
     enum RouteTimeJSONKeys: String {
-        case day, time
+        case DayOfWeek, StartTime, EndTime
     }
 }
 
@@ -65,11 +66,10 @@ struct RouteSchedule {
 }
 
 // JSON 
+enum RouteScheduleJSONKeys: String {
+    case Description, name, times
+}
 extension RouteSchedule {
-    
-    enum RouteScheduleJSONKeys: String {
-        case name, times
-    }
     
     init?(json: JSON) {
         guard let name = json[RouteScheduleJSONKeys.name.rawValue].string else { return nil }
