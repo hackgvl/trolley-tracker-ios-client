@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class TrolleyScheduleService {
     
@@ -51,6 +52,7 @@ class TrolleyScheduleService {
         aggregateOperation.completionBlock = { [weak aggregateOperation] in
             guard let routeSchedules = aggregateOperation?.routeSchedules else { return }
             dispatch_async(dispatch_get_main_queue()) {
+                NSOperationQueue.mainQueue().addOperation(SaveSchedulesOperation(schedules: routeSchedules))
                 completion(schedules: routeSchedules)
             }
         }

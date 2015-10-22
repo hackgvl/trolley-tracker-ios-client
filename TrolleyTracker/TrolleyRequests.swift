@@ -63,7 +63,7 @@ private extension Request {
     }
     
     private var ttLog: Request {
-        get { return self.responseString(encoding: NSUTF8StringEncoding, completionHandler: { (request, response, result) -> Void in
+        get { return self.responseString(encoding: NSUTF8StringEncoding, completionHandler: { (response) -> Void in
 //            println("Request: \(request), Response: \(response), ResponseString: \(string), Error: \(error)")
         }) }
     }

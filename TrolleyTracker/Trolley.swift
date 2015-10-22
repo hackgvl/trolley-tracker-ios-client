@@ -8,6 +8,7 @@
 
 import Foundation
 import MapKit
+import SwiftyJSON
 
 class Trolley: NSObject {
     

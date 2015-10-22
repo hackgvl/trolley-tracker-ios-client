@@ -29,7 +29,6 @@ struct SettingsDataSource {
         
         return [
             SettingsSection(title: "General", items: [
-                self.scheduleItemWithPresentationController(self.presentationController),
                 self.feedbackItemWithPresentationController(self.presentationController),
                 self.shareItemWithPresentationController(self.presentationController)
                 ])
@@ -63,21 +62,6 @@ struct SettingsDataSource {
                 let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
                 controller.addAction(action)
                 controller.presentViewController(controller, animated: true, completion: nil)
-            }
-        }
-    }
-    
-    private func scheduleItemWithPresentationController(controller: UIViewController) -> SettingsItem {
-        
-        return SettingsItem(title: "Trolley Schedule") {
-            
-            guard let scheduleController = UIStoryboard(name: "Schedule", bundle: nil).instantiateInitialViewController() else { return }
-
-            if let navigationController = self.presentationController.navigationController {
-                navigationController.pushViewController(scheduleController, animated: true)
-            }
-            else {
-                self.presentationController.presentViewController(scheduleController, animated: true, completion: nil)
             }
         }
     }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class OperationQueues {
     
@@ -39,8 +40,8 @@ class LoadRoutesFromNetworkOperation: ConcurrentOperation {
     override func execute() {
         
         let request = TrolleyRequests.Routes
-        request.responseJSON { (request, response, result) -> Void in
-            guard let resultValue = result.value else { self.finish(); return; }
+        request.responseJSON { (response) -> Void in
+            guard let resultValue = response.result.value else { self.finish(); return; }
             guard let jsonArray = JSON(resultValue).array else { self.finish(); return; }
 
             self.results.value?.appendContentsOf(jsonArray)
@@ -60,8 +61,8 @@ class LoadSchedulesFromNetworkOperation: ConcurrentOperation {
     override func execute() {
         
         let request = TrolleyRequests.RouteSchedules()
-        request.responseJSON { (request, response, result) -> Void in
-            guard let resultValue = result.value else { self.finish(); return; }
+        request.responseJSON { (response) -> Void in
+            guard let resultValue = response.result.value else { self.finish(); return; }
             guard let jsonArray = JSON(resultValue).array else { self.finish(); return; }
 
             self.results.value?.appendContentsOf(jsonArray)
@@ -125,7 +126,7 @@ class SaveSchedulesOperation: NSOperation {
     
     private let schedules: [RouteSchedule]
     
-    init(inout schedules: [RouteSchedule]) {
+    init(schedules: [RouteSchedule]) {
         self.schedules = schedules
     }
     

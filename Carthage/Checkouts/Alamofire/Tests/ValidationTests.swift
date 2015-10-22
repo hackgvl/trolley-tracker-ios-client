@@ -69,6 +69,8 @@ class StatusCodeValidationTestCase: BaseTestCase {
         if let error = error {
             XCTAssertEqual(error.domain, Error.Domain, "domain should be Alamofire error domain")
             XCTAssertEqual(error.code, Error.Code.StatusCodeValidationFailed.rawValue, "code should be status code validation failure")
+        } else {
+            XCTFail("error should be an NSError")
         }
     }
 
@@ -95,6 +97,8 @@ class StatusCodeValidationTestCase: BaseTestCase {
         if let error = error {
             XCTAssertEqual(error.domain, Error.Domain, "domain should be Alamofire error domain")
             XCTAssertEqual(error.code, Error.Code.StatusCodeValidationFailed.rawValue, "code should be status code validation failure")
+        } else {
+            XCTFail("error should be an NSError")
         }
     }
 }
@@ -112,6 +116,8 @@ class ContentTypeValidationTestCase: BaseTestCase {
         // When
         Alamofire.request(.GET, URLString)
             .validate(contentType: ["application/json"])
+            .validate(contentType: ["application/json;charset=utf8"])
+            .validate(contentType: ["application/json;q=0.8;charset=utf8"])
             .response { _, _, _, responseError in
                 error = responseError
                 expectation.fulfill()
@@ -169,6 +175,8 @@ class ContentTypeValidationTestCase: BaseTestCase {
         if let error = error {
             XCTAssertEqual(error.domain, Error.Domain, "domain should be Alamofire error domain")
             XCTAssertEqual(error.code, Error.Code.ContentTypeValidationFailed.rawValue, "code should be content type validation failure")
+        } else {
+            XCTFail("error should be an NSError")
         }
     }
 
@@ -195,6 +203,8 @@ class ContentTypeValidationTestCase: BaseTestCase {
         if let error = error {
             XCTAssertEqual(error.domain, Error.Domain, "domain should be Alamofire error domain")
             XCTAssertEqual(error.code, Error.Code.ContentTypeValidationFailed.rawValue, "code should be content type validation failure")
+        } else {
+            XCTFail("error should be an NSError")
         }
     }
 
@@ -326,6 +336,8 @@ class MultipleValidationTestCase: BaseTestCase {
         if let error = error {
             XCTAssertEqual(error.domain, Error.Domain, "domain should be Alamofire error domain")
             XCTAssertEqual(error.code, Error.Code.StatusCodeValidationFailed.rawValue, "code should be status code validation failure")
+        } else {
+            XCTFail("error should be an NSError")
         }
     }
 
@@ -353,6 +365,8 @@ class MultipleValidationTestCase: BaseTestCase {
         if let error = error {
             XCTAssertEqual(error.domain, Error.Domain, "domain should be Alamofire error domain")
             XCTAssertEqual(error.code, Error.Code.ContentTypeValidationFailed.rawValue, "code should be content type validation failure")
+        } else {
+            XCTFail("error should be an NSError")
         }
     }
 }
@@ -407,6 +421,8 @@ class AutomaticValidationTestCase: BaseTestCase {
         if let error = error {
             XCTAssertEqual(error.domain, Error.Domain, "domain should be Alamofire error domain")
             XCTAssertEqual(error.code, Error.Code.StatusCodeValidationFailed.rawValue, "code should be status code validation failure")
+        } else {
+            XCTFail("error should be an NSError")
         }
     }
 
@@ -486,6 +502,8 @@ class AutomaticValidationTestCase: BaseTestCase {
         if let error = error {
             XCTAssertEqual(error.domain, Error.Domain, "domain should be Alamofire error domain")
             XCTAssertEqual(error.code, Error.Code.ContentTypeValidationFailed.rawValue, "code should be content type validation failure")
+        } else {
+            XCTFail("error should be an NSError")
         }
     }
 }

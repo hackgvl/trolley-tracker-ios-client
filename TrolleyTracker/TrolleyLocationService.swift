@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 class TrolleyLocationService {
     
@@ -23,9 +24,8 @@ class TrolleyLocationService {
     func startTrackingTrolleys() {
         
         // Retrieve list of all trolleys 
-        TrolleyRequests.AllTrolleys.responseJSON { (request, response, result) -> Void in
-
-            guard let json = result.value else { return }
+        TrolleyRequests.AllTrolleys.responseJSON { (response) -> Void in
+            guard let json = response.result.value else { return }
             
             // -- Store the list so we can reference it later
             self.allTrolleys = self.parseTrolleysFromJSON(json)
@@ -45,9 +45,9 @@ class TrolleyLocationService {
     @objc private func getRunningTrolleys() {
 
         let request = TrolleyRequests.RunningTrolleys
-        request.responseJSON{(request, response, result) in
+        request.responseJSON{(response) in
             
-            guard let json = result.value else { return }
+            guard let json = response.result.value else { return }
             
             if let trolleys = self.parseTrolleysFromJSON(json) {
                 

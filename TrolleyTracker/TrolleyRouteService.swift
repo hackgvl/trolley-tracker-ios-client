@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import SwiftyJSON
 
 class TrolleyRouteService {
     
@@ -20,8 +21,8 @@ class TrolleyRouteService {
     func loadTrolleyRoutes(completion: LoadTrolleyRouteCompletion) {
 
         let request = TrolleyRequests.RoutesActive()
-        request.responseJSON { (request, response, result) -> Void in
-            guard let json = result.value else { return }
+        request.responseJSON { (response) -> Void in
+            guard let json = response.result.value else { return }
             self.loadRouteDetailForRoutes(JSON(json), completion: completion)
         }
     }
@@ -35,8 +36,8 @@ class TrolleyRouteService {
 
                 dispatch_group_enter(group)
                 
-                TrolleyRequests.RouteDetail("\(routeID)").responseJSON { (request, response, result) -> Void in
-                    guard let json = result.value else { return }
+                TrolleyRequests.RouteDetail("\(routeID)").responseJSON { (response) -> Void in
+                    guard let json = response.result.value else { return }
                     if let route = TrolleyRoute(json: JSON(json), colorIndex: index) {
                         routeObjects.append(route)
                     }

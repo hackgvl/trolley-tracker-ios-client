@@ -8,6 +8,7 @@
 
 import Foundation
 import MapKit
+import SwiftyJSON
 
 
 func ==(lhs: TrolleyRoute, rhs: TrolleyRoute) -> Bool {
