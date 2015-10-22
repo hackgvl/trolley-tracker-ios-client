@@ -55,7 +55,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         
         TrolleyLocationService.sharedService.trolleyPresentObservers.add(updateTrolleyPresent)
         TrolleyLocationService.sharedService.trolleyObservers.add(updateTrolley)
-        TrolleyLocationService.sharedService.startTrackingTrolleys()
         
         locationManager.requestWhenInUseAuthorization()
         
@@ -69,6 +68,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         if lastRouteLoadTime == nil || lastRouteLoadTime?.timeIntervalSinceNow < -maxRouteTime {
             loadRoutes()
         }
+        
+        TrolleyLocationService.sharedService.startTrackingTrolleys()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(true)
+        
+        TrolleyLocationService.sharedService.stopTrackingTrolley()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

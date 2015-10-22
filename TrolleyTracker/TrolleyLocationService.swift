@@ -23,18 +23,30 @@ class TrolleyLocationService {
     
     func startTrackingTrolleys() {
         
-        // Retrieve list of all trolleys 
-        TrolleyRequests.AllTrolleys.responseJSON { (response) -> Void in
-            guard let json = response.result.value else { return }
-            
-            // -- Store the list so we can reference it later
-            self.allTrolleys = self.parseTrolleysFromJSON(json)
+        let startUpdating = {
             
             // -- Get an initial update on the trolleys
             self.getRunningTrolleys()
             
             // -- Start a timer for updating currently running trolleys (trolleys/running)
             self.updateTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "getRunningTrolleys", userInfo: nil, repeats: true)
+        }
+        
+        // If we have already retrieved the Trolley list, just start updating them.
+        if allTrolleys != nil {
+            startUpdating()
+            return
+        }
+        
+        
+        // Otherwise, retrieve list of all trolleys first
+        TrolleyRequests.AllTrolleys.responseJSON { (response) -> Void in
+            guard let json = response.result.value else { return }
+            
+            // -- Store the list so we can reference it later
+            self.allTrolleys = self.parseTrolleysFromJSON(json)
+            
+            startUpdating()
         }
     }
     
