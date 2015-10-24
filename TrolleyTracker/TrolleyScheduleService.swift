@@ -50,7 +50,7 @@ class TrolleyScheduleService {
         aggregateOperation.addDependency(schedulesOperation)
         aggregateOperation.addDependency(routesOperation)
         aggregateOperation.completionBlock = { [weak aggregateOperation] in
-            guard let routeSchedules = aggregateOperation?.routeSchedules else { return }
+            guard let routeSchedules = aggregateOperation?.routeSchedules where routeSchedules.count > 0 else { return }
             dispatch_async(dispatch_get_main_queue()) {
                 NSOperationQueue.mainQueue().addOperation(SaveSchedulesOperation(schedules: routeSchedules))
                 completion(schedules: routeSchedules)

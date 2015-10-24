@@ -15,7 +15,7 @@ class BodyLabel: UILabel {
         super.init(frame: CGRectZero)
         
         self.text = text
-        
+        self.numberOfLines = 0
         self.font = UIFont.systemFontOfSize(12)
     }
     

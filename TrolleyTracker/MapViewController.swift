@@ -197,7 +197,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     private func setupViews() {
         
         title = "Map"
-        noTrolleyLabel.text = "No Trolleys are being tracked right now."
+        noTrolleyLabel.text = "No Trolleys are being tracked right now.\nYou can look at the schedule to see when the Trolleys will be running."
         
         view.backgroundColor = UIColor.whiteColor()
         

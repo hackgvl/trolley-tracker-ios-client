@@ -8,37 +8,121 @@
 
 import UIKit
 
-class ScheduleViewController: UIViewController {
+private enum ScheduleDisplayType: Int {
+    case Route, Day
+    
+    private func displayString() -> String {
+        switch self {
+        case .Route:
+            return "By Route"
+        case .Day:
+            return "By Day"
+        }
+    }
+}
 
-    @IBOutlet weak var stackView: UIStackView!
+class ScheduleViewController: UIViewController {
+    
+    private var schedules = [RouteSchedule]()
+    
+    private var schedulesByDayViews: [UIView]?
+    private var schedulesByRouteViews: [UIView]?
+
+    @IBOutlet var stackView: UIStackView!
+    @IBOutlet weak var scheduleFormattingSegmentedControl: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        scheduleFormattingSegmentedControl.tintColor = UIColor.ttAlternateTintColor()
+        scheduleFormattingSegmentedControl.selectedSegmentIndex = ScheduleDisplayType.Route.rawValue
+        for displayType in [ScheduleDisplayType.Route, ScheduleDisplayType.Day] {
+            scheduleFormattingSegmentedControl.setTitle(displayType.displayString(), forSegmentAtIndex: displayType.rawValue)
+        }
+        
         TrolleyScheduleService.sharedService.loadTrolleySchedules { (schedules) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
-                self.displaySchedules(schedules)
+                self.schedules = schedules
+                self.displaySchedulesByRoute(schedules)
             }
         }
     }
     
-    private func displaySchedules(schedules: [RouteSchedule]) {
+    @IBAction func scheduleFormattingControlValueChanged(sender: UISegmentedControl) {
+        guard let displayType = ScheduleDisplayType(rawValue: sender.selectedSegmentIndex) else { return }
+        switch displayType {
+        case .Route:
+            displaySchedulesByRoute(schedules)
+        case .Day:
+            displaySchedulesByDay(schedules)
+        }
+    }
+    
+    private func displaySchedulesByDay(schedules: [RouteSchedule]) {
         
-        for view in stackView.arrangedSubviews {
-            stackView.removeArrangedSubview(view)
+        // If we have cached views, use them
+        if let views = schedulesByDayViews {
+            updateScheduleViews(views)
+            return
         }
         
-        for schedule in schedules {
+        // Otherwise start an operation to fetch them
+        let operation = FormatSchedulesByDayOperation(schedules: schedules)
+        operation.completionBlock = { [weak operation] in
+            guard let views = operation?.scheduleViews else { return }
+            dispatch_async(dispatch_get_main_queue()) {
+                self.schedulesByDayViews = views
+                self.updateScheduleViews(views)
+            }
+        }
+        NSOperationQueue.mainQueue().addOperation(operation)
+    }
+    
+    private func displaySchedulesByRoute(schedules: [RouteSchedule]) {
+        
+        // If we have cached views, use them
+        if let views = schedulesByRouteViews {
+            updateScheduleViews(views)
+            return
+        }
+        
+        // Otherwise start an operation to fetch them
+        let operation = FormatSchedulesByRouteOperation(schedules: schedules)
+        operation.completionBlock = { [weak operation] in
+            guard let views = operation?.scheduleViews else { return }
+            dispatch_async(dispatch_get_main_queue()) {
+                self.schedulesByRouteViews = views
+                self.updateScheduleViews(views)
+            }
+        }
+        NSOperationQueue.mainQueue().addOperation(operation)
+    }
+    
+    private func updateScheduleViews(views: [UIView]) {
+        
+        dispatch_async(dispatch_get_main_queue()) {
             
-            // Display name
-            stackView.addArrangedSubview(HeadingLabel(text: schedule.name))
+            let stackView = self.stackView
+            let superview = self.stackView.superview as! UIStackView
+            let stackViewIndex = superview.arrangedSubviews.indexOf(stackView)!
             
-            for time in schedule.times {
-                let timeString = time.day + ", " + time.time
-                stackView.addArrangedSubview(BodyLabel(text: timeString))
+            let viewsToRemove = stackView.arrangedSubviews
+            
+            stackView.removeFromSuperview()
+            
+            for view in viewsToRemove {
+                stackView.removeArrangedSubview(view)
             }
             
-            stackView.addArrangedSubview(SpacerView(height: 14))
+            for view in viewsToRemove {
+                view.removeFromSuperview()
+            }
+            
+            for view in views {
+                stackView.addArrangedSubview(view)
+            }
+            
+            superview.insertArrangedSubview(stackView, atIndex: stackViewIndex)
         }
     }
 }
