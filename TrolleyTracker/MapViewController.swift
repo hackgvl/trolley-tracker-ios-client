@@ -84,6 +84,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         }
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.Default
+    }
+    
     //==================================================================
     // MARK: - Actions
     //==================================================================

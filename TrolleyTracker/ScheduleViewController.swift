@@ -21,7 +21,9 @@ private enum ScheduleDisplayType: Int {
     }
 }
 
-class ScheduleViewController: UIViewController {
+class ScheduleViewController: UIViewController, UINavigationBarDelegate {
+    
+    @IBOutlet weak var navBar: UINavigationBar!
     
     private var schedules = [RouteSchedule]()
     
@@ -34,7 +36,10 @@ class ScheduleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scheduleFormattingSegmentedControl.tintColor = UIColor.ttAlternateTintColor()
+        navBar.barTintColor = UIColor.ttAlternateTintColor()
+        view.backgroundColor = UIColor.ttLightGray()
+        
+        scheduleFormattingSegmentedControl.tintColor = UIColor.ttLightGray()
         scheduleFormattingSegmentedControl.selectedSegmentIndex = ScheduleDisplayType.Route.rawValue
         for displayType in [ScheduleDisplayType.Route, ScheduleDisplayType.Day] {
             scheduleFormattingSegmentedControl.setTitle(displayType.displayString(), forSegmentAtIndex: displayType.rawValue)
@@ -46,6 +51,10 @@ class ScheduleViewController: UIViewController {
                 self.displaySchedulesByRoute(schedules)
             }
         }
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
     
     @IBAction func scheduleFormattingControlValueChanged(sender: UISegmentedControl) {
@@ -108,5 +117,9 @@ class ScheduleViewController: UIViewController {
             
             superview.insertArrangedSubview(stackView, atIndex: stackViewIndex)
         }
+    }
+    
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.TopAttached
     }
 }

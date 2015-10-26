@@ -31,7 +31,7 @@ extension UIColor {
     
     class func ttLightGreen() -> UIColor { return UIColor(red:0.678, green:0.721, blue:0.117, alpha:1) }
     
-    class func ttLightGray() -> UIColor { return UIColor(red:0.886, green:0.886, blue:0.886, alpha:1) }
+    class func ttLightGray() -> UIColor { return UIColor(red:0.94, green:0.94, blue:0.96, alpha:1) }
     class func ttDarkGray() -> UIColor { return UIColor(red:0.2, green:0.2, blue:0.2, alpha:1) }
     
 //    class func tt<#Name#>() -> UIColor { return <#Color#> }
