@@ -1,24 +1,18 @@
 //
-//  FormatSchedulesByRouteOperation.swift
+//  ScheduleViewController+SortByRoute.swift
 //  TrolleyTracker
 //
-//  Created by Austin Younts on 10/24/15.
+//  Created by Austin Younts on 10/25/15.
 //  Copyright © 2015 Code For Greenville. All rights reserved.
 //
 
 import UIKit
 
-class FormatSchedulesByRouteOperation: NSOperation {
-
-    var scheduleViews = [UIView]() // <-- Return value
-    
-    private let schedules: [RouteSchedule]
-    
-    init(schedules: [RouteSchedule]) {
-        self.schedules = schedules
-    }
-    
-    override func main() {
+extension ScheduleViewController {
+ 
+    func viewsForSchedulesSortedByRoute(schedules: [RouteSchedule]) -> [UIView] {
+        
+        var scheduleViews = [UIView]()
         
         var groupedSchedules = [GroupedRouteSchedule]()
         
@@ -30,7 +24,7 @@ class FormatSchedulesByRouteOperation: NSOperation {
                 // Check to see if we have handled this day
                 if groupedTimes.filter({ $0.day == time.day }).count > 0 { continue }
                 
-                // Find all matching times 
+                // Find all matching times
                 let matchingTimes = schedule.times.filter { $0.day == time.day }
                 
                 // Convert them to an array of strings
@@ -58,6 +52,8 @@ class FormatSchedulesByRouteOperation: NSOperation {
             
             scheduleViews.append(SpacerView(height: 14))
         }
+        
+        return scheduleViews
     }
 }
 

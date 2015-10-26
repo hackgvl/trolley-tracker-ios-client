@@ -66,16 +66,8 @@ class ScheduleViewController: UIViewController {
             return
         }
         
-        // Otherwise start an operation to fetch them
-        let operation = FormatSchedulesByDayOperation(schedules: schedules)
-        operation.completionBlock = { [weak operation] in
-            guard let views = operation?.scheduleViews else { return }
-            dispatch_async(dispatch_get_main_queue()) {
-                self.schedulesByDayViews = views
-                self.updateScheduleViews(views)
-            }
-        }
-        NSOperationQueue.mainQueue().addOperation(operation)
+        schedulesByDayViews = viewsForSchedulesByDay(schedules)
+        self.updateScheduleViews(schedulesByDayViews!)
     }
     
     private func displaySchedulesByRoute(schedules: [RouteSchedule]) {
@@ -86,16 +78,8 @@ class ScheduleViewController: UIViewController {
             return
         }
         
-        // Otherwise start an operation to fetch them
-        let operation = FormatSchedulesByRouteOperation(schedules: schedules)
-        operation.completionBlock = { [weak operation] in
-            guard let views = operation?.scheduleViews else { return }
-            dispatch_async(dispatch_get_main_queue()) {
-                self.schedulesByRouteViews = views
-                self.updateScheduleViews(views)
-            }
-        }
-        NSOperationQueue.mainQueue().addOperation(operation)
+        schedulesByRouteViews = viewsForSchedulesSortedByRoute(schedules)
+        updateScheduleViews(schedulesByRouteViews!)
     }
     
     private func updateScheduleViews(views: [UIView]) {

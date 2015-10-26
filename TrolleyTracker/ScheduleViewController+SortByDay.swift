@@ -1,31 +1,25 @@
 //
-//  FormatSchedulesByDayOperation.swift
+//  ScheduleViewController+SortByDay.swift
 //  TrolleyTracker
 //
-//  Created by Austin Younts on 10/24/15.
+//  Created by Austin Younts on 10/25/15.
 //  Copyright © 2015 Code For Greenville. All rights reserved.
 //
 
 import UIKit
 
-class FormatSchedulesByDayOperation: NSOperation {
-
-    var scheduleViews = [UIView]() // <-- Return value
+extension ScheduleViewController {
     
-    private let schedules: [RouteSchedule]
-    
-    init(schedules: [RouteSchedule]) {
-        self.schedules = schedules
-    }
-    
-    override func main() {
+    func viewsForSchedulesByDay(schedules: [RouteSchedule]) -> [UIView] {
+        
+        var scheduleViews = [UIView]()
         
         // Create a dictionary of all the days we might show
         var days = [Day : [Route]]()
         for day in Day.allDays {
             days[day] = [Route]()
         }
-
+        
         // Create a list of all Routes and add them to the days dictionary
         for schedule in schedules {
             // Get the route name
@@ -42,10 +36,10 @@ class FormatSchedulesByDayOperation: NSOperation {
         for day in Day.allDays {
             flattenedDays[day] = [GroupedRoute]()
         }
-
+        
         for (day, routes) in days {
             for route in routes {
-                // Check to see if we have already handled this route 
+                // Check to see if we have already handled this route
                 if let matching = flattenedDays[day]?.filter({ $0.name == route.name }) where matching.count > 0 { continue }
                 
                 // Find all matching routes
@@ -54,7 +48,7 @@ class FormatSchedulesByDayOperation: NSOperation {
                 // Convert them into an array of strings
                 let times = matchingRoutes.map { $0.time }
                 
-                // Create a GroupedRoute object 
+                // Create a GroupedRoute object
                 flattenedDays[day]?.append(GroupedRoute(name: route.name, times: times))
             }
         }
@@ -78,6 +72,8 @@ class FormatSchedulesByDayOperation: NSOperation {
             
             scheduleViews.append(SpacerView(height: 14))
         }
+        
+        return scheduleViews
     }
 }
 
