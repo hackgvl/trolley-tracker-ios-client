@@ -52,6 +52,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         mapViewDelegate.annotationDeselectionAction = { [unowned self] view in
             self.detailViewController.showDetailForAnnotation(nil, withUserLocation: nil)
         }
+        mapView.delegate = mapViewDelegate
         
         TrolleyLocationService.sharedService.trolleyPresentObservers.add(updateTrolleyPresent)
         TrolleyLocationService.sharedService.trolleyObservers.add(updateTrolley)
@@ -81,6 +82,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let detailController = segue.destinationViewController as? DetailViewController {
             self.detailViewController = detailController
+            detailController.delegate = self 
         }
     }
     

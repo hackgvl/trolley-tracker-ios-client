@@ -8,7 +8,7 @@
 
 import MapKit
 
-class TrolleyMapViewDelegate: NSObject {
+class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
     
     typealias MapViewSelectionAction = (annotationView: MKAnnotationView) -> Void
     

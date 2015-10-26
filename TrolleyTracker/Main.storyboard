@@ -140,19 +140,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nw5-DS-k9q">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="390"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="341"/>
                                 <animations/>
                                 <connections>
                                     <outlet property="delegate" destination="S6x-G5-NWf" id="wy1-2b-NA0"/>
                                 </connections>
                             </mapView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fHa-9S-gQU">
-                                <rect key="frame" x="0.0" y="390" width="600" height="210"/>
-                                <animations/>
-                                <connections>
-                                    <segue destination="wzx-Jn-UCM" kind="embed" id="tOE-p6-AXg"/>
-                                </connections>
-                            </containerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="999" misplaced="YES" text="No Trolleys are being tracked right now.\nYou can look at the schedule to see when the Trolleys will be running." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfm-uk-9gA">
                                 <rect key="frame" x="-122" y="531" width="845" height="21"/>
                                 <animations/>
@@ -160,6 +153,13 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fHa-9S-gQU">
+                                <rect key="frame" x="0.0" y="341" width="600" height="210"/>
+                                <animations/>
+                                <connections>
+                                    <segue destination="wzx-Jn-UCM" kind="embed" id="tOE-p6-AXg"/>
+                                </connections>
+                            </containerView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqG-Mz-Kgv">
                                 <rect key="frame" x="536" y="479" width="44" height="44"/>
                                 <animations/>
@@ -179,6 +179,7 @@
                             <constraint firstItem="hqG-Mz-Kgv" firstAttribute="trailing" secondItem="V3S-Uq-p0h" secondAttribute="trailingMargin" id="2yx-24-LS7"/>
                             <constraint firstItem="rfm-uk-9gA" firstAttribute="leading" secondItem="V3S-Uq-p0h" secondAttribute="leading" id="3nf-kM-w38"/>
                             <constraint firstItem="rfm-uk-9gA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="hqG-Mz-Kgv" secondAttribute="bottom" constant="8" id="4mg-Ny-O8R"/>
+                            <constraint firstItem="Nhc-IU-zin" firstAttribute="top" secondItem="fHa-9S-gQU" secondAttribute="bottom" id="FA9-ar-yNh"/>
                             <constraint firstAttribute="trailing" secondItem="nw5-DS-k9q" secondAttribute="trailing" id="Idt-Cj-OYW"/>
                             <constraint firstItem="Nhc-IU-zin" firstAttribute="top" secondItem="hqG-Mz-Kgv" secondAttribute="bottom" priority="994" constant="8" id="QWK-LG-3CF"/>
                             <constraint firstItem="nw5-DS-k9q" firstAttribute="top" secondItem="V3S-Uq-p0h" secondAttribute="top" id="SU7-4n-r7Y"/>
@@ -189,7 +190,6 @@
                             <constraint firstItem="nw5-DS-k9q" firstAttribute="leading" secondItem="V3S-Uq-p0h" secondAttribute="leading" id="uK1-Q5-9Yw"/>
                             <constraint firstAttribute="trailing" secondItem="fHa-9S-gQU" secondAttribute="trailing" id="wbz-ck-iFx"/>
                             <constraint firstItem="fHa-9S-gQU" firstAttribute="top" secondItem="nw5-DS-k9q" secondAttribute="bottom" id="wd6-fM-bXD"/>
-                            <constraint firstAttribute="bottom" secondItem="fHa-9S-gQU" secondAttribute="bottom" priority="999" id="xnL-9q-2g2"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="Map" id="Tcl-M5-Uey"/>
