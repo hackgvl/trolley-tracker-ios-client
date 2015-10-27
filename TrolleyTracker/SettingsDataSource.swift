@@ -48,7 +48,11 @@ struct SettingsDataSource {
             let toRecipents = ["YeahThatTrolley@gmail.com"]
             
             if MFMailComposeViewController.canSendMail() {
+                
+                UINavigationBar.setLightAppearance()
+
                 let mc: MFMailComposeViewController = MFMailComposeViewController()
+                mc.view.tintColor = UIColor.ttAlternateTintColor()
                 mc.setSubject(emailTitle)
                 mc.setMessageBody(messageBody, isHTML: false)
                 mc.setToRecipients(toRecipents)
@@ -57,8 +61,8 @@ struct SettingsDataSource {
             }
             else {
                 // Show error
-                let controller = UIAlertController(title: "Error", message: "No email accounts are available on this device.", preferredStyle: UIAlertControllerStyle.Alert)
-                controller.view.tintColor = UIColor.ttAlternateTintColor()
+                let controller = AlertController(title: "Error", message: "No email accounts are available on this device.", preferredStyle: UIAlertControllerStyle.Alert)
+                controller.tintColor = UIColor.ttAlternateTintColor()
                 let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
                 controller.addAction(action)
                 controller.presentViewController(controller, animated: true, completion: nil)
@@ -71,6 +75,7 @@ struct SettingsDataSource {
         return SettingsItem(title: NSLocalizedString("Tell Friends", comment: "Share Button")) {
             
             let shareSheetViewController = UIActivityViewController(activityItems: [NSLocalizedString("Check out Trolley Tracker!", comment: "Share Action"), NSLocalizedString("http://yeahthattrolley.com", comment: "Marketing URL")], applicationActivities: nil)
+            shareSheetViewController.view.tintColor = UIColor.ttAlternateTintColor()
             
             controller.presentViewController(shareSheetViewController, animated: true, completion: nil)
         }
@@ -93,6 +98,7 @@ class SettingsMailComposeViewControllerDelegate: NSObject, MFMailComposeViewCont
             break
         }
         
+        UINavigationBar.setDefaultAppearance()
         controller.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
 }

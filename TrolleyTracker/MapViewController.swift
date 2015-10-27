@@ -189,8 +189,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
             mapView.setCenterCoordinate(userLocation, animated: true)
         }
         else {
-            let controller = UIAlertController(title: nil, message: "We're sorry, we can't find your current location right now.", preferredStyle: UIAlertControllerStyle.Alert)
-            controller.view.tintColor = UIColor.ttAlternateTintColor()
+            let controller = AlertController(title: nil, message: "We're sorry, we can't find your current location right now.", preferredStyle: UIAlertControllerStyle.Alert)
+            controller.tintColor = UIColor.ttAlternateTintColor()
             controller.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
             presentViewController(controller, animated: true, completion: nil)
         }

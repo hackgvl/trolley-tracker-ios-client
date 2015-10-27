@@ -33,6 +33,8 @@
 		D95EF76C1B889B00009B5779 /* UIImage+TrolleyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95EF76B1B889B00009B5779 /* UIImage+TrolleyTracker.swift */; };
 		D9617EEA1BDDA1C800FF86CD /* ScheduleViewController+SortByDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9617EE91BDDA1C800FF86CD /* ScheduleViewController+SortByDay.swift */; };
 		D9617EEE1BDDA37A00FF86CD /* ScheduleViewController+SortByRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9617EED1BDDA37A00FF86CD /* ScheduleViewController+SortByRoute.swift */; };
+		D9617EF21BDDC60700FF86CD /* AlertControllerColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9617EF11BDDC60700FF86CD /* AlertControllerColor.swift */; };
+		D9617EF41BDF0A1600FF86CD /* UIViewController+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9617EF31BDF0A1600FF86CD /* UIViewController+Appearance.swift */; };
 		D9650C9A1B8559EA0004A2AF /* TrolleyRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9650C991B8559EA0004A2AF /* TrolleyRoute.swift */; };
 		D9650CA41B86A9F10004A2AF /* UIColor+TrolleyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9650CA31B86A9F10004A2AF /* UIColor+TrolleyTracker.swift */; };
 		D97055BB1BD6FB25002B9A8B /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97055BA1BD6FB25002B9A8B /* Box.swift */; };
@@ -109,6 +111,8 @@
 		D95EF76B1B889B00009B5779 /* UIImage+TrolleyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+TrolleyTracker.swift"; sourceTree = "<group>"; };
 		D9617EE91BDDA1C800FF86CD /* ScheduleViewController+SortByDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ScheduleViewController+SortByDay.swift"; sourceTree = "<group>"; };
 		D9617EED1BDDA37A00FF86CD /* ScheduleViewController+SortByRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ScheduleViewController+SortByRoute.swift"; sourceTree = "<group>"; };
+		D9617EF11BDDC60700FF86CD /* AlertControllerColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertControllerColor.swift; sourceTree = "<group>"; };
+		D9617EF31BDF0A1600FF86CD /* UIViewController+Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Appearance.swift"; sourceTree = "<group>"; };
 		D9650C991B8559EA0004A2AF /* TrolleyRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyRoute.swift; sourceTree = "<group>"; };
 		D9650CA31B86A9F10004A2AF /* UIColor+TrolleyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+TrolleyTracker.swift"; sourceTree = "<group>"; };
 		D97055BA1BD6FB25002B9A8B /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
@@ -169,6 +173,7 @@
 				D90866F61B91C8B8002A6F87 /* UIFont+TrolleyTracker.swift */,
 				D90866FA1B91D519002A6F87 /* String+TrolleyTracker.swift */,
 				D90867101B921431002A6F87 /* UIView+TrolleyTracker.swift */,
+				D9617EF31BDF0A1600FF86CD /* UIViewController+Appearance.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -209,6 +214,7 @@
 				D92876D01BCB3A53003333EA /* ScheduleViewController.swift */,
 				D9617EED1BDDA37A00FF86CD /* ScheduleViewController+SortByRoute.swift */,
 				D9617EE91BDDA1C800FF86CD /* ScheduleViewController+SortByDay.swift */,
+				D9617EF11BDDC60700FF86CD /* AlertControllerColor.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -449,11 +455,13 @@
 				E71A678C1B30DCE60036FE10 /* DetailViewController.swift in Sources */,
 				D92876CF1BCB3737003333EA /* MapViewDelegate.swift in Sources */,
 				E71A678E1B30DCEF0036FE10 /* SettingsViewController.swift in Sources */,
+				D9617EF41BDF0A1600FF86CD /* UIViewController+Appearance.swift in Sources */,
 				D90867031B91F4D9002A6F87 /* EnvironmentVariables.swift in Sources */,
 				D914FAE61B30DFC0002DACF8 /* TrolleyStop.swift in Sources */,
 				D97055BB1BD6FB25002B9A8B /* Box.swift in Sources */,
 				D9650C9A1B8559EA0004A2AF /* TrolleyRoute.swift in Sources */,
 				D90866F01B91292F002A6F87 /* TrolleyAnnotationView.swift in Sources */,
+				D9617EF21BDDC60700FF86CD /* AlertControllerColor.swift in Sources */,
 				D90867111B921431002A6F87 /* UIView+TrolleyTracker.swift in Sources */,
 				D92876CB1BCB0CE5003333EA /* SettingsDataSource.swift in Sources */,
 				D95DAFC51B7F60EE00BBC906 /* TrolleyRequests.swift in Sources */,

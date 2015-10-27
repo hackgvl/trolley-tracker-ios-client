@@ -20,10 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window?.tintColor = UIColor.ttTintColor()
         self.window?.backgroundColor = UIColor.blackColor()
-        
-        UITabBar.appearance().barTintColor = UIColor.ttMediumPurple()
-        UINavigationBar.appearance().barTintColor = UIColor.ttMediumPurple()
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.ttLightTextColor()]
+        UINavigationBar.setDefaultAppearance()
+        UITabBar.setDefaultAppearance() 
         
         Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders = [
             "Cache-Control":"no-cache",
