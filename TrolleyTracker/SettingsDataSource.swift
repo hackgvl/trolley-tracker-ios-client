@@ -39,7 +39,7 @@ struct SettingsDataSource {
         self.presentationController = presentationController
     }
     
-    private func feedbackItemWithPresentationController(controller: UIViewController) -> SettingsItem {
+    private func feedbackItemWithPresentationController(presentationController: UIViewController) -> SettingsItem {
         
         return SettingsItem(title: NSLocalizedString("Feedback", comment: "Feedback Button")) {
             
@@ -57,7 +57,7 @@ struct SettingsDataSource {
                 mc.setMessageBody(messageBody, isHTML: false)
                 mc.setToRecipients(toRecipents)
                 mc.mailComposeDelegate = self.mailDelegate
-                controller.presentViewController(mc, animated: true, completion: nil)
+                presentationController.presentViewController(mc, animated: true, completion: nil)
             }
             else {
                 // Show error
@@ -65,19 +65,19 @@ struct SettingsDataSource {
                 controller.tintColor = UIColor.ttAlternateTintColor()
                 let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
                 controller.addAction(action)
-                controller.presentViewController(controller, animated: true, completion: nil)
+                presentationController.presentViewController(controller, animated: true, completion: nil)
             }
         }
     }
     
-    private func shareItemWithPresentationController(controller: UIViewController) -> SettingsItem {
+    private func shareItemWithPresentationController(presentationController: UIViewController) -> SettingsItem {
         
         return SettingsItem(title: NSLocalizedString("Tell Friends", comment: "Share Button")) {
             
             let shareSheetViewController = UIActivityViewController(activityItems: [NSLocalizedString("Check out Trolley Tracker!", comment: "Share Action"), NSLocalizedString("http://yeahthattrolley.com", comment: "Marketing URL")], applicationActivities: nil)
             shareSheetViewController.view.tintColor = UIColor.ttAlternateTintColor()
             
-            controller.presentViewController(shareSheetViewController, animated: true, completion: nil)
+            presentationController.presentViewController(shareSheetViewController, animated: true, completion: nil)
         }
     }
 }
