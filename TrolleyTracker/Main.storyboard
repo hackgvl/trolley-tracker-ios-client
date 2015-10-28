@@ -54,15 +54,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Y3-my-gkd">
-                                                    <rect key="frame" x="8" y="8" width="42" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Y3-my-gkd">
+                                                    <rect key="frame" x="16" y="8" width="35" height="17"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="1000" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iS-HQ-dbv">
-                                                    <rect key="frame" x="8" y="29" width="42" height="22"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iS-HQ-dbv">
+                                                    <rect key="frame" x="16" y="25" width="36" height="27"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -268,6 +268,16 @@
                                     <outlet property="delegate" destination="S6x-G5-NWf" id="wy1-2b-NA0"/>
                                 </connections>
                             </mapView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BxK-z7-qYq">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="XbQ-YL-pry">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <animations/>
+                                </view>
+                                <animations/>
+                                <blurEffect style="extraLight"/>
+                            </visualEffectView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="999" misplaced="YES" text="No Trolleys are being tracked right now.\nYou can look at the schedule to see when the Trolleys will be running." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfm-uk-9gA">
                                 <rect key="frame" x="-122" y="531" width="845" height="21"/>
                                 <animations/>
@@ -301,17 +311,21 @@
                             <constraint firstItem="hqG-Mz-Kgv" firstAttribute="trailing" secondItem="V3S-Uq-p0h" secondAttribute="trailingMargin" id="2yx-24-LS7"/>
                             <constraint firstItem="rfm-uk-9gA" firstAttribute="leading" secondItem="V3S-Uq-p0h" secondAttribute="leading" id="3nf-kM-w38"/>
                             <constraint firstItem="rfm-uk-9gA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="hqG-Mz-Kgv" secondAttribute="bottom" constant="8" id="4mg-Ny-O8R"/>
+                            <constraint firstAttribute="trailing" secondItem="BxK-z7-qYq" secondAttribute="trailing" id="4ta-n6-tX1"/>
+                            <constraint firstItem="BxK-z7-qYq" firstAttribute="leading" secondItem="V3S-Uq-p0h" secondAttribute="leading" id="7eI-7h-5Zg"/>
                             <constraint firstItem="Nhc-IU-zin" firstAttribute="top" secondItem="fHa-9S-gQU" secondAttribute="bottom" id="FA9-ar-yNh"/>
                             <constraint firstAttribute="trailing" secondItem="nw5-DS-k9q" secondAttribute="trailing" id="Idt-Cj-OYW"/>
                             <constraint firstItem="Nhc-IU-zin" firstAttribute="top" secondItem="hqG-Mz-Kgv" secondAttribute="bottom" priority="994" constant="8" id="QWK-LG-3CF"/>
                             <constraint firstItem="nw5-DS-k9q" firstAttribute="top" secondItem="V3S-Uq-p0h" secondAttribute="top" id="SU7-4n-r7Y"/>
                             <constraint firstItem="Nhc-IU-zin" firstAttribute="top" secondItem="rfm-uk-9gA" secondAttribute="bottom" id="Wn9-ka-a65"/>
                             <constraint firstAttribute="trailing" secondItem="rfm-uk-9gA" secondAttribute="trailing" id="Xbw-PX-nlG"/>
+                            <constraint firstItem="BxK-z7-qYq" firstAttribute="bottom" secondItem="SpW-vB-tz8" secondAttribute="bottom" id="cdw-x5-Agb"/>
                             <constraint firstItem="fHa-9S-gQU" firstAttribute="height" secondItem="V3S-Uq-p0h" secondAttribute="height" multiplier="3.5:10" id="fNv-jQ-mUZ"/>
                             <constraint firstItem="fHa-9S-gQU" firstAttribute="leading" secondItem="V3S-Uq-p0h" secondAttribute="leading" id="k7O-tC-liZ"/>
                             <constraint firstItem="nw5-DS-k9q" firstAttribute="leading" secondItem="V3S-Uq-p0h" secondAttribute="leading" id="uK1-Q5-9Yw"/>
                             <constraint firstAttribute="trailing" secondItem="fHa-9S-gQU" secondAttribute="trailing" id="wbz-ck-iFx"/>
                             <constraint firstItem="fHa-9S-gQU" firstAttribute="top" secondItem="nw5-DS-k9q" secondAttribute="bottom" id="wd6-fM-bXD"/>
+                            <constraint firstItem="BxK-z7-qYq" firstAttribute="top" secondItem="V3S-Uq-p0h" secondAttribute="top" id="ycv-H2-CRv"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="Map" id="Tcl-M5-Uey"/>
