@@ -31,7 +31,8 @@ struct SettingsDataSource {
             SettingsSection(title: "General", items: [
                 self.feedbackItemWithPresentationController(self.presentationController),
                 self.shareItemWithPresentationController(self.presentationController),
-                self.attributionItemWithPresentationController(self.presentationController)
+                self.attributionItemWithPresentationController(self.presentationController),
+                self.aboutItemWithPresentationController(self.presentationController)
                 ])
         ]
     }()
@@ -87,6 +88,15 @@ struct SettingsDataSource {
         return SettingsItem(title: NSLocalizedString("Acknowledgements", comment: "")) {
             
             let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AttributionViewController") as! AttributionViewController
+            presentationController.navigationController!.pushViewController(controller, animated: true)
+        }
+    }
+    
+    private func aboutItemWithPresentationController(presentationController: UIViewController) -> SettingsItem {
+        
+        return SettingsItem(title: NSLocalizedString("About", comment: "")) {
+            
+            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AboutViewController") as! AboutViewController
             presentationController.navigationController!.pushViewController(controller, animated: true)
         }
     }

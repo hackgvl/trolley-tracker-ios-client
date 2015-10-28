@@ -45,6 +45,11 @@ extension AttributionViewController: UITableViewDataSource {
         
         return cell
     }
+    
+    // This removes cell separator lines from the portion of the tableView where there are no cells.
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.01
+    }
 }
 
 extension AttributionViewController: UITableViewDelegate {
