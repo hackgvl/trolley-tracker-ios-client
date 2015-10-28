@@ -10,9 +10,7 @@ import UIKit
 
 extension ScheduleViewController {
     
-    func viewsForSchedulesByDay(schedules: [RouteSchedule]) -> [UIView] {
-        
-        var scheduleViews = [UIView]()
+    func itemsForSchedulesByDay(schedules: [RouteSchedule]) -> [ScheduleSection] {
         
         // Create a dictionary of all the days we might show
         var days = [Day : [Route]]()
@@ -54,26 +52,28 @@ extension ScheduleViewController {
         }
         
         
-        // Create views
+        // Create Schedule Display items
+        
+        var scheduleSections = [ScheduleSection]()
+        
         for day in Day.sortedDays {
             
             // Don't display days with no routes
             guard let routes = flattenedDays[day] where routes.count > 0 else { continue }
             
-            scheduleViews.append(HeadingLabel(text: day.rawValue))
+            var scheduleItems = [ScheduleItem]()
             
             for route in routes {
-                scheduleViews.append(SubHeadingLabel(text: route.name))
+                var scheduleTimes = [String]()
                 for time in route.times {
-                    scheduleViews.append(BodyLabel(text: "• " + time))
+                    scheduleTimes.append(time)
                 }
-                scheduleViews.append(SpacerView(height: 6))
+                scheduleItems.append(ScheduleItem(title: route.name, times: scheduleTimes))
             }
-            
-            scheduleViews.append(SpacerView(height: 14))
+            scheduleSections.append(ScheduleSection(title: day.rawValue, items: scheduleItems))
         }
         
-        return scheduleViews
+        return scheduleSections
     }
 }
 

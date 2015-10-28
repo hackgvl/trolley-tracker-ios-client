@@ -10,9 +10,7 @@ import UIKit
 
 extension ScheduleViewController {
  
-    func viewsForSchedulesSortedByRoute(schedules: [RouteSchedule]) -> [UIView] {
-        
-        var scheduleViews = [UIView]()
+    func itemsForSchedulesSortedByRoute(schedules: [RouteSchedule]) -> [ScheduleSection] {
         
         var groupedSchedules = [GroupedRouteSchedule]()
         
@@ -37,23 +35,24 @@ extension ScheduleViewController {
             groupedSchedules.append(GroupedRouteSchedule(routeName: schedule.name, groupedTimes: groupedTimes))
         }
         
+        
+        var scheduleSections = [ScheduleSection]()
+        
         for groupedSchedule in groupedSchedules {
             
-            // Display name
-            scheduleViews.append(HeadingLabel(text: groupedSchedule.routeName))
+            var scheduleItems = [ScheduleItem]()
             
             for groupedRouteTime in groupedSchedule.groupedTimes {
-                scheduleViews.append(SubHeadingLabel(text: groupedRouteTime.day))
+                var scheduleTimes = [String]()
                 for time in groupedRouteTime.times {
-                    scheduleViews.append(BodyLabel(text: "• " + time))
+                    scheduleTimes.append(time)
                 }
-                scheduleViews.append(SpacerView(height: 6))
+                scheduleItems.append(ScheduleItem(title: groupedRouteTime.day, times: scheduleTimes))
             }
-            
-            scheduleViews.append(SpacerView(height: 14))
+            scheduleSections.append(ScheduleSection(title: groupedSchedule.routeName, items: scheduleItems))
         }
         
-        return scheduleViews
+        return scheduleSections
     }
 }
 

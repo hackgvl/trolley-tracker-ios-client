@@ -35,6 +35,9 @@
 		D9617EEE1BDDA37A00FF86CD /* ScheduleViewController+SortByRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9617EED1BDDA37A00FF86CD /* ScheduleViewController+SortByRoute.swift */; };
 		D9617EF21BDDC60700FF86CD /* AlertControllerColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9617EF11BDDC60700FF86CD /* AlertControllerColor.swift */; };
 		D9617EF41BDF0A1600FF86CD /* UIViewController+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9617EF31BDF0A1600FF86CD /* UIViewController+Appearance.swift */; };
+		D9617EF71BDF84F400FF86CD /* ScheduleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9617EF61BDF84F400FF86CD /* ScheduleViewCell.swift */; };
+		D9617EF91BE02B9200FF86CD /* ScheduleDisplayModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9617EF81BE02B9200FF86CD /* ScheduleDisplayModels.swift */; };
+		D9617EFB1BE0573100FF86CD /* ScheduleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9617EFA1BE0573100FF86CD /* ScheduleHeaderView.swift */; };
 		D9650C9A1B8559EA0004A2AF /* TrolleyRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9650C991B8559EA0004A2AF /* TrolleyRoute.swift */; };
 		D9650CA41B86A9F10004A2AF /* UIColor+TrolleyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9650CA31B86A9F10004A2AF /* UIColor+TrolleyTracker.swift */; };
 		D97055BB1BD6FB25002B9A8B /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97055BA1BD6FB25002B9A8B /* Box.swift */; };
@@ -113,6 +116,9 @@
 		D9617EED1BDDA37A00FF86CD /* ScheduleViewController+SortByRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ScheduleViewController+SortByRoute.swift"; sourceTree = "<group>"; };
 		D9617EF11BDDC60700FF86CD /* AlertControllerColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertControllerColor.swift; sourceTree = "<group>"; };
 		D9617EF31BDF0A1600FF86CD /* UIViewController+Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Appearance.swift"; sourceTree = "<group>"; };
+		D9617EF61BDF84F400FF86CD /* ScheduleViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewCell.swift; sourceTree = "<group>"; };
+		D9617EF81BE02B9200FF86CD /* ScheduleDisplayModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleDisplayModels.swift; sourceTree = "<group>"; };
+		D9617EFA1BE0573100FF86CD /* ScheduleHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleHeaderView.swift; sourceTree = "<group>"; };
 		D9650C991B8559EA0004A2AF /* TrolleyRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyRoute.swift; sourceTree = "<group>"; };
 		D9650CA31B86A9F10004A2AF /* UIColor+TrolleyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+TrolleyTracker.swift"; sourceTree = "<group>"; };
 		D97055BA1BD6FB25002B9A8B /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
@@ -185,6 +191,7 @@
 				D914FAE51B30DFC0002DACF8 /* TrolleyStop.swift */,
 				D9650C991B8559EA0004A2AF /* TrolleyRoute.swift */,
 				D92876D41BCC89BE003333EA /* Schedule.swift */,
+				D9617EF81BE02B9200FF86CD /* ScheduleDisplayModels.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -236,6 +243,8 @@
 				D97055BF1BD7077B002B9A8B /* BodyLabel.swift */,
 				D97055C11BD7078E002B9A8B /* SpacerView.swift */,
 				D9E240481BDBCACB00F16CF8 /* SubHeadingLabel.swift */,
+				D9617EF61BDF84F400FF86CD /* ScheduleViewCell.swift */,
+				D9617EFA1BE0573100FF86CD /* ScheduleHeaderView.swift */,
 			);
 			name = Schedule;
 			sourceTree = "<group>";
@@ -466,9 +475,11 @@
 				D92876CB1BCB0CE5003333EA /* SettingsDataSource.swift in Sources */,
 				D95DAFC51B7F60EE00BBC906 /* TrolleyRequests.swift in Sources */,
 				D97055BE1BD70753002B9A8B /* HeadingLabel.swift in Sources */,
+				D9617EFB1BE0573100FF86CD /* ScheduleHeaderView.swift in Sources */,
 				D92876D51BCC89BE003333EA /* Schedule.swift in Sources */,
 				D90866FB1B91D519002A6F87 /* String+TrolleyTracker.swift in Sources */,
 				D9617EEE1BDDA37A00FF86CD /* ScheduleViewController+SortByRoute.swift in Sources */,
+				D9617EF71BDF84F400FF86CD /* ScheduleViewCell.swift in Sources */,
 				D9617EEA1BDDA1C800FF86CD /* ScheduleViewController+SortByDay.swift in Sources */,
 				D92876D71BCD05A1003333EA /* ScheduleOperations.swift in Sources */,
 				D92876D11BCB3A53003333EA /* ScheduleViewController.swift in Sources */,
@@ -481,6 +492,7 @@
 				D9E240491BDBCACB00F16CF8 /* SubHeadingLabel.swift in Sources */,
 				D9650CA41B86A9F10004A2AF /* UIColor+TrolleyTracker.swift in Sources */,
 				D90866F71B91C8B8002A6F87 /* UIFont+TrolleyTracker.swift in Sources */,
+				D9617EF91BE02B9200FF86CD /* ScheduleDisplayModels.swift in Sources */,
 				E71A678A1B30DCD30036FE10 /* MapViewController.swift in Sources */,
 				D914FAE01B30DEFE002DACF8 /* TrolleyRouteService.swift in Sources */,
 			);

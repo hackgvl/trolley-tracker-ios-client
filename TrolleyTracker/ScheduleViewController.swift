@@ -23,14 +23,25 @@ private enum ScheduleDisplayType: Int {
 
 class ScheduleViewController: UIViewController, UINavigationBarDelegate {
     
+    let ScheduleHeaderViewIdentifier = "ScheduleHeaderViewIdentifier"
+    
+    var scheduleDataSource: [ScheduleSection]?
+    
+    @IBOutlet var tableView: UITableView! {
+        didSet {
+            tableView.estimatedRowHeight = 60
+            tableView.rowHeight = UITableViewAutomaticDimension
+            tableView.registerClass(ScheduleHeaderView.self, forHeaderFooterViewReuseIdentifier: ScheduleHeaderViewIdentifier)
+        }
+    }
+    
     @IBOutlet weak var navBar: UINavigationBar!
     
     private var schedules = [RouteSchedule]()
     
-    private var schedulesByDayViews: [UIView]?
-    private var schedulesByRouteViews: [UIView]?
+    private var schedulesByDaySections: [ScheduleSection]?
+    private var schedulesByRouteSections: [ScheduleSection]?
 
-    @IBOutlet var stackView: UIStackView!
     @IBOutlet weak var scheduleFormattingSegmentedControl: UISegmentedControl!
     
     override func viewDidLoad() {
@@ -69,57 +80,82 @@ class ScheduleViewController: UIViewController, UINavigationBarDelegate {
     
     private func displaySchedulesByDay(schedules: [RouteSchedule]) {
         
-        // If we have cached views, use them
-        if let views = schedulesByDayViews {
-            updateScheduleViews(views)
+        // If we have cached items, use them
+        if let sections = schedulesByDaySections {
+            updateScheduleDataSourceWithSections(sections)
             return
         }
         
-        schedulesByDayViews = viewsForSchedulesByDay(schedules)
-        self.updateScheduleViews(schedulesByDayViews!)
+        schedulesByDaySections = itemsForSchedulesByDay(schedules)
+        updateScheduleDataSourceWithSections(schedulesByDaySections!)
     }
     
     private func displaySchedulesByRoute(schedules: [RouteSchedule]) {
         
         // If we have cached views, use them
-        if let views = schedulesByRouteViews {
-            updateScheduleViews(views)
+        if let sections = schedulesByRouteSections {
+            updateScheduleDataSourceWithSections(sections)
             return
         }
         
-        schedulesByRouteViews = viewsForSchedulesSortedByRoute(schedules)
-        updateScheduleViews(schedulesByRouteViews!)
+        schedulesByRouteSections = itemsForSchedulesSortedByRoute(schedules)
+        updateScheduleDataSourceWithSections(schedulesByRouteSections!)
     }
     
-    private func updateScheduleViews(views: [UIView]) {
-        
-        dispatch_async(dispatch_get_main_queue()) {
-            
-            let stackView = self.stackView
-            let superview = self.stackView.superview as! UIStackView
-            let stackViewIndex = superview.arrangedSubviews.indexOf(stackView)!
-            
-            let viewsToRemove = stackView.arrangedSubviews
-            
-            stackView.removeFromSuperview()
-            
-            for view in viewsToRemove {
-                stackView.removeArrangedSubview(view)
-            }
-            
-            for view in viewsToRemove {
-                view.removeFromSuperview()
-            }
-            
-            for view in views {
-                stackView.addArrangedSubview(view)
-            }
-            
-            superview.insertArrangedSubview(stackView, atIndex: stackViewIndex)
-        }
+    private func updateScheduleDataSourceWithSections(sections: [ScheduleSection]) {
+        scheduleDataSource = sections
+        tableView.reloadData()
     }
     
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         return UIBarPosition.TopAttached
     }
+}
+
+extension ScheduleViewController: UITableViewDataSource {
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return scheduleDataSource?.count ?? 0
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return scheduleDataSource?[section].items.count ?? 0
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let item = scheduleDataSource![indexPath.section].items[indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier("ScheduleCell") as! ScheduleViewCell
+        
+        cell.displayItem(item)
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 38
+    }
+    
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 14
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = tableView.dequeueReusableHeaderFooterViewWithIdentifier(ScheduleHeaderViewIdentifier) as! ScheduleHeaderView
+        let section = scheduleDataSource![section]
+        
+        view.displaySection(section)
+        
+        return view
+    }
+    
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = UIColor.clearColor()
+        return view
+    }
+}
+
+extension ScheduleViewController: UITableViewDelegate {
+    
 }
