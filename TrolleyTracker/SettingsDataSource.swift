@@ -30,7 +30,8 @@ struct SettingsDataSource {
         return [
             SettingsSection(title: "General", items: [
                 self.feedbackItemWithPresentationController(self.presentationController),
-                self.shareItemWithPresentationController(self.presentationController)
+                self.shareItemWithPresentationController(self.presentationController),
+                self.attributionItemWithPresentationController(self.presentationController)
                 ])
         ]
     }()
@@ -78,6 +79,15 @@ struct SettingsDataSource {
             shareSheetViewController.view.tintColor = UIColor.ttAlternateTintColor()
             
             presentationController.presentViewController(shareSheetViewController, animated: true, completion: nil)
+        }
+    }
+    
+    private func attributionItemWithPresentationController(presentationController: UIViewController) -> SettingsItem {
+        
+        return SettingsItem(title: NSLocalizedString("Acknowledgements", comment: "")) {
+            
+            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AttributionViewController") as! AttributionViewController
+            presentationController.navigationController!.pushViewController(controller, animated: true)
         }
     }
 }

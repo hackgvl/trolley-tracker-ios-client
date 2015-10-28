@@ -17,8 +17,6 @@ class TTSettingsViewController: UIViewController, UITableViewDataSource, UITable
         
         settingsDataSource = SettingsDataSource(presentationController: self)
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Done", comment: "Back button on settings"), style: .Done, target: self, action: "dismissSettings")
-        
         self.view.addSubview(self.tableView)
         
         let views = ["tableview": self.tableView]
@@ -26,8 +24,12 @@ class TTSettingsViewController: UIViewController, UITableViewDataSource, UITable
         NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[tableview]|", options: [], metrics: nil, views: views))
         
         NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[tableview]|", options: [], metrics: nil, views: views))
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
-        
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     ///MARK: TableView

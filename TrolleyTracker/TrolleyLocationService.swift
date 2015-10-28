@@ -29,7 +29,7 @@ class TrolleyLocationService {
             self.getRunningTrolleys()
             
             // -- Start a timer for updating currently running trolleys (trolleys/running)
-            self.updateTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "getRunningTrolleys", userInfo: nil, repeats: true)
+            self.updateTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "getRunningTrolleys", userInfo: nil, repeats: true)
         }
         
         // If we have already retrieved the Trolley list, just start updating them.
