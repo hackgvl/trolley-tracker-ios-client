@@ -46,6 +46,9 @@
 		D97055BE1BD70753002B9A8B /* HeadingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97055BD1BD70753002B9A8B /* HeadingLabel.swift */; };
 		D97055C01BD7077B002B9A8B /* BodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97055BF1BD7077B002B9A8B /* BodyLabel.swift */; };
 		D97055C21BD7078E002B9A8B /* SpacerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97055C11BD7078E002B9A8B /* SpacerView.swift */; };
+		D97A7F0E1BE194F200B40766 /* TrolleyRouteServiceFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97A7F0D1BE194F200B40766 /* TrolleyRouteServiceFake.swift */; };
+		D97A7F101BE1960E00B40766 /* TrolleyServiceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97A7F0F1BE1960E00B40766 /* TrolleyServiceProtocols.swift */; };
+		D97A7F121BE197AD00B40766 /* TrolleyLocationServiceFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97A7F111BE197AD00B40766 /* TrolleyLocationServiceFake.swift */; };
 		D98715411B8A7D8200489594 /* TimeAndDistanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98715401B8A7D8200489594 /* TimeAndDistanceService.swift */; };
 		D98715471B8A7DDC00489594 /* ConcurrentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98715461B8A7DDC00489594 /* ConcurrentOperation.swift */; };
 		D98715491B8A7E0C00489594 /* GetETAOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98715481B8A7E0C00489594 /* GetETAOperation.swift */; };
@@ -110,7 +113,6 @@
 		D92876D21BCB3A67003333EA /* TrolleyScheduleService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyScheduleService.swift; sourceTree = "<group>"; };
 		D92876D41BCC89BE003333EA /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		D92876D61BCD05A1003333EA /* ScheduleOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleOperations.swift; sourceTree = "<group>"; };
-		D92876D81BCDCD0A003333EA /* InOut.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = InOut.playground; sourceTree = "<group>"; };
 		D95DAFC41B7F60EE00BBC906 /* TrolleyRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyRequests.swift; sourceTree = "<group>"; };
 		D95EF7661B87302F009B5779 /* TrolleyRouteOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyRouteOverlay.swift; sourceTree = "<group>"; };
 		D95EF76B1B889B00009B5779 /* UIImage+TrolleyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+TrolleyTracker.swift"; sourceTree = "<group>"; };
@@ -129,6 +131,9 @@
 		D97055BD1BD70753002B9A8B /* HeadingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeadingLabel.swift; sourceTree = "<group>"; };
 		D97055BF1BD7077B002B9A8B /* BodyLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BodyLabel.swift; sourceTree = "<group>"; };
 		D97055C11BD7078E002B9A8B /* SpacerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpacerView.swift; sourceTree = "<group>"; };
+		D97A7F0D1BE194F200B40766 /* TrolleyRouteServiceFake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyRouteServiceFake.swift; sourceTree = "<group>"; };
+		D97A7F0F1BE1960E00B40766 /* TrolleyServiceProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyServiceProtocols.swift; sourceTree = "<group>"; };
+		D97A7F111BE197AD00B40766 /* TrolleyLocationServiceFake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyLocationServiceFake.swift; sourceTree = "<group>"; };
 		D98715401B8A7D8200489594 /* TimeAndDistanceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeAndDistanceService.swift; sourceTree = "<group>"; };
 		D98715461B8A7DDC00489594 /* ConcurrentOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcurrentOperation.swift; sourceTree = "<group>"; };
 		D98715481B8A7E0C00489594 /* GetETAOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetETAOperation.swift; sourceTree = "<group>"; };
@@ -205,11 +210,13 @@
 			children = (
 				D914FADD1B30DEF0002DACF8 /* UserLocationService.swift */,
 				D914FADF1B30DEFE002DACF8 /* TrolleyRouteService.swift */,
-				D914FAE11B30DF14002DACF8 /* TrolleyLocationService.swift */,
 				D95DAFC41B7F60EE00BBC906 /* TrolleyRequests.swift */,
 				D98715401B8A7D8200489594 /* TimeAndDistanceService.swift */,
+				D97A7F0F1BE1960E00B40766 /* TrolleyServiceProtocols.swift */,
+				D914FAE11B30DF14002DACF8 /* TrolleyLocationService.swift */,
 				D92876D21BCB3A67003333EA /* TrolleyScheduleService.swift */,
-				D92876D81BCDCD0A003333EA /* InOut.playground */,
+				D97A7F0D1BE194F200B40766 /* TrolleyRouteServiceFake.swift */,
+				D97A7F111BE197AD00B40766 /* TrolleyLocationServiceFake.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -468,6 +475,7 @@
 				D914FAE21B30DF14002DACF8 /* TrolleyLocationService.swift in Sources */,
 				D98715411B8A7D8200489594 /* TimeAndDistanceService.swift in Sources */,
 				EFA4B1FC1A1C201F00BEA42C /* AppDelegate.swift in Sources */,
+				D97A7F121BE197AD00B40766 /* TrolleyLocationServiceFake.swift in Sources */,
 				E71A678C1B30DCE60036FE10 /* DetailViewController.swift in Sources */,
 				D92876CF1BCB3737003333EA /* MapViewDelegate.swift in Sources */,
 				E71A678E1B30DCEF0036FE10 /* SettingsViewController.swift in Sources */,
@@ -475,6 +483,7 @@
 				D90867031B91F4D9002A6F87 /* EnvironmentVariables.swift in Sources */,
 				D914FAE61B30DFC0002DACF8 /* TrolleyStop.swift in Sources */,
 				D97055BB1BD6FB25002B9A8B /* Box.swift in Sources */,
+				D97A7F0E1BE194F200B40766 /* TrolleyRouteServiceFake.swift in Sources */,
 				D9650C9A1B8559EA0004A2AF /* TrolleyRoute.swift in Sources */,
 				D90866F01B91292F002A6F87 /* TrolleyAnnotationView.swift in Sources */,
 				D9617EF21BDDC60700FF86CD /* AlertControllerColor.swift in Sources */,
@@ -493,6 +502,7 @@
 				D97055C01BD7077B002B9A8B /* BodyLabel.swift in Sources */,
 				D914FAE41B30DFA8002DACF8 /* Trolley.swift in Sources */,
 				D908670F1B921229002A6F87 /* TrolleyStopAnnotationView.swift in Sources */,
+				D97A7F101BE1960E00B40766 /* TrolleyServiceProtocols.swift in Sources */,
 				D98715471B8A7DDC00489594 /* ConcurrentOperation.swift in Sources */,
 				D97055C21BD7078E002B9A8B /* SpacerView.swift in Sources */,
 				D92876D31BCB3A67003333EA /* TrolleyScheduleService.swift in Sources */,

@@ -10,13 +10,12 @@ import Foundation
 import CoreLocation
 import SwiftyJSON
 
-class TrolleyRouteService {
+class TrolleyRouteServiceLive: TrolleyRouteService {
     
     let group = dispatch_group_create()
     
-    typealias LoadTrolleyRouteCompletion = (routes: [TrolleyRoute]) -> Void
  
-    static var sharedService = TrolleyRouteService()
+    static var sharedService = TrolleyRouteServiceLive()
     
     func loadTrolleyRoutes(completion: LoadTrolleyRouteCompletion) {
 

@@ -10,9 +10,9 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class TrolleyLocationService {
+class TrolleyLocationServiceLive: TrolleyLocationService {
     
-    static var sharedService = TrolleyLocationService()
+    static var sharedService = TrolleyLocationServiceLive()
     
     var trolleyObservers = ObserverSet<Trolley>()
     var trolleyPresentObservers = ObserverSet<Bool>()

@@ -17,6 +17,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     // MARK: - Properties
     //==================================================================
     
+    var trolleyRouteService: TrolleyRouteService!
+    var trolleyLocationService: TrolleyLocationService!
+    
     var detailViewController: DetailViewController!
     
     @IBOutlet var mapView: MKMapView!
@@ -43,6 +46,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        switch EnvironmentVariables.currentBuildConfiguration() {
+        case .Release:
+            trolleyLocationService = TrolleyLocationServiceLive.sharedService
+            trolleyRouteService = TrolleyRouteServiceLive.sharedService
+        case .Test:
+            trolleyLocationService = TrolleyLocationServiceFake()
+            trolleyRouteService = TrolleyRouteServiceFake()
+        }
+        
+        
         setupViews()
         
         mapViewDelegate = TrolleyMapViewDelegate()
@@ -54,8 +67,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         }
         mapView.delegate = mapViewDelegate
         
-        TrolleyLocationService.sharedService.trolleyPresentObservers.add(updateTrolleyPresent)
-        TrolleyLocationService.sharedService.trolleyObservers.add(updateTrolley)
+        trolleyLocationService.trolleyPresentObservers.add(updateTrolleyPresent)
+        trolleyLocationService.trolleyObservers.add(updateTrolley)
         
         locationManager.requestWhenInUseAuthorization()
         
@@ -70,13 +83,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
             loadRoutes()
         }
         
-        TrolleyLocationService.sharedService.startTrackingTrolleys()
+        trolleyLocationService.startTrackingTrolleys()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(true)
         
-        TrolleyLocationService.sharedService.stopTrackingTrolley()
+        trolleyLocationService.stopTrackingTrolley()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -117,7 +130,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     private func loadRoutes() {
         
         // Get Stops
-        TrolleyRouteService.sharedService.loadTrolleyRoutes { routes in
+        trolleyRouteService.loadTrolleyRoutes { routes in
             // For each route,
             for var route in routes {
                 
