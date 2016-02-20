@@ -20,12 +20,9 @@ extension ScheduleViewController {
         
         // Create a list of all Routes and add them to the days dictionary
         for schedule in schedules {
-            // Get the route name
-            let routeName = schedule.name
-            
             for time in schedule.times {
                 guard let newDay = Day(rawValue: time.day) else { continue }
-                days[newDay]?.append(Route(name: routeName, time: time.time))
+                days[newDay]?.append(Route(name: schedule.name, ID: schedule.ID, time: time.time))
             }
         }
         
@@ -47,7 +44,7 @@ extension ScheduleViewController {
                 let times = matchingRoutes.map { $0.time }
                 
                 // Create a GroupedRoute object
-                flattenedDays[day]?.append(GroupedRoute(name: route.name, times: times))
+                flattenedDays[day]?.append(GroupedRoute(name: route.name, ID: route.ID, times: times))
             }
         }
         
@@ -68,7 +65,7 @@ extension ScheduleViewController {
                 for time in route.times {
                     scheduleTimes.append(time)
                 }
-                scheduleItems.append(ScheduleItem(title: route.name, times: scheduleTimes))
+                scheduleItems.append(ScheduleItem(title: route.name, routeID: route.ID, times: scheduleTimes))
             }
             scheduleSections.append(ScheduleSection(title: day.rawValue, items: scheduleItems))
         }
@@ -91,11 +88,13 @@ private enum Day: String {
 
 private struct GroupedRoute {
     private let name: String
+    private let ID: Int
     private var times: [String]
 }
 
 private struct Route: Hashable {
     private let name: String
+    private let ID: Int
     private let time: String
     var hashValue: Int { get { return name.hashValue } }
 }

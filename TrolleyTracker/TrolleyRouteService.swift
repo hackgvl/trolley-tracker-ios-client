@@ -17,8 +17,15 @@ class TrolleyRouteServiceLive: TrolleyRouteService {
  
     static var sharedService = TrolleyRouteServiceLive()
     
+    private var memoryCachedRoutes: [TrolleyRoute]?
+    
     func loadTrolleyRoutes(completion: LoadTrolleyRouteCompletion) {
 
+        if let cachedRoutes = memoryCachedRoutes {
+            completion(routes: cachedRoutes)
+            return 
+        }
+        
         let request = TrolleyRequests.RoutesActive()
         request.responseJSON { (response) -> Void in
             guard let json = response.result.value else { return }
@@ -47,6 +54,7 @@ class TrolleyRouteServiceLive: TrolleyRouteService {
         }
         
         dispatch_group_notify(group, dispatch_get_main_queue()) {
+            self.memoryCachedRoutes = routeObjects
             completion(routes: routeObjects)
         }
     }

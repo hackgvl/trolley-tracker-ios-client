@@ -32,7 +32,7 @@ extension ScheduleViewController {
                 groupedTimes.append(GroupedRouteTime(day: time.day, times: timeStrings))
             }
             
-            groupedSchedules.append(GroupedRouteSchedule(routeName: schedule.name, groupedTimes: groupedTimes))
+            groupedSchedules.append(GroupedRouteSchedule(routeName: schedule.name, routeID: schedule.ID, groupedTimes: groupedTimes))
         }
         
         
@@ -47,7 +47,7 @@ extension ScheduleViewController {
                 for time in groupedRouteTime.times {
                     scheduleTimes.append(time)
                 }
-                scheduleItems.append(ScheduleItem(title: groupedRouteTime.day, times: scheduleTimes))
+                scheduleItems.append(ScheduleItem(title: groupedRouteTime.day, routeID: groupedSchedule.routeID, times: scheduleTimes))
             }
             scheduleSections.append(ScheduleSection(title: groupedSchedule.routeName, items: scheduleItems))
         }
@@ -58,6 +58,7 @@ extension ScheduleViewController {
 
 private struct GroupedRouteSchedule {
     let routeName: String
+    let routeID: Int
     var groupedTimes: [GroupedRouteTime]
 }
 

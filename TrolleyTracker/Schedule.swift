@@ -59,21 +59,23 @@ extension RouteTime {
 //==================================================================
 struct RouteSchedule {
     let name: String
+    let ID: Int
     let times: [RouteTime]
     
-    init(name: String, times: [RouteTime]) {
-        self.name = name; self.times = times;
+    init(name: String, ID: Int, times: [RouteTime]) {
+        self.name = name; self.ID = ID; self.times = times;
     }
 }
 
 // JSON 
 enum RouteScheduleJSONKeys: String {
-    case Description, name, times
+    case Description, name, times, ID
 }
 extension RouteSchedule {
     
     init?(json: JSON) {
         guard let name = json[RouteScheduleJSONKeys.name.rawValue].string else { return nil }
+        guard let ID = json[RouteScheduleJSONKeys.ID.rawValue].int else { return nil }
         guard let times = json[RouteScheduleJSONKeys.times.rawValue].array else { return nil }
         
         var timesStructs = [RouteTime]()
@@ -83,6 +85,7 @@ extension RouteSchedule {
         }
 
         self.name = name
+        self.ID = ID
         self.times = timesStructs
     }
 }
@@ -91,11 +94,12 @@ extension RouteSchedule {
 extension RouteSchedule {
     
     enum RouteScheduleDictionaryKeys: String {
-        case name, times
+        case name, ID, times
     }
     
     init?(dictionary: [String : AnyObject]) {
         guard let name = dictionary[RouteScheduleDictionaryKeys.name.rawValue] as? String else { return nil }
+        guard let ID = dictionary[RouteScheduleDictionaryKeys.ID.rawValue] as? Int else { return nil }
         guard let timesDictionaries = dictionary[RouteScheduleDictionaryKeys.times.rawValue] as? [[String : AnyObject]] else { return nil }
         
         var timesStructs = [RouteTime]()
@@ -105,12 +109,14 @@ extension RouteSchedule {
         }
         
         self.name = name
+        self.ID = ID
         self.times = timesStructs
     }
     
     func dictionaryRepresentation() -> [String : AnyObject] {
         return [
             RouteScheduleDictionaryKeys.name.rawValue : name,
+            RouteScheduleDictionaryKeys.ID.rawValue : ID,
             RouteScheduleDictionaryKeys.times.rawValue : times.map({ $0.dictionaryRepresentation() })
         ]
     }

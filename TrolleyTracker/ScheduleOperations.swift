@@ -29,10 +29,8 @@ class OperationQueues {
 
 class LoadRoutesFromNetworkOperation: ConcurrentOperation {
 
-//    let resultsPointer: UnsafeMutablePointer<[JSON]>
     let results: Box<[JSON]>
 
-//    init(results: UnsafeMutablePointer<[JSON]>) {
     init(inout results: Box<[JSON]>) {
         self.results = results
     }
@@ -108,7 +106,8 @@ class AggregateSchedulesOperation: ConcurrentOperation {
             // -- if matching schedules were found, create a new RouteSchedule object for them
             if routeTimes.count > 0 {
                 guard let name = route[RouteScheduleJSONKeys.Description.rawValue].string else { continue }
-                self.routeSchedules.append(RouteSchedule(name: name, times: routeTimes))
+                guard let routeID = route[RouteScheduleJSONKeys.ID.rawValue].int else { continue }
+                self.routeSchedules.append(RouteSchedule(name: name, ID: routeID, times: routeTimes))
             }
         }
         

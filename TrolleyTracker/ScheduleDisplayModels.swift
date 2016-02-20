@@ -17,5 +17,6 @@ struct ScheduleSection {
 struct ScheduleItem {
     
     let title: String
+    let routeID: Int
     let times: [String]
 }
