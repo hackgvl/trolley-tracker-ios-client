@@ -19,7 +19,10 @@ class ScheduleHeaderView: UITableViewHeaderFooterView {
         return label
     }()
     
+    var tapGesture: UITapGestureRecognizer!
+    
     override init(reuseIdentifier: String?) {
+        
         super.init(reuseIdentifier: reuseIdentifier)
         
         contentView.backgroundColor = UIColor.whiteColor()
@@ -29,6 +32,9 @@ class ScheduleHeaderView: UITableViewHeaderFooterView {
         let metrics = ["hMargin" : 8, "vMargin" : 4]
         NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(hMargin)-[label]-(hMargin)-|", options: [], metrics: metrics, views: views))
         NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(vMargin)-[label]-(vMargin)-|", options: [], metrics: metrics, views: views))
+        
+        tapGesture = UITapGestureRecognizer(target: self, action: Selector("handleTap:"))
+        addGestureRecognizer(tapGesture)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -37,5 +43,11 @@ class ScheduleHeaderView: UITableViewHeaderFooterView {
     
     func displaySection(section: ScheduleSection) {
         titleLabel.text = section.title
+        titleLabel.textColor = section.selectable ? UIColor.ttAlternateTintColor() : UIColor.blackColor()
+        tapGesture.enabled = section.selectable
+    }
+    
+    @objc private func handleTap(tap: UITapGestureRecognizer) {
+        print("TAP!!!!")
     }
 }

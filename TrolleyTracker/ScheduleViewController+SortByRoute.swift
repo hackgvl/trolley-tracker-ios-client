@@ -47,9 +47,9 @@ extension ScheduleViewController {
                 for time in groupedRouteTime.times {
                     scheduleTimes.append(time)
                 }
-                scheduleItems.append(ScheduleItem(title: groupedRouteTime.day, routeID: groupedSchedule.routeID, times: scheduleTimes))
+                scheduleItems.append(ScheduleItem(title: groupedRouteTime.day, routeID: groupedSchedule.routeID, times: scheduleTimes, selectable: false))
             }
-            scheduleSections.append(ScheduleSection(title: groupedSchedule.routeName, items: scheduleItems))
+            scheduleSections.append(ScheduleSection(title: groupedSchedule.routeName, items: scheduleItems, selectable: true))
         }
         
         return scheduleSections

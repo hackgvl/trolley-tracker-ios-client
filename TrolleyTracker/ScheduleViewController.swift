@@ -158,4 +158,10 @@ extension ScheduleViewController: UITableViewDataSource {
 
 extension ScheduleViewController: UITableViewDelegate {
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let item = scheduleDataSource![indexPath.section].items[indexPath.row]
+        guard item.selectable else { return }
+        print("didSelect")
+    }
 }

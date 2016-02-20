@@ -12,6 +12,7 @@ struct ScheduleSection {
     
     let title: String
     let items: [ScheduleItem]
+    let selectable: Bool
 }
 
 struct ScheduleItem {
@@ -19,4 +20,5 @@ struct ScheduleItem {
     let title: String
     let routeID: Int
     let times: [String]
+    let selectable: Bool 
 }
