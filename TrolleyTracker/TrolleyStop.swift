@@ -62,7 +62,6 @@ extension TrolleyStop: MKAnnotation {
     }
     
     var title: String? {
-        // TODO: Return Trolley Name
         return name
     }
     

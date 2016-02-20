@@ -27,6 +27,15 @@
 		D92876D31BCB3A67003333EA /* TrolleyScheduleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92876D21BCB3A67003333EA /* TrolleyScheduleService.swift */; };
 		D92876D51BCC89BE003333EA /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92876D41BCC89BE003333EA /* Schedule.swift */; };
 		D92876D71BCD05A1003333EA /* ScheduleOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92876D61BCD05A1003333EA /* ScheduleOperations.swift */; };
+		D93FD09E1C78FDE20089CDBE /* Schedule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D93FD09D1C78FDE20089CDBE /* Schedule.storyboard */; };
+		D93FD0A01C78FED60089CDBE /* RouteDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93FD09F1C78FED60089CDBE /* RouteDetailViewController.swift */; };
+		D93FD0A91C7932B50089CDBE /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D93FD08C1C7890EE0089CDBE /* SwiftyJSON.framework */; };
+		D93FD0AA1C7932B50089CDBE /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D93FD08C1C7890EE0089CDBE /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D93FD0AD1C7932BA0089CDBE /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D93FD05C1C7890E20089CDBE /* Alamofire.framework */; };
+		D93FD0AE1C7932BA0089CDBE /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D93FD05C1C7890E20089CDBE /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D93FD0B21C7934FC0089CDBE /* SwiftyJSON.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D93FD08C1C7890EE0089CDBE /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D93FD0B31C7935050089CDBE /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D93FD05C1C7890E20089CDBE /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D93FD0B51C79C71F0089CDBE /* MKMapView+TrolleyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93FD0B41C79C71F0089CDBE /* MKMapView+TrolleyTracker.swift */; };
 		D95DAFC51B7F60EE00BBC906 /* TrolleyRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95DAFC41B7F60EE00BBC906 /* TrolleyRequests.swift */; };
 		D95EF7671B87302F009B5779 /* TrolleyRouteOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95EF7661B87302F009B5779 /* TrolleyRouteOverlay.swift */; };
 		D95EF76C1B889B00009B5779 /* UIImage+TrolleyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95EF76B1B889B00009B5779 /* UIImage+TrolleyTracker.swift */; };
@@ -160,14 +169,14 @@
 			remoteGlobalIDString = A8580F741BCF5C5B00DA927B;
 			remoteInfo = "SwiftyJSON tvOS Tests";
 		};
-		D93FD0991C7891080089CDBE /* PBXContainerItemProxy */ = {
+		D93FD0AB1C7932B50089CDBE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D93FD0811C7890EE0089CDBE /* SwiftyJSON.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 2E4FEFDA19575BE100351305;
 			remoteInfo = "SwiftyJSON iOS";
 		};
-		D93FD09B1C78910D0089CDBE /* PBXContainerItemProxy */ = {
+		D93FD0AF1C7932BA0089CDBE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D93FD0511C7890E20089CDBE /* Alamofire.xcodeproj */;
 			proxyType = 1;
@@ -184,12 +193,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		D93FD0B11C7934DF0089CDBE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D93FD0B31C7935050089CDBE /* Alamofire.framework in CopyFiles */,
+				D93FD0B21C7934FC0089CDBE /* SwiftyJSON.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D95DAFDA1B7FF92B00BBC906 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 8;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				D93FD0AA1C7932B50089CDBE /* SwiftyJSON.framework in Embed Frameworks */,
+				D93FD0AE1C7932BA0089CDBE /* Alamofire.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 1;
@@ -220,6 +242,9 @@
 		D92876D61BCD05A1003333EA /* ScheduleOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleOperations.swift; sourceTree = "<group>"; };
 		D93FD0511C7890E20089CDBE /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		D93FD0811C7890EE0089CDBE /* SwiftyJSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyJSON.xcodeproj; path = ../SwiftyJSON/SwiftyJSON.xcodeproj; sourceTree = "<group>"; };
+		D93FD09D1C78FDE20089CDBE /* Schedule.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Schedule.storyboard; sourceTree = "<group>"; };
+		D93FD09F1C78FED60089CDBE /* RouteDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDetailViewController.swift; sourceTree = "<group>"; };
+		D93FD0B41C79C71F0089CDBE /* MKMapView+TrolleyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MKMapView+TrolleyTracker.swift"; sourceTree = "<group>"; };
 		D95DAFC41B7F60EE00BBC906 /* TrolleyRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyRequests.swift; sourceTree = "<group>"; };
 		D95EF7661B87302F009B5779 /* TrolleyRouteOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyRouteOverlay.swift; sourceTree = "<group>"; };
 		D95EF76B1B889B00009B5779 /* UIImage+TrolleyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+TrolleyTracker.swift"; sourceTree = "<group>"; };
@@ -263,6 +288,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D93FD0A91C7932B50089CDBE /* SwiftyJSON.framework in Frameworks */,
+				D93FD0AD1C7932BA0089CDBE /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +394,7 @@
 				D9617EF11BDDC60700FF86CD /* AlertControllerColor.swift */,
 				D9617EFC1BE0634A00FF86CD /* AttributionViewController.swift */,
 				D9617EFE1BE0D61600FF86CD /* AboutViewController.swift */,
+				D93FD09F1C78FED60089CDBE /* RouteDetailViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -377,6 +405,7 @@
 				D97055BC1BD706CE002B9A8B /* Schedule */,
 				D90866EF1B91292F002A6F87 /* TrolleyAnnotationView.swift */,
 				D908670E1B921229002A6F87 /* TrolleyStopAnnotationView.swift */,
+				D93FD0B41C79C71F0089CDBE /* MKMapView+TrolleyTracker.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -429,6 +458,7 @@
 			isa = PBXGroup;
 			children = (
 				D92876CC1BCB21EE003333EA /* Main.storyboard */,
+				D93FD09D1C78FDE20089CDBE /* Schedule.storyboard */,
 				D98715451B8A7DA100489594 /* Operations */,
 				D914FADC1B30DEB4002DACF8 /* Services */,
 				D914FADB1B30DEA4002DACF8 /* Models */,
@@ -484,12 +514,13 @@
 				EFA4B1F31A1C201F00BEA42C /* Frameworks */,
 				EFA4B1F41A1C201F00BEA42C /* Resources */,
 				D95DAFDA1B7FF92B00BBC906 /* Embed Frameworks */,
+				D93FD0B11C7934DF0089CDBE /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D93FD09C1C78910D0089CDBE /* PBXTargetDependency */,
-				D93FD09A1C7891080089CDBE /* PBXTargetDependency */,
+				D93FD0AC1C7932B50089CDBE /* PBXTargetDependency */,
+				D93FD0B01C7932BA0089CDBE /* PBXTargetDependency */,
 			);
 			name = TrolleyTracker;
 			productName = TrolleyTracker;
@@ -674,6 +705,7 @@
 				EFA4B2031A1C201F00BEA42C /* Images.xcassets in Resources */,
 				D90866F41B91C79F002A6F87 /* Montserrat-Bold.ttf in Resources */,
 				D92876CD1BCB21EE003333EA /* Main.storyboard in Resources */,
+				D93FD09E1C78FDE20089CDBE /* Schedule.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -719,6 +751,7 @@
 				D9617EFB1BE0573100FF86CD /* ScheduleHeaderView.swift in Sources */,
 				D92876D51BCC89BE003333EA /* Schedule.swift in Sources */,
 				D90866FB1B91D519002A6F87 /* String+TrolleyTracker.swift in Sources */,
+				D93FD0B51C79C71F0089CDBE /* MKMapView+TrolleyTracker.swift in Sources */,
 				D9617EEE1BDDA37A00FF86CD /* ScheduleViewController+SortByRoute.swift in Sources */,
 				D9617EF71BDF84F400FF86CD /* ScheduleViewCell.swift in Sources */,
 				D9617EEA1BDDA1C800FF86CD /* ScheduleViewController+SortByDay.swift in Sources */,
@@ -734,6 +767,7 @@
 				D9E240491BDBCACB00F16CF8 /* SubHeadingLabel.swift in Sources */,
 				D9650CA41B86A9F10004A2AF /* UIColor+TrolleyTracker.swift in Sources */,
 				D90866F71B91C8B8002A6F87 /* UIFont+TrolleyTracker.swift in Sources */,
+				D93FD0A01C78FED60089CDBE /* RouteDetailViewController.swift in Sources */,
 				D9617EFD1BE0634A00FF86CD /* AttributionViewController.swift in Sources */,
 				D9617EF91BE02B9200FF86CD /* ScheduleDisplayModels.swift in Sources */,
 				E71A678A1B30DCD30036FE10 /* MapViewController.swift in Sources */,
@@ -752,15 +786,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D93FD09A1C7891080089CDBE /* PBXTargetDependency */ = {
+		D93FD0AC1C7932B50089CDBE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "SwiftyJSON iOS";
-			targetProxy = D93FD0991C7891080089CDBE /* PBXContainerItemProxy */;
+			targetProxy = D93FD0AB1C7932B50089CDBE /* PBXContainerItemProxy */;
 		};
-		D93FD09C1C78910D0089CDBE /* PBXTargetDependency */ = {
+		D93FD0B01C7932BA0089CDBE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Alamofire iOS";
-			targetProxy = D93FD09B1C78910D0089CDBE /* PBXContainerItemProxy */;
+			targetProxy = D93FD0AF1C7932BA0089CDBE /* PBXContainerItemProxy */;
 		};
 		EFA4B20D1A1C201F00BEA42C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -831,6 +865,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -906,6 +942,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1021,6 +1059,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1038,7 +1078,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Austin Younts (5SN74W2EB7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

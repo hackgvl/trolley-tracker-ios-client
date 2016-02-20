@@ -64,6 +64,11 @@ class ScheduleViewController: UIViewController, UINavigationBarDelegate {
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
@@ -112,7 +117,9 @@ class ScheduleViewController: UIViewController, UINavigationBarDelegate {
     }
     
     private func displayRoute(routeID: Int) {
-        print("Display Route: \(routeID)")
+        let controller = storyboard?.instantiateViewControllerWithIdentifier(String(RouteDetailViewController)) as! RouteDetailViewController
+        controller.routeID = routeID
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 

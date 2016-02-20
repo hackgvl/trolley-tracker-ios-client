@@ -1,121 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15C27e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="IIY-SQ-1lS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10109" systemVersion="15E39d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="IIY-SQ-1lS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Schedule-->
-        <scene sceneID="Xa7-TY-76r">
-            <objects>
-                <viewController title="Schedule" id="lbs-on-Z7h" customClass="ScheduleViewController" customModule="TrolleyTracker" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Emc-4n-BCU"/>
-                        <viewControllerLayoutGuide type="bottom" id="7cx-Q9-SYB"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="2gs-QZ-FyR">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XxJ-I7-dCD">
-                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                                <animations/>
-                                <items>
-                                    <navigationItem id="lOY-XS-udX">
-                                        <nil key="title"/>
-                                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" id="qC8-vs-GZA">
-                                            <rect key="frame" x="231" y="8" width="139" height="29"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <animations/>
-                                            <segments>
-                                                <segment title="By Route"/>
-                                                <segment title="By Name"/>
-                                            </segments>
-                                            <connections>
-                                                <action selector="scheduleFormattingControlValueChanged:" destination="lbs-on-Z7h" eventType="valueChanged" id="Sah-pe-4Ok"/>
-                                            </connections>
-                                        </segmentedControl>
-                                    </navigationItem>
-                                </items>
-                                <connections>
-                                    <outlet property="delegate" destination="lbs-on-Z7h" id="dyx-yp-eaA"/>
-                                </connections>
-                            </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0zk-qG-Rvo">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScheduleCell" id="rBs-S3-fFZ" customClass="ScheduleViewCell" customModule="TrolleyTracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="60"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rBs-S3-fFZ" id="tn8-1a-HIf">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Y3-my-gkd">
-                                                    <rect key="frame" x="16" y="8" width="35" height="17"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iS-HQ-dbv">
-                                                    <rect key="frame" x="16" y="25" width="36" height="27"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <animations/>
-                                            <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="7iS-HQ-dbv" secondAttribute="bottom" id="2fi-08-xVG"/>
-                                                <constraint firstItem="7iS-HQ-dbv" firstAttribute="leading" secondItem="tn8-1a-HIf" secondAttribute="leadingMargin" constant="8" id="GzA-L2-gId"/>
-                                                <constraint firstItem="7Y3-my-gkd" firstAttribute="leading" secondItem="tn8-1a-HIf" secondAttribute="leadingMargin" constant="8" id="Jro-0e-IhU"/>
-                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="7iS-HQ-dbv" secondAttribute="trailing" constant="8" id="VJv-pi-XDs"/>
-                                                <constraint firstItem="7iS-HQ-dbv" firstAttribute="top" secondItem="7Y3-my-gkd" secondAttribute="bottom" id="a6o-u0-XTW"/>
-                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="7Y3-my-gkd" secondAttribute="trailing" constant="8" id="e8W-N9-pjG"/>
-                                                <constraint firstItem="7Y3-my-gkd" firstAttribute="top" secondItem="tn8-1a-HIf" secondAttribute="topMargin" id="n5r-Qv-Vo3"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <animations/>
-                                        <connections>
-                                            <outlet property="headingLabel" destination="7Y3-my-gkd" id="VqN-my-1qp"/>
-                                            <outlet property="timesLabel" destination="7iS-HQ-dbv" id="mDr-bM-6gX"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="lbs-on-Z7h" id="uNM-ag-h6Q"/>
-                                    <outlet property="delegate" destination="lbs-on-Z7h" id="uOR-yp-ek3"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="0zk-qG-Rvo" firstAttribute="top" secondItem="XxJ-I7-dCD" secondAttribute="bottom" id="88J-hn-MJt"/>
-                            <constraint firstItem="XxJ-I7-dCD" firstAttribute="top" secondItem="Emc-4n-BCU" secondAttribute="bottom" id="Dv4-ti-t99"/>
-                            <constraint firstAttribute="trailing" secondItem="0zk-qG-Rvo" secondAttribute="trailing" id="VQq-Yp-6oX"/>
-                            <constraint firstItem="XxJ-I7-dCD" firstAttribute="leading" secondItem="2gs-QZ-FyR" secondAttribute="leading" id="mMD-BH-eas"/>
-                            <constraint firstItem="0zk-qG-Rvo" firstAttribute="leading" secondItem="2gs-QZ-FyR" secondAttribute="leading" id="p4R-Ni-NJR"/>
-                            <constraint firstItem="7cx-Q9-SYB" firstAttribute="top" secondItem="0zk-qG-Rvo" secondAttribute="bottom" id="tQO-oA-fVs"/>
-                            <constraint firstAttribute="trailing" secondItem="XxJ-I7-dCD" secondAttribute="trailing" id="xtS-lW-oj5"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Schedule" image="Schedule" id="iqx-Vk-ddR"/>
-                    <connections>
-                        <outlet property="navBar" destination="XxJ-I7-dCD" id="eiu-QG-TNc"/>
-                        <outlet property="scheduleFormattingSegmentedControl" destination="qC8-vs-GZA" id="U9Z-ad-GJ6"/>
-                        <outlet property="tableView" destination="0zk-qG-Rvo" id="RRh-2S-Q1w"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Nda-Sr-5MD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2227" y="308"/>
-        </scene>
         <!--Settings-->
         <scene sceneID="pss-zD-bXV">
             <objects>
@@ -127,7 +17,6 @@
                     <view key="view" contentMode="scaleToFill" id="pKS-wQ-2Sj">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Rna-nv-sjY"/>
@@ -150,14 +39,12 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TrolleyTracker has benefited from the following open source software." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLL-jc-UyT">
                                 <rect key="frame" x="20" y="28" width="560" height="21"/>
-                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GFy-Vp-pxR">
                                 <rect key="frame" x="0.0" y="57" width="600" height="543"/>
-                                <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AttributionCell" textLabel="zf1-nd-ufu" style="IBUITableViewCellStyleDefault" id="aDq-Rm-GYs">
@@ -170,15 +57,12 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zf1-nd-ufu">
                                                     <rect key="frame" x="15" y="0.0" width="570" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <animations/>
                                         </tableViewCellContentView>
-                                        <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                 </prototypes>
@@ -188,7 +72,6 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="GFy-Vp-pxR" secondAttribute="trailing" id="1Dk-FG-Vt3"/>
@@ -225,14 +108,12 @@
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eru-tv-g2m">
                                 <rect key="frame" x="20" y="0.0" width="560" height="580"/>
-                                <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <attributedString key="attributedText"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="eru-tv-g2m" firstAttribute="top" secondItem="fEe-dh-e2p" secondAttribute="topMargin" id="Hfd-LS-ww0"/>
@@ -263,7 +144,6 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nw5-DS-k9q">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="341"/>
-                                <animations/>
                                 <connections>
                                     <outlet property="delegate" destination="S6x-G5-NWf" id="wy1-2b-NA0"/>
                                 </connections>
@@ -273,28 +153,23 @@
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="XbQ-YL-pry">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <animations/>
                                 </view>
-                                <animations/>
                                 <blurEffect style="extraLight"/>
                             </visualEffectView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="999" misplaced="YES" text="No Trolleys are being tracked right now.\nYou can look at the schedule to see when the Trolleys will be running." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfm-uk-9gA">
                                 <rect key="frame" x="-122" y="531" width="845" height="21"/>
-                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fHa-9S-gQU">
                                 <rect key="frame" x="0.0" y="341" width="600" height="210"/>
-                                <animations/>
                                 <connections>
                                     <segue destination="wzx-Jn-UCM" kind="embed" id="tOE-p6-AXg"/>
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqG-Mz-Kgv">
                                 <rect key="frame" x="536" y="479" width="44" height="44"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="6iC-3p-Ow4"/>
                                     <constraint firstAttribute="height" constant="44" id="sMP-rh-khO"/>
@@ -305,7 +180,6 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="hqG-Mz-Kgv" firstAttribute="trailing" secondItem="V3S-Uq-p0h" secondAttribute="trailingMargin" id="2yx-24-LS7"/>
@@ -348,12 +222,11 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" id="9vT-6C-JWF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
                         <segue destination="S6x-G5-NWf" kind="relationship" relationship="viewControllers" id="BhJ-lW-eTu"/>
-                        <segue destination="lbs-on-Z7h" kind="relationship" relationship="viewControllers" id="lyO-3v-O20"/>
+                        <segue destination="35k-bQ-hpP" kind="relationship" relationship="viewControllers" id="lyO-3v-O20"/>
                         <segue destination="mTl-Xl-hNx" kind="relationship" relationship="viewControllers" id="m1m-3P-SiJ"/>
                     </connections>
                 </tabBarController>
@@ -372,7 +245,6 @@
                     <view key="view" contentMode="scaleToFill" id="r1Z-Pk-Cgg">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="210"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
@@ -389,7 +261,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eev-Lo-j7e">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -400,10 +271,19 @@
             </objects>
             <point key="canvasLocation" x="1502" y="989"/>
         </scene>
+        <!--Schedule-->
+        <scene sceneID="tjP-Ql-EJa">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Schedule" id="35k-bQ-hpP" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="zTc-qx-N6q"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gSV-oX-JG4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2227" y="308"/>
+        </scene>
     </scenes>
     <resources>
         <image name="LocateMe" width="30" height="30"/>
         <image name="Map" width="30" height="30"/>
-        <image name="Schedule" width="30" height="30"/>
     </resources>
 </document>

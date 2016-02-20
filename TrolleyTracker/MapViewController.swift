@@ -72,7 +72,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         
         locationManager.requestWhenInUseAuthorization()
         
-        mapView.region = MKCoordinateRegion(center: CLLocationCoordinate2DMake(34.851887, -82.398366), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+        mapView.setRegionToDowntownGreenville()
     }
     
     override func viewDidAppear(animated: Bool) {

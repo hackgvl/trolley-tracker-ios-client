@@ -11,6 +11,12 @@ import SwiftyJSON
 
 class TrolleyRouteServiceFake: TrolleyRouteService {
     
+    func loadTrolleyRoute(routeID: Int, completion: LoadTrolleyRouteCompletion) {
+        let route = fakeRoutes().filter({ $0.ID == routeID }).first
+        let routes = route != nil ? [route!] : [TrolleyRoute]()
+        completion(routes: routes)
+    }
+    
     func loadTrolleyRoutes(completion: LoadTrolleyRouteCompletion) {
         
         completion(routes: fakeRoutes())

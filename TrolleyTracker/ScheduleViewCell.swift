@@ -15,6 +15,7 @@ class ScheduleViewCell: UITableViewCell {
     
     func displayItem(item: ScheduleItem) {
         selectionStyle = item.selectable ? .Gray : .None
+        accessoryType = item.selectable ? .DisclosureIndicator : .None
         headingLabel.text = item.title
         timesLabel.text = item.times.joinWithSeparator("\n")
     }

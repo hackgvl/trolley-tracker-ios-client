@@ -12,6 +12,7 @@ typealias LoadTrolleyRouteCompletion = (routes: [TrolleyRoute]) -> Void
 
 protocol TrolleyRouteService {
     
+    func loadTrolleyRoute(routeID: Int, completion: LoadTrolleyRouteCompletion)
     func loadTrolleyRoutes(completion: LoadTrolleyRouteCompletion)
 }
 

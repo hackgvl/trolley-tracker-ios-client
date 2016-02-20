@@ -14,6 +14,7 @@ class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
     
     var annotationSelectionAction: MapViewSelectionAction?
     var annotationDeselectionAction: MapViewSelectionAction?
+    var shouldShowCallouts: Bool = false
     
     let trolleyAnnotationReuseIdentifier = "TrolleyAnnotation"
     let stopAnnotationReuseIdentifier = "StopAnnotation"
@@ -46,6 +47,7 @@ class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
                 annotationView.centerOffset = CGPointMake(0, -(CGRectGetHeight(annotationView.frame) / 2))
             }
             
+            annotationView.canShowCallout = shouldShowCallouts
             annotationView.annotation = annotation
             annotationView.tintColor = UIColor.stopColorForIndex(stopAnnotation.colorIndex)
             
