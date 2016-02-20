@@ -8,8 +8,13 @@
 
 import UIKit
 
+typealias ScheduleHeaderViewTapAction = (routeID: Int) -> Void
 
 class ScheduleHeaderView: UITableViewHeaderFooterView {
+    
+    var tapAction: ScheduleHeaderViewTapAction?
+    private var tapGesture: UITapGestureRecognizer!
+    private var displayedRouteID: Int?
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -18,8 +23,6 @@ class ScheduleHeaderView: UITableViewHeaderFooterView {
         label.font = UIFont.boldSystemFontOfSize(12)
         return label
     }()
-    
-    var tapGesture: UITapGestureRecognizer!
     
     override init(reuseIdentifier: String?) {
         
@@ -45,9 +48,11 @@ class ScheduleHeaderView: UITableViewHeaderFooterView {
         titleLabel.text = section.title
         titleLabel.textColor = section.selectable ? UIColor.ttAlternateTintColor() : UIColor.blackColor()
         tapGesture.enabled = section.selectable
+        displayedRouteID = section.selectable ? section.items.first?.routeID : nil
     }
     
     @objc private func handleTap(tap: UITapGestureRecognizer) {
-        print("TAP!!!!")
+        guard let routeID = displayedRouteID else { return }
+        tapAction?(routeID: routeID)
     }
 }

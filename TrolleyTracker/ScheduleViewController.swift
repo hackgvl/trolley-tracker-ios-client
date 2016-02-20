@@ -110,6 +110,10 @@ class ScheduleViewController: UIViewController, UINavigationBarDelegate {
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         return UIBarPosition.TopAttached
     }
+    
+    private func displayRoute(routeID: Int) {
+        print("Display Route: \(routeID)")
+    }
 }
 
 extension ScheduleViewController: UITableViewDataSource {
@@ -144,6 +148,7 @@ extension ScheduleViewController: UITableViewDataSource {
         let view = tableView.dequeueReusableHeaderFooterViewWithIdentifier(ScheduleHeaderViewIdentifier) as! ScheduleHeaderView
         let section = scheduleDataSource![section]
         
+        view.tapAction = displayRoute
         view.displaySection(section)
         
         return view
@@ -162,6 +167,6 @@ extension ScheduleViewController: UITableViewDelegate {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let item = scheduleDataSource![indexPath.section].items[indexPath.row]
         guard item.selectable else { return }
-        print("didSelect")
+        displayRoute(item.routeID)
     }
 }
