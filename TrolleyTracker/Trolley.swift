@@ -40,7 +40,7 @@ class Trolley: NSObject {
         self.location = CLLocation(latitude: (latitude! as NSString).doubleValue, longitude: (longitude! as NSString).doubleValue)
         
         self.number = json["Number"].int
-        self.name = json["TrolleyName"].stringValue + " - " + "\(self.ID)"
+        self.name = json["TrolleyName"].stringValue// + " - " + "\(self.ID)"
     }
     
     init(trolley: Trolley, location: CLLocation) {
