@@ -27,6 +27,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     @IBOutlet var locateMeButton: UIButton!
     @IBOutlet var noTrolleyLabel: UILabel!
     
+    @IBOutlet var noTrolleyLabelTapGesture: UITapGestureRecognizer!
+    
     @IBOutlet var detailViewVisibleConstraint: NSLayoutConstraint!
     private var detailViewHiddenConstraint: NSLayoutConstraint!
     
@@ -180,6 +182,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         else { updateAction() }
     }
     
+    @IBAction func handleNoTrolleyLabelTap(sender: UITapGestureRecognizer) {
+        tabBarController?.selectedIndex = 1
+    }
+    
     //==================================================================
     // MARK: - TTDetailViewControllerDelegate
     //==================================================================
@@ -216,7 +222,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     private func setupViews() {
         
         title = "Map"
-        noTrolleyLabel.text = "No Trolleys are being tracked right now.\nYou can look at the schedule to see when the Trolleys will be running."
+        noTrolleyLabel.text = "No Trolleys are being tracked right now.\nView the Schedule to see run times and select a route to preview it on the map."
         
         view.backgroundColor = UIColor.whiteColor()
         

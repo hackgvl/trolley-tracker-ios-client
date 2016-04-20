@@ -36,6 +36,7 @@
 		D93FD0B21C7934FC0089CDBE /* SwiftyJSON.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D93FD08C1C7890EE0089CDBE /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D93FD0B31C7935050089CDBE /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D93FD05C1C7890E20089CDBE /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D93FD0B51C79C71F0089CDBE /* MKMapView+TrolleyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93FD0B41C79C71F0089CDBE /* MKMapView+TrolleyTracker.swift */; };
+		D93FD0BB1C79D04D0089CDBE /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D93FD0BA1C79D04D0089CDBE /* More.storyboard */; };
 		D95DAFC51B7F60EE00BBC906 /* TrolleyRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95DAFC41B7F60EE00BBC906 /* TrolleyRequests.swift */; };
 		D95EF7671B87302F009B5779 /* TrolleyRouteOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95EF7661B87302F009B5779 /* TrolleyRouteOverlay.swift */; };
 		D95EF76C1B889B00009B5779 /* UIImage+TrolleyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95EF76B1B889B00009B5779 /* UIImage+TrolleyTracker.swift */; };
@@ -245,6 +246,7 @@
 		D93FD09D1C78FDE20089CDBE /* Schedule.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Schedule.storyboard; sourceTree = "<group>"; };
 		D93FD09F1C78FED60089CDBE /* RouteDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDetailViewController.swift; sourceTree = "<group>"; };
 		D93FD0B41C79C71F0089CDBE /* MKMapView+TrolleyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MKMapView+TrolleyTracker.swift"; sourceTree = "<group>"; };
+		D93FD0BA1C79D04D0089CDBE /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = More.storyboard; path = ../More.storyboard; sourceTree = "<group>"; };
 		D95DAFC41B7F60EE00BBC906 /* TrolleyRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyRequests.swift; sourceTree = "<group>"; };
 		D95EF7661B87302F009B5779 /* TrolleyRouteOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyRouteOverlay.swift; sourceTree = "<group>"; };
 		D95EF76B1B889B00009B5779 /* UIImage+TrolleyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+TrolleyTracker.swift"; sourceTree = "<group>"; };
@@ -458,6 +460,7 @@
 			isa = PBXGroup;
 			children = (
 				D92876CC1BCB21EE003333EA /* Main.storyboard */,
+				D93FD0BA1C79D04D0089CDBE /* More.storyboard */,
 				D93FD09D1C78FDE20089CDBE /* Schedule.storyboard */,
 				D98715451B8A7DA100489594 /* Operations */,
 				D914FADC1B30DEB4002DACF8 /* Services */,
@@ -702,6 +705,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFA4B2061A1C201F00BEA42C /* LaunchScreen.xib in Resources */,
+				D93FD0BB1C79D04D0089CDBE /* More.storyboard in Resources */,
 				EFA4B2031A1C201F00BEA42C /* Images.xcassets in Resources */,
 				D90866F41B91C79F002A6F87 /* Montserrat-Bold.ttf in Resources */,
 				D92876CD1BCB21EE003333EA /* Main.storyboard in Resources */,
