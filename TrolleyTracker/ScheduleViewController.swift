@@ -59,6 +59,7 @@ class ScheduleViewController: UIViewController, UINavigationBarDelegate {
         TrolleyScheduleService.sharedService.loadTrolleySchedules { (schedules) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
                 self.schedules = schedules
+                self.clearCachedViews()
                 self.displaySchedulesByRoute(schedules)
             }
         }
@@ -71,6 +72,11 @@ class ScheduleViewController: UIViewController, UINavigationBarDelegate {
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
+    }
+    
+    private func clearCachedViews() {
+        schedulesByDaySections = nil
+        schedulesByRouteSections = nil
     }
     
     @IBAction func scheduleFormattingControlValueChanged(sender: UISegmentedControl) {

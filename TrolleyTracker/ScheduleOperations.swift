@@ -94,10 +94,13 @@ class AggregateSchedulesOperation: ConcurrentOperation {
         // e.g. RouteID: 1, RouteName: "Main to Flour Field", times: ["Sunday 4-6", "Friday 6-10"]
         // For each schedule, add it's name from the Route list we loaded earlier. If we can't find a name, insert some default.
         for route in routes {
+            
             // for each route
-            // -- find any matching schedules
             var routeTimes = [RouteTime]()
-            for schedule in schedules {
+            // -- find any matching schedules
+            let matchingSchedules = schedules.filter { $0["RouteID"].number == route["ID"].number }
+            
+            for schedule in matchingSchedules {
                 guard let routeTime = RouteTime(json: schedule) else { continue }
                 // -- for any schedules that match, create a route time object from that schedule and add it to an array
                 routeTimes.append(routeTime)
