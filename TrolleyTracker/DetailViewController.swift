@@ -218,7 +218,7 @@ class DetailViewController: UIViewController {
     private lazy var walkingTimeButton: UIButton = {
         let button = UIButton(frame: CGRectZero)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: "handleWalkingTimeButton:", forControlEvents: UIControlEvents.TouchUpInside)
+        button.addTarget(self, action: #selector(DetailViewController.handleWalkingTimeButton(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         button.setTitle("Get Walking Time", forState: .Normal)
         
         return button
@@ -227,7 +227,7 @@ class DetailViewController: UIViewController {
     private lazy var directionsButton: UIButton = {
         let button = UIButton(frame: CGRectZero)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: "handleDirectionsButton:", forControlEvents: UIControlEvents.TouchUpInside)
+        button.addTarget(self, action: #selector(DetailViewController.handleDirectionsButton(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         button.setTitle("Directions", forState: .Normal)
         
         return button

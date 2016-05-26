@@ -19,7 +19,7 @@ class TrolleyLocationServiceFake: TrolleyLocationService {
     var trolleyPresentObservers = ObserverSet<Bool>()
     
     func startTrackingTrolleys() {
-        updateTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "updateTrolleys", userInfo: nil, repeats: true)
+        updateTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(TrolleyLocationServiceFake.updateTrolleys), userInfo: nil, repeats: true)
         updateTrolleys()
     }
     

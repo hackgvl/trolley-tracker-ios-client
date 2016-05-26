@@ -36,7 +36,7 @@ class ScheduleHeaderView: UITableViewHeaderFooterView {
         NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(hMargin)-[label]-(hMargin)-|", options: [], metrics: metrics, views: views))
         NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(vMargin)-[label]-(vMargin)-|", options: [], metrics: metrics, views: views))
         
-        tapGesture = UITapGestureRecognizer(target: self, action: Selector("handleTap:"))
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(ScheduleHeaderView.handleTap(_:)))
         addGestureRecognizer(tapGesture)
     }
 
