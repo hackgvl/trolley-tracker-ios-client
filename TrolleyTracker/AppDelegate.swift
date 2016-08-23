@@ -8,6 +8,9 @@
 
 import UIKit
 import Alamofire
+import Fabric
+import Crashlytics
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -30,6 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ]
         
         let _ = TrolleyScheduleService.sharedService
+        
+        Fabric.with([Crashlytics.self])
         
         return true
     }
