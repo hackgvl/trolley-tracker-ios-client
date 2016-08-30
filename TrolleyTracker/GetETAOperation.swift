@@ -12,18 +12,18 @@ import MapKit
 
 class GetETAOperation: ConcurrentOperation {
     
-    private static let travelTimeDateFormatter: NSDateComponentsFormatter = {
-        let formatter = NSDateComponentsFormatter()
-        formatter.unitsStyle = .Abbreviated
+    fileprivate static let travelTimeDateFormatter: DateComponentsFormatter = {
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .abbreviated
         
         return formatter
         }()
     
-    var expectedTravelTime: NSTimeInterval?
+    var expectedTravelTime: TimeInterval?
     var formattedTravelTime: String?
     
-    private let source: MKMapItem
-    private let destination: MKMapItem
+    fileprivate let source: MKMapItem
+    fileprivate let destination: MKMapItem
     
     init(source: MKMapItem, destination: MKMapItem) {
         self.source = source
@@ -32,7 +32,7 @@ class GetETAOperation: ConcurrentOperation {
     
     override func execute() {
         
-        if cancelled {
+        if isCancelled {
             self.finish()
             return
         }
@@ -40,20 +40,20 @@ class GetETAOperation: ConcurrentOperation {
         let request = MKDirectionsRequest()
         request.source = source
         request.destination = destination
-        request.transportType = MKDirectionsTransportType.Walking
+        request.transportType = MKDirectionsTransportType.walking
         
         let directions = MKDirections(request: request)
         
-        directions.calculateETAWithCompletionHandler { (response, error) -> Void in
+        directions.calculateETA { (response, error) -> Void in
             
             guard let response = response else { self.finish(); return }
             
             let time = response.expectedTravelTime
-            let travelTimeComponents = NSDateComponents()
+            var travelTimeComponents = DateComponents()
             travelTimeComponents.hour = Int(floor(time / 3600))
-            travelTimeComponents.minute = Int(ceil((time % 3600) / 60))
+            travelTimeComponents.minute = Int(ceil((time.truncatingRemainder(dividingBy: 3600)) / 60))
             
-            let componentsString = GetETAOperation.travelTimeDateFormatter.stringFromDateComponents(travelTimeComponents)
+            let componentsString = GetETAOperation.travelTimeDateFormatter.string(from: travelTimeComponents)
             
             self.expectedTravelTime = response.expectedTravelTime
             self.formattedTravelTime = componentsString

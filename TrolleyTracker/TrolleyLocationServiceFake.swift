@@ -11,15 +11,15 @@ import CoreLocation
 
 class TrolleyLocationServiceFake: TrolleyLocationService {
     
-    private var updateTimer: NSTimer?
-    private var lastUpdateIndex: Int = 0
-    private var lastUpdateIndex1: Int = 2
+    fileprivate var updateTimer: Timer?
+    fileprivate var lastUpdateIndex: Int = 0
+    fileprivate var lastUpdateIndex1: Int = 2
     
     var trolleyObservers = ObserverSet<Trolley>()
     var trolleyPresentObservers = ObserverSet<Bool>()
     
     func startTrackingTrolleys() {
-        updateTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(TrolleyLocationServiceFake.updateTrolleys), userInfo: nil, repeats: true)
+        updateTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(TrolleyLocationServiceFake.updateTrolleys), userInfo: nil, repeats: true)
         updateTrolleys()
     }
     
@@ -27,7 +27,7 @@ class TrolleyLocationServiceFake: TrolleyLocationService {
         updateTimer?.invalidate()
     }
     
-    @objc private func updateTrolleys() {
+    @objc fileprivate func updateTrolleys() {
         
         trolleyPresentObservers.notify(true)
 //        trolleyObservers.notify(Trolley(identifier: 1, location: locations[nextLocationIndex()], name: "Trolley 1", number: 1))
@@ -36,13 +36,13 @@ class TrolleyLocationServiceFake: TrolleyLocationService {
         trolleyObservers.notify(Trolley(identifier: 2, location: locations[3], name: "Trolley 2", number: 2))
     }
     
-    private func nextLocationIndex() -> Int {
+    fileprivate func nextLocationIndex() -> Int {
         let currentIndex = lastUpdateIndex
         lastUpdateIndex = lastUpdateIndex >= (locations.count - 1) ? 0 : lastUpdateIndex + 1
         return currentIndex
     }
     
-    private func nextLocationIndex1() -> Int {
+    fileprivate func nextLocationIndex1() -> Int {
         let currentIndex = lastUpdateIndex1
         lastUpdateIndex1 = lastUpdateIndex1 >= (locations.count - 1) ? 0 : lastUpdateIndex1 + 1
         return currentIndex

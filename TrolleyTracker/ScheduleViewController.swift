@@ -9,13 +9,13 @@
 import UIKit
 
 private enum ScheduleDisplayType: Int {
-    case Route, Day
+    case route, day
     
-    private func displayString() -> String {
+    fileprivate func displayString() -> String {
         switch self {
-        case .Route:
+        case .route:
             return "By Route"
-        case .Day:
+        case .day:
             return "By Day"
         }
     }
@@ -31,16 +31,16 @@ class ScheduleViewController: UIViewController, UINavigationBarDelegate {
         didSet {
             tableView.estimatedRowHeight = 60
             tableView.rowHeight = UITableViewAutomaticDimension
-            tableView.registerClass(ScheduleHeaderView.self, forHeaderFooterViewReuseIdentifier: ScheduleHeaderViewIdentifier)
+            tableView.register(ScheduleHeaderView.self, forHeaderFooterViewReuseIdentifier: ScheduleHeaderViewIdentifier)
         }
     }
     
     @IBOutlet weak var navBar: UINavigationBar!
     
-    private var schedules = [RouteSchedule]()
+    fileprivate var schedules = [RouteSchedule]()
     
-    private var schedulesByDaySections: [ScheduleSection]?
-    private var schedulesByRouteSections: [ScheduleSection]?
+    fileprivate var schedulesByDaySections: [ScheduleSection]?
+    fileprivate var schedulesByRouteSections: [ScheduleSection]?
 
     @IBOutlet weak var scheduleFormattingSegmentedControl: UISegmentedControl!
     
@@ -51,13 +51,13 @@ class ScheduleViewController: UIViewController, UINavigationBarDelegate {
         view.backgroundColor = UIColor.ttLightGray()
         
         scheduleFormattingSegmentedControl.tintColor = UIColor.ttLightGray()
-        scheduleFormattingSegmentedControl.selectedSegmentIndex = ScheduleDisplayType.Route.rawValue
-        for displayType in [ScheduleDisplayType.Route, ScheduleDisplayType.Day] {
-            scheduleFormattingSegmentedControl.setTitle(displayType.displayString(), forSegmentAtIndex: displayType.rawValue)
+        scheduleFormattingSegmentedControl.selectedSegmentIndex = ScheduleDisplayType.route.rawValue
+        for displayType in [ScheduleDisplayType.route, ScheduleDisplayType.day] {
+            scheduleFormattingSegmentedControl.setTitle(displayType.displayString(), forSegmentAt: displayType.rawValue)
         }
         
         TrolleyScheduleService.sharedService.loadTrolleySchedules { (schedules) -> Void in
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 self.schedules = schedules
                 self.clearCachedViews()
                 self.displaySchedulesByRoute(schedules)
@@ -65,31 +65,31 @@ class ScheduleViewController: UIViewController, UINavigationBarDelegate {
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
-    private func clearCachedViews() {
+    fileprivate func clearCachedViews() {
         schedulesByDaySections = nil
         schedulesByRouteSections = nil
     }
     
-    @IBAction func scheduleFormattingControlValueChanged(sender: UISegmentedControl) {
+    @IBAction func scheduleFormattingControlValueChanged(_ sender: UISegmentedControl) {
         guard let displayType = ScheduleDisplayType(rawValue: sender.selectedSegmentIndex) else { return }
         switch displayType {
-        case .Route:
+        case .route:
             displaySchedulesByRoute(schedules)
-        case .Day:
+        case .day:
             displaySchedulesByDay(schedules)
         }
     }
     
-    private func displaySchedulesByDay(schedules: [RouteSchedule]) {
+    fileprivate func displaySchedulesByDay(_ schedules: [RouteSchedule]) {
         
         // If we have cached items, use them
         if let sections = schedulesByDaySections {
@@ -101,7 +101,7 @@ class ScheduleViewController: UIViewController, UINavigationBarDelegate {
         updateScheduleDataSourceWithSections(schedulesByDaySections!)
     }
     
-    private func displaySchedulesByRoute(schedules: [RouteSchedule]) {
+    fileprivate func displaySchedulesByRoute(_ schedules: [RouteSchedule]) {
         
         // If we have cached views, use them
         if let sections = schedulesByRouteSections {
@@ -113,17 +113,17 @@ class ScheduleViewController: UIViewController, UINavigationBarDelegate {
         updateScheduleDataSourceWithSections(schedulesByRouteSections!)
     }
     
-    private func updateScheduleDataSourceWithSections(sections: [ScheduleSection]) {
+    fileprivate func updateScheduleDataSourceWithSections(_ sections: [ScheduleSection]) {
         scheduleDataSource = sections
         tableView.reloadData()
     }
     
-    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
-        return UIBarPosition.TopAttached
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.topAttached
     }
     
-    private func displayRoute(routeID: Int) {
-        let controller = storyboard?.instantiateViewControllerWithIdentifier(String(RouteDetailViewController)) as! RouteDetailViewController
+    fileprivate func displayRoute(_ routeID: Int) {
+        let controller = storyboard?.instantiateViewController(withIdentifier: String(describing: RouteDetailViewController.self)) as! RouteDetailViewController
         controller.routeID = routeID
         navigationController?.pushViewController(controller, animated: true)
     }
@@ -131,34 +131,29 @@ class ScheduleViewController: UIViewController, UINavigationBarDelegate {
 
 extension ScheduleViewController: UITableViewDataSource {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return scheduleDataSource?.count ?? 0
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return scheduleDataSource?[section].items.count ?? 0
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let item = scheduleDataSource![indexPath.section].items[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier("ScheduleCell") as! ScheduleViewCell
+        let item = scheduleDataSource![(indexPath as NSIndexPath).section].items[(indexPath as NSIndexPath).row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleCell") as! ScheduleViewCell
         
         cell.displayItem(item)
         
         return cell
     }
+}
+
+extension ScheduleViewController: UITableViewDelegate {
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 38
-    }
-    
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 14
-    }
-    
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = tableView.dequeueReusableHeaderFooterViewWithIdentifier(ScheduleHeaderViewIdentifier) as! ScheduleHeaderView
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: ScheduleHeaderViewIdentifier) as! ScheduleHeaderView
         let section = scheduleDataSource![section]
         
         view.tapAction = displayRoute
@@ -167,18 +162,23 @@ extension ScheduleViewController: UITableViewDataSource {
         return view
     }
     
-    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let view = UIView()
-        view.backgroundColor = UIColor.clearColor()
+        view.backgroundColor = UIColor.clear
         return view
     }
-}
-
-extension ScheduleViewController: UITableViewDelegate {
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let item = scheduleDataSource![indexPath.section].items[indexPath.row]
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 38
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 14
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let item = scheduleDataSource![(indexPath as NSIndexPath).section].items[(indexPath as NSIndexPath).row]
         guard item.selectable else { return }
         displayRoute(item.routeID)
     }

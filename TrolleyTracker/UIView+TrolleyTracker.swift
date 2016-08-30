@@ -10,8 +10,8 @@ import UIKit
 
 extension UIView {
     
-    func insetRect(rect: CGRect, toPercent percent: CGFloat) -> CGRect {
-        let insetAmount = (CGRectGetWidth(rect) * (1 - percent)) / 2
-        return CGRectInset(rect, insetAmount, insetAmount)
+    func insetRect(_ rect: CGRect, toPercent percent: CGFloat) -> CGRect {
+        let insetAmount = (rect.width * (1 - percent)) / 2
+        return rect.insetBy(dx: insetAmount, dy: insetAmount)
     }
 }

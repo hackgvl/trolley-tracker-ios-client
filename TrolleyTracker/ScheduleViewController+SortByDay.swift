@@ -10,7 +10,7 @@ import UIKit
 
 extension ScheduleViewController {
     
-    func itemsForSchedulesByDay(schedules: [RouteSchedule]) -> [ScheduleSection] {
+    func itemsForSchedulesByDay(_ schedules: [RouteSchedule]) -> [ScheduleSection] {
         
         // Create a dictionary of all the days we might show
         var days = [Day : [Route]]()
@@ -35,7 +35,7 @@ extension ScheduleViewController {
         for (day, routes) in days {
             for route in routes {
                 // Check to see if we have already handled this route
-                if let matching = flattenedDays[day]?.filter({ $0.name == route.name }) where matching.count > 0 { continue }
+                if let matching = flattenedDays[day]?.filter({ $0.name == route.name }) , matching.count > 0 { continue }
                 
                 // Find all matching routes
                 let matchingRoutes = routes.filter { $0.name == route.name }
@@ -56,7 +56,7 @@ extension ScheduleViewController {
         for day in Day.sortedDays {
             
             // Don't display days with no routes
-            guard let routes = flattenedDays[day] where routes.count > 0 else { continue }
+            guard let routes = flattenedDays[day] , routes.count > 0 else { continue }
             
             var scheduleItems = [ScheduleItem]()
             
@@ -87,15 +87,15 @@ private enum Day: String {
 }
 
 private struct GroupedRoute {
-    private let name: String
-    private let ID: Int
-    private var times: [String]
+    fileprivate let name: String
+    fileprivate let ID: Int
+    fileprivate var times: [String]
 }
 
 private struct Route: Hashable {
-    private let name: String
-    private let ID: Int
-    private let time: String
+    fileprivate let name: String
+    fileprivate let ID: Int
+    fileprivate let time: String
     var hashValue: Int { get { return name.hashValue } }
 }
 

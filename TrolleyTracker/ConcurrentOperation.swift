@@ -8,46 +8,46 @@
 
 import Foundation
 
-class ConcurrentOperation: NSOperation {
+class ConcurrentOperation: Operation {
 
-    override var asynchronous: Bool {
+    override var isAsynchronous: Bool {
         return true
     }
     
     class func keyPathsForValuesAffectingIsReady() -> Set<NSObject> {
-        return ["state"]
+        return ["state" as NSObject]
     }
     
     class func keyPathsForValuesAffectingIsExecuting() -> Set<NSObject> {
-        return ["state"]
+        return ["state" as NSObject]
     }
     
     class func keyPathsForValuesAffectingIsFinished() -> Set<NSObject> {
-        return ["state"]
+        return ["state" as NSObject]
     }
     
     class func keyPathsForValuesAffectingIsCancelled() -> Set<NSObject> {
-        return ["state"]
+        return ["state" as NSObject]
     }
     
     
-    private enum State: Int {
+    fileprivate enum State: Int {
         /// The initial state of an `Operation`.
-        case Initialized
+        case initialized
         
         /// The `Operation` is executing.
-        case Executing
+        case executing
         
         /// The `Operation` has finished executing.
-        case Finished
+        case finished
         
         /// The `Operation` has been cancelled.
-        case Cancelled
+        case cancelled
     }
     
-    private var _state = State.Initialized
+    fileprivate var _state = State.initialized
     
-    private var state: State {
+    fileprivate var state: State {
         get {
             return _state
         }
@@ -55,51 +55,51 @@ class ConcurrentOperation: NSOperation {
         set(newState) {
             // Manually fire the KVO notifications for state change, since this is "private".
             
-            willChangeValueForKey("state")
+            willChangeValue(forKey: "state")
             
             switch (_state, newState) {
-            case (.Finished, _):
+            case (.finished, _):
                 break // cannot leave the finished state
             default:
                 _state = newState
             }
             
-            didChangeValueForKey("state")
+            didChangeValue(forKey: "state")
         }
     }
     
-    override var executing: Bool {
-        return state == .Executing
+    override var isExecuting: Bool {
+        return state == .executing
     }
     
-    override var finished: Bool {
-        return state == .Finished
+    override var isFinished: Bool {
+        return state == .finished
     }
     
-    override var cancelled: Bool {
-        return state == .Cancelled
+    override var isCancelled: Bool {
+        return state == .cancelled
     }
     
     override final func start() {
         
-        if !(state == .Cancelled) {
-            state = .Executing
+        if !(state == .cancelled) {
+            state = .executing
         }
         
         execute()
     }
     
     func execute() {
-        print("\(self.dynamicType) must override `execute()`.", terminator: "")
+        print("\(type(of: self)) must override `execute()`.", terminator: "")
         
         finish()
     }
     
     override func cancel() {
-        state = .Cancelled
+        state = .cancelled
     }
     
     final func finish() {
-        state = .Finished
+        state = .finished
     }
 }

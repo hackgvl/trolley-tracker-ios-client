@@ -54,7 +54,7 @@ extension UIImage {
     //    get { return imageOrBlank("<#Name#>") }
     //    }
     
-    private class func imageOrBlank(named: String) -> UIImage {
+    fileprivate class func imageOrBlank(_ named: String) -> UIImage {
         
         if let image = UIImage(named: named) {
             return image
@@ -69,13 +69,13 @@ extension UIImage {
 
 extension MKAnnotationView {
     
-    func setTintedImage(imageToSet: UIImage) {
+    func setTintedImage(_ imageToSet: UIImage) {
         
-        let imageView = UIImageView(image: imageToSet.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate))
+        let imageView = UIImageView(image: imageToSet.withRenderingMode(UIImageRenderingMode.alwaysTemplate))
         imageView.tintColor = self.tintColor
         
-        UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, imageView.opaque, 0.0)
-        imageView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, imageView.isOpaque, 0.0)
+        imageView.layer.render(in: UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         

@@ -10,7 +10,7 @@ import MapKit
 
 class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
     
-    typealias MapViewSelectionAction = (annotationView: MKAnnotationView) -> Void
+    typealias MapViewSelectionAction = (_ annotationView: MKAnnotationView) -> Void
     
     var annotationSelectionAction: MapViewSelectionAction?
     var annotationDeselectionAction: MapViewSelectionAction?
@@ -20,16 +20,16 @@ class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
     let stopAnnotationReuseIdentifier = "StopAnnotation"
     let userAnnotationReuseIdentifier = "UserAnnotation"
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         var returnView: MKAnnotationView?
         
         if (annotation is MKUserLocation) {
-            var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(userAnnotationReuseIdentifier)
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: userAnnotationReuseIdentifier)
             if annotationView == nil {
                 annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: userAnnotationReuseIdentifier)
                 annotationView!.image = UIImage.ttUserPin
-                annotationView!.centerOffset = CGPointMake(0, -(annotationView!.image!.size.height / 2))
+                annotationView!.centerOffset = CGPoint(x: 0, y: -(annotationView!.image!.size.height / 2))
             }
             
             annotationView!.annotation = annotation
@@ -40,11 +40,11 @@ class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
             // Handle Stops
         else if let stopAnnotation = annotation as? TrolleyStop {
             
-            var annotationView: TrolleyStopAnnotationView! = mapView.dequeueReusableAnnotationViewWithIdentifier(stopAnnotationReuseIdentifier) as? TrolleyStopAnnotationView
+            var annotationView: TrolleyStopAnnotationView! = mapView.dequeueReusableAnnotationView(withIdentifier: stopAnnotationReuseIdentifier) as? TrolleyStopAnnotationView
             if annotationView == nil {
                 annotationView = TrolleyStopAnnotationView(annotation: annotation, reuseIdentifier: stopAnnotationReuseIdentifier)
-                annotationView.frame = CGRectMake(0, 0, 30, 50)
-                annotationView.centerOffset = CGPointMake(0, -(CGRectGetHeight(annotationView.frame) / 2))
+                annotationView.frame = CGRect(x: 0, y: 0, width: 30, height: 50)
+                annotationView.centerOffset = CGPoint(x: 0, y: -(annotationView.frame.height / 2))
             }
             
             annotationView.canShowCallout = shouldShowCallouts
@@ -58,10 +58,10 @@ class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
             // Handle Trolleys
         else if let trolleyAnnotation = annotation as? Trolley {
             
-            var annotationView: TrolleyAnnotationView! = mapView.dequeueReusableAnnotationViewWithIdentifier(trolleyAnnotationReuseIdentifier) as? TrolleyAnnotationView
+            var annotationView: TrolleyAnnotationView! = mapView.dequeueReusableAnnotationView(withIdentifier: trolleyAnnotationReuseIdentifier) as? TrolleyAnnotationView
             if annotationView == nil {
                 annotationView = TrolleyAnnotationView(annotation: trolleyAnnotation, reuseIdentifier: trolleyAnnotationReuseIdentifier)
-                annotationView.frame = CGRectMake(0, 0, 50, 50)
+                annotationView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
             }
             
             annotationView.tintColor = UIColor.trolleyColorForID(trolleyAnnotation.ID)
@@ -71,14 +71,14 @@ class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
             returnView = annotationView
         }
         
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             self.updateAnnotationZIndexesInMapView(mapView)
         }
         
         return returnView
     }
     
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         
         let renderer = MKPolylineRenderer(overlay: overlay)
         
@@ -91,13 +91,13 @@ class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
         return renderer
     }
     
-    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-        annotationSelectionAction?(annotationView: view)
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        annotationSelectionAction?(view)
         updateAnnotationZIndexesInMapView(mapView)
     }
     
-    func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
-        annotationDeselectionAction?(annotationView: view)
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        annotationDeselectionAction?(view)
         updateAnnotationZIndexesInMapView(mapView)
     }
     
@@ -106,17 +106,17 @@ class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
     //        mapView.setRegion(region, animated: true)
     //    }
     
-    private func updateAnnotationZIndexesInMapView(mapView: MKMapView) {
+    fileprivate func updateAnnotationZIndexesInMapView(_ mapView: MKMapView) {
         
         for annotation in mapView.annotations {
             if let trolley = annotation as? Trolley,
-                view = mapView.viewForAnnotation(trolley) {
-                    view.superview?.bringSubviewToFront(view)
+                let view = mapView.view(for: trolley) {
+                    view.superview?.bringSubview(toFront: view)
             }
         }
         
-        if let view = mapView.viewForAnnotation(mapView.userLocation) {
-            view.superview?.bringSubviewToFront(view)
+        if let view = mapView.view(for: mapView.userLocation) {
+            view.superview?.bringSubview(toFront: view)
         }
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 
 class AlertController: UIAlertController {
     
-    var tintColor = UIApplication.sharedApplication().keyWindow?.tintColor
+    var tintColor = UIApplication.shared.keyWindow?.tintColor
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()

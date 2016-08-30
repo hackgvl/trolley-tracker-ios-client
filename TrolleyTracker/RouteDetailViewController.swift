@@ -16,8 +16,8 @@ class RouteDetailViewController: UIViewController, MKMapViewDelegate {
     //==================================================================
     
     var routeID: Int?
-    private let mapViewDelegate = TrolleyMapViewDelegate()
-    private var trolleyRouteService: TrolleyRouteService!
+    fileprivate let mapViewDelegate = TrolleyMapViewDelegate()
+    fileprivate var trolleyRouteService: TrolleyRouteService!
     
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var routeNameLabel: UILabel!
@@ -39,22 +39,22 @@ class RouteDetailViewController: UIViewController, MKMapViewDelegate {
         displayRoute()
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationController?.navigationBar.barStyle = .Black
+        navigationController?.navigationBar.barStyle = .black
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
     }
 
     //==================================================================
     // MARK: - Implementation
     //==================================================================
     
-    private final func setupEnvironmentDependentItems() {
+    fileprivate final func setupEnvironmentDependentItems() {
         switch EnvironmentVariables.currentBuildConfiguration() {
         case .Release:
             trolleyRouteService = TrolleyRouteServiceLive.sharedService
@@ -63,7 +63,7 @@ class RouteDetailViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
-    private final func displayRoute() {
+    fileprivate final func displayRoute() {
         
         routeNameLabel.text = nil
         setDimmingOverlayVisible(true, animated: true)
@@ -79,7 +79,7 @@ class RouteDetailViewController: UIViewController, MKMapViewDelegate {
             
             self.setDimmingOverlayVisible(false, animated: true)
             self.routeNameLabel.text = route.longName
-            self.mapView.addOverlay(route.overlay)
+            self.mapView.add(route.overlay)
             
             for stop in route.stops {
                 self.mapView.addAnnotation(stop)
@@ -87,15 +87,15 @@ class RouteDetailViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
-    private final func setDimmingOverlayVisible(visible: Bool, animated: Bool) {
+    fileprivate final func setDimmingOverlayVisible(_ visible: Bool, animated: Bool) {
         
-        self.dimmingView.hidden = false
+        self.dimmingView.isHidden = false
         
         let duration = 0.25
         let changes = { self.dimmingView.alpha = visible ? 1 : 0 }
-        let completion: (Bool) -> Void = { finished in if !visible { self.dimmingView.hidden = true } }
+        let completion: (Bool) -> Void = { finished in if !visible { self.dimmingView.isHidden = true } }
         
-        if animated { UIView.animateWithDuration(duration, animations: changes, completion: completion) }
+        if animated { UIView.animate(withDuration: duration, animations: changes, completion: completion) }
         else { changes(); completion(true) }
     }
 }

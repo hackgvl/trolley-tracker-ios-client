@@ -49,8 +49,8 @@ class TrolleyStop: NSObject {
         self.init(json: JSON(jsonData), colorIndex: colorIndex)
     }
     
-    override func isEqual(object: AnyObject?) -> Bool {
-        if let object = object as? TrolleyStop where object.stopID == self.stopID { return true }
+    override func isEqual(_ object: Any?) -> Bool {
+        if let object = object as? TrolleyStop , object.stopID == self.stopID { return true }
         return false
     }
 }
@@ -65,7 +65,7 @@ extension TrolleyStop: MKAnnotation {
         return name
     }
     
-    var subTitle: String! {
+    var subtitle: String? {
         return ""
     }
 }

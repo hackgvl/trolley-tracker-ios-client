@@ -12,59 +12,59 @@ import MapKit
 private struct ETAResult {
     let pointA: MKMapItem
     let pointB: MKMapItem
-    let resultRaw: NSTimeInterval
+    let resultRaw: TimeInterval
     let resultFormatted: String
 }
 
 class TimeAndDistanceService {
     
-    private static var etaCache = [ETAResult]()
+    fileprivate static var etaCache = [ETAResult]()
     
-    typealias TravelTimeCompletion = (rawTime: NSTimeInterval?, formattedTime: String?) -> Void
+    typealias TravelTimeCompletion = (_ rawTime: TimeInterval?, _ formattedTime: String?) -> Void
     
-    private static var etaRequestQueue: NSOperationQueue = {
-        let queue = NSOperationQueue()
+    fileprivate static var etaRequestQueue: OperationQueue = {
+        let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
         return queue
         }()
     
-    static func walkingTravelTimeBetweenPoints(pointA: MKMapItem, pointB: MKMapItem, cacheResultsOnly: Bool, completion: TravelTimeCompletion) {
+    static func walkingTravelTimeBetweenPoints(_ pointA: MKMapItem, pointB: MKMapItem, cacheResultsOnly: Bool, completion: TravelTimeCompletion) {
         
         for cacheResult in TimeAndDistanceService.etaCache {
             
-            let failure = { completion(rawTime: nil, formattedTime: nil) }
+            let failure = { completion(nil, nil) }
             
             guard let newPointALocation = pointA.placemark.location else { failure(); return }
             guard let newPointBLocation = pointB.placemark.location else { failure(); return }
             guard let cachedPointALocation = cacheResult.pointA.placemark.location else { failure(); return }
             guard let cachedPointBLocation = cacheResult.pointB.placemark.location else { failure(); return }
             
-            let pointADistance = newPointALocation.distanceFromLocation(cachedPointALocation)
-            let pointBDistance = newPointBLocation.distanceFromLocation(cachedPointBLocation)
+            let pointADistance = newPointALocation.distance(from: cachedPointALocation)
+            let pointBDistance = newPointBLocation.distance(from: cachedPointBLocation)
             
             var shouldUseCacheResult = true
             if pointADistance > 100 { shouldUseCacheResult = false }
             if pointBDistance > 50 { shouldUseCacheResult = false }
             
             if shouldUseCacheResult {
-                completion(rawTime: cacheResult.resultRaw, formattedTime: cacheResult.resultFormatted)
+                completion(cacheResult.resultRaw, cacheResult.resultFormatted)
                 return
             }
         }
         
         if cacheResultsOnly {
-            completion(rawTime: nil, formattedTime: nil)
+            completion(nil, nil)
             return
         }
         
         let operation = GetETAOperation(source: pointA, destination: pointB)
         operation.completionBlock = { [unowned operation] in
             
-            if let rawTime = operation.expectedTravelTime, formattedTime = operation.formattedTravelTime {
+            if let rawTime = operation.expectedTravelTime, let formattedTime = operation.formattedTravelTime {
                 TimeAndDistanceService.etaCache.append(ETAResult(pointA: pointA, pointB: pointB, resultRaw: rawTime, resultFormatted: formattedTime))
             }
             
-            completion(rawTime: operation.expectedTravelTime, formattedTime: operation.formattedTravelTime)
+            completion(operation.expectedTravelTime, operation.formattedTravelTime)
         }
         
         etaRequestQueue.cancelAllOperations()

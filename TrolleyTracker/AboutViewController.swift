@@ -13,8 +13,8 @@ class AboutViewController: UIViewController {
     @IBOutlet var textView: UITextView! {
         didSet {
             textView.text = "TrolleyTracker is created and maintained by Code for Greenville, more information can be found at http://trackthetrolley.com \n\nTrolleyTracker is open source software that can be found at https://github.com/codeforgreenville"
-            textView.font = UIFont.systemFontOfSize(17)
-            textView.dataDetectorTypes = [UIDataDetectorTypes.Link]
+            textView.font = UIFont.systemFont(ofSize: 17)
+            textView.dataDetectorTypes = [UIDataDetectorTypes.link]
             textView.tintColor = UIColor.ttAlternateTintColor()
         }
     }
@@ -22,11 +22,11 @@ class AboutViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.barStyle = UIBarStyle.BlackTranslucent
+        navigationController?.navigationBar.barStyle = UIBarStyle.blackTranslucent
         view.backgroundColor = UIColor.ttLightGray()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: true)

@@ -11,8 +11,8 @@ import MapKit
 
 protocol DetailViewControllerDelegate: class {
     
-    func detailViewControllerWantsToShow(controller: DetailViewController)
-    func detailViewControllerWantsToHide(controller: DetailViewController)
+    func detailViewControllerWantsToShow(_ controller: DetailViewController)
+    func detailViewControllerWantsToHide(_ controller: DetailViewController)
 }
 
 class DetailViewController: UIViewController {
@@ -21,10 +21,10 @@ class DetailViewController: UIViewController {
     // MARK: - Properties
     //==================================================================
 
-    private static var distanceFormatter: MKDistanceFormatter {
+    fileprivate static var distanceFormatter: MKDistanceFormatter {
         let formatter = MKDistanceFormatter()
-        formatter.units = MKDistanceFormatterUnits.Imperial
-        formatter.unitStyle = MKDistanceFormatterUnitStyle.Default
+        formatter.units = MKDistanceFormatterUnits.imperial
+        formatter.unitStyle = MKDistanceFormatterUnitStyle.default
         return formatter
     }
     
@@ -47,7 +47,7 @@ class DetailViewController: UIViewController {
     var currentlyShowingAnnotation: MKAnnotation?
     var currentUserLocation: MKUserLocation?
     
-    func showDetailForAnnotation(annotation: MKAnnotation?, withUserLocation userLocation: MKUserLocation?) {
+    func showDetailForAnnotation(_ annotation: MKAnnotation?, withUserLocation userLocation: MKUserLocation?) {
         
         resetLabels()
         
@@ -73,31 +73,31 @@ class DetailViewController: UIViewController {
     // MARK: - Dislaying Annotations
     //==================================================================
     
-    private func displayTrolley(trolley: Trolley) {
+    fileprivate func displayTrolley(_ trolley: Trolley) {
         
         titleLabel.text = trolley.name
         delegate?.detailViewControllerWantsToShow(self)
     }
     
-    private func displayStop(stop: TrolleyStop) {
+    fileprivate func displayStop(_ stop: TrolleyStop) {
         
         titleLabel.text = stop.name
         delegate?.detailViewControllerWantsToShow(self)
     }
     
-    private func showDistance() {
+    fileprivate func showDistance() {
         
         if let pointA = currentUserLocation?.location,
-        detailItemCoordinate = currentlyShowingAnnotation?.coordinate
+        let detailItemCoordinate = currentlyShowingAnnotation?.coordinate
         {
             let pointB = CLLocation(latitude: detailItemCoordinate.latitude, longitude: detailItemCoordinate.longitude)
-            let distance = pointA.distanceFromLocation(pointB)
+            let distance = pointA.distance(from: pointB)
             
-            distanceLabel.text = DetailViewController.distanceFormatter.stringFromDistance(distance)
+            distanceLabel.text = DetailViewController.distanceFormatter.string(fromDistance: distance)
         }
     }
     
-    private func resetLabels() {
+    fileprivate func resetLabels() {
         titleLabel.text = nil
         timeLabel.text = nil
         distanceLabel.text = nil
@@ -107,7 +107,7 @@ class DetailViewController: UIViewController {
     // MARK: - Actions
     //==================================================================
     
-    @objc private func handleDirectionsButton(sender: UIButton) {
+    @objc fileprivate func handleDirectionsButton(_ sender: UIButton) {
         
         var location: CLLocation?
         
@@ -117,11 +117,11 @@ class DetailViewController: UIViewController {
         if let pointB = location { getDirections(pointB.coordinate) }
     }
     
-    @objc private func handleWalkingTimeButton(sender: UIButton) {
+    @objc fileprivate func handleWalkingTimeButton(_ sender: UIButton) {
         getWalkingTime(false)
     }
     
-    private func getWalkingTime(cacheResultsOnly: Bool) {
+    fileprivate func getWalkingTime(_ cacheResultsOnly: Bool) {
         
         guard let annotation = currentlyShowingAnnotation else { return }
         guard let userLocation = currentUserLocation?.location else { return }
@@ -129,29 +129,29 @@ class DetailViewController: UIViewController {
         let source = MKMapItem(placemark: MKPlacemark(coordinate: userLocation.coordinate, addressDictionary: nil))
         let destination = MKMapItem(placemark: MKPlacemark(coordinate: annotation.coordinate, addressDictionary: nil))
         
-        walkingTimeButton.enabled = false
+        walkingTimeButton.isEnabled = false
         timeLoadingIndicator.startAnimating()
         
         TimeAndDistanceService.walkingTravelTimeBetweenPoints(source, pointB: destination, cacheResultsOnly: cacheResultsOnly) { (rawTime, formattedTime) -> Void in
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 // Set time label with directions result
                 self.timeLabel.text = formattedTime
-                self.walkingTimeButton.enabled = true
+                self.walkingTimeButton.isEnabled = true
                 self.timeLoadingIndicator.stopAnimating()
             })
         }
     }
     
-    private func getDirections(pointB: CLLocationCoordinate2D) {
+    fileprivate func getDirections(_ pointB: CLLocationCoordinate2D) {
         let placeMark = MKPlacemark(coordinate: pointB, addressDictionary: nil)
-        let currentLocation = MKMapItem.mapItemForCurrentLocation()
+        let currentLocation = MKMapItem.forCurrentLocation()
         let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking]
         let mapItem = MKMapItem(placemark: placeMark)
         
         //TODO: Make this the name of the stop or Trolley
         mapItem.name = "Trolley"
         
-        MKMapItem.openMapsWithItems([currentLocation, mapItem], launchOptions: launchOptions)
+        MKMapItem.openMaps(with: [currentLocation, mapItem], launchOptions: launchOptions)
         //mapItem.openInMapsWithLaunchOptions(launchOptions)
     }
 
@@ -159,7 +159,7 @@ class DetailViewController: UIViewController {
     // MARK: - Views
     //==================================================================
 
-    private func setupViews() {
+    fileprivate func setupViews() {
         
         view.backgroundColor = UIColor.ttMediumPurple()
         
@@ -170,22 +170,22 @@ class DetailViewController: UIViewController {
         view.addSubview(directionsButton)
         view.addSubview(timeLoadingIndicator)
         
-        let views = ["titleLabel": titleLabel, "timeLabel": timeLabel, "distanceLabel": distanceLabel, "directionsButton": directionsButton, "timeButton": walkingTimeButton, "timeLoading": timeLoadingIndicator]
+        let views = ["titleLabel": titleLabel, "timeLabel": timeLabel, "distanceLabel": distanceLabel, "directionsButton": directionsButton, "timeButton": walkingTimeButton, "timeLoading": timeLoadingIndicator] as [String : Any]
         let metrics = ["upperVerticalMargin": 16.0, "lowerVerticalMargin": 8.0, "horizontalMargin": 10.0, "verticalPadding": 8.0, "horizontalPadding": 10.0]
 
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(upperVerticalMargin)-[titleLabel]-(verticalPadding)-[distanceLabel]-(>=verticalPadding)-[directionsButton]-(lowerVerticalMargin)-|", options: .AlignAllLeft, metrics: metrics, views: views))
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(horizontalMargin)-[titleLabel]-(>=horizontalMargin)-|", options: [], metrics: metrics, views: views))
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[distanceLabel]-(>=horizontalPadding)-[timeLabel]-(horizontalPadding)-|", options: .AlignAllCenterY, metrics: metrics, views: views))
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[directionsButton]-(>=horizontalPadding)-[timeButton]-(horizontalPadding)-|", options: .AlignAllCenterY, metrics: metrics, views: views))
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|-(upperVerticalMargin)-[titleLabel]-(verticalPadding)-[distanceLabel]-(>=verticalPadding)-[directionsButton]-(lowerVerticalMargin)-|", options: .alignAllLeft, metrics: metrics, views: views))
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(horizontalMargin)-[titleLabel]-(>=horizontalMargin)-|", options: [], metrics: metrics, views: views))
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:[distanceLabel]-(>=horizontalPadding)-[timeLabel]-(horizontalPadding)-|", options: .alignAllCenterY, metrics: metrics, views: views))
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:[directionsButton]-(>=horizontalPadding)-[timeButton]-(horizontalPadding)-|", options: .alignAllCenterY, metrics: metrics, views: views))
         
-        NSLayoutConstraint.activateConstraints([NSLayoutConstraint(item: timeLabel, attribute: .CenterY, relatedBy: .Equal, toItem: timeLoadingIndicator, attribute: .CenterY, multiplier: 1.0, constant: 0.0)])
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[timeLoading]-(horizontalMargin)-|", options: [], metrics: metrics, views: views))
+        NSLayoutConstraint.activate([NSLayoutConstraint(item: timeLabel, attribute: .centerY, relatedBy: .equal, toItem: timeLoadingIndicator, attribute: .centerY, multiplier: 1.0, constant: 0.0)])
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:[timeLoading]-(horizontalMargin)-|", options: [], metrics: metrics, views: views))
     }
     
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel(frame: CGRectZero)
+    fileprivate lazy var titleLabel: UILabel = {
+        let label = UILabel(frame: CGRect.zero)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFontOfSize(20.0)
+        label.font = UIFont.boldSystemFont(ofSize: 20.0)
         label.textColor = UIColor.ttLightTextColor()
         label.text = "Trolly or Stop Name"
         label.numberOfLines = 0
@@ -195,46 +195,46 @@ class DetailViewController: UIViewController {
         return label
     }()
     
-    private lazy var timeLabel: UILabel = {
-        let label = UILabel(frame: CGRectZero)
+    fileprivate lazy var timeLabel: UILabel = {
+        let label = UILabel(frame: CGRect.zero)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFontOfSize(20.0)
+        label.font = UIFont.boldSystemFont(ofSize: 20.0)
         label.textColor = UIColor.ttLightTextColor()
         label.text = ""
         
         return label
     }()
     
-    private lazy var distanceLabel: UILabel = {
-        let label = UILabel(frame: CGRectZero)
+    fileprivate lazy var distanceLabel: UILabel = {
+        let label = UILabel(frame: CGRect.zero)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFontOfSize(20.0)
+        label.font = UIFont.boldSystemFont(ofSize: 20.0)
         label.textColor = UIColor.ttLightTextColor()
         label.text = ""
         
         return label
     }()
     
-    private lazy var walkingTimeButton: UIButton = {
-        let button = UIButton(frame: CGRectZero)
+    fileprivate lazy var walkingTimeButton: UIButton = {
+        let button = UIButton(frame: CGRect.zero)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(DetailViewController.handleWalkingTimeButton(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        button.setTitle("Get Walking Time", forState: .Normal)
+        button.addTarget(self, action: #selector(DetailViewController.handleWalkingTimeButton(_:)), for: UIControlEvents.touchUpInside)
+        button.setTitle("Get Walking Time", for: UIControlState())
         
         return button
     }()
     
-    private lazy var directionsButton: UIButton = {
-        let button = UIButton(frame: CGRectZero)
+    fileprivate lazy var directionsButton: UIButton = {
+        let button = UIButton(frame: CGRect.zero)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(DetailViewController.handleDirectionsButton(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        button.setTitle("Directions", forState: .Normal)
+        button.addTarget(self, action: #selector(DetailViewController.handleDirectionsButton(_:)), for: UIControlEvents.touchUpInside)
+        button.setTitle("Directions", for: UIControlState())
         
         return button
     }()
     
-    private lazy var timeLoadingIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)
+    fileprivate lazy var timeLoadingIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
         indicator.translatesAutoresizingMaskIntoConstraints = false
         indicator.stopAnimating()
         indicator.hidesWhenStopped = true

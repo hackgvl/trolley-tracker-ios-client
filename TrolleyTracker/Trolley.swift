@@ -51,8 +51,8 @@ class Trolley: NSObject {
         self.number = trolley.number
     }
     
-    override func isEqual(object: AnyObject?) -> Bool {
-        if let object = object as? Trolley where object.ID == self.ID { return true }
+    override func isEqual(_ object: Any?) -> Bool {
+        if let object = object as? Trolley , object.ID == self.ID { return true }
         return false
     }
 }
@@ -64,9 +64,9 @@ extension Trolley: MKAnnotation {
             return location.coordinate
         }
         set(newValue) {
-            self.willChangeValueForKey("coordinate")
+            self.willChangeValue(forKey: "coordinate")
             location = CLLocation(latitude: newValue.latitude, longitude: newValue.longitude)
-            self.didChangeValueForKey("coordinate")
+            self.didChangeValue(forKey: "coordinate")
         }
     }
     
@@ -74,7 +74,7 @@ extension Trolley: MKAnnotation {
         return name
     }
     
-    var subTitle: String! {
+    @objc(subtitle) var subtitle: String? {
         return ""
     }
 }

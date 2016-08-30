@@ -39,7 +39,7 @@ extension RouteTime {
 // Dictionary
 extension RouteTime {
     
-    private enum RouteTimeDictionaryKeys: String {
+    fileprivate enum RouteTimeDictionaryKeys: String {
         case day, time
     }
     
@@ -50,7 +50,7 @@ extension RouteTime {
     }
     
     func dictionaryRepresentation() -> [String : AnyObject] {
-        return [RouteTimeDictionaryKeys.day.rawValue : day, RouteTimeDictionaryKeys.time.rawValue : time]
+        return [RouteTimeDictionaryKeys.day.rawValue : day as AnyObject, RouteTimeDictionaryKeys.time.rawValue : time as AnyObject]
     }
 }
 
@@ -114,10 +114,11 @@ extension RouteSchedule {
     }
     
     func dictionaryRepresentation() -> [String : AnyObject] {
+        let timesDictionary = times.map({ $0.dictionaryRepresentation() }) as AnyObject
         return [
-            RouteScheduleDictionaryKeys.name.rawValue : name,
-            RouteScheduleDictionaryKeys.ID.rawValue : ID,
-            RouteScheduleDictionaryKeys.times.rawValue : times.map({ $0.dictionaryRepresentation() })
+            RouteScheduleDictionaryKeys.name.rawValue : name as AnyObject,
+            RouteScheduleDictionaryKeys.ID.rawValue : ID as AnyObject,
+            RouteScheduleDictionaryKeys.times.rawValue : timesDictionary
         ]
     }
 }

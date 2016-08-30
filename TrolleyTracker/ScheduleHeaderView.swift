@@ -8,19 +8,19 @@
 
 import UIKit
 
-typealias ScheduleHeaderViewTapAction = (routeID: Int) -> Void
+typealias ScheduleHeaderViewTapAction = (_ routeID: Int) -> Void
 
 class ScheduleHeaderView: UITableViewHeaderFooterView {
     
     var tapAction: ScheduleHeaderViewTapAction?
-    private var tapGesture: UITapGestureRecognizer!
-    private var displayedRouteID: Int?
+    fileprivate var tapGesture: UITapGestureRecognizer!
+    fileprivate var displayedRouteID: Int?
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        label.font = UIFont.boldSystemFontOfSize(12)
+        label.font = UIFont.boldSystemFont(ofSize: 12)
         return label
     }()
     
@@ -28,13 +28,13 @@ class ScheduleHeaderView: UITableViewHeaderFooterView {
         
         super.init(reuseIdentifier: reuseIdentifier)
         
-        contentView.backgroundColor = UIColor.whiteColor()
+        contentView.backgroundColor = UIColor.white
         
         addSubview(titleLabel)
         let views = ["label" : titleLabel]
         let metrics = ["hMargin" : 8, "vMargin" : 4]
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(hMargin)-[label]-(hMargin)-|", options: [], metrics: metrics, views: views))
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(vMargin)-[label]-(vMargin)-|", options: [], metrics: metrics, views: views))
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(hMargin)-[label]-(hMargin)-|", options: [], metrics: metrics, views: views))
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|-(vMargin)-[label]-(vMargin)-|", options: [], metrics: metrics, views: views))
         
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(ScheduleHeaderView.handleTap(_:)))
         addGestureRecognizer(tapGesture)
@@ -44,15 +44,15 @@ class ScheduleHeaderView: UITableViewHeaderFooterView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func displaySection(section: ScheduleSection) {
+    func displaySection(_ section: ScheduleSection) {
         titleLabel.text = section.title
-        titleLabel.textColor = section.selectable ? UIColor.ttAlternateTintColor() : UIColor.blackColor()
-        tapGesture.enabled = section.selectable
+        titleLabel.textColor = section.selectable ? UIColor.ttAlternateTintColor() : UIColor.black
+        tapGesture.isEnabled = section.selectable
         displayedRouteID = section.selectable ? section.items.first?.routeID : nil
     }
     
-    @objc private func handleTap(tap: UITapGestureRecognizer) {
+    @objc fileprivate func handleTap(_ tap: UITapGestureRecognizer) {
         guard let routeID = displayedRouteID else { return }
-        tapAction?(routeID: routeID)
+        tapAction?(routeID)
     }
 }

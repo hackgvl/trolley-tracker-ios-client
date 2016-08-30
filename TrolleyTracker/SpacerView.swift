@@ -11,9 +11,9 @@ import UIKit
 class SpacerView: UIView {
 
     init(height: CGFloat) {
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
         
-        self.heightAnchor.constraintEqualToConstant(height).active = true
+        self.heightAnchor.constraint(equalToConstant: height).isActive = true
     }
 
     required init?(coder aDecoder: NSCoder) {

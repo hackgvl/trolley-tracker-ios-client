@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class TrolleyScheduleService {
     
-    typealias LoadScheduleCompletion = (schedules: [RouteSchedule]) -> Void
+    typealias LoadScheduleCompletion = (_ schedules: [RouteSchedule]) -> Void
     
     static var sharedService = TrolleyScheduleService()
     
@@ -19,23 +19,23 @@ class TrolleyScheduleService {
 
     }
     
-    func loadTrolleySchedules(completion: LoadScheduleCompletion) {
+    func loadTrolleySchedules(_ completion: LoadScheduleCompletion) {
         
         // check user defaults (should probably go in an operation)
         let localSchedulesOperation = LoadLocalSchedulesOperation()
         localSchedulesOperation.completionBlock = { [weak localSchedulesOperation] in
             guard let schedules = localSchedulesOperation?.loadedSchedules else { return }
-            dispatch_async(dispatch_get_main_queue()) {
-                completion(schedules: schedules)
+            DispatchQueue.main.async {
+                completion(schedules)
             }
         }
-        NSOperationQueue.mainQueue().addOperation(localSchedulesOperation)
+        OperationQueue.main.addOperation(localSchedulesOperation)
         
         // load from network
         loadSchedulesFromNetwork(completion)
     }
     
-    private func loadSchedulesFromNetwork(completion: LoadScheduleCompletion) {
+    fileprivate func loadSchedulesFromNetwork(_ completion: LoadScheduleCompletion) {
         
         // Load all Routes so we have names for the RouteSchedules (associated by RouteID)
         var routes = Box<[JSON]>(value: [JSON]())
@@ -50,10 +50,10 @@ class TrolleyScheduleService {
         aggregateOperation.addDependency(schedulesOperation)
         aggregateOperation.addDependency(routesOperation)
         aggregateOperation.completionBlock = { [weak aggregateOperation] in
-            guard let routeSchedules = aggregateOperation?.routeSchedules where routeSchedules.count > 0 else { return }
-            dispatch_async(dispatch_get_main_queue()) {
-                NSOperationQueue.mainQueue().addOperation(SaveSchedulesOperation(schedules: routeSchedules))
-                completion(schedules: routeSchedules)
+            guard let routeSchedules = aggregateOperation?.routeSchedules , routeSchedules.count > 0 else { return }
+            DispatchQueue.main.async {
+                OperationQueue.main.addOperation(SaveSchedulesOperation(schedules: routeSchedules))
+                completion(routeSchedules)
             }
         }
         

@@ -12,17 +12,17 @@ import SwiftyJSON
 
 class TrolleyRouteServiceLive: TrolleyRouteService {
     
-    let group = dispatch_group_create()
+    let group = DispatchGroup()
  
     static var sharedService = TrolleyRouteServiceLive()
     
-    private var memoryCachedActiveRoutes: [TrolleyRoute]?
-    private var memoryCachedRoutes = [Int : TrolleyRoute]()
+    fileprivate var memoryCachedActiveRoutes: [TrolleyRoute]?
+    fileprivate var memoryCachedRoutes = [Int : TrolleyRoute]()
     
-    func loadTrolleyRoutes(completion: LoadTrolleyRouteCompletion) {
+    func loadTrolleyRoutes(_ completion: LoadTrolleyRouteCompletion) {
 
         if let cachedRoutes = memoryCachedActiveRoutes {
-            completion(routes: cachedRoutes)
+            completion(cachedRoutes)
             return
         }
         
@@ -33,45 +33,45 @@ class TrolleyRouteServiceLive: TrolleyRouteService {
         }
     }
     
-    func loadTrolleyRoute(routeID: Int, completion: LoadTrolleyRouteCompletion) {
-        if let route = memoryCachedRoutes[routeID] { completion(routes: [route]); return }
+    func loadTrolleyRoute(_ routeID: Int, completion: LoadTrolleyRouteCompletion) {
+        if let route = memoryCachedRoutes[routeID] { completion([route]); return }
         loadRouteDetail(routeID, completion: completion)
     }
     
-    private final func loadRouteDetailForRoutes(routes: JSON, completion: LoadTrolleyRouteCompletion) {
+    fileprivate final func loadRouteDetailForRoutes(_ routes: JSON, completion: LoadTrolleyRouteCompletion) {
         
         var routeObjects = [TrolleyRoute]()
         
-        for (index, route) in routes.arrayValue.enumerate() {
+        for (index, route) in routes.arrayValue.enumerated() {
             if let routeID = route["ID"].int {
 
-                dispatch_group_enter(group)
+                group.enter()
                 
                 loadRouteDetail(routeID, colorIndex: index, completion: { (routes) in
                     routeObjects += routes
-                    dispatch_group_leave(self.group)
+                    self.group.leave()
                 })
             }
         }
         
-        dispatch_group_notify(group, dispatch_get_main_queue()) {
+        group.notify(queue: DispatchQueue.main) {
             self.memoryCachedActiveRoutes = routeObjects
-            completion(routes: routeObjects)
+            completion(routeObjects)
         }
     }
     
-    private final func loadRouteDetail(routeID: Int, colorIndex: Int = 0, completion: LoadTrolleyRouteCompletion) {
+    fileprivate final func loadRouteDetail(_ routeID: Int, colorIndex: Int = 0, completion: LoadTrolleyRouteCompletion) {
         
         TrolleyRequests.RouteDetail("\(routeID)").responseJSON { (response) -> Void in
             
             var routeObjects = [TrolleyRoute]()
             
             defer {
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async {
                     for route in routeObjects {
                         self.memoryCachedRoutes[route.ID] = route
                     }
-                    completion(routes: routeObjects)
+                    completion(routeObjects)
                 }
             }
             

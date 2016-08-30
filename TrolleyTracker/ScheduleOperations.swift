@@ -11,13 +11,13 @@ import SwiftyJSON
 
 class OperationQueues {
     
-    static let networkQueue: NSOperationQueue = {
-        let queue = NSOperationQueue()
+    static let networkQueue: OperationQueue = {
+        let queue = OperationQueue()
         return queue
     }()
     
-    static let computationQueue: NSOperationQueue = {
-        let queue = NSOperationQueue()
+    static let computationQueue: OperationQueue = {
+        let queue = OperationQueue()
         return queue
     }()
 }
@@ -31,7 +31,7 @@ class LoadRoutesFromNetworkOperation: ConcurrentOperation {
 
     let results: Box<[JSON]>
 
-    init(inout results: Box<[JSON]>) {
+    init(results: inout Box<[JSON]>) {
         self.results = results
     }
     
@@ -42,7 +42,7 @@ class LoadRoutesFromNetworkOperation: ConcurrentOperation {
             guard let resultValue = response.result.value else { self.finish(); return; }
             guard let jsonArray = JSON(resultValue).array else { self.finish(); return; }
 
-            self.results.value?.appendContentsOf(jsonArray)
+            self.results.value?.append(contentsOf: jsonArray)
             self.finish()
         }
     }
@@ -52,7 +52,7 @@ class LoadSchedulesFromNetworkOperation: ConcurrentOperation {
     
     let results: Box<[JSON]>
     
-    init(inout boxedResults: Box<[JSON]>) {
+    init(boxedResults: inout Box<[JSON]>) {
         self.results = boxedResults
     }
     
@@ -63,7 +63,7 @@ class LoadSchedulesFromNetworkOperation: ConcurrentOperation {
             guard let resultValue = response.result.value else { self.finish(); return; }
             guard let jsonArray = JSON(resultValue).array else { self.finish(); return; }
 
-            self.results.value?.appendContentsOf(jsonArray)
+            self.results.value?.append(contentsOf: jsonArray)
             self.finish()
         }
     }
@@ -75,12 +75,12 @@ class LoadSchedulesFromNetworkOperation: ConcurrentOperation {
 
 class AggregateSchedulesOperation: ConcurrentOperation {
     
-    private let routes: Box<[JSON]>
-    private let schedules: Box<[JSON]>
+    fileprivate let routes: Box<[JSON]>
+    fileprivate let schedules: Box<[JSON]>
     
     var routeSchedules = [RouteSchedule]() // <-- Return value
     
-    init(inout schedules: Box<[JSON]>, inout routes: Box<[JSON]>) {
+    init(schedules: inout Box<[JSON]>, routes: inout Box<[JSON]>) {
         self.schedules = schedules
         self.routes = routes
     }
@@ -124,9 +124,9 @@ class AggregateSchedulesOperation: ConcurrentOperation {
 
 private let UserDefaultsRouteScheduleKey = "UserDefaultsRouteScheduleKey"
 
-class SaveSchedulesOperation: NSOperation {
+class SaveSchedulesOperation: Operation {
     
-    private let schedules: [RouteSchedule]
+    fileprivate let schedules: [RouteSchedule]
     
     init(schedules: [RouteSchedule]) {
         self.schedules = schedules
@@ -134,16 +134,16 @@ class SaveSchedulesOperation: NSOperation {
     
     override func main() {
         let scheduleDictionaries = schedules.map { $0.dictionaryRepresentation() }
-        NSUserDefaults.standardUserDefaults().setObject(scheduleDictionaries, forKey: UserDefaultsRouteScheduleKey)
+        UserDefaults.standard.set(scheduleDictionaries, forKey: UserDefaultsRouteScheduleKey)
     }
 }
 
-class LoadLocalSchedulesOperation: NSOperation {
+class LoadLocalSchedulesOperation: Operation {
     
     var loadedSchedules: [RouteSchedule]?
     
     override func main() {
-        if let dictionaries = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultsRouteScheduleKey) as? [[String : AnyObject]] {
+        if let dictionaries = UserDefaults.standard.object(forKey: UserDefaultsRouteScheduleKey) as? [[String : AnyObject]] {
             var schedules = [RouteSchedule]()
             for dictionary in dictionaries {
                 guard let schedule = RouteSchedule(dictionary: dictionary) else { continue }

@@ -10,7 +10,7 @@ import UIKit
 
 extension UIColor {
     
-    class func ttTintColor() -> UIColor { return UIColor.whiteColor() }
+    class func ttTintColor() -> UIColor { return UIColor.white }
     class func ttAlternateTintColor() -> UIColor { return UIColor.ttDarkPurple() }
     
     class func ttLightTextColor() -> UIColor { return UIColor.ttLightGray() }
@@ -49,7 +49,7 @@ extension UIColor {
                 UIColor.ttRouteColor5()
             ]
             
-            return colors.map { $0.colorWithAlphaComponent(1.0) }
+            return colors.map { $0.withAlphaComponent(1.0) }
         }
     }
     
@@ -64,7 +64,7 @@ extension UIColor {
                 UIColor.ttStopColor5()
             ]
             
-            return colors.map { $0.colorWithAlphaComponent(1.0) }
+            return colors.map { $0.withAlphaComponent(1.0) }
         }
     }
     
@@ -80,15 +80,15 @@ extension UIColor {
         }
     }
     
-    class func routeColorForIndex(index: Int) -> UIColor {
+    class func routeColorForIndex(_ index: Int) -> UIColor {
         return routeColors[index % routeColors.count]
     }
     
-    class func stopColorForIndex(index: Int) -> UIColor {
+    class func stopColorForIndex(_ index: Int) -> UIColor {
         return stopColors[index % stopColors.count]
     }
     
-    class func trolleyColorForID(id: Int) -> UIColor {
+    class func trolleyColorForID(_ id: Int) -> UIColor {
         return trolleyColors[id % trolleyColors.count]
     }
 }

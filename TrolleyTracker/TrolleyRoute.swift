@@ -32,7 +32,7 @@ struct TrolleyRoute {
     lazy var overlay: MKOverlay = {
         
         let coordinates = self.shapePoints.map { $0.coordinate }
-        let coordinatesPointer = UnsafeMutablePointer<CLLocationCoordinate2D>(coordinates)
+        let coordinatesPointer = UnsafeMutablePointer<CLLocationCoordinate2D>(mutating: coordinates)
         let polyline = TrolleyRouteOverlay(coordinates: coordinatesPointer, count: coordinates.count)
         polyline.colorIndex = self.colorIndex
 

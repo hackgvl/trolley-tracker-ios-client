@@ -10,7 +10,7 @@ import UIKit
 
 extension ScheduleViewController {
  
-    func itemsForSchedulesSortedByRoute(schedules: [RouteSchedule]) -> [ScheduleSection] {
+    func itemsForSchedulesSortedByRoute(_ schedules: [RouteSchedule]) -> [ScheduleSection] {
         
         var groupedSchedules = [GroupedRouteSchedule]()
         

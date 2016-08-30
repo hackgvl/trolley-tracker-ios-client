@@ -17,9 +17,9 @@ class TrolleyLocationServiceLive: TrolleyLocationService {
     var trolleyObservers = ObserverSet<Trolley>()
     var trolleyPresentObservers = ObserverSet<Bool>()
     
-    private var updateTimer: NSTimer?
+    fileprivate var updateTimer: Timer?
     
-    private var allTrolleys: [Trolley]?
+    fileprivate var allTrolleys: [Trolley]?
     
     func startTrackingTrolleys() {
         
@@ -29,7 +29,7 @@ class TrolleyLocationServiceLive: TrolleyLocationService {
             self.getRunningTrolleys()
             
             // -- Start a timer for updating currently running trolleys (trolleys/running)
-            self.updateTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: #selector(TrolleyLocationServiceLive.getRunningTrolleys), userInfo: nil, repeats: true)
+            self.updateTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(TrolleyLocationServiceLive.getRunningTrolleys), userInfo: nil, repeats: true)
         }
         
         // If we have already retrieved the Trolley list, just start updating them.
@@ -44,7 +44,7 @@ class TrolleyLocationServiceLive: TrolleyLocationService {
             guard let json = response.result.value else { return }
             
             // -- Store the list so we can reference it later
-            self.allTrolleys = self.parseTrolleysFromJSON(json)
+            self.allTrolleys = self.parseTrolleysFromJSON(json as AnyObject?)
             
             startUpdating()
         }
@@ -54,17 +54,18 @@ class TrolleyLocationServiceLive: TrolleyLocationService {
         updateTimer?.invalidate()
     }
     
-    @objc private func getRunningTrolleys() {
+    @objc fileprivate func getRunningTrolleys() {
 
         let request = TrolleyRequests.RunningTrolleys
         request.responseJSON{(response) in
             
             guard let json = response.result.value else { return }
             
-            if let trolleys = self.parseTrolleysFromJSON(json) {
+            if let trolleys = self.parseTrolleysFromJSON(json as AnyObject?) {
                 
                 let trolleysPresent = trolleys.count > 0 ? true : false
-                dispatch_async(dispatch_get_main_queue()) {
+                
+                DispatchQueue.main.async {
                     self.trolleyPresentObservers.notify(trolleysPresent)
                 }
                 
@@ -75,34 +76,34 @@ class TrolleyLocationServiceLive: TrolleyLocationService {
         }
     }
     
-    private func updateTrolleysWithTrolley(trolley: Trolley) {
+    fileprivate func updateTrolleysWithTrolley(_ trolley: Trolley) {
        
         guard var trolleys = self.allTrolleys else { return }
         
         // Find the matching trolley in the allTrolleys array
-        if let index = trolleys.indexOf(trolley) {
+        if let index = trolleys.index(of: trolley) {
             
             // Create a new trolley with an updated location
             let updatedTrolley = Trolley(trolley: trolleys[index], location: trolley.location)
             
             // Store that back in the array
-            trolleys.removeAtIndex(index)
+            trolleys.remove(at: index)
             trolleys.append(updatedTrolley)
             self.allTrolleys = trolleys
             
             // Send a notification with the updated trolley
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 self.trolleyObservers.notify(updatedTrolley)
             })
         }
     }
     
-    private func parseTrolleysFromJSON(json: AnyObject?) -> [Trolley]? {
+    fileprivate func parseTrolleysFromJSON(_ json: AnyObject?) -> [Trolley]? {
         
         if let json: AnyObject = json,
-        trolleyObjects = JSON(json).arrayObject
+        let trolleyObjects = JSON(json).arrayObject
         {
-            return trolleyObjects.map { Trolley(jsonData: $0) }.filter { $0 != nil }.map { $0! }
+            return trolleyObjects.map { Trolley(jsonData: $0 as AnyObject) }.filter { $0 != nil }.map { $0! }
         }
         
         return nil

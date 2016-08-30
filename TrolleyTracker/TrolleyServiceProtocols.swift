@@ -8,12 +8,12 @@
 
 import Foundation
 
-typealias LoadTrolleyRouteCompletion = (routes: [TrolleyRoute]) -> Void
+typealias LoadTrolleyRouteCompletion = (_ routes: [TrolleyRoute]) -> Void
 
 protocol TrolleyRouteService {
     
-    func loadTrolleyRoute(routeID: Int, completion: LoadTrolleyRouteCompletion)
-    func loadTrolleyRoutes(completion: LoadTrolleyRouteCompletion)
+    func loadTrolleyRoute(_ routeID: Int, completion: LoadTrolleyRouteCompletion)
+    func loadTrolleyRoutes(_ completion: LoadTrolleyRouteCompletion)
 }
 
 protocol TrolleyLocationService {

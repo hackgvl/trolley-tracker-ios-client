@@ -12,11 +12,11 @@ class SubHeadingLabel: UILabel {
 
     init(text: String) {
         
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
         
         self.text = text
         self.numberOfLines = 0
-        self.font = UIFont.italicSystemFontOfSize(12)
+        self.font = UIFont.italicSystemFont(ofSize: 12)
     }
     
     required init?(coder aDecoder: NSCoder) {

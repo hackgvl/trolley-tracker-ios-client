@@ -11,11 +11,11 @@ import UIKit
 class HeadingLabel: UILabel {
 
     init(text: String) {
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
         
         self.text = text
         self.numberOfLines = 0
-        self.font = UIFont.boldSystemFontOfSize(14)
+        self.font = UIFont.boldSystemFont(ofSize: 14)
     }
 
     required init?(coder aDecoder: NSCoder) {

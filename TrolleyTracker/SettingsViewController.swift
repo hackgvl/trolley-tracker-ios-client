@@ -21,12 +21,12 @@ class TTSettingsViewController: UIViewController, UITableViewDataSource, UITable
         
         let views = ["tableview": self.tableView]
         
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[tableview]|", options: [], metrics: nil, views: views))
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|[tableview]|", options: [], metrics: nil, views: views))
         
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[tableview]|", options: [], metrics: nil, views: views))
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|[tableview]|", options: [], metrics: nil, views: views))
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -35,53 +35,53 @@ class TTSettingsViewController: UIViewController, UITableViewDataSource, UITable
     ///MARK: TableView
     
     lazy var tableView: UITableView = {
-        var tableView = UITableView(frame: CGRectZero, style: .Grouped)
+        var tableView = UITableView(frame: CGRect.zero, style: .grouped)
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: NSStringFromClass(UITableViewCell.self))
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: NSStringFromClass(UITableViewCell.self))
         
         return tableView
     }()
     
     /// MARK: UITableViewDataSource
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return settingsDataSource.sections[section].title
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(UITableViewCell.self), forIndexPath: indexPath)
-        let item = settingsDataSource.sections[indexPath.section].items[indexPath.row]
+        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(UITableViewCell.self), for: indexPath)
+        let item = settingsDataSource.sections[(indexPath as NSIndexPath).section].items[(indexPath as NSIndexPath).row]
         
         cell.textLabel?.text = item.title
         
         return cell
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settingsDataSource.sections[section].items.count
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return settingsDataSource.sections.count
     }
     
     /// MARK: UITableViewDelegate
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        settingsDataSource.sections[indexPath.section].items[indexPath.row].action()
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        settingsDataSource.sections[(indexPath as NSIndexPath).section].items[(indexPath as NSIndexPath).row].action()
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     /// MARK: Actions
     
     func dismissSettings() {
-        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }

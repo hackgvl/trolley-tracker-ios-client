@@ -11,20 +11,20 @@ import UIKit
 
 class AttributionViewController: UIViewController {
     
-    private var attributionItems: [AttributionItem] = [
-        AttributionItem(name: "Alamofire", url: NSURL(string: "https://www.github.com/Alamofire")!),
-        AttributionItem(name: "ObserverSet", url: NSURL(string: "https://github.com/mikeash/SwiftObserverSet")!),
-        AttributionItem(name: "SwiftyJSON", url: NSURL(string: "https://github.com/SwiftyJSON/SwiftyJSON")!)
+    fileprivate var attributionItems: [AttributionItem] = [
+        AttributionItem(name: "Alamofire", url: URL(string: "https://www.github.com/Alamofire")!),
+        AttributionItem(name: "ObserverSet", url: URL(string: "https://github.com/mikeash/SwiftObserverSet")!),
+        AttributionItem(name: "SwiftyJSON", url: URL(string: "https://github.com/SwiftyJSON/SwiftyJSON")!)
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.ttLightGray()
-        navigationController?.navigationBar.barStyle = UIBarStyle.BlackTranslucent
+        navigationController?.navigationBar.barStyle = UIBarStyle.blackTranslucent
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -33,35 +33,35 @@ class AttributionViewController: UIViewController {
 
 extension AttributionViewController: UITableViewDataSource {
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return attributionItems.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("AttributionCell")!
-        let item = attributionItems[indexPath.row]
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AttributionCell")!
+        let item = attributionItems[(indexPath as NSIndexPath).row]
         
         cell.textLabel?.text = item.name
         
         return cell
     }
-    
-    // This removes cell separator lines from the portion of the tableView where there are no cells.
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.01
-    }
 }
 
 extension AttributionViewController: UITableViewDelegate {
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let item = attributionItems[indexPath.row]
-        UIApplication.sharedApplication().openURL(item.url)
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let item = attributionItems[(indexPath as NSIndexPath).row]
+        UIApplication.shared.openURL(item.url)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    // This removes cell separator lines from the portion of the tableView where there are no cells.
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.01
     }
 }
 
 private struct AttributionItem {
     let name: String
-    let url: NSURL
+    let url: URL
 }
