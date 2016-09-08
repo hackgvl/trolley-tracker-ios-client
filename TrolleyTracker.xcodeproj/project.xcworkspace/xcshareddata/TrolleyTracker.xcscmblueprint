@@ -11,7 +11,7 @@
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "59EE51E8-28C2-4842-9F88-756CB1A7E02A",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "6E8870281B0A968B6C8A5B8C44EA522543C3A498" : "trolley-tracker-ios-client\/",
-    "C861FC00CEE0F6A6BE81FCFF6785FAA78C58EBB3" : "SwiftyJSON\/",
+    "C861FC00CEE0F6A6BE81FCFF6785FAA78C58EBB3" : "trolley-tracker-ios-client\/SwiftyJSON\/",
     "67620B5EFA902936DF04070AF595B76AB0333747" : "trolley-tracker-ios-client\/Alamofire\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "TrolleyTracker",

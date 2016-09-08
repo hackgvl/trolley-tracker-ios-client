@@ -19,7 +19,7 @@ class TrolleyRouteServiceLive: TrolleyRouteService {
     fileprivate var memoryCachedActiveRoutes: [TrolleyRoute]?
     fileprivate var memoryCachedRoutes = [Int : TrolleyRoute]()
     
-    func loadTrolleyRoutes(_ completion: LoadTrolleyRouteCompletion) {
+    func loadTrolleyRoutes(_ completion: @escaping LoadTrolleyRouteCompletion) {
 
         if let cachedRoutes = memoryCachedActiveRoutes {
             completion(cachedRoutes)
@@ -33,12 +33,12 @@ class TrolleyRouteServiceLive: TrolleyRouteService {
         }
     }
     
-    func loadTrolleyRoute(_ routeID: Int, completion: LoadTrolleyRouteCompletion) {
+    func loadTrolleyRoute(_ routeID: Int, completion: @escaping LoadTrolleyRouteCompletion) {
         if let route = memoryCachedRoutes[routeID] { completion([route]); return }
         loadRouteDetail(routeID, completion: completion)
     }
     
-    fileprivate final func loadRouteDetailForRoutes(_ routes: JSON, completion: LoadTrolleyRouteCompletion) {
+    fileprivate final func loadRouteDetailForRoutes(_ routes: JSON, completion: @escaping LoadTrolleyRouteCompletion) {
         
         var routeObjects = [TrolleyRoute]()
         
@@ -60,7 +60,7 @@ class TrolleyRouteServiceLive: TrolleyRouteService {
         }
     }
     
-    fileprivate final func loadRouteDetail(_ routeID: Int, colorIndex: Int = 0, completion: LoadTrolleyRouteCompletion) {
+    fileprivate final func loadRouteDetail(_ routeID: Int, colorIndex: Int = 0, completion: @escaping LoadTrolleyRouteCompletion) {
         
         TrolleyRequests.RouteDetail("\(routeID)").responseJSON { (response) -> Void in
             

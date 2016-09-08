@@ -12,8 +12,8 @@ typealias LoadTrolleyRouteCompletion = (_ routes: [TrolleyRoute]) -> Void
 
 protocol TrolleyRouteService {
     
-    func loadTrolleyRoute(_ routeID: Int, completion: LoadTrolleyRouteCompletion)
-    func loadTrolleyRoutes(_ completion: LoadTrolleyRouteCompletion)
+    func loadTrolleyRoute(_ routeID: Int, completion: @escaping  LoadTrolleyRouteCompletion)
+    func loadTrolleyRoutes(_ completion: @escaping LoadTrolleyRouteCompletion)
 }
 
 protocol TrolleyLocationService {

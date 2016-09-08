@@ -27,42 +27,42 @@ class TrolleyRequests {
         get { return "/v1" }
     }
     
-    class var RunningTrolleys: Request {
-        return Alamofire.request(BaseURL + APIVersion + "/Trolleys/Running", withMethod: .get).ttLog.ttValidate
+    class var RunningTrolleys: DataRequest {
+        return Alamofire.request(BaseURL + APIVersion + "/Trolleys/Running", method: .get).ttLog.ttValidate
     }
     
-    class var AllTrolleys: Request {
-        return Alamofire.request(BaseURL + APIVersion + "/Trolleys", withMethod: .get).ttLog.ttValidate
+    class var AllTrolleys: DataRequest {
+        return Alamofire.request(BaseURL + APIVersion + "/Trolleys", method: .get).ttLog.ttValidate
     }
     
-    class var Stops: Request {
-        return Alamofire.request(self.BaseURL + self.APIVersion + "/Stops", withMethod: .get).ttLog.ttValidate
+    class var Stops: DataRequest {
+        return Alamofire.request(self.BaseURL + self.APIVersion + "/Stops", method: .get).ttLog.ttValidate
     }
     
-    class var Routes: Request {
-        return Alamofire.request(self.BaseURL + self.APIVersion + "/Routes", withMethod: .get).ttLog.ttValidate
+    class var Routes: DataRequest {
+        return Alamofire.request(self.BaseURL + self.APIVersion + "/Routes", method: .get).ttLog.ttValidate
     }
     
-    class func RouteDetail(_ routeID: String) -> Request {
-        return Alamofire.request(self.BaseURL + self.APIVersion + "/Routes/" + routeID, withMethod: .get).ttLog.ttValidate
+    class func RouteDetail(_ routeID: String) -> DataRequest {
+        return Alamofire.request(self.BaseURL + self.APIVersion + "/Routes/" + routeID, method: .get).ttLog.ttValidate
     }
     
-    class func RoutesActive() -> Request {
-        return Alamofire.request(self.BaseURL + self.APIVersion + "/Routes/Active", withMethod: .get).ttLog.ttValidate
+    class func RoutesActive() -> DataRequest {
+        return Alamofire.request(self.BaseURL + self.APIVersion + "/Routes/Active", method: .get).ttLog.ttValidate
     }
     
-    class func RouteSchedules() -> Request {
-        return Alamofire.request(self.BaseURL + self.APIVersion + "/RouteSchedules", withMethod: .get).ttLog.ttValidate
+    class func RouteSchedules() -> DataRequest {
+        return Alamofire.request(self.BaseURL + self.APIVersion + "/RouteSchedules", method: .get).ttLog.ttValidate
     }
 }
 
-private extension Request {
+private extension DataRequest {
     
-    var ttValidate: Request {
+    var ttValidate: DataRequest {
         return self.validate(statusCode: 200..<300)
     }
     
-    var ttLog: Request {
+    var ttLog: DataRequest {
         return self.responseString(encoding: String.Encoding.utf8, completionHandler: { (response) -> Void in
 //            println("Request: \(request), Response: \(response), ResponseString: \(string), Error: \(error)")
         })

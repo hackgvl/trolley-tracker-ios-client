@@ -28,7 +28,7 @@ class TimeAndDistanceService {
         return queue
         }()
     
-    static func walkingTravelTimeBetweenPoints(_ pointA: MKMapItem, pointB: MKMapItem, cacheResultsOnly: Bool, completion: TravelTimeCompletion) {
+    static func walkingTravelTimeBetweenPoints(_ pointA: MKMapItem, pointB: MKMapItem, cacheResultsOnly: Bool, completion: @escaping TravelTimeCompletion) {
         
         for cacheResult in TimeAndDistanceService.etaCache {
             

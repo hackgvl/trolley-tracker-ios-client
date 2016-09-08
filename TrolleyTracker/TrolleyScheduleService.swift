@@ -19,7 +19,7 @@ class TrolleyScheduleService {
 
     }
     
-    func loadTrolleySchedules(_ completion: LoadScheduleCompletion) {
+    func loadTrolleySchedules(_ completion: @escaping LoadScheduleCompletion) {
         
         // check user defaults (should probably go in an operation)
         let localSchedulesOperation = LoadLocalSchedulesOperation()
@@ -35,7 +35,7 @@ class TrolleyScheduleService {
         loadSchedulesFromNetwork(completion)
     }
     
-    fileprivate func loadSchedulesFromNetwork(_ completion: LoadScheduleCompletion) {
+    fileprivate func loadSchedulesFromNetwork(_ completion: @escaping LoadScheduleCompletion) {
         
         // Load all Routes so we have names for the RouteSchedules (associated by RouteID)
         var routes = Box<[JSON]>(value: [JSON]())
