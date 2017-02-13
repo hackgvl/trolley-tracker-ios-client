@@ -24,7 +24,7 @@ class Trolley: NSObject {
         self.number = number
     }
     
-    init?(jsonData: AnyObject) {
+    init?(jsonData: Any) {
         
         let json = JSON(jsonData)
         

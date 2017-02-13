@@ -8,12 +8,19 @@
 
 import UIKit
 import XCTest
+@testable import TrolleyTracker
 
 class TrolleyTrackerTests: XCTestCase {
-    
+
+    private var mockTrolleyData: Data?
+
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+
+        let bundle = Bundle(for: TrolleyTrackerTests.self)
+        let url = bundle.url(forResource: "trolleyMock", withExtension: "json")!
+        let data = try! Data(contentsOf: url)
+        mockTrolleyData = data
     }
     
     override func tearDown() {
@@ -21,16 +28,24 @@ class TrolleyTrackerTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure() {
-            // Put the code you want to measure the time of here.
+    func testTrolleyParsing() {
+
+        guard let trolleyData = mockTrolleyData else {
+            XCTAssert(false, "No Trolley Data to test with")
+            return
         }
+        guard let jsonData = try? JSONSerialization.jsonObject(with: trolleyData, options: []) else {
+            XCTAssert(false, "Unable to create JSON Data from mock data")
+            return
+        }
+        guard let trolley = Trolley(jsonData: jsonData) else {
+            XCTAssert(false, "Unable to parse Trolley from data: \(String(describing: mockTrolleyData))")
+            return
+        }
+
+        XCTAssertEqual(trolley.ID, 6)
+        XCTAssertEqual(trolley.name, "Limo Trolley")
+        XCTAssertEqual(trolley.number, 8)
     }
     
 }

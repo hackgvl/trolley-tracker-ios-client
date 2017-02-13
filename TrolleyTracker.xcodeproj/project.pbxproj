@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D9019DAD1E526F0000D9E197 /* trolleyMock.json in Resources */ = {isa = PBXBuildFile; fileRef = D9019DAC1E526F0000D9E197 /* trolleyMock.json */; };
 		D90866F01B91292F002A6F87 /* TrolleyAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90866EF1B91292F002A6F87 /* TrolleyAnnotationView.swift */; };
 		D90866F41B91C79F002A6F87 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D90866F21B91C633002A6F87 /* Montserrat-Bold.ttf */; };
 		D90866F71B91C8B8002A6F87 /* UIFont+TrolleyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90866F61B91C8B8002A6F87 /* UIFont+TrolleyTracker.swift */; };
@@ -218,6 +219,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D9019DAC1E526F0000D9E197 /* trolleyMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = trolleyMock.json; sourceTree = "<group>"; };
 		D90866EF1B91292F002A6F87 /* TrolleyAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyAnnotationView.swift; sourceTree = "<group>"; };
 		D90866F21B91C633002A6F87 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		D90866F61B91C8B8002A6F87 /* UIFont+TrolleyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+TrolleyTracker.swift"; sourceTree = "<group>"; };
@@ -307,6 +309,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D9019D9E1E526EB400D9E197 /* MockData */ = {
+			isa = PBXGroup;
+			children = (
+				D9019DAC1E526F0000D9E197 /* trolleyMock.json */,
+			);
+			name = MockData;
+			sourceTree = "<group>";
+		};
 		D90866F11B91C60F002A6F87 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -496,6 +506,7 @@
 		EFA4B20E1A1C201F00BEA42C /* TrolleyTrackerTests */ = {
 			isa = PBXGroup;
 			children = (
+				D9019D9E1E526EB400D9E197 /* MockData */,
 				EFA4B2111A1C201F00BEA42C /* TrolleyTrackerTests.swift */,
 				EFA4B20F1A1C201F00BEA42C /* Supporting Files */,
 			);
@@ -572,6 +583,7 @@
 					EFA4B20A1A1C201F00BEA42C = {
 						CreatedOnToolsVersion = 6.1;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 						TestTargetID = EFA4B1F51A1C201F00BEA42C;
 					};
 				};
@@ -724,6 +736,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9019DAD1E526F0000D9E197 /* trolleyMock.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -883,7 +896,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "-DDEBUGGING -DTEST";
@@ -918,6 +931,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -930,6 +944,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.CodeForGreenville.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TrolleyTracker.app/TrolleyTracker";
 			};
@@ -968,7 +983,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_SWIFT_FLAGS = "-DTEST";
 				SDKROOT = iphoneos;
@@ -1003,6 +1018,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1011,6 +1027,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.CodeForGreenville.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TrolleyTracker.app/TrolleyTracker";
 			};
@@ -1056,7 +1073,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "-DDEBUGGING";
@@ -1098,7 +1115,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -1155,6 +1172,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1167,6 +1185,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.CodeForGreenville.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TrolleyTracker.app/TrolleyTracker";
 			};
@@ -1176,6 +1195,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1184,6 +1204,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.CodeForGreenville.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TrolleyTracker.app/TrolleyTracker";
 			};
