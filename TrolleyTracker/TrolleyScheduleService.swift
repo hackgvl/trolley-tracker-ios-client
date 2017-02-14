@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SwiftyJSON
+
 
 class TrolleyScheduleService {
     

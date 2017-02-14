@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 import Fabric
 import Crashlytics
 
@@ -25,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.setDefaultAppearance()
         UITabBar.setDefaultAppearance() 
     
-        Alamofire.SessionManager.default.session.configuration.httpAdditionalHeaders = [
+        SessionManager.default.session.configuration.httpAdditionalHeaders = [
             "Cache-Control":"no-cache",
             "Authorization":"Basic SU9TQ2xpZW50OklPU2lzdGhlYmVzdCEx",
             "Content-Type":"application/json",

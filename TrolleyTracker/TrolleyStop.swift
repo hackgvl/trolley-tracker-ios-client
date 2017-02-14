@@ -8,7 +8,7 @@
 
 import Foundation
 import MapKit
-import SwiftyJSON
+
 
 
 /// Represents a point where the Trolleys stop for passengers.
