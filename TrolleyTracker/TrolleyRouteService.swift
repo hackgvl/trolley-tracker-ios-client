@@ -18,9 +18,11 @@ class TrolleyRouteServiceLive: TrolleyRouteService {
     
     fileprivate var memoryCachedActiveRoutes: [TrolleyRoute]?
     fileprivate var memoryCachedRoutes = [Int : TrolleyRoute]()
-    
-    func loadTrolleyRoutes(_ completion: @escaping LoadTrolleyRouteCompletion) {
 
+    func loadTrolleyRoutes(_ completion: @escaping LoadTrolleyRouteCompletion) {
+        // TODO: Handle reload intervals and cache expiration
+        // Route cache should expire after 15 minutes.
+        // At that point it should check the server and compare with the cache
         if let cachedRoutes = memoryCachedActiveRoutes {
             completion(cachedRoutes)
             return

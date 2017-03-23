@@ -8,29 +8,19 @@
 
 import UIKit
 import MapKit
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
-
 
 // TODO: Add tracking button that toggles MKUserTrackingMode like native maps
 
-class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControllerDelegate {
-    
+class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControllerDelegate, StoryboardInjectable {
+
+    typealias ViewControllerDependencies = ApplicationController
+
     //==================================================================
     // MARK: - Properties
     //==================================================================
-    
-    var trolleyRouteService: TrolleyRouteService!
-    var trolleyLocationService: TrolleyLocationService!
-    
+
+    private let appController: ApplicationController
+
     var detailViewController: DetailViewController!
     
     @IBOutlet var mapView: MKMapView!
@@ -48,30 +38,22 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     
     fileprivate let locationManager = CLLocationManager()
     
-    fileprivate var lastRouteLoadTime: Date?
-    
-    fileprivate var mapViewDelegate: TrolleyMapViewDelegate!
+    fileprivate let mapViewDelegate = TrolleyMapViewDelegate()
     
     //==================================================================
     // MARK: - Lifecycle
     //==================================================================
+
+    required init?(coder aDecoder: NSCoder) {
+        self.appController = MapViewController.getDependencies()
+        super.init(coder: aDecoder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        switch EnvironmentVariables.currentBuildConfiguration() {
-        case .Release:
-            trolleyLocationService = TrolleyLocationServiceLive.sharedService
-            trolleyRouteService = TrolleyRouteServiceLive.sharedService
-        case .Test:
-            trolleyLocationService = TrolleyLocationServiceFake()
-            trolleyRouteService = TrolleyRouteServiceFake()
-        }
-        
-        
+
         setupViews()
-        
-        mapViewDelegate = TrolleyMapViewDelegate()
+
         mapViewDelegate.annotationSelectionAction = { [unowned self] view in
             self.detailViewController.showDetailForAnnotation(view.annotation, withUserLocation: self.mapView.userLocation)
         }
@@ -80,8 +62,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         }
         mapView.delegate = mapViewDelegate
         
-        let _ = trolleyLocationService.trolleyPresentObservers.add(updateTrolleyPresent)
-        let _ = trolleyLocationService.trolleyObservers.add(updateTrolley)
+        let _ = appController.trolleyLocationService.trolleyPresentObservers.add(updateTrolleyPresent)
+        let _ = appController.trolleyLocationService.trolleyObservers.add(updateTrolley)
         
         locationManager.requestWhenInUseAuthorization()
         
@@ -90,19 +72,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        let maxRouteTime: TimeInterval = 15 * 60
-        if lastRouteLoadTime == nil || lastRouteLoadTime?.timeIntervalSinceNow < -maxRouteTime {
-            loadRoutes()
-        }
-        
-        trolleyLocationService.startTrackingTrolleys()
+
+        loadRoutes()
+        appController.trolleyLocationService.startTrackingTrolleys()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         
-        trolleyLocationService.stopTrackingTrolley()
+        appController.trolleyLocationService.stopTrackingTrolley()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -121,19 +99,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     //==================================================================
     
     fileprivate func updateTrolley(_ trolley: Trolley) {
-        
-        // Get our Trolley Annotations
-        let trolleyAnnotations = mapView.annotations.filter { $0 is Trolley }.map { $0 as! Trolley }
-        
-        // If we're already showing this Trolly on the map, just update it
-        if let index = trolleyAnnotations.index(of: trolley) {
-            let existingAnnotation = trolleyAnnotations[index]
-            existingAnnotation.coordinate = trolley.location.coordinate
-        }
-        // Otherwise, add it
-        else {
-            mapView.addAnnotation(trolley)
-        }
+        mapView.addOrUpdateTrolley(trolley)
     }
     
     fileprivate func updateTrolleyPresent(_ present: Bool) {
@@ -141,21 +107,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     }
     
     fileprivate func loadRoutes() {
-        
-        // Get Stops
-        trolleyRouteService.loadTrolleyRoutes { routes in
-            // For each route,
-            for var route in routes {
-                
-                // -- Add overlays
-                self.mapView.add(route.overlay)
-                
-                // -- Add stops
-                for stop in route.stops {
-                    self.mapView.addAnnotation(stop)
-                }
-            }
-            self.lastRouteLoadTime = Date()
+        appController.trolleyRouteService.loadTrolleyRoutes { routes in
+            self.mapView.replaceCurrentRoutes(with: routes)
         }
     }
     
@@ -214,16 +167,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     //==========================================================================
     
     @IBAction func handleLocateMeButton(_ sender: UIButton) {
-        let userLocation = mapView.userLocation.coordinate
-        if userLocation.latitude != 0 && userLocation.longitude != 0 {
-            mapView.setCenter(userLocation, animated: true)
-        }
-        else {
-            let controller = AlertController(title: nil, message: "We're sorry, we can't find your current location right now.", preferredStyle: UIAlertControllerStyle.alert)
-            controller.tintColor = UIColor.ttAlternateTintColor()
-            controller.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-            present(controller, animated: true, completion: nil)
-        }
+        mapView.centerOnUserPossible(presentationContext: self)
     }
     
     //==========================================================================
@@ -244,8 +188,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         locateMeButton.tintColor = UIColor.ttTintColor()
         locateMeButton.layer.cornerRadius = 5
         
-        detailViewHiddenConstraint = NSLayoutConstraint(item: detailView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0.0)
-        noTrolleyHiddenConstraint = NSLayoutConstraint(item: noTrolleyLabel, attribute: .top, relatedBy: .equal, toItem: mapView, attribute: .bottom, multiplier: 1.0, constant: 0)
+        detailViewHiddenConstraint = NSLayoutConstraint(item: detailView, attribute: .top, relatedBy: .equal,
+                                                        toItem: view, attribute: .bottom,
+                                                        multiplier: 1.0, constant: 0.0)
+        noTrolleyHiddenConstraint = NSLayoutConstraint(item: noTrolleyLabel, attribute: .top, relatedBy: .equal,
+                                                       toItem: mapView, attribute: .bottom,
+                                                       multiplier: 1.0, constant: 0)
         
         setNoTrolleyMessageVisible(false, animated: false)
         setDetailViewVisible(false, animated: false)

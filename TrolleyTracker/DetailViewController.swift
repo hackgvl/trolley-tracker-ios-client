@@ -16,18 +16,7 @@ protocol DetailViewControllerDelegate: class {
 }
 
 class DetailViewController: UIViewController {
-    
-    //==================================================================
-    // MARK: - Properties
-    //==================================================================
 
-    fileprivate static var distanceFormatter: MKDistanceFormatter {
-        let formatter = MKDistanceFormatter()
-        formatter.units = MKDistanceFormatterUnits.imperial
-        formatter.unitStyle = MKDistanceFormatterUnitStyle.default
-        return formatter
-    }
-    
     //==================================================================
     // MARK: - Lifecycle
     //==================================================================
@@ -86,15 +75,11 @@ class DetailViewController: UIViewController {
     }
     
     fileprivate func showDistance() {
-        
-        if let pointA = currentUserLocation?.location,
-        let detailItemCoordinate = currentlyShowingAnnotation?.coordinate
-        {
-            let pointB = CLLocation(latitude: detailItemCoordinate.latitude, longitude: detailItemCoordinate.longitude)
-            let distance = pointA.distance(from: pointB)
-            
-            distanceLabel.text = DetailViewController.distanceFormatter.string(fromDistance: distance)
+        guard let c1 = currentUserLocation?.coordinate,
+            let c2 = currentlyShowingAnnotation?.coordinate else {
+                return
         }
+        distanceLabel.text = MKDistanceFormatter.standard.string(fromDistance: c1.distance(from: c2))
     }
     
     fileprivate func resetLabels() {
@@ -126,13 +111,17 @@ class DetailViewController: UIViewController {
         guard let annotation = currentlyShowingAnnotation else { return }
         guard let userLocation = currentUserLocation?.location else { return }
         
-        let source = MKMapItem(placemark: MKPlacemark(coordinate: userLocation.coordinate, addressDictionary: nil))
-        let destination = MKMapItem(placemark: MKPlacemark(coordinate: annotation.coordinate, addressDictionary: nil))
+        let source = MKMapItem(placemark: MKPlacemark(coordinate: userLocation.coordinate,
+                                                      addressDictionary: nil))
+        let destination = MKMapItem(placemark: MKPlacemark(coordinate: annotation.coordinate,
+                                                           addressDictionary: nil))
         
         walkingTimeButton.isEnabled = false
         timeLoadingIndicator.startAnimating()
         
-        TimeAndDistanceService.walkingTravelTimeBetweenPoints(source, pointB: destination, cacheResultsOnly: cacheResultsOnly) { (rawTime, formattedTime) -> Void in
+        TimeAndDistanceService.walkingTravelTimeBetweenPoints(source,
+                                                              pointB: destination,
+                                                              cacheResultsOnly: cacheResultsOnly) { (rawTime, formattedTime) -> Void in
             DispatchQueue.main.async(execute: {
                 // Set time label with directions result
                 self.timeLabel.text = formattedTime
@@ -143,16 +132,9 @@ class DetailViewController: UIViewController {
     }
     
     fileprivate func getDirections(_ pointB: CLLocationCoordinate2D) {
-        let placeMark = MKPlacemark(coordinate: pointB, addressDictionary: nil)
-        let currentLocation = MKMapItem.forCurrentLocation()
-        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking]
-        let mapItem = MKMapItem(placemark: placeMark)
-        
         //TODO: Make this the name of the stop or Trolley
-        mapItem.name = "Trolley"
-        
-        MKMapItem.openMaps(with: [currentLocation, mapItem], launchOptions: launchOptions)
-        //mapItem.openInMapsWithLaunchOptions(launchOptions)
+        let name = "Trolley"
+        MKMapItem.openMapsFromCurrentLocation(toCoordinate: pointB, named: name)
     }
 
     //==================================================================
