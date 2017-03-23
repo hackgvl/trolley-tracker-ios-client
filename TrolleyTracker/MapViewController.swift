@@ -29,9 +29,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     @IBOutlet var noTrolleyLabel: UILabel!
     
     @IBOutlet var noTrolleyLabelTapGesture: UITapGestureRecognizer!
-    
-    @IBOutlet var detailViewVisibleConstraint: NSLayoutConstraint!
-    fileprivate var detailViewHiddenConstraint: NSLayoutConstraint!
+
+    @IBOutlet var detailViewHiddenConstraint: NSLayoutConstraint!
     
     fileprivate var noTrolleyHiddenConstraint: NSLayoutConstraint!
     @IBOutlet var noTrolleyVisibleConstraint: NSLayoutConstraint!
@@ -113,15 +112,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     }
     
     fileprivate func setDetailViewVisible(_ visible: Bool, animated: Bool) {
-        
-        if visible {
-            detailViewHiddenConstraint?.isActive = false
-            detailViewVisibleConstraint?.isActive = true
-        }
-        else {
-            detailViewVisibleConstraint?.isActive = false
-            detailViewHiddenConstraint?.isActive = true
-        }
+
+        detailViewHiddenConstraint.isActive = !visible
         
         let updateAction = { self.view.layoutIfNeeded() }
         
@@ -187,10 +179,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         locateMeButton.backgroundColor = UIColor.ttAlternateTintColor()
         locateMeButton.tintColor = UIColor.ttTintColor()
         locateMeButton.layer.cornerRadius = 5
-        
-        detailViewHiddenConstraint = NSLayoutConstraint(item: detailView, attribute: .top, relatedBy: .equal,
-                                                        toItem: view, attribute: .bottom,
-                                                        multiplier: 1.0, constant: 0.0)
+
         noTrolleyHiddenConstraint = NSLayoutConstraint(item: noTrolleyLabel, attribute: .top, relatedBy: .equal,
                                                        toItem: mapView, attribute: .bottom,
                                                        multiplier: 1.0, constant: 0)
