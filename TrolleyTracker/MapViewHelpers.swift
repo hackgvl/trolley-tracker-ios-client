@@ -14,6 +14,14 @@ extension MKMapView {
         return annotations.flatMap { $0 as? Trolley }
     }
 
+    var trolleyStopAnnotations: [TrolleyStop] {
+        return annotations.flatMap { $0 as? TrolleyStop }
+    }
+
+    var trolleyRouteOverlays: [TrolleyRouteOverlay] {
+        return overlays.flatMap { $0 as? TrolleyRouteOverlay }
+    }
+
     func centerOnUserPossible(presentationContext: UIViewController) {
 
         let userCoordinate = userLocation.coordinate
@@ -30,7 +38,7 @@ extension MKMapView {
 
     func replaceCurrentRoutes(with routes: [TrolleyRoute]) {
 
-        // FIXME: Remove current routes
+        removeTrolleyRoutesAndStops()
 
         // For each route,
         for var route in routes {
@@ -63,5 +71,10 @@ extension MKMapView {
 
     func setRegionToDowntownGreenville() {
         region = MKCoordinateRegion(center: CLLocationCoordinate2DMake(34.851887, -82.398366), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+    }
+
+    func removeTrolleyRoutesAndStops() {
+        removeOverlays(trolleyRouteOverlays)
+        removeAnnotations(trolleyStopAnnotations)
     }
 }

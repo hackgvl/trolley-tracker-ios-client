@@ -127,12 +127,12 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="8Gu-aw-L91">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="600"/>
                             </mapView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AOT-dP-cHQ">
-                                <rect key="frame" x="20" y="563" width="122" height="29"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AOT-dP-cHQ">
+                                <rect key="frame" x="16" y="630.5" width="122" height="28.5"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="l9v-Tw-vRV" userLabel="Route Name Container">
-                                <rect key="frame" x="20" y="563" width="122" height="28.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="l9v-Tw-vRV" userLabel="Route Name Container">
+                                <rect key="frame" x="16" y="630.5" width="122" height="28.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Route Name]" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSO-FI-M5e">
                                         <rect key="frame" x="8" y="4" width="106" height="20.5"/>
@@ -193,7 +193,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="8A4-02-OAN" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Schedule" image="Schedule" id="iqx-Vk-ddR"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ww5-TQ-fL0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ww5-TQ-fL0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
