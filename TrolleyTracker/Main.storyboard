@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E192b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IIY-SQ-1lS">
-    <device id="retina4_0" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -19,25 +19,25 @@
                         <viewControllerLayoutGuide type="bottom" id="Nhc-IU-zin"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="V3S-Uq-p0h">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nw5-DS-k9q">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="9000007200"/>
                                 <connections>
                                     <outlet property="delegate" destination="S6x-G5-NWf" id="wy1-2b-NA0"/>
                                 </connections>
                             </mapView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BxK-z7-qYq">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="XbQ-YL-pry">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="extraLight"/>
                             </visualEffectView>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="999" text="No Trolleys are being tracked right now.\nYou can look at the schedule to see when the Trolleys will be running." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfm-uk-9gA">
-                                <rect key="frame" x="0.0" y="498" width="320" height="21"/>
+                                <rect key="frame" x="0.0" y="597" width="375" height="21"/>
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -47,13 +47,13 @@
                                 </connections>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fHa-9S-gQU">
-                                <rect key="frame" x="0.0" y="320" width="320" height="199"/>
+                                <rect key="frame" x="0.0" y="667" width="375" height="233.5"/>
                                 <connections>
                                     <segue destination="wzx-Jn-UCM" kind="embed" id="tOE-p6-AXg"/>
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqG-Mz-Kgv">
-                                <rect key="frame" x="260" y="446" width="44" height="44"/>
+                                <rect key="frame" x="315" y="545" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="6iC-3p-Ow4"/>
                                     <constraint firstAttribute="height" constant="44" id="sMP-rh-khO"/>
@@ -64,7 +64,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="0.99997437000274658" blue="0.99999129772186279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="hqG-Mz-Kgv" firstAttribute="trailing" secondItem="V3S-Uq-p0h" secondAttribute="trailingMargin" id="2yx-24-LS7"/>
                             <constraint firstItem="rfm-uk-9gA" firstAttribute="leading" secondItem="V3S-Uq-p0h" secondAttribute="leading" id="3nf-kM-w38"/>
@@ -83,7 +83,7 @@
                             <constraint firstItem="fHa-9S-gQU" firstAttribute="top" secondItem="V3S-Uq-p0h" secondAttribute="bottom" id="sVT-2P-z4i"/>
                             <constraint firstItem="nw5-DS-k9q" firstAttribute="leading" secondItem="V3S-Uq-p0h" secondAttribute="leading" id="uK1-Q5-9Yw"/>
                             <constraint firstAttribute="trailing" secondItem="fHa-9S-gQU" secondAttribute="trailing" id="wbz-ck-iFx"/>
-                            <constraint firstItem="fHa-9S-gQU" firstAttribute="top" secondItem="nw5-DS-k9q" secondAttribute="bottom" id="wd6-fM-bXD"/>
+                            <constraint firstItem="fHa-9S-gQU" firstAttribute="top" secondItem="nw5-DS-k9q" secondAttribute="bottom" priority="750" identifier="test1" id="wd6-fM-bXD"/>
                             <constraint firstItem="BxK-z7-qYq" firstAttribute="top" secondItem="V3S-Uq-p0h" secondAttribute="top" id="ycv-H2-CRv"/>
                         </constraints>
                     </view>
@@ -135,9 +135,9 @@
                         <viewControllerLayoutGuide type="bottom" id="xVI-o6-Fet"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="r1Z-Pk-Cgg">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="199"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="233.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="0.99997437000274658" blue="0.99999129772186279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5oD-7E-wUM" userLabel="First Responder" sceneMemberID="firstResponder"/>
