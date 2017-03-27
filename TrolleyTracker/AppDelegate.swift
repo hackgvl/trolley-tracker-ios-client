@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         super.init()
 
         MapViewController.setDependencies(appController)
+        ScheduleViewController.setDependencies(appController)
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -37,8 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             "Authorization":"Basic SU9TQ2xpZW50OklPU2lzdGhlYmVzdCEx",
             "Content-Type":"application/json",
         ]
-        
-        let _ = TrolleyScheduleService.sharedService
         
         Fabric.with([Crashlytics.self])
         

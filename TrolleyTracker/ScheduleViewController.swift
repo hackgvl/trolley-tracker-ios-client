@@ -21,11 +21,14 @@ private enum ScheduleDisplayType: Int {
     }
 }
 
-class ScheduleViewController: UIViewController, UINavigationBarDelegate {
-    
+class ScheduleViewController: UIViewController, UINavigationBarDelegate, StoryboardInjectable {
+
+    typealias ViewControllerDependencies = ApplicationController
+
     let ScheduleHeaderViewIdentifier = "ScheduleHeaderViewIdentifier"
     
     var scheduleDataSource: [ScheduleSection]?
+    fileprivate let appController: ApplicationController
     
     @IBOutlet var tableView: UITableView! {
         didSet {
@@ -43,7 +46,12 @@ class ScheduleViewController: UIViewController, UINavigationBarDelegate {
     fileprivate var schedulesByRouteSections: [ScheduleSection]?
 
     @IBOutlet weak var scheduleFormattingSegmentedControl: UISegmentedControl!
-    
+
+    required init?(coder aDecoder: NSCoder) {
+        self.appController = ScheduleViewController.getDependencies()
+        super.init(coder: aDecoder)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,7 +64,7 @@ class ScheduleViewController: UIViewController, UINavigationBarDelegate {
             scheduleFormattingSegmentedControl.setTitle(displayType.displayString(), forSegmentAt: displayType.rawValue)
         }
         
-        TrolleyScheduleService.sharedService.loadTrolleySchedules { (schedules) -> Void in
+        appController.trolleyScheduleService.loadTrolleySchedules { (schedules) -> Void in
             DispatchQueue.main.async {
                 self.schedules = schedules
                 self.clearCachedViews()
@@ -123,6 +131,7 @@ class ScheduleViewController: UIViewController, UINavigationBarDelegate {
     }
     
     fileprivate func displayRoute(_ routeID: Int) {
+        RouteDetailViewController.setDependencies(appController)
         let controller = storyboard?.instantiateViewController(withIdentifier: String(describing: RouteDetailViewController.self)) as! RouteDetailViewController
         controller.routeID = routeID
         navigationController?.pushViewController(controller, animated: true)

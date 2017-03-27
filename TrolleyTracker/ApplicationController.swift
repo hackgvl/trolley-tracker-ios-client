@@ -12,13 +12,16 @@ class ApplicationController {
 
     let trolleyRouteService: TrolleyRouteService
     let trolleyLocationService: TrolleyLocationService
+    let trolleyScheduleService: TrolleyScheduleService
 
     init() {
+
+        trolleyScheduleService = TrolleyScheduleService()
 
         switch EnvironmentVariables.currentBuildConfiguration() {
         case .Release:
             trolleyLocationService = TrolleyLocationServiceLive.sharedService
-            trolleyRouteService = TrolleyRouteServiceLive.sharedService
+            trolleyRouteService = TrolleyRouteServiceLive()
         case .Test:
             trolleyLocationService = TrolleyLocationServiceFake()
             trolleyRouteService = TrolleyRouteServiceFake()

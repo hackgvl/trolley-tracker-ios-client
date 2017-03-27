@@ -9,78 +9,79 @@
 import Foundation
 import CoreLocation
 
+private struct CacheItem<T> {
+    let timestamp: Date
+    let payload: T
+
+    func isNewerThan(_ minutes: Int) -> Bool {
+        let allowedSeconds = TimeInterval(minutes * 60)
+        return timestamp.timeIntervalSinceNow > -allowedSeconds
+    }
+}
 
 class TrolleyRouteServiceLive: TrolleyRouteService {
+
+    private let queue: OperationQueue = OperationQueue()
     
-    let group = DispatchGroup()
- 
-    static var sharedService = TrolleyRouteServiceLive()
-    
-    fileprivate var memoryCachedActiveRoutes: [TrolleyRoute]?
+    fileprivate var memoryCachedActiveRoutes: CacheItem<[TrolleyRoute]>?
     fileprivate var memoryCachedRoutes = [Int : TrolleyRoute]()
 
     func loadTrolleyRoutes(_ completion: @escaping LoadTrolleyRouteCompletion) {
-        // TODO: Handle reload intervals and cache expiration
-        // Route cache should expire after 15 minutes.
-        // At that point it should check the server and compare with the cache
-        if let cachedRoutes = memoryCachedActiveRoutes {
-            completion(cachedRoutes)
+
+        // TODO: Check if time has crossed quarter-hour threshhold
+        if let cachedRoutes = memoryCachedActiveRoutes,
+            cachedRoutes.isNewerThan(15) {
+            DispatchQueue.main.async {
+                completion(cachedRoutes.payload)
+            }
             return
         }
-        
-        let request = TrolleyRequests.RoutesActive()
-        request.responseJSON { (response) -> Void in
-            guard let json = response.result.value else { return }
-            self.loadRouteDetailForRoutes(JSON(json), completion: completion)
+
+        let op = FetchActiveRouteIDsOperation()
+        op.completionBlock = { [weak op] in
+            guard let ids = op?.fetchedRouteIDs else {
+                DispatchQueue.main.async {
+                    completion([])
+                }
+                return
+            }
+            self.fetchActiveRouteIDsFromNetwork(ids, completion: completion)
         }
+        queue.addOperation(op)
     }
     
     func loadTrolleyRoute(_ routeID: Int, completion: @escaping LoadTrolleyRouteCompletion) {
         if let route = memoryCachedRoutes[routeID] { completion([route]); return }
-        loadRouteDetail(routeID, completion: completion)
-    }
-    
-    fileprivate final func loadRouteDetailForRoutes(_ routes: JSON, completion: @escaping LoadTrolleyRouteCompletion) {
-        
-        var routeObjects = [TrolleyRoute]()
-        
-        for (index, route) in routes.arrayValue.enumerated() {
-            if let routeID = route["ID"].int {
 
-                group.enter()
-                
-                loadRouteDetail(routeID, colorIndex: index, completion: { (routes) in
-                    routeObjects += routes
-                    self.group.leave()
-                })
-            }
-        }
-        
-        group.notify(queue: DispatchQueue.main) {
-            self.memoryCachedActiveRoutes = routeObjects
-            completion(routeObjects)
-        }
-    }
-    
-    fileprivate final func loadRouteDetail(_ routeID: Int, colorIndex: Int = 0, completion: @escaping LoadTrolleyRouteCompletion) {
-        
-        TrolleyRequests.RouteDetail("\(routeID)").responseJSON { (response) -> Void in
-            
-            var routeObjects = [TrolleyRoute]()
-            
-            defer {
+        let op = FetchRouteDetailOperation(routeIDs: [routeID])
+        op.completionBlock = { [weak op] in
+
+            guard let fetchedRoute = op?.fetchedRoutes.first else {
                 DispatchQueue.main.async {
-                    for route in routeObjects {
-                        self.memoryCachedRoutes[route.ID] = route
-                    }
-                    completion(routeObjects)
+                    completion([])
                 }
+                return
             }
-            
-            guard let json = response.result.value else { return }
-            if let route = TrolleyRoute(json: JSON(json), colorIndex: colorIndex) {
-                routeObjects.append(route)
+
+            self.memoryCachedRoutes[routeID] = fetchedRoute
+            DispatchQueue.main.async {
+                completion([fetchedRoute])
             }
         }
+        queue.addOperation(op)
+    }
+
+    private func fetchActiveRouteIDsFromNetwork(_ routeIDs: [Int],
+                                                completion: @escaping LoadTrolleyRouteCompletion) {
+
+        let op = FetchRouteDetailOperation(routeIDs: routeIDs)
+        op.completionBlock = { [weak op] in
+
+            guard let fetchedRoutes = op?.fetchedRoutes else { completion([]); return }
+
+            self.memoryCachedActiveRoutes = CacheItem(timestamp: Date(), payload: fetchedRoutes)
+            completion(fetchedRoutes)
+        }
+        queue.addOperation(op)
     }
 }

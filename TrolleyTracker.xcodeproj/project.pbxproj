@@ -63,6 +63,7 @@
 		D98CF6591E827E12005048FF /* ViewControllerInitialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98CF6581E827E12005048FF /* ViewControllerInitialization.swift */; };
 		D98CF65D1E83C3AF005048FF /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98CF65C1E83C3AF005048FF /* Formatters.swift */; };
 		D98CF65F1E83C4B2005048FF /* GeographyHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98CF65E1E83C4B2005048FF /* GeographyHelpers.swift */; };
+		D99B71561E87D6D800F36E55 /* RouteFetchOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99B71551E87D6D800F36E55 /* RouteFetchOperations.swift */; };
 		D9CFDB341E528A8A0056AB01 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CFDB331E528A8A0056AB01 /* SwiftyJSON.swift */; };
 		D9CFDB461E528A940056AB01 /* AFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CFDB351E528A940056AB01 /* AFError.swift */; };
 		D9CFDB471E528A940056AB01 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CFDB361E528A940056AB01 /* Alamofire.swift */; };
@@ -191,6 +192,7 @@
 		D98CF6581E827E12005048FF /* ViewControllerInitialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerInitialization.swift; sourceTree = "<group>"; };
 		D98CF65C1E83C3AF005048FF /* Formatters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		D98CF65E1E83C4B2005048FF /* GeographyHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeographyHelpers.swift; sourceTree = "<group>"; };
+		D99B71551E87D6D800F36E55 /* RouteFetchOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteFetchOperations.swift; sourceTree = "<group>"; };
 		D9CFDB331E528A8A0056AB01 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Dependencies/SwiftyJSON/SwiftyJSON.swift; sourceTree = "<group>"; };
 		D9CFDB351E528A940056AB01 /* AFError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Dependencies/Alamofire/AFError.swift; sourceTree = "<group>"; };
 		D9CFDB361E528A940056AB01 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Dependencies/Alamofire/Alamofire.swift; sourceTree = "<group>"; };
@@ -373,6 +375,7 @@
 			children = (
 				D914FADF1B30DEFE002DACF8 /* TrolleyRouteService.swift */,
 				D97A7F0D1BE194F200B40766 /* TrolleyRouteServiceFake.swift */,
+				D99B71551E87D6D800F36E55 /* RouteFetchOperations.swift */,
 			);
 			name = Routes;
 			sourceTree = "<group>";
@@ -782,6 +785,7 @@
 				D9CFDB491E528A940056AB01 /* MultipartFormData.swift in Sources */,
 				D9CFDB471E528A940056AB01 /* Alamofire.swift in Sources */,
 				D9CFDB551E528A940056AB01 /* Timeline.swift in Sources */,
+				D99B71561E87D6D800F36E55 /* RouteFetchOperations.swift in Sources */,
 				D9E240491BDBCACB00F16CF8 /* SubHeadingLabel.swift in Sources */,
 				D9650CA41B86A9F10004A2AF /* UIColor+TrolleyTracker.swift in Sources */,
 				D9CFDB341E528A8A0056AB01 /* SwiftyJSON.swift in Sources */,

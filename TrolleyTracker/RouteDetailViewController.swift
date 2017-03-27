@@ -9,7 +9,9 @@
 import UIKit
 import MapKit
 
-class RouteDetailViewController: UIViewController, MKMapViewDelegate {
+class RouteDetailViewController: UIViewController, MKMapViewDelegate, StoryboardInjectable {
+
+    typealias ViewControllerDependencies = ApplicationController
 
     //==================================================================
     // MARK: - Variables
@@ -17,7 +19,7 @@ class RouteDetailViewController: UIViewController, MKMapViewDelegate {
     
     var routeID: Int?
     fileprivate let mapViewDelegate = TrolleyMapViewDelegate()
-    fileprivate var trolleyRouteService: TrolleyRouteService!
+    fileprivate let appController: ApplicationController
     
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var routeNameLabel: UILabel!
@@ -28,11 +30,15 @@ class RouteDetailViewController: UIViewController, MKMapViewDelegate {
     //==================================================================
     // MARK: - UIViewController Overrides
     //==================================================================
-    
+
+    required init?(coder aDecoder: NSCoder) {
+        self.appController = RouteDetailViewController.getDependencies()
+        super.init(coder: aDecoder)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupEnvironmentDependentItems()
         mapViewDelegate.shouldShowCallouts = true
         mapView.delegate = mapViewDelegate
         mapView.setRegionToDowntownGreenville()
@@ -54,15 +60,6 @@ class RouteDetailViewController: UIViewController, MKMapViewDelegate {
     // MARK: - Implementation
     //==================================================================
     
-    fileprivate final func setupEnvironmentDependentItems() {
-        switch EnvironmentVariables.currentBuildConfiguration() {
-        case .Release:
-            trolleyRouteService = TrolleyRouteServiceLive.sharedService
-        case .Test:
-            trolleyRouteService = TrolleyRouteServiceFake()
-        }
-    }
-    
     fileprivate final func displayRoute() {
         
         routeNameLabel.text = nil
@@ -73,7 +70,7 @@ class RouteDetailViewController: UIViewController, MKMapViewDelegate {
             return
         }
         
-        trolleyRouteService.loadTrolleyRoute(id) { routes in
+        appController.trolleyRouteService.loadTrolleyRoute(id) { routes in
             
             guard var route = routes.first else { return }
             

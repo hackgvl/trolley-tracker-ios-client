@@ -13,8 +13,6 @@ class TrolleyScheduleService {
     
     typealias LoadScheduleCompletion = (_ schedules: [RouteSchedule]) -> Void
     
-    static var sharedService = TrolleyScheduleService()
-    
     init() {
 
     }
