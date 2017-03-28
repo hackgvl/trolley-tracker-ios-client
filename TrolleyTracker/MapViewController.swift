@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import os.log
 
 // TODO: Add tracking button that toggles MKUserTrackingMode like native maps
 
@@ -74,12 +75,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
 
         loadRoutes()
         appController.trolleyLocationService.startTrackingTrolleys()
+        startRefreshTimer()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         
         appController.trolleyLocationService.stopTrackingTrolley()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        stopRefreshTimer()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -112,27 +120,48 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     }
     
     fileprivate func setDetailViewVisible(_ visible: Bool, animated: Bool) {
-
         detailViewHiddenConstraint.isActive = !visible
-        
-        let updateAction = { self.view.layoutIfNeeded() }
-        
-        if animated { UIView.animate(withDuration: 0.25, animations: updateAction) }
-        else { updateAction() }
+        updateLayout(animated: true)
     }
     
     fileprivate func setNoTrolleyMessageVisible(_ visible: Bool, animated: Bool) {
-
         noTrolleyVisibleConstraint.isActive = visible
-        
+        updateLayout(animated: true)
+    }
+
+    fileprivate func updateLayout(animated: Bool) {
         let updateAction = { self.view.layoutIfNeeded() }
-        
         if animated { UIView.animate(withDuration: 0.25, animations: updateAction) }
         else { updateAction() }
     }
     
     @IBAction func handleNoTrolleyLabelTap(_ sender: UITapGestureRecognizer) {
         tabBarController?.selectedIndex = 1
+    }
+
+    //==================================================================
+    // MARK: - Refresh Timer
+    //==================================================================
+
+    private var updateTimer: Timer?
+
+    private func startRefreshTimer() {
+        updateTimer = Timer.scheduledTimer(timeInterval: 60,
+                                           target: self,
+                                           selector: #selector(handleRefreshTimerFired),
+                                           userInfo: nil, repeats: false)
+    }
+
+    private func stopRefreshTimer() {
+        updateTimer?.invalidate()
+        updateTimer = nil
+    }
+
+    @objc private func handleRefreshTimerFired() {
+        if #available(iOS 10.0, *) {
+            os_log("Refresh timer fired, loading routes")
+        }
+        loadRoutes()
     }
     
     //==================================================================
