@@ -33,12 +33,23 @@ struct SettingsDataSource {
                 self.shareItemWithPresentationController(self.presentationController),
                 self.attributionItemWithPresentationController(self.presentationController),
                 self.aboutItemWithPresentationController(self.presentationController)
+                ]),
+            SettingsSection(title: "Extra", items: [
+                self.mapLayersItemWithPresentationController(self.presentationController)
                 ])
         ]
     }()
     
     init(presentationController: UIViewController) {
         self.presentationController = presentationController
+    }
+
+    private func mapLayersItemWithPresentationController(_ presentationController: UIViewController) -> SettingsItem {
+
+        return SettingsItem(title: "Map Layers", action: {
+            let vc = UIStoryboard.mapLayersController()
+            presentationController.navigationController?.pushViewController(vc, animated: true)
+        })
     }
     
     fileprivate func feedbackItemWithPresentationController(_ presentationController: UIViewController) -> SettingsItem {

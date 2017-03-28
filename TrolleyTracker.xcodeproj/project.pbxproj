@@ -7,6 +7,53 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA9CF4001E8B122D0045ED29 /* MapLayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF3FF1E8B122D0045ED29 /* MapLayerCell.swift */; };
+		CA9CF4021E8B12E20045ED29 /* UIKitHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4011E8B12E20045ED29 /* UIKitHelpers.swift */; };
+		CA9CF4041E8B13620045ED29 /* MapLayerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4031E8B13620045ED29 /* MapLayerDataSource.swift */; };
+		CA9CF4061E8B153E0045ED29 /* MapLayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4051E8B153E0045ED29 /* MapLayerViewController.swift */; };
+		CA9CF4081E8BB8C90045ED29 /* MapLayersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4071E8BB8C90045ED29 /* MapLayersController.swift */; };
+		CA9CF50E1E8BBFD50045ED29 /* Array+Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4E41E8BBFD50045ED29 /* Array+Unbox.swift */; };
+		CA9CF50F1E8BBFD50045ED29 /* Bool+Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4E51E8BBFD50045ED29 /* Bool+Unbox.swift */; };
+		CA9CF5101E8BBFD50045ED29 /* CGFloat+Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4E61E8BBFD50045ED29 /* CGFloat+Unbox.swift */; };
+		CA9CF5111E8BBFD50045ED29 /* Data+Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4E71E8BBFD50045ED29 /* Data+Unbox.swift */; };
+		CA9CF5121E8BBFD50045ED29 /* DateFormatter+Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4E81E8BBFD50045ED29 /* DateFormatter+Unbox.swift */; };
+		CA9CF5131E8BBFD50045ED29 /* Decimal+Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4E91E8BBFD50045ED29 /* Decimal+Unbox.swift */; };
+		CA9CF5141E8BBFD50045ED29 /* Dictionary+Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4EA1E8BBFD50045ED29 /* Dictionary+Unbox.swift */; };
+		CA9CF5151E8BBFD50045ED29 /* Double+Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4EB1E8BBFD50045ED29 /* Double+Unbox.swift */; };
+		CA9CF5161E8BBFD50045ED29 /* Float+Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4EC1E8BBFD50045ED29 /* Float+Unbox.swift */; };
+		CA9CF5171E8BBFD50045ED29 /* Int+Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4ED1E8BBFD50045ED29 /* Int+Unbox.swift */; };
+		CA9CF5181E8BBFD50045ED29 /* Int32+Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4EE1E8BBFD50045ED29 /* Int32+Unbox.swift */; };
+		CA9CF5191E8BBFD50045ED29 /* Int64+Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4EF1E8BBFD50045ED29 /* Int64+Unbox.swift */; };
+		CA9CF51A1E8BBFD50045ED29 /* JSONSerialization+Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4F01E8BBFD50045ED29 /* JSONSerialization+Unbox.swift */; };
+		CA9CF51B1E8BBFD50045ED29 /* NSArray+Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4F11E8BBFD50045ED29 /* NSArray+Unbox.swift */; };
+		CA9CF51C1E8BBFD50045ED29 /* NSDictionary+Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4F21E8BBFD50045ED29 /* NSDictionary+Unbox.swift */; };
+		CA9CF51D1E8BBFD50045ED29 /* Optional+Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4F31E8BBFD50045ED29 /* Optional+Unbox.swift */; };
+		CA9CF51E1E8BBFD50045ED29 /* Sequence+Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4F41E8BBFD50045ED29 /* Sequence+Unbox.swift */; };
+		CA9CF51F1E8BBFD50045ED29 /* Set+Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4F51E8BBFD50045ED29 /* Set+Unbox.swift */; };
+		CA9CF5201E8BBFD50045ED29 /* String+Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4F61E8BBFD50045ED29 /* String+Unbox.swift */; };
+		CA9CF5211E8BBFD50045ED29 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4F71E8BBFD50045ED29 /* Typealiases.swift */; };
+		CA9CF5221E8BBFD50045ED29 /* UInt+Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4F81E8BBFD50045ED29 /* UInt+Unbox.swift */; };
+		CA9CF5231E8BBFD50045ED29 /* UInt32+Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4F91E8BBFD50045ED29 /* UInt32+Unbox.swift */; };
+		CA9CF5241E8BBFD50045ED29 /* UInt64+Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4FA1E8BBFD50045ED29 /* UInt64+Unbox.swift */; };
+		CA9CF5251E8BBFD50045ED29 /* Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4FB1E8BBFD50045ED29 /* Unbox.swift */; };
+		CA9CF5261E8BBFD50045ED29 /* Unboxable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4FC1E8BBFD50045ED29 /* Unboxable.swift */; };
+		CA9CF5271E8BBFD50045ED29 /* UnboxableByTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4FD1E8BBFD50045ED29 /* UnboxableByTransform.swift */; };
+		CA9CF5281E8BBFD50045ED29 /* UnboxableCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4FE1E8BBFD50045ED29 /* UnboxableCollection.swift */; };
+		CA9CF5291E8BBFD50045ED29 /* UnboxableEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF4FF1E8BBFD50045ED29 /* UnboxableEnum.swift */; };
+		CA9CF52A1E8BBFD50045ED29 /* UnboxableKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF5001E8BBFD50045ED29 /* UnboxableKey.swift */; };
+		CA9CF52B1E8BBFD50045ED29 /* UnboxableRawType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF5011E8BBFD50045ED29 /* UnboxableRawType.swift */; };
+		CA9CF52C1E8BBFD50045ED29 /* UnboxableWithContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF5021E8BBFD50045ED29 /* UnboxableWithContext.swift */; };
+		CA9CF52D1E8BBFD50045ED29 /* UnboxArrayContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF5031E8BBFD50045ED29 /* UnboxArrayContainer.swift */; };
+		CA9CF52E1E8BBFD50045ED29 /* UnboxCollectionElementTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF5041E8BBFD50045ED29 /* UnboxCollectionElementTransformer.swift */; };
+		CA9CF52F1E8BBFD50045ED29 /* UnboxCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF5051E8BBFD50045ED29 /* UnboxCompatible.swift */; };
+		CA9CF5301E8BBFD50045ED29 /* UnboxContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF5061E8BBFD50045ED29 /* UnboxContainer.swift */; };
+		CA9CF5311E8BBFD50045ED29 /* Unboxer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF5071E8BBFD50045ED29 /* Unboxer.swift */; };
+		CA9CF5321E8BBFD50045ED29 /* UnboxError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF5081E8BBFD50045ED29 /* UnboxError.swift */; };
+		CA9CF5331E8BBFD50045ED29 /* UnboxFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF5091E8BBFD50045ED29 /* UnboxFormatter.swift */; };
+		CA9CF5341E8BBFD50045ED29 /* UnboxPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF50A1E8BBFD50045ED29 /* UnboxPath.swift */; };
+		CA9CF5351E8BBFD50045ED29 /* UnboxPathError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF50B1E8BBFD50045ED29 /* UnboxPathError.swift */; };
+		CA9CF5361E8BBFD50045ED29 /* UnboxPathNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF50C1E8BBFD50045ED29 /* UnboxPathNode.swift */; };
+		CA9CF5371E8BBFD50045ED29 /* URL+Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CF50D1E8BBFD50045ED29 /* URL+Unbox.swift */; };
 		D9019DAD1E526F0000D9E197 /* trolleyMock.json in Resources */ = {isa = PBXBuildFile; fileRef = D9019DAC1E526F0000D9E197 /* trolleyMock.json */; };
 		D9019DB51E5277DB00D9E197 /* TrolleyTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9019DB41E5277DB00D9E197 /* TrolleyTrackerUITests.swift */; };
 		D90866F01B91292F002A6F87 /* TrolleyAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90866EF1B91292F002A6F87 /* TrolleyAnnotationView.swift */; };
@@ -84,6 +131,8 @@
 		D9CFDB561E528A940056AB01 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CFDB451E528A940056AB01 /* Validation.swift */; };
 		D9E240491BDBCACB00F16CF8 /* SubHeadingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E240481BDBCACB00F16CF8 /* SubHeadingLabel.swift */; };
 		D9E83ACC1E52796400E9D799 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E83ACB1E52796400E9D799 /* SnapshotHelper.swift */; };
+		D9FA570F1E8A6A0100178214 /* MapLayersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA570E1E8A6A0100178214 /* MapLayersListViewController.swift */; };
+		D9FA57111E8A6A3500178214 /* StoryboardHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA57101E8A6A3500178214 /* StoryboardHelpers.swift */; };
 		E71A678A1B30DCD30036FE10 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71A67891B30DCD30036FE10 /* MapViewController.swift */; };
 		E71A678C1B30DCE60036FE10 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71A678B1B30DCE60036FE10 /* DetailViewController.swift */; };
 		E71A678E1B30DCEF0036FE10 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71A678D1B30DCEF0036FE10 /* SettingsViewController.swift */; };
@@ -133,6 +182,53 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CA9CF3FF1E8B122D0045ED29 /* MapLayerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapLayerCell.swift; sourceTree = "<group>"; };
+		CA9CF4011E8B12E20045ED29 /* UIKitHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitHelpers.swift; sourceTree = "<group>"; };
+		CA9CF4031E8B13620045ED29 /* MapLayerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapLayerDataSource.swift; sourceTree = "<group>"; };
+		CA9CF4051E8B153E0045ED29 /* MapLayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapLayerViewController.swift; sourceTree = "<group>"; };
+		CA9CF4071E8BB8C90045ED29 /* MapLayersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapLayersController.swift; sourceTree = "<group>"; };
+		CA9CF4E41E8BBFD50045ED29 /* Array+Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Unbox.swift"; sourceTree = "<group>"; };
+		CA9CF4E51E8BBFD50045ED29 /* Bool+Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bool+Unbox.swift"; sourceTree = "<group>"; };
+		CA9CF4E61E8BBFD50045ED29 /* CGFloat+Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Unbox.swift"; sourceTree = "<group>"; };
+		CA9CF4E71E8BBFD50045ED29 /* Data+Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Unbox.swift"; sourceTree = "<group>"; };
+		CA9CF4E81E8BBFD50045ED29 /* DateFormatter+Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Unbox.swift"; sourceTree = "<group>"; };
+		CA9CF4E91E8BBFD50045ED29 /* Decimal+Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Decimal+Unbox.swift"; sourceTree = "<group>"; };
+		CA9CF4EA1E8BBFD50045ED29 /* Dictionary+Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Unbox.swift"; sourceTree = "<group>"; };
+		CA9CF4EB1E8BBFD50045ED29 /* Double+Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Unbox.swift"; sourceTree = "<group>"; };
+		CA9CF4EC1E8BBFD50045ED29 /* Float+Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Float+Unbox.swift"; sourceTree = "<group>"; };
+		CA9CF4ED1E8BBFD50045ED29 /* Int+Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Unbox.swift"; sourceTree = "<group>"; };
+		CA9CF4EE1E8BBFD50045ED29 /* Int32+Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int32+Unbox.swift"; sourceTree = "<group>"; };
+		CA9CF4EF1E8BBFD50045ED29 /* Int64+Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int64+Unbox.swift"; sourceTree = "<group>"; };
+		CA9CF4F01E8BBFD50045ED29 /* JSONSerialization+Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSONSerialization+Unbox.swift"; sourceTree = "<group>"; };
+		CA9CF4F11E8BBFD50045ED29 /* NSArray+Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSArray+Unbox.swift"; sourceTree = "<group>"; };
+		CA9CF4F21E8BBFD50045ED29 /* NSDictionary+Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDictionary+Unbox.swift"; sourceTree = "<group>"; };
+		CA9CF4F31E8BBFD50045ED29 /* Optional+Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+Unbox.swift"; sourceTree = "<group>"; };
+		CA9CF4F41E8BBFD50045ED29 /* Sequence+Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sequence+Unbox.swift"; sourceTree = "<group>"; };
+		CA9CF4F51E8BBFD50045ED29 /* Set+Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Set+Unbox.swift"; sourceTree = "<group>"; };
+		CA9CF4F61E8BBFD50045ED29 /* String+Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Unbox.swift"; sourceTree = "<group>"; };
+		CA9CF4F71E8BBFD50045ED29 /* Typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
+		CA9CF4F81E8BBFD50045ED29 /* UInt+Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UInt+Unbox.swift"; sourceTree = "<group>"; };
+		CA9CF4F91E8BBFD50045ED29 /* UInt32+Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UInt32+Unbox.swift"; sourceTree = "<group>"; };
+		CA9CF4FA1E8BBFD50045ED29 /* UInt64+Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UInt64+Unbox.swift"; sourceTree = "<group>"; };
+		CA9CF4FB1E8BBFD50045ED29 /* Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unbox.swift; sourceTree = "<group>"; };
+		CA9CF4FC1E8BBFD50045ED29 /* Unboxable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unboxable.swift; sourceTree = "<group>"; };
+		CA9CF4FD1E8BBFD50045ED29 /* UnboxableByTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnboxableByTransform.swift; sourceTree = "<group>"; };
+		CA9CF4FE1E8BBFD50045ED29 /* UnboxableCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnboxableCollection.swift; sourceTree = "<group>"; };
+		CA9CF4FF1E8BBFD50045ED29 /* UnboxableEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnboxableEnum.swift; sourceTree = "<group>"; };
+		CA9CF5001E8BBFD50045ED29 /* UnboxableKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnboxableKey.swift; sourceTree = "<group>"; };
+		CA9CF5011E8BBFD50045ED29 /* UnboxableRawType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnboxableRawType.swift; sourceTree = "<group>"; };
+		CA9CF5021E8BBFD50045ED29 /* UnboxableWithContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnboxableWithContext.swift; sourceTree = "<group>"; };
+		CA9CF5031E8BBFD50045ED29 /* UnboxArrayContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnboxArrayContainer.swift; sourceTree = "<group>"; };
+		CA9CF5041E8BBFD50045ED29 /* UnboxCollectionElementTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnboxCollectionElementTransformer.swift; sourceTree = "<group>"; };
+		CA9CF5051E8BBFD50045ED29 /* UnboxCompatible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnboxCompatible.swift; sourceTree = "<group>"; };
+		CA9CF5061E8BBFD50045ED29 /* UnboxContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnboxContainer.swift; sourceTree = "<group>"; };
+		CA9CF5071E8BBFD50045ED29 /* Unboxer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unboxer.swift; sourceTree = "<group>"; };
+		CA9CF5081E8BBFD50045ED29 /* UnboxError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnboxError.swift; sourceTree = "<group>"; };
+		CA9CF5091E8BBFD50045ED29 /* UnboxFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnboxFormatter.swift; sourceTree = "<group>"; };
+		CA9CF50A1E8BBFD50045ED29 /* UnboxPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnboxPath.swift; sourceTree = "<group>"; };
+		CA9CF50B1E8BBFD50045ED29 /* UnboxPathError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnboxPathError.swift; sourceTree = "<group>"; };
+		CA9CF50C1E8BBFD50045ED29 /* UnboxPathNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnboxPathNode.swift; sourceTree = "<group>"; };
+		CA9CF50D1E8BBFD50045ED29 /* URL+Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Unbox.swift"; sourceTree = "<group>"; };
 		D9019DAC1E526F0000D9E197 /* trolleyMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = trolleyMock.json; sourceTree = "<group>"; };
 		D9019DB21E5277DB00D9E197 /* TrolleyTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrolleyTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9019DB41E5277DB00D9E197 /* TrolleyTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrolleyTrackerUITests.swift; sourceTree = "<group>"; };
@@ -213,6 +309,8 @@
 		D9CFDB451E528A940056AB01 /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Dependencies/Alamofire/Validation.swift; sourceTree = "<group>"; };
 		D9E240481BDBCACB00F16CF8 /* SubHeadingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubHeadingLabel.swift; sourceTree = "<group>"; };
 		D9E83ACB1E52796400E9D799 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
+		D9FA570E1E8A6A0100178214 /* MapLayersListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapLayersListViewController.swift; sourceTree = "<group>"; };
+		D9FA57101E8A6A3500178214 /* StoryboardHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardHelpers.swift; sourceTree = "<group>"; };
 		E71A67891B30DCD30036FE10 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		E71A678B1B30DCE60036FE10 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		E71A678D1B30DCEF0036FE10 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -253,6 +351,69 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CA9CF3FE1E8B12010045ED29 /* More */ = {
+			isa = PBXGroup;
+			children = (
+				D92876CA1BCB0CE5003333EA /* SettingsDataSource.swift */,
+				E71A678D1B30DCEF0036FE10 /* SettingsViewController.swift */,
+				D9FA570E1E8A6A0100178214 /* MapLayersListViewController.swift */,
+				CA9CF3FF1E8B122D0045ED29 /* MapLayerCell.swift */,
+				CA9CF4031E8B13620045ED29 /* MapLayerDataSource.swift */,
+				CA9CF4051E8B153E0045ED29 /* MapLayerViewController.swift */,
+				CA9CF4071E8BB8C90045ED29 /* MapLayersController.swift */,
+			);
+			name = More;
+			sourceTree = "<group>";
+		};
+		CA9CF4091E8BBF870045ED29 /* Unbox */ = {
+			isa = PBXGroup;
+			children = (
+				CA9CF4E41E8BBFD50045ED29 /* Array+Unbox.swift */,
+				CA9CF4E51E8BBFD50045ED29 /* Bool+Unbox.swift */,
+				CA9CF4E61E8BBFD50045ED29 /* CGFloat+Unbox.swift */,
+				CA9CF4E71E8BBFD50045ED29 /* Data+Unbox.swift */,
+				CA9CF4E81E8BBFD50045ED29 /* DateFormatter+Unbox.swift */,
+				CA9CF4E91E8BBFD50045ED29 /* Decimal+Unbox.swift */,
+				CA9CF4EA1E8BBFD50045ED29 /* Dictionary+Unbox.swift */,
+				CA9CF4EB1E8BBFD50045ED29 /* Double+Unbox.swift */,
+				CA9CF4EC1E8BBFD50045ED29 /* Float+Unbox.swift */,
+				CA9CF4ED1E8BBFD50045ED29 /* Int+Unbox.swift */,
+				CA9CF4EE1E8BBFD50045ED29 /* Int32+Unbox.swift */,
+				CA9CF4EF1E8BBFD50045ED29 /* Int64+Unbox.swift */,
+				CA9CF4F01E8BBFD50045ED29 /* JSONSerialization+Unbox.swift */,
+				CA9CF4F11E8BBFD50045ED29 /* NSArray+Unbox.swift */,
+				CA9CF4F21E8BBFD50045ED29 /* NSDictionary+Unbox.swift */,
+				CA9CF4F31E8BBFD50045ED29 /* Optional+Unbox.swift */,
+				CA9CF4F41E8BBFD50045ED29 /* Sequence+Unbox.swift */,
+				CA9CF4F51E8BBFD50045ED29 /* Set+Unbox.swift */,
+				CA9CF4F61E8BBFD50045ED29 /* String+Unbox.swift */,
+				CA9CF4F71E8BBFD50045ED29 /* Typealiases.swift */,
+				CA9CF4F81E8BBFD50045ED29 /* UInt+Unbox.swift */,
+				CA9CF4F91E8BBFD50045ED29 /* UInt32+Unbox.swift */,
+				CA9CF4FA1E8BBFD50045ED29 /* UInt64+Unbox.swift */,
+				CA9CF4FB1E8BBFD50045ED29 /* Unbox.swift */,
+				CA9CF4FC1E8BBFD50045ED29 /* Unboxable.swift */,
+				CA9CF4FD1E8BBFD50045ED29 /* UnboxableByTransform.swift */,
+				CA9CF4FE1E8BBFD50045ED29 /* UnboxableCollection.swift */,
+				CA9CF4FF1E8BBFD50045ED29 /* UnboxableEnum.swift */,
+				CA9CF5001E8BBFD50045ED29 /* UnboxableKey.swift */,
+				CA9CF5011E8BBFD50045ED29 /* UnboxableRawType.swift */,
+				CA9CF5021E8BBFD50045ED29 /* UnboxableWithContext.swift */,
+				CA9CF5031E8BBFD50045ED29 /* UnboxArrayContainer.swift */,
+				CA9CF5041E8BBFD50045ED29 /* UnboxCollectionElementTransformer.swift */,
+				CA9CF5051E8BBFD50045ED29 /* UnboxCompatible.swift */,
+				CA9CF5061E8BBFD50045ED29 /* UnboxContainer.swift */,
+				CA9CF5071E8BBFD50045ED29 /* Unboxer.swift */,
+				CA9CF5081E8BBFD50045ED29 /* UnboxError.swift */,
+				CA9CF5091E8BBFD50045ED29 /* UnboxFormatter.swift */,
+				CA9CF50A1E8BBFD50045ED29 /* UnboxPath.swift */,
+				CA9CF50B1E8BBFD50045ED29 /* UnboxPathError.swift */,
+				CA9CF50C1E8BBFD50045ED29 /* UnboxPathNode.swift */,
+				CA9CF50D1E8BBFD50045ED29 /* URL+Unbox.swift */,
+			);
+			name = Unbox;
+			sourceTree = "<group>";
+		};
 		D9019D9E1E526EB400D9E197 /* MockData */ = {
 			isa = PBXGroup;
 			children = (
@@ -366,6 +527,8 @@
 				D98CF6581E827E12005048FF /* ViewControllerInitialization.swift */,
 				D98CF65C1E83C3AF005048FF /* Formatters.swift */,
 				D98CF65E1E83C4B2005048FF /* GeographyHelpers.swift */,
+				D9FA57101E8A6A3500178214 /* StoryboardHelpers.swift */,
+				CA9CF4011E8B12E20045ED29 /* UIKitHelpers.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -393,10 +556,9 @@
 		D98CF6571E827D66005048FF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				CA9CF3FE1E8B12010045ED29 /* More */,
 				E71A67891B30DCD30036FE10 /* MapViewController.swift */,
 				E71A678B1B30DCE60036FE10 /* DetailViewController.swift */,
-				E71A678D1B30DCEF0036FE10 /* SettingsViewController.swift */,
-				D92876CA1BCB0CE5003333EA /* SettingsDataSource.swift */,
 				D92876CE1BCB3737003333EA /* MapViewDelegate.swift */,
 				D92876D01BCB3A53003333EA /* ScheduleViewController.swift */,
 				D9617EED1BDDA37A00FF86CD /* ScheduleViewController+SortByRoute.swift */,
@@ -412,6 +574,7 @@
 		D9CFDB301E5289DE0056AB01 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				CA9CF4091E8BBF870045ED29 /* Unbox */,
 				D914FAFB1B30EA84002DACF8 /* ObserverSet.swift */,
 				D9CFDB321E528A7B0056AB01 /* SwiftyJSON */,
 				D9CFDB311E528A6B0056AB01 /* Alamofire */,
@@ -728,7 +891,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D95EF76C1B889B00009B5779 /* UIImage+TrolleyTracker.swift in Sources */,
+				CA9CF51C1E8BBFD50045ED29 /* NSDictionary+Unbox.swift in Sources */,
 				D95EF7671B87302F009B5779 /* TrolleyRouteOverlay.swift in Sources */,
+				CA9CF50E1E8BBFD50045ED29 /* Array+Unbox.swift in Sources */,
+				D9FA57111E8A6A3500178214 /* StoryboardHelpers.swift in Sources */,
 				D9CFDB461E528A940056AB01 /* AFError.swift in Sources */,
 				D9617EFF1BE0D61600FF86CD /* AboutViewController.swift in Sources */,
 				D914FADE1B30DEF0002DACF8 /* UserLocationService.swift in Sources */,
@@ -737,68 +903,114 @@
 				D914FAE21B30DF14002DACF8 /* TrolleyLocationService.swift in Sources */,
 				D9CFDB4B1E528A940056AB01 /* Notifications.swift in Sources */,
 				D98715411B8A7D8200489594 /* TimeAndDistanceService.swift in Sources */,
+				CA9CF5171E8BBFD50045ED29 /* Int+Unbox.swift in Sources */,
 				EFA4B1FC1A1C201F00BEA42C /* AppDelegate.swift in Sources */,
 				D97A7F121BE197AD00B40766 /* TrolleyLocationServiceFake.swift in Sources */,
 				D98CF6591E827E12005048FF /* ViewControllerInitialization.swift in Sources */,
 				E71A678C1B30DCE60036FE10 /* DetailViewController.swift in Sources */,
 				D9CFDB4E1E528A940056AB01 /* Response.swift in Sources */,
+				CA9CF5291E8BBFD50045ED29 /* UnboxableEnum.swift in Sources */,
+				CA9CF52D1E8BBFD50045ED29 /* UnboxArrayContainer.swift in Sources */,
 				D9CFDB531E528A940056AB01 /* SessionManager.swift in Sources */,
+				CA9CF50F1E8BBFD50045ED29 /* Bool+Unbox.swift in Sources */,
+				CA9CF5191E8BBFD50045ED29 /* Int64+Unbox.swift in Sources */,
+				CA9CF4061E8B153E0045ED29 /* MapLayerViewController.swift in Sources */,
 				D92876CF1BCB3737003333EA /* MapViewDelegate.swift in Sources */,
+				CA9CF5231E8BBFD50045ED29 /* UInt32+Unbox.swift in Sources */,
 				E71A678E1B30DCEF0036FE10 /* SettingsViewController.swift in Sources */,
 				D9617EF41BDF0A1600FF86CD /* UIViewController+Appearance.swift in Sources */,
 				D90867031B91F4D9002A6F87 /* EnvironmentVariables.swift in Sources */,
+				CA9CF51F1E8BBFD50045ED29 /* Set+Unbox.swift in Sources */,
 				D914FAE61B30DFC0002DACF8 /* TrolleyStop.swift in Sources */,
 				D97055BB1BD6FB25002B9A8B /* Box.swift in Sources */,
 				D97A7F0E1BE194F200B40766 /* TrolleyRouteServiceFake.swift in Sources */,
+				CA9CF4001E8B122D0045ED29 /* MapLayerCell.swift in Sources */,
+				CA9CF51E1E8BBFD50045ED29 /* Sequence+Unbox.swift in Sources */,
+				CA9CF5351E8BBFD50045ED29 /* UnboxPathError.swift in Sources */,
+				CA9CF5201E8BBFD50045ED29 /* String+Unbox.swift in Sources */,
 				D9650C9A1B8559EA0004A2AF /* TrolleyRoute.swift in Sources */,
 				D90866F01B91292F002A6F87 /* TrolleyAnnotationView.swift in Sources */,
+				CA9CF5111E8BBFD50045ED29 /* Data+Unbox.swift in Sources */,
 				D9617EF21BDDC60700FF86CD /* AlertControllerColor.swift in Sources */,
 				D9CFDB541E528A940056AB01 /* TaskDelegate.swift in Sources */,
 				D90867111B921431002A6F87 /* UIView+TrolleyTracker.swift in Sources */,
 				D92876CB1BCB0CE5003333EA /* SettingsDataSource.swift in Sources */,
 				D95DAFC51B7F60EE00BBC906 /* TrolleyRequests.swift in Sources */,
+				CA9CF5341E8BBFD50045ED29 /* UnboxPath.swift in Sources */,
+				CA9CF5221E8BBFD50045ED29 /* UInt+Unbox.swift in Sources */,
+				CA9CF5141E8BBFD50045ED29 /* Dictionary+Unbox.swift in Sources */,
 				D97055BE1BD70753002B9A8B /* HeadingLabel.swift in Sources */,
+				CA9CF5331E8BBFD50045ED29 /* UnboxFormatter.swift in Sources */,
 				D9617EFB1BE0573100FF86CD /* ScheduleHeaderView.swift in Sources */,
 				D92876D51BCC89BE003333EA /* Schedule.swift in Sources */,
 				D90866FB1B91D519002A6F87 /* String+TrolleyTracker.swift in Sources */,
 				D9617EEE1BDDA37A00FF86CD /* ScheduleViewController+SortByRoute.swift in Sources */,
+				CA9CF5261E8BBFD50045ED29 /* Unboxable.swift in Sources */,
 				D98CF6521E827982005048FF /* MapViewHelpers.swift in Sources */,
 				D9617EF71BDF84F400FF86CD /* ScheduleViewCell.swift in Sources */,
+				CA9CF5241E8BBFD50045ED29 /* UInt64+Unbox.swift in Sources */,
+				CA9CF5301E8BBFD50045ED29 /* UnboxContainer.swift in Sources */,
 				D9CFDB4C1E528A940056AB01 /* ParameterEncoding.swift in Sources */,
 				D9617EEA1BDDA1C800FF86CD /* ScheduleViewController+SortByDay.swift in Sources */,
 				D9CFDB501E528A940056AB01 /* Result.swift in Sources */,
 				D9CFDB4D1E528A940056AB01 /* Request.swift in Sources */,
 				D92876D71BCD05A1003333EA /* ScheduleOperations.swift in Sources */,
+				CA9CF5161E8BBFD50045ED29 /* Float+Unbox.swift in Sources */,
 				D92876D11BCB3A53003333EA /* ScheduleViewController.swift in Sources */,
+				CA9CF51B1E8BBFD50045ED29 /* NSArray+Unbox.swift in Sources */,
 				D97055C01BD7077B002B9A8B /* BodyLabel.swift in Sources */,
 				D914FAE41B30DFA8002DACF8 /* Trolley.swift in Sources */,
 				D908670F1B921229002A6F87 /* TrolleyStopAnnotationView.swift in Sources */,
+				CA9CF52A1E8BBFD50045ED29 /* UnboxableKey.swift in Sources */,
+				CA9CF5371E8BBFD50045ED29 /* URL+Unbox.swift in Sources */,
 				D97A7F101BE1960E00B40766 /* TrolleyServiceProtocols.swift in Sources */,
 				D9CFDB4F1E528A940056AB01 /* ResponseSerialization.swift in Sources */,
+				CA9CF5101E8BBFD50045ED29 /* CGFloat+Unbox.swift in Sources */,
 				D98CF65D1E83C3AF005048FF /* Formatters.swift in Sources */,
 				D98715471B8A7DDC00489594 /* ConcurrentOperation.swift in Sources */,
 				D9CFDB4A1E528A940056AB01 /* NetworkReachabilityManager.swift in Sources */,
 				D97055C21BD7078E002B9A8B /* SpacerView.swift in Sources */,
+				CA9CF4041E8B13620045ED29 /* MapLayerDataSource.swift in Sources */,
 				D98CF6561E827D61005048FF /* ApplicationController.swift in Sources */,
+				CA9CF5121E8BBFD50045ED29 /* DateFormatter+Unbox.swift in Sources */,
+				CA9CF5271E8BBFD50045ED29 /* UnboxableByTransform.swift in Sources */,
 				D9CFDB521E528A940056AB01 /* SessionDelegate.swift in Sources */,
+				CA9CF5321E8BBFD50045ED29 /* UnboxError.swift in Sources */,
 				D92876D31BCB3A67003333EA /* TrolleyScheduleService.swift in Sources */,
+				CA9CF5281E8BBFD50045ED29 /* UnboxableCollection.swift in Sources */,
+				CA9CF5181E8BBFD50045ED29 /* Int32+Unbox.swift in Sources */,
+				D9FA570F1E8A6A0100178214 /* MapLayersListViewController.swift in Sources */,
 				D9CFDB491E528A940056AB01 /* MultipartFormData.swift in Sources */,
 				D9CFDB471E528A940056AB01 /* Alamofire.swift in Sources */,
 				D9CFDB551E528A940056AB01 /* Timeline.swift in Sources */,
+				CA9CF52E1E8BBFD50045ED29 /* UnboxCollectionElementTransformer.swift in Sources */,
 				D99B71561E87D6D800F36E55 /* RouteFetchOperations.swift in Sources */,
+				CA9CF5311E8BBFD50045ED29 /* Unboxer.swift in Sources */,
 				D9E240491BDBCACB00F16CF8 /* SubHeadingLabel.swift in Sources */,
+				CA9CF51D1E8BBFD50045ED29 /* Optional+Unbox.swift in Sources */,
+				CA9CF52B1E8BBFD50045ED29 /* UnboxableRawType.swift in Sources */,
+				CA9CF52C1E8BBFD50045ED29 /* UnboxableWithContext.swift in Sources */,
+				CA9CF5251E8BBFD50045ED29 /* Unbox.swift in Sources */,
 				D9650CA41B86A9F10004A2AF /* UIColor+TrolleyTracker.swift in Sources */,
 				D9CFDB341E528A8A0056AB01 /* SwiftyJSON.swift in Sources */,
+				CA9CF4081E8BB8C90045ED29 /* MapLayersController.swift in Sources */,
 				D90866F71B91C8B8002A6F87 /* UIFont+TrolleyTracker.swift in Sources */,
 				D9CFDB511E528A940056AB01 /* ServerTrustPolicy.swift in Sources */,
 				D93FD0A01C78FED60089CDBE /* RouteDetailViewController.swift in Sources */,
 				D9617EFD1BE0634A00FF86CD /* AttributionViewController.swift in Sources */,
+				CA9CF5151E8BBFD50045ED29 /* Double+Unbox.swift in Sources */,
 				D9617EF91BE02B9200FF86CD /* ScheduleDisplayModels.swift in Sources */,
+				CA9CF5361E8BBFD50045ED29 /* UnboxPathNode.swift in Sources */,
+				CA9CF5131E8BBFD50045ED29 /* Decimal+Unbox.swift in Sources */,
 				E71A678A1B30DCD30036FE10 /* MapViewController.swift in Sources */,
 				D98CF65F1E83C4B2005048FF /* GeographyHelpers.swift in Sources */,
 				D914FAE01B30DEFE002DACF8 /* TrolleyRouteService.swift in Sources */,
 				D9CFDB481E528A940056AB01 /* DispatchQueue+Alamofire.swift in Sources */,
+				CA9CF5211E8BBFD50045ED29 /* Typealiases.swift in Sources */,
+				CA9CF4021E8B12E20045ED29 /* UIKitHelpers.swift in Sources */,
+				CA9CF52F1E8BBFD50045ED29 /* UnboxCompatible.swift in Sources */,
 				D9CFDB561E528A940056AB01 /* Validation.swift in Sources */,
+				CA9CF51A1E8BBFD50045ED29 /* JSONSerialization+Unbox.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
