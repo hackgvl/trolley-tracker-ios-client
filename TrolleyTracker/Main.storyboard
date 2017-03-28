@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E192b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IIY-SQ-1lS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IIY-SQ-1lS">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -66,6 +66,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.99997437000274658" blue="0.99999129772186279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="rfm-uk-9gA" firstAttribute="top" secondItem="nw5-DS-k9q" secondAttribute="bottom" priority="750" constant="-70" identifier="test2" id="0oM-Wz-KUq"/>
                             <constraint firstItem="hqG-Mz-Kgv" firstAttribute="trailing" secondItem="V3S-Uq-p0h" secondAttribute="trailingMargin" id="2yx-24-LS7"/>
                             <constraint firstItem="rfm-uk-9gA" firstAttribute="leading" secondItem="V3S-Uq-p0h" secondAttribute="leading" id="3nf-kM-w38"/>
                             <constraint firstItem="rfm-uk-9gA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="hqG-Mz-Kgv" secondAttribute="bottom" constant="8" id="4mg-Ny-O8R"/>
@@ -93,6 +94,7 @@
                         <outlet property="detailViewHiddenConstraint" destination="sVT-2P-z4i" id="eh4-Yv-rOv"/>
                         <outlet property="locateMeButton" destination="hqG-Mz-Kgv" id="Vhc-Ro-v7L"/>
                         <outlet property="mapView" destination="nw5-DS-k9q" id="fAE-VI-Rpz"/>
+                        <outlet property="noTrolleyHiddenConstraint" destination="0oM-Wz-KUq" id="PgJ-2T-kAq"/>
                         <outlet property="noTrolleyLabel" destination="rfm-uk-9gA" id="HZW-0y-AiL"/>
                         <outlet property="noTrolleyLabelTapGesture" destination="qIa-Hy-EHi" id="nMU-lH-mbn"/>
                         <outlet property="noTrolleyVisibleConstraint" destination="Wn9-ka-a65" id="pW1-7k-CQB"/>

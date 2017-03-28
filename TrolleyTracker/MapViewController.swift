@@ -32,7 +32,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
 
     @IBOutlet var detailViewHiddenConstraint: NSLayoutConstraint!
     
-    fileprivate var noTrolleyHiddenConstraint: NSLayoutConstraint!
+    @IBOutlet var noTrolleyHiddenConstraint: NSLayoutConstraint!
     @IBOutlet var noTrolleyVisibleConstraint: NSLayoutConstraint!
     
     fileprivate let locationManager = CLLocationManager()
@@ -122,15 +122,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     }
     
     fileprivate func setNoTrolleyMessageVisible(_ visible: Bool, animated: Bool) {
-        
-        if visible {
-            noTrolleyHiddenConstraint.isActive = false
-            noTrolleyVisibleConstraint.isActive = true
-        }
-        else {
-            noTrolleyVisibleConstraint.isActive = false
-            noTrolleyHiddenConstraint.isActive = true
-        }
+
+        noTrolleyVisibleConstraint.isActive = visible
         
         let updateAction = { self.view.layoutIfNeeded() }
         
@@ -180,10 +173,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         locateMeButton.tintColor = UIColor.ttTintColor()
         locateMeButton.layer.cornerRadius = 5
 
-        noTrolleyHiddenConstraint = NSLayoutConstraint(item: noTrolleyLabel, attribute: .top, relatedBy: .equal,
-                                                       toItem: mapView, attribute: .bottom,
-                                                       multiplier: 1.0, constant: 0)
-        
+        noTrolleyHiddenConstraint.isActive = false
+        noTrolleyHiddenConstraint.constant = 0
+
         setNoTrolleyMessageVisible(false, animated: false)
         setDetailViewVisible(false, animated: false)
     }
