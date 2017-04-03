@@ -1223,7 +1223,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.codeforgreenville.trolleytracker$(BUNDLE_ID_SUFFIX)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8b67bf22-10d0-4b71-9d89-e1781b9d3312";
+				PROVISIONING_PROFILE = "2ee1d781-399b-4bf8-b81e-42714beb7270";
 				PROVISIONING_PROFILE_SPECIFIER = "TrolleyTracker AppStore";
 				SWIFT_VERSION = 3.0;
 			};

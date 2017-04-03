@@ -104,7 +104,9 @@ class TrolleyRouteServiceLive: TrolleyRouteService {
             guard let fetchedRoutes = op?.fetchedRoutes else { completion([]); return }
 
             self.memoryCachedActiveRoutes = CacheItem(timestamp: Date(), payload: fetchedRoutes)
-            completion(fetchedRoutes)
+            DispatchQueue.main.async {
+                completion(fetchedRoutes)
+            }
         }
         queue.addOperation(op)
     }
