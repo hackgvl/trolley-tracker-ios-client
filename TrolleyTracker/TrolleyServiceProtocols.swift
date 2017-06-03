@@ -18,7 +18,7 @@ protocol TrolleyRouteService {
 
 protocol TrolleyLocationService {
     
-    var trolleyObservers: ObserverSet<Trolley> { get }
+    var trolleyObservers: ObserverSet<[Trolley]> { get }
     var trolleyPresentObservers: ObserverSet<Bool> { get }
     
     func startTrackingTrolleys()

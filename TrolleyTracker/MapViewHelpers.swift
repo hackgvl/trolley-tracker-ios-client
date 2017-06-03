@@ -53,20 +53,24 @@ extension MKMapView {
         }
     }
 
-    func addOrUpdateTrolley(_ trolley: Trolley) {
+    func addOrUpdateTrolley(_ trolleys: [Trolley]) {
 
         // Get our Trolley Annotations
         let existing = trolleyAnnotations
 
-        // If we're already showing this Trolly, just update it
-        if let index = existing.index(of: trolley) {
-            let existingAnnotation = existing[index]
-            existingAnnotation.coordinate = trolley.location.coordinate
+        for trolley in trolleys {
+
+            // If we're already showing this Trolly, just update it
+            if let index = existing.index(of: trolley) {
+                let existingAnnotation = existing[index]
+                existingAnnotation.coordinate = trolley.location.coordinate
+            }
+                // Otherwise, add it
+            else {
+                addAnnotation(trolley)
+            }
         }
-            // Otherwise, add it
-        else {
-            addAnnotation(trolley)
-        }
+
     }
 
     func setRegionToDowntownGreenville() {

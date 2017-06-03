@@ -13,7 +13,7 @@ class TrolleyLocationServiceLive: TrolleyLocationService {
     
     static var sharedService = TrolleyLocationServiceLive()
     
-    var trolleyObservers = ObserverSet<Trolley>()
+    var trolleyObservers = ObserverSet<[Trolley]>()
     var trolleyPresentObservers = ObserverSet<Bool>()
     
     fileprivate var updateTimer: Timer?
@@ -71,6 +71,10 @@ class TrolleyLocationServiceLive: TrolleyLocationService {
                 for trolley in trolleys {
                     self.updateTrolleysWithTrolley(trolley)
                 }
+
+                DispatchQueue.main.async {
+                    self.trolleyObservers.notify(trolleys)
+                }
             }
         }
     }
@@ -89,23 +93,17 @@ class TrolleyLocationServiceLive: TrolleyLocationService {
             trolleys.remove(at: index)
             trolleys.append(updatedTrolley)
             self.allTrolleys = trolleys
-            
-            // Send a notification with the updated trolley
-            DispatchQueue.main.async(execute: {
-                self.trolleyObservers.notify(updatedTrolley)
-            })
         }
     }
     
     fileprivate func parseTrolleysFromJSON(_ json: AnyObject?) -> [Trolley]? {
-        
-        if let json: AnyObject = json,
-        let trolleyObjects = JSON(json).arrayObject
-        {
-            return trolleyObjects.map { Trolley(jsonData: $0 as AnyObject) }.filter { $0 != nil }.map { $0! }
-        }
-        
-        return nil
+
+        guard let json = json,
+            let trolleyObjects = JSON(json).arrayObject
+            else { return nil }
+
+
+        return trolleyObjects.flatMap { Trolley(jsonData: $0) }
     }
     
 }

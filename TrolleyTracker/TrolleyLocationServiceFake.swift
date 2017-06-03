@@ -15,7 +15,7 @@ class TrolleyLocationServiceFake: TrolleyLocationService {
     fileprivate var lastUpdateIndex: Int = 0
     fileprivate var lastUpdateIndex1: Int = 2
     
-    var trolleyObservers = ObserverSet<Trolley>()
+    var trolleyObservers = ObserverSet<[Trolley]>()
     var trolleyPresentObservers = ObserverSet<Bool>()
     
     func startTrackingTrolleys() {
@@ -32,8 +32,8 @@ class TrolleyLocationServiceFake: TrolleyLocationService {
         trolleyPresentObservers.notify(true)
 //        trolleyObservers.notify(Trolley(identifier: 1, location: locations[nextLocationIndex()], name: "Trolley 1", number: 1))
 //        trolleyObservers.notify(Trolley(identifier: 2, location: locations[nextLocationIndex()], name: "Trolley 2", number: 2))
-        trolleyObservers.notify(Trolley(identifier: 1, location: locations[0], name: "Trolley 1", number: 1))
-        trolleyObservers.notify(Trolley(identifier: 2, location: locations[3], name: "Trolley 2", number: 2))
+        trolleyObservers.notify([Trolley(identifier: 1, location: locations[0], name: "Trolley 1", number: 1)])
+        trolleyObservers.notify([Trolley(identifier: 2, location: locations[3], name: "Trolley 2", number: 2)])
     }
     
     fileprivate func nextLocationIndex() -> Int {
