@@ -16,12 +16,14 @@ class Trolley: NSObject {
     var location: CLLocation
     let name: String?
     let number: Int?
+    let iconColor: String?
     
-    init(identifier: Int, location: CLLocation, name: String?, number: Int?) {
+    init(identifier: Int, location: CLLocation, name: String?, number: Int?, iconColor: String?) {
         self.name = name
         self.ID = identifier
         self.location = location
         self.number = number
+        self.iconColor = iconColor
     }
     
     init?(jsonData: Any) {
@@ -41,6 +43,7 @@ class Trolley: NSObject {
         
         self.number = json["Number"].int
         self.name = json["TrolleyName"].stringValue// + " - " + "\(self.ID)"
+        self.iconColor = json["IconColorRGB"].string
     }
     
     init(trolley: Trolley, location: CLLocation) {
@@ -49,11 +52,21 @@ class Trolley: NSObject {
         self.location = location
         self.name = trolley.name
         self.number = trolley.number
+        self.iconColor = trolley.iconColor
     }
     
     override func isEqual(_ object: Any?) -> Bool {
         if let object = object as? Trolley , object.ID == self.ID { return true }
         return false
+    }
+}
+
+extension Trolley {
+
+    var tintColor: UIColor {
+        let trimCharacters = CharacterSet(charactersIn: "#")
+        let hex = iconColor?.trimmingCharacters(in: trimCharacters) ?? "FFFFFF"
+        return UIColor(hex: hex)
     }
 }
 

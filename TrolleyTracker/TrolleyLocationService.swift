@@ -18,7 +18,7 @@ class TrolleyLocationServiceLive: TrolleyLocationService {
     
     fileprivate var updateTimer: Timer?
     
-    fileprivate var allTrolleys: [Trolley]?
+    fileprivate var allTrolleys: [Trolley] = []
     
     func startTrackingTrolleys() {
         
@@ -32,11 +32,10 @@ class TrolleyLocationServiceLive: TrolleyLocationService {
         }
         
         // If we have already retrieved the Trolley list, just start updating them.
-        if allTrolleys != nil {
+        guard allTrolleys.isEmpty else {
             startUpdating()
             return
         }
-        
         
         // Otherwise, retrieve list of all trolleys first
         TrolleyRequests.AllTrolleys.responseJSON { (response) -> Void in
@@ -59,51 +58,58 @@ class TrolleyLocationServiceLive: TrolleyLocationService {
         request.responseJSON{(response) in
             
             guard let json = response.result.value else { return }
-            
-            if let trolleys = self.parseTrolleysFromJSON(json as AnyObject?) {
-                
-                let trolleysPresent = trolleys.count > 0 ? true : false
-                
-                DispatchQueue.main.async {
-                    self.trolleyPresentObservers.notify(trolleysPresent)
-                }
-                
-                for trolley in trolleys {
-                    self.updateTrolleysWithTrolley(trolley)
-                }
 
-                DispatchQueue.main.async {
-                    self.trolleyObservers.notify(trolleys)
-                }
+            let trolleys = self.parseTrolleysFromJSON(json as AnyObject?)
+
+            let trolleysPresent = !trolleys.isEmpty
+
+            DispatchQueue.main.async {
+                self.trolleyPresentObservers.notify(trolleysPresent)
+            }
+
+            for trolley in trolleys {
+                self.updateTrolleysWithTrolley(trolley)
+            }
+
+            let activateUpdatedTrolleys = self.allTrolleys.matching(trolleys)
+
+            DispatchQueue.main.async {
+                self.trolleyObservers.notify(activateUpdatedTrolleys)
             }
         }
     }
-    
+
     fileprivate func updateTrolleysWithTrolley(_ trolley: Trolley) {
        
-        guard var trolleys = self.allTrolleys else { return }
+        var trolleys = self.allTrolleys
         
         // Find the matching trolley in the allTrolleys array
-        if let index = trolleys.index(of: trolley) {
-            
-            // Create a new trolley with an updated location
-            let updatedTrolley = Trolley(trolley: trolleys[index], location: trolley.location)
-            
-            // Store that back in the array
-            trolleys.remove(at: index)
-            trolleys.append(updatedTrolley)
-            self.allTrolleys = trolleys
-        }
+        guard let index = trolleys.index(of: trolley) else { return }
+
+        // Create a new trolley with an updated location
+        let updatedTrolley = Trolley(trolley: trolleys[index], location: trolley.location)
+
+        // Store that back in the array
+        trolleys.remove(at: index)
+        trolleys.append(updatedTrolley)
+        allTrolleys = trolleys
     }
-    
-    fileprivate func parseTrolleysFromJSON(_ json: AnyObject?) -> [Trolley]? {
+
+    fileprivate func parseTrolleysFromJSON(_ json: AnyObject?) -> [Trolley] {
 
         guard let json = json,
             let trolleyObjects = JSON(json).arrayObject
-            else { return nil }
+            else { return [] }
 
 
         return trolleyObjects.flatMap { Trolley(jsonData: $0) }
     }
     
+}
+
+extension Array where Element == Trolley {
+
+    func matching(_ otherTrolleys: [Trolley]) -> [Trolley] {
+        return filter { otherTrolleys.contains($0) }
+    }
 }

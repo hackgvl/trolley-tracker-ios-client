@@ -67,19 +67,7 @@ extension UIColor {
             return colors.map { $0.withAlphaComponent(1.0) }
         }
     }
-    
-    class var trolleyColors: [UIColor] {
-        get {
-            
-            let colors = [
-                UIColor.ttDarkPurple(),
-                UIColor.ttLightGreen()
-            ]
-            
-            return colors
-        }
-    }
-    
+
     class func routeColorForIndex(_ index: Int) -> UIColor {
         return routeColors[index % routeColors.count]
     }
@@ -87,8 +75,26 @@ extension UIColor {
     class func stopColorForIndex(_ index: Int) -> UIColor {
         return stopColors[index % stopColors.count]
     }
+}
+
+extension UIColor {
     
-    class func trolleyColorForID(_ id: Int) -> UIColor {
-        return trolleyColors[id % trolleyColors.count]
+    convenience init(hex: String) {
+        let scanner = Scanner(string: hex)
+        scanner.scanLocation = 0
+
+        var rgbValue: UInt64 = 0
+
+        scanner.scanHexInt64(&rgbValue)
+
+        let r = (rgbValue & 0xff0000) >> 16
+        let g = (rgbValue & 0xff00) >> 8
+        let b = rgbValue & 0xff
+
+        self.init(
+            red: CGFloat(r) / 0xff,
+            green: CGFloat(g) / 0xff,
+            blue: CGFloat(b) / 0xff, alpha: 1
+        )
     }
 }

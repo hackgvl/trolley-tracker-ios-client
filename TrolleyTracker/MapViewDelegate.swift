@@ -64,7 +64,7 @@ class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
                 annotationView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
             }
             
-            annotationView.tintColor = UIColor.trolleyColorForID(trolleyAnnotation.ID)
+            annotationView.tintColor = trolleyAnnotation.tintColor
             annotationView.trolleyNumber = trolleyAnnotation.ID
             annotationView.annotation = trolleyAnnotation
             

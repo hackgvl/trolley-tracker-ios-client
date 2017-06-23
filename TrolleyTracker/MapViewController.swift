@@ -68,8 +68,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         locationManager.requestWhenInUseAuthorization()
         
         mapView.setRegionToDowntownGreenville()
-
-        tabBarController?.setLocalizedStrings()
     }
     
     override func viewDidAppear(_ animated: Bool) {
