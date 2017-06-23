@@ -18,13 +18,16 @@ class ApplicationController {
 
         trolleyScheduleService = TrolleyScheduleService()
 
-        switch EnvironmentVariables.currentBuildConfiguration() {
-        case .Release:
-            trolleyLocationService = TrolleyLocationServiceLive.sharedService
-            trolleyRouteService = TrolleyRouteServiceLive()
-        case .Test:
-            trolleyLocationService = TrolleyLocationServiceFake()
-            trolleyRouteService = TrolleyRouteServiceFake()
-        }
+        trolleyLocationService = TrolleyLocationServiceLive.sharedService
+        trolleyRouteService = TrolleyRouteServiceLive()
+
+//        switch EnvironmentVariables.currentBuildConfiguration() {
+//        case .Release:
+//            trolleyLocationService = TrolleyLocationServiceLive.sharedService
+//            trolleyRouteService = TrolleyRouteServiceLive()
+//        case .Test:
+//            trolleyLocationService = TrolleyLocationServiceFake()
+//            trolleyRouteService = TrolleyRouteServiceFake()
+//        }
     }
 }
