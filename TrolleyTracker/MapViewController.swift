@@ -68,6 +68,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         locationManager.requestWhenInUseAuthorization()
         
         mapView.setRegionToDowntownGreenville()
+
+        tabBarController?.setLocalizedStrings()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -105,7 +107,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     // MARK: - Actions
     //==================================================================
     
-    fileprivate func updateTrolley(_ trolley: Trolley) {
+    fileprivate func updateTrolley(_ trolley: [Trolley]) {
         mapView.addOrUpdateTrolley(trolley)
     }
     

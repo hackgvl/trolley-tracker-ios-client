@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA6C2B781E94059100F33B52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA6C2B7A1E94059100F33B52 /* Main.storyboard */; };
+		CAA6F6301EC1CC1400EEE5AE /* StringDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA6F62F1EC1CC1400EEE5AE /* StringDemo.swift */; };
 		D9019DAD1E526F0000D9E197 /* trolleyMock.json in Resources */ = {isa = PBXBuildFile; fileRef = D9019DAC1E526F0000D9E197 /* trolleyMock.json */; };
 		D9019DB51E5277DB00D9E197 /* TrolleyTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9019DB41E5277DB00D9E197 /* TrolleyTrackerUITests.swift */; };
 		D90866F01B91292F002A6F87 /* TrolleyAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90866EF1B91292F002A6F87 /* TrolleyAnnotationView.swift */; };
@@ -23,7 +25,6 @@
 		D914FAE61B30DFC0002DACF8 /* TrolleyStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FAE51B30DFC0002DACF8 /* TrolleyStop.swift */; };
 		D914FAFC1B30EA84002DACF8 /* ObserverSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FAFB1B30EA84002DACF8 /* ObserverSet.swift */; };
 		D92876CB1BCB0CE5003333EA /* SettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92876CA1BCB0CE5003333EA /* SettingsDataSource.swift */; };
-		D92876CD1BCB21EE003333EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D92876CC1BCB21EE003333EA /* Main.storyboard */; };
 		D92876CF1BCB3737003333EA /* MapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92876CE1BCB3737003333EA /* MapViewDelegate.swift */; };
 		D92876D11BCB3A53003333EA /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92876D01BCB3A53003333EA /* ScheduleViewController.swift */; };
 		D92876D31BCB3A67003333EA /* TrolleyScheduleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92876D21BCB3A67003333EA /* TrolleyScheduleService.swift */; };
@@ -133,6 +134,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CA6C2B791E94059100F33B52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CAA6F62F1EC1CC1400EEE5AE /* StringDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringDemo.swift; sourceTree = "<group>"; };
 		D9019DAC1E526F0000D9E197 /* trolleyMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = trolleyMock.json; sourceTree = "<group>"; };
 		D9019DB21E5277DB00D9E197 /* TrolleyTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrolleyTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9019DB41E5277DB00D9E197 /* TrolleyTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrolleyTrackerUITests.swift; sourceTree = "<group>"; };
@@ -152,7 +155,6 @@
 		D914FAE51B30DFC0002DACF8 /* TrolleyStop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyStop.swift; sourceTree = "<group>"; };
 		D914FAFB1B30EA84002DACF8 /* ObserverSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObserverSet.swift; sourceTree = "<group>"; };
 		D92876CA1BCB0CE5003333EA /* SettingsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsDataSource.swift; sourceTree = "<group>"; };
-		D92876CC1BCB21EE003333EA /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D92876CE1BCB3737003333EA /* MapViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewDelegate.swift; sourceTree = "<group>"; };
 		D92876D01BCB3A53003333EA /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		D92876D21BCB3A67003333EA /* TrolleyScheduleService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyScheduleService.swift; sourceTree = "<group>"; };
@@ -479,7 +481,7 @@
 			children = (
 				D98CF6501E82796E005048FF /* Helpers */,
 				D9CFDB301E5289DE0056AB01 /* Dependencies */,
-				D92876CC1BCB21EE003333EA /* Main.storyboard */,
+				CA6C2B7A1E94059100F33B52 /* Main.storyboard */,
 				D93FD0BA1C79D04D0089CDBE /* More.storyboard */,
 				D93FD09D1C78FDE20089CDBE /* Schedule.storyboard */,
 				D98715451B8A7DA100489594 /* Operations */,
@@ -494,6 +496,7 @@
 				EFA4B1F91A1C201F00BEA42C /* Supporting Files */,
 				D90866F81B91C8BF002A6F87 /* Extensions */,
 				D90866F11B91C60F002A6F87 /* Fonts */,
+				CAA6F62F1EC1CC1400EEE5AE /* StringDemo.swift */,
 			);
 			path = TrolleyTracker;
 			sourceTree = "<group>";
@@ -653,7 +656,7 @@
 				D93FD0BB1C79D04D0089CDBE /* More.storyboard in Resources */,
 				EFA4B2031A1C201F00BEA42C /* Images.xcassets in Resources */,
 				D90866F41B91C79F002A6F87 /* Montserrat-Bold.ttf in Resources */,
-				D92876CD1BCB21EE003333EA /* Main.storyboard in Resources */,
+				CA6C2B781E94059100F33B52 /* Main.storyboard in Resources */,
 				D93FD09E1C78FDE20089CDBE /* Schedule.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -727,6 +730,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAA6F6301EC1CC1400EEE5AE /* StringDemo.swift in Sources */,
 				D95EF76C1B889B00009B5779 /* UIImage+TrolleyTracker.swift in Sources */,
 				D95EF7671B87302F009B5779 /* TrolleyRouteOverlay.swift in Sources */,
 				D9CFDB461E528A940056AB01 /* AFError.swift in Sources */,
@@ -826,6 +830,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		CA6C2B7A1E94059100F33B52 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CA6C2B791E94059100F33B52 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		EFA4B2041A1C201F00BEA42C /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
