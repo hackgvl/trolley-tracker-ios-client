@@ -97,6 +97,13 @@ class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+            self.deSelectIfNeeded(mapView, view: view)
+        }
+    }
+
+    private func deSelectIfNeeded(_ mapView: MKMapView, view: MKAnnotationView) {
+        guard mapView.selectedAnnotations.isEmpty else { return }
         annotationDeselectionAction?(view)
         updateAnnotationZIndexesInMapView(mapView)
     }
