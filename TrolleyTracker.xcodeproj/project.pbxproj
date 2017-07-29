@@ -150,7 +150,7 @@
 		D90866F61B91C8B8002A6F87 /* UIFont+TrolleyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+TrolleyTracker.swift"; sourceTree = "<group>"; };
 		D90866FA1B91D519002A6F87 /* String+TrolleyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+TrolleyTracker.swift"; sourceTree = "<group>"; };
 		D90867021B91F4D9002A6F87 /* EnvironmentVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentVariables.swift; sourceTree = "<group>"; };
-		D908670E1B921229002A6F87 /* TrolleyStopAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrolleyStopAnnotationView.swift; path = TrolleyTracker.xcodeproj/../TrolleyStopAnnotationView.swift; sourceTree = SOURCE_ROOT; };
+		D908670E1B921229002A6F87 /* TrolleyStopAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrolleyStopAnnotationView.swift; path = TrolleyStopAnnotationView.swift; sourceTree = "<group>"; };
 		D90867101B921431002A6F87 /* UIView+TrolleyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+TrolleyTracker.swift"; sourceTree = "<group>"; };
 		D90867121B9217D8002A6F87 /* Drawing.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Drawing.playground; sourceTree = "<group>"; };
 		D914FADD1B30DEF0002DACF8 /* UserLocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocationService.swift; sourceTree = "<group>"; };
@@ -167,7 +167,7 @@
 		D92876D61BCD05A1003333EA /* ScheduleOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleOperations.swift; sourceTree = "<group>"; };
 		D93FD09D1C78FDE20089CDBE /* Schedule.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Schedule.storyboard; sourceTree = "<group>"; };
 		D93FD09F1C78FED60089CDBE /* RouteDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDetailViewController.swift; sourceTree = "<group>"; };
-		D93FD0BA1C79D04D0089CDBE /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = More.storyboard; path = ../More.storyboard; sourceTree = "<group>"; };
+		D93FD0BA1C79D04D0089CDBE /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = More.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 		D95A658F1D6D050B002CE650 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		D95A65901D6D050B002CE650 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		D95DAFC41B7F60EE00BBC906 /* TrolleyRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyRequests.swift; sourceTree = "<group>"; };
@@ -200,24 +200,24 @@
 		D98CF65C1E83C3AF005048FF /* Formatters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		D98CF65E1E83C4B2005048FF /* GeographyHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeographyHelpers.swift; sourceTree = "<group>"; };
 		D99B71551E87D6D800F36E55 /* RouteFetchOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteFetchOperations.swift; sourceTree = "<group>"; };
-		D9CFDB331E528A8A0056AB01 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Dependencies/SwiftyJSON/SwiftyJSON.swift; sourceTree = "<group>"; };
-		D9CFDB351E528A940056AB01 /* AFError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Dependencies/Alamofire/AFError.swift; sourceTree = "<group>"; };
-		D9CFDB361E528A940056AB01 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Dependencies/Alamofire/Alamofire.swift; sourceTree = "<group>"; };
-		D9CFDB371E528A940056AB01 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Dependencies/Alamofire/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
-		D9CFDB381E528A940056AB01 /* MultipartFormData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Dependencies/Alamofire/MultipartFormData.swift; sourceTree = "<group>"; };
-		D9CFDB391E528A940056AB01 /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Dependencies/Alamofire/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
-		D9CFDB3A1E528A940056AB01 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Dependencies/Alamofire/Notifications.swift; sourceTree = "<group>"; };
-		D9CFDB3B1E528A940056AB01 /* ParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Dependencies/Alamofire/ParameterEncoding.swift; sourceTree = "<group>"; };
-		D9CFDB3C1E528A940056AB01 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Dependencies/Alamofire/Request.swift; sourceTree = "<group>"; };
-		D9CFDB3D1E528A940056AB01 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Dependencies/Alamofire/Response.swift; sourceTree = "<group>"; };
-		D9CFDB3E1E528A940056AB01 /* ResponseSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Dependencies/Alamofire/ResponseSerialization.swift; sourceTree = "<group>"; };
-		D9CFDB3F1E528A940056AB01 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Dependencies/Alamofire/Result.swift; sourceTree = "<group>"; };
-		D9CFDB401E528A940056AB01 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Dependencies/Alamofire/ServerTrustPolicy.swift; sourceTree = "<group>"; };
-		D9CFDB411E528A940056AB01 /* SessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Dependencies/Alamofire/SessionDelegate.swift; sourceTree = "<group>"; };
-		D9CFDB421E528A940056AB01 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = Dependencies/Alamofire/SessionManager.swift; sourceTree = "<group>"; };
-		D9CFDB431E528A940056AB01 /* TaskDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskDelegate.swift; path = Dependencies/Alamofire/TaskDelegate.swift; sourceTree = "<group>"; };
-		D9CFDB441E528A940056AB01 /* Timeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Dependencies/Alamofire/Timeline.swift; sourceTree = "<group>"; };
-		D9CFDB451E528A940056AB01 /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Dependencies/Alamofire/Validation.swift; sourceTree = "<group>"; };
+		D9CFDB331E528A8A0056AB01 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		D9CFDB351E528A940056AB01 /* AFError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = AFError.swift; sourceTree = "<group>"; };
+		D9CFDB361E528A940056AB01 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Alamofire.swift; sourceTree = "<group>"; };
+		D9CFDB371E528A940056AB01 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
+		D9CFDB381E528A940056AB01 /* MultipartFormData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = MultipartFormData.swift; sourceTree = "<group>"; };
+		D9CFDB391E528A940056AB01 /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = NetworkReachabilityManager.swift; sourceTree = "<group>"; };
+		D9CFDB3A1E528A940056AB01 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		D9CFDB3B1E528A940056AB01 /* ParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
+		D9CFDB3C1E528A940056AB01 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Request.swift; sourceTree = "<group>"; };
+		D9CFDB3D1E528A940056AB01 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Response.swift; sourceTree = "<group>"; };
+		D9CFDB3E1E528A940056AB01 /* ResponseSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = ResponseSerialization.swift; sourceTree = "<group>"; };
+		D9CFDB3F1E528A940056AB01 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Result.swift; sourceTree = "<group>"; };
+		D9CFDB401E528A940056AB01 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = ServerTrustPolicy.swift; sourceTree = "<group>"; };
+		D9CFDB411E528A940056AB01 /* SessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = SessionDelegate.swift; sourceTree = "<group>"; };
+		D9CFDB421E528A940056AB01 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		D9CFDB431E528A940056AB01 /* TaskDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskDelegate.swift; path = TaskDelegate.swift; sourceTree = "<group>"; };
+		D9CFDB441E528A940056AB01 /* Timeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Timeline.swift; sourceTree = "<group>"; };
+		D9CFDB451E528A940056AB01 /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Validation.swift; sourceTree = "<group>"; };
 		D9D85B4A1F2D0BAE002A99D5 /* KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHandler.swift; sourceTree = "<group>"; };
 		D9D85B4B1F2D0BAE002A99D5 /* UIKitHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitHelpers.swift; sourceTree = "<group>"; };
 		D9D85B4C1F2D0BAF002A99D5 /* Anchorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anchorage.swift; sourceTree = "<group>"; };
@@ -271,14 +271,15 @@
 				D9019DAC1E526F0000D9E197 /* trolleyMock.json */,
 			);
 			name = MockData;
+			path = MockData;
 			sourceTree = "<group>";
 		};
 		D9019DB31E5277DB00D9E197 /* TrolleyTrackerUITests */ = {
 			isa = PBXGroup;
 			children = (
+				D9019DB61E5277DB00D9E197 /* Info.plist */,
 				D9E83ACB1E52796400E9D799 /* SnapshotHelper.swift */,
 				D9019DB41E5277DB00D9E197 /* TrolleyTrackerUITests.swift */,
-				D9019DB61E5277DB00D9E197 /* Info.plist */,
 			);
 			path = TrolleyTrackerUITests;
 			sourceTree = "<group>";
@@ -289,31 +290,34 @@
 				D90866F21B91C633002A6F87 /* Montserrat-Bold.ttf */,
 			);
 			name = Fonts;
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		D90866F81B91C8BF002A6F87 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				D9650CA31B86A9F10004A2AF /* UIColor+TrolleyTracker.swift */,
-				D95EF76B1B889B00009B5779 /* UIImage+TrolleyTracker.swift */,
-				D90866F61B91C8B8002A6F87 /* UIFont+TrolleyTracker.swift */,
 				D90866FA1B91D519002A6F87 /* String+TrolleyTracker.swift */,
+				D9650CA31B86A9F10004A2AF /* UIColor+TrolleyTracker.swift */,
+				D90866F61B91C8B8002A6F87 /* UIFont+TrolleyTracker.swift */,
+				D95EF76B1B889B00009B5779 /* UIImage+TrolleyTracker.swift */,
 				D90867101B921431002A6F87 /* UIView+TrolleyTracker.swift */,
 				D9617EF31BDF0A1600FF86CD /* UIViewController+Appearance.swift */,
 			);
 			name = Extensions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		D914FADB1B30DEA4002DACF8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D914FAE31B30DFA8002DACF8 /* Trolley.swift */,
-				D914FAE51B30DFC0002DACF8 /* TrolleyStop.swift */,
-				D9650C991B8559EA0004A2AF /* TrolleyRoute.swift */,
 				D92876D41BCC89BE003333EA /* Schedule.swift */,
 				D9617EF81BE02B9200FF86CD /* ScheduleDisplayModels.swift */,
+				D914FAE31B30DFA8002DACF8 /* Trolley.swift */,
+				D9650C991B8559EA0004A2AF /* TrolleyRoute.swift */,
+				D914FAE51B30DFC0002DACF8 /* TrolleyStop.swift */,
 			);
 			name = Models;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		D914FADC1B30DEB4002DACF8 /* Services */ = {
@@ -321,12 +325,13 @@
 			children = (
 				D98CF6541E827BD1005048FF /* Locations */,
 				D98CF6531E827BAF005048FF /* Routes */,
-				D95DAFC41B7F60EE00BBC906 /* TrolleyRequests.swift */,
 				D98715401B8A7D8200489594 /* TimeAndDistanceService.swift */,
-				D97A7F0F1BE1960E00B40766 /* TrolleyServiceProtocols.swift */,
+				D95DAFC41B7F60EE00BBC906 /* TrolleyRequests.swift */,
 				D92876D21BCB3A67003333EA /* TrolleyScheduleService.swift */,
+				D97A7F0F1BE1960E00B40766 /* TrolleyServiceProtocols.swift */,
 			);
 			name = Services;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		D9650CA01B86A4030004A2AF /* Controllers */ = {
@@ -336,6 +341,7 @@
 				D98CF6551E827D61005048FF /* ApplicationController.swift */,
 			);
 			name = Controllers;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		D9650CA11B86A40A0004A2AF /* Views */ = {
@@ -346,94 +352,102 @@
 				D908670E1B921229002A6F87 /* TrolleyStopAnnotationView.swift */,
 			);
 			name = Views;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		D97055BC1BD706CE002B9A8B /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
-				D97055BD1BD70753002B9A8B /* HeadingLabel.swift */,
 				D97055BF1BD7077B002B9A8B /* BodyLabel.swift */,
+				D97055BD1BD70753002B9A8B /* HeadingLabel.swift */,
+				D9617EFA1BE0573100FF86CD /* ScheduleHeaderView.swift */,
+				D9617EF61BDF84F400FF86CD /* ScheduleViewCell.swift */,
 				D97055C11BD7078E002B9A8B /* SpacerView.swift */,
 				D9E240481BDBCACB00F16CF8 /* SubHeadingLabel.swift */,
-				D9617EF61BDF84F400FF86CD /* ScheduleViewCell.swift */,
-				D9617EFA1BE0573100FF86CD /* ScheduleHeaderView.swift */,
 			);
 			name = Schedule;
+			path = Schedule;
 			sourceTree = "<group>";
 		};
 		D98715451B8A7DA100489594 /* Operations */ = {
 			isa = PBXGroup;
 			children = (
-				D98715481B8A7E0C00489594 /* GetETAOperation.swift */,
 				D98715461B8A7DDC00489594 /* ConcurrentOperation.swift */,
+				D98715481B8A7E0C00489594 /* GetETAOperation.swift */,
 				D92876D61BCD05A1003333EA /* ScheduleOperations.swift */,
 			);
 			name = Operations;
+			path = Operations;
 			sourceTree = "<group>";
 		};
 		D98CF6501E82796E005048FF /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				D98CF6511E827982005048FF /* MapViewHelpers.swift */,
-				D98CF6581E827E12005048FF /* ViewControllerInitialization.swift */,
 				D98CF65C1E83C3AF005048FF /* Formatters.swift */,
 				D98CF65E1E83C4B2005048FF /* GeographyHelpers.swift */,
+				D98CF6511E827982005048FF /* MapViewHelpers.swift */,
+				D98CF6581E827E12005048FF /* ViewControllerInitialization.swift */,
 			);
 			name = Helpers;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		D98CF6531E827BAF005048FF /* Routes */ = {
 			isa = PBXGroup;
 			children = (
+				D99B71551E87D6D800F36E55 /* RouteFetchOperations.swift */,
 				D914FADF1B30DEFE002DACF8 /* TrolleyRouteService.swift */,
 				D97A7F0D1BE194F200B40766 /* TrolleyRouteServiceFake.swift */,
-				D99B71551E87D6D800F36E55 /* RouteFetchOperations.swift */,
 			);
 			name = Routes;
+			path = Routes;
 			sourceTree = "<group>";
 		};
 		D98CF6541E827BD1005048FF /* Locations */ = {
 			isa = PBXGroup;
 			children = (
-				D914FADD1B30DEF0002DACF8 /* UserLocationService.swift */,
 				D914FAE11B30DF14002DACF8 /* TrolleyLocationService.swift */,
 				D97A7F111BE197AD00B40766 /* TrolleyLocationServiceFake.swift */,
+				D914FADD1B30DEF0002DACF8 /* UserLocationService.swift */,
 			);
 			name = Locations;
+			path = Locations;
 			sourceTree = "<group>";
 		};
 		D98CF6571E827D66005048FF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				E71A67891B30DCD30036FE10 /* MapViewController.swift */,
-				E71A678B1B30DCE60036FE10 /* DetailViewController.swift */,
-				E71A678D1B30DCEF0036FE10 /* SettingsViewController.swift */,
-				D92876CA1BCB0CE5003333EA /* SettingsDataSource.swift */,
-				D92876CE1BCB3737003333EA /* MapViewDelegate.swift */,
-				D92876D01BCB3A53003333EA /* ScheduleViewController.swift */,
-				D9617EED1BDDA37A00FF86CD /* ScheduleViewController+SortByRoute.swift */,
-				D9617EE91BDDA1C800FF86CD /* ScheduleViewController+SortByDay.swift */,
+				D9617EFE1BE0D61600FF86CD /* AboutViewController.swift */,
 				D9617EF11BDDC60700FF86CD /* AlertControllerColor.swift */,
 				D9617EFC1BE0634A00FF86CD /* AttributionViewController.swift */,
-				D9617EFE1BE0D61600FF86CD /* AboutViewController.swift */,
+				E71A678B1B30DCE60036FE10 /* DetailViewController.swift */,
+				E71A67891B30DCD30036FE10 /* MapViewController.swift */,
+				D92876CE1BCB3737003333EA /* MapViewDelegate.swift */,
 				D93FD09F1C78FED60089CDBE /* RouteDetailViewController.swift */,
+				D9617EE91BDDA1C800FF86CD /* ScheduleViewController+SortByDay.swift */,
+				D9617EED1BDDA37A00FF86CD /* ScheduleViewController+SortByRoute.swift */,
+				D92876D01BCB3A53003333EA /* ScheduleViewController.swift */,
+				D92876CA1BCB0CE5003333EA /* SettingsDataSource.swift */,
+				E71A678D1B30DCEF0036FE10 /* SettingsViewController.swift */,
 			);
 			name = ViewControllers;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		D9CFDB301E5289DE0056AB01 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				D9CFDB311E528A6B0056AB01 /* Alamofire */,
+				D9CFDB321E528A7B0056AB01 /* SwiftyJSON */,
 				D9D85B4C1F2D0BAF002A99D5 /* Anchorage.swift */,
 				D9D85B4E1F2D0BAF002A99D5 /* AnimationHelpers.swift */,
 				D9D85B4D1F2D0BAF002A99D5 /* AutoLayoutHelpers.swift */,
 				D9D85B4A1F2D0BAE002A99D5 /* KeyboardHandler.swift */,
-				D9D85B4B1F2D0BAE002A99D5 /* UIKitHelpers.swift */,
 				D914FAFB1B30EA84002DACF8 /* ObserverSet.swift */,
-				D9CFDB321E528A7B0056AB01 /* SwiftyJSON */,
-				D9CFDB311E528A6B0056AB01 /* Alamofire */,
+				D9D85B4B1F2D0BAE002A99D5 /* UIKitHelpers.swift */,
 			);
 			name = Dependencies;
+			path = Dependencies;
 			sourceTree = "<group>";
 		};
 		D9CFDB311E528A6B0056AB01 /* Alamofire */ = {
@@ -458,6 +472,7 @@
 				D9CFDB451E528A940056AB01 /* Validation.swift */,
 			);
 			name = Alamofire;
+			path = Alamofire;
 			sourceTree = "<group>";
 		};
 		D9CFDB321E528A7B0056AB01 /* SwiftyJSON */ = {
@@ -466,18 +481,19 @@
 				D9CFDB331E528A8A0056AB01 /* SwiftyJSON.swift */,
 			);
 			name = SwiftyJSON;
+			path = SwiftyJSON;
 			sourceTree = "<group>";
 		};
 		EFA4B1ED1A1C201F00BEA42C = {
 			isa = PBXGroup;
 			children = (
-				D95A658F1D6D050B002CE650 /* Fabric.framework */,
-				D95A65901D6D050B002CE650 /* Crashlytics.framework */,
-				D90867121B9217D8002A6F87 /* Drawing.playground */,
+				EFA4B1F71A1C201F00BEA42C /* Products */,
 				EFA4B1F81A1C201F00BEA42C /* TrolleyTracker */,
 				EFA4B20E1A1C201F00BEA42C /* TrolleyTrackerTests */,
 				D9019DB31E5277DB00D9E197 /* TrolleyTrackerUITests */,
-				EFA4B1F71A1C201F00BEA42C /* Products */,
+				D95A65901D6D050B002CE650 /* Crashlytics.framework */,
+				D90867121B9217D8002A6F87 /* Drawing.playground */,
+				D95A658F1D6D050B002CE650 /* Fabric.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -494,24 +510,24 @@
 		EFA4B1F81A1C201F00BEA42C /* TrolleyTracker */ = {
 			isa = PBXGroup;
 			children = (
-				D98CF6501E82796E005048FF /* Helpers */,
+				D9650CA01B86A4030004A2AF /* Controllers */,
 				D9CFDB301E5289DE0056AB01 /* Dependencies */,
+				D90866F81B91C8BF002A6F87 /* Extensions */,
+				D90866F11B91C60F002A6F87 /* Fonts */,
+				D98CF6501E82796E005048FF /* Helpers */,
+				D914FADB1B30DEA4002DACF8 /* Models */,
+				D98715451B8A7DA100489594 /* Operations */,
+				D914FADC1B30DEB4002DACF8 /* Services */,
+				EFA4B1F91A1C201F00BEA42C /* Supporting Files */,
+				D9650CA11B86A40A0004A2AF /* Views */,
+				EFA4B1FB1A1C201F00BEA42C /* AppDelegate.swift */,
+				EFA4B2021A1C201F00BEA42C /* Images.xcassets */,
+				EFA4B2041A1C201F00BEA42C /* LaunchScreen.xib */,
 				CA6C2B7A1E94059100F33B52 /* Main.storyboard */,
 				D93FD0BA1C79D04D0089CDBE /* More.storyboard */,
 				D93FD09D1C78FDE20089CDBE /* Schedule.storyboard */,
-				D98715451B8A7DA100489594 /* Operations */,
-				D914FADC1B30DEB4002DACF8 /* Services */,
-				D914FADB1B30DEA4002DACF8 /* Models */,
-				D9650CA01B86A4030004A2AF /* Controllers */,
-				D9650CA11B86A40A0004A2AF /* Views */,
-				EFA4B1FB1A1C201F00BEA42C /* AppDelegate.swift */,
-				D95EF7661B87302F009B5779 /* TrolleyRouteOverlay.swift */,
-				EFA4B2021A1C201F00BEA42C /* Images.xcassets */,
-				EFA4B2041A1C201F00BEA42C /* LaunchScreen.xib */,
-				EFA4B1F91A1C201F00BEA42C /* Supporting Files */,
-				D90866F81B91C8BF002A6F87 /* Extensions */,
-				D90866F11B91C60F002A6F87 /* Fonts */,
 				CAA6F62F1EC1CC1400EEE5AE /* StringDemo.swift */,
+				D95EF7661B87302F009B5779 /* TrolleyRouteOverlay.swift */,
 			);
 			path = TrolleyTracker;
 			sourceTree = "<group>";
@@ -519,19 +535,20 @@
 		EFA4B1F91A1C201F00BEA42C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				EFA4B1FA1A1C201F00BEA42C /* Info.plist */,
-				D90867021B91F4D9002A6F87 /* EnvironmentVariables.swift */,
 				D97055BA1BD6FB25002B9A8B /* Box.swift */,
+				D90867021B91F4D9002A6F87 /* EnvironmentVariables.swift */,
+				EFA4B1FA1A1C201F00BEA42C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		EFA4B20E1A1C201F00BEA42C /* TrolleyTrackerTests */ = {
 			isa = PBXGroup;
 			children = (
 				D9019D9E1E526EB400D9E197 /* MockData */,
-				EFA4B2111A1C201F00BEA42C /* TrolleyTrackerTests.swift */,
 				EFA4B20F1A1C201F00BEA42C /* Supporting Files */,
+				EFA4B2111A1C201F00BEA42C /* TrolleyTrackerTests.swift */,
 			);
 			path = TrolleyTrackerTests;
 			sourceTree = "<group>";
@@ -542,6 +559,7 @@
 				EFA4B2101A1C201F00BEA42C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -856,6 +874,7 @@
 				CA6C2B791E94059100F33B52 /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		EFA4B2041A1C201F00BEA42C /* LaunchScreen.xib */ = {
@@ -864,6 +883,7 @@
 				EFA4B2051A1C201F00BEA42C /* Base */,
 			);
 			name = LaunchScreen.xib;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1017,7 +1037,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = TrolleyTracker/Info.plist;
+				INFOPLIST_FILE = "TrolleyTracker/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.codeforgreenville.trolleytracker$(BUNDLE_ID_SUFFIX)";
@@ -1037,7 +1057,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = TrolleyTrackerTests/Info.plist;
+				INFOPLIST_FILE = "TrolleyTrackerTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.CodeForGreenville.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1100,7 +1120,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = TrolleyTracker/Info.plist;
+				INFOPLIST_FILE = "TrolleyTracker/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.codeforgreenville.trolleytracker$(BUNDLE_ID_SUFFIX)";
@@ -1116,7 +1136,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = TrolleyTrackerTests/Info.plist;
+				INFOPLIST_FILE = "TrolleyTrackerTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.CodeForGreenville.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1228,7 +1248,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = TrolleyTracker/Info.plist;
+				INFOPLIST_FILE = "TrolleyTracker/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.codeforgreenville.trolleytracker$(BUNDLE_ID_SUFFIX)";
@@ -1252,7 +1272,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = TrolleyTracker/Info.plist;
+				INFOPLIST_FILE = "TrolleyTracker/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.codeforgreenville.trolleytracker$(BUNDLE_ID_SUFFIX)";
@@ -1273,7 +1293,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = TrolleyTrackerTests/Info.plist;
+				INFOPLIST_FILE = "TrolleyTrackerTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.CodeForGreenville.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1289,7 +1309,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = TrolleyTrackerTests/Info.plist;
+				INFOPLIST_FILE = "TrolleyTrackerTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.CodeForGreenville.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
