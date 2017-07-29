@@ -66,23 +66,6 @@
 		D98CF65F1E83C4B2005048FF /* GeographyHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98CF65E1E83C4B2005048FF /* GeographyHelpers.swift */; };
 		D99B71561E87D6D800F36E55 /* RouteFetchOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99B71551E87D6D800F36E55 /* RouteFetchOperations.swift */; };
 		D9CFDB341E528A8A0056AB01 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CFDB331E528A8A0056AB01 /* SwiftyJSON.swift */; };
-		D9CFDB461E528A940056AB01 /* AFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CFDB351E528A940056AB01 /* AFError.swift */; };
-		D9CFDB471E528A940056AB01 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CFDB361E528A940056AB01 /* Alamofire.swift */; };
-		D9CFDB481E528A940056AB01 /* DispatchQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CFDB371E528A940056AB01 /* DispatchQueue+Alamofire.swift */; };
-		D9CFDB491E528A940056AB01 /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CFDB381E528A940056AB01 /* MultipartFormData.swift */; };
-		D9CFDB4A1E528A940056AB01 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CFDB391E528A940056AB01 /* NetworkReachabilityManager.swift */; };
-		D9CFDB4B1E528A940056AB01 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CFDB3A1E528A940056AB01 /* Notifications.swift */; };
-		D9CFDB4C1E528A940056AB01 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CFDB3B1E528A940056AB01 /* ParameterEncoding.swift */; };
-		D9CFDB4D1E528A940056AB01 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CFDB3C1E528A940056AB01 /* Request.swift */; };
-		D9CFDB4E1E528A940056AB01 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CFDB3D1E528A940056AB01 /* Response.swift */; };
-		D9CFDB4F1E528A940056AB01 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CFDB3E1E528A940056AB01 /* ResponseSerialization.swift */; };
-		D9CFDB501E528A940056AB01 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CFDB3F1E528A940056AB01 /* Result.swift */; };
-		D9CFDB511E528A940056AB01 /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CFDB401E528A940056AB01 /* ServerTrustPolicy.swift */; };
-		D9CFDB521E528A940056AB01 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CFDB411E528A940056AB01 /* SessionDelegate.swift */; };
-		D9CFDB531E528A940056AB01 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CFDB421E528A940056AB01 /* SessionManager.swift */; };
-		D9CFDB541E528A940056AB01 /* TaskDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CFDB431E528A940056AB01 /* TaskDelegate.swift */; };
-		D9CFDB551E528A940056AB01 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CFDB441E528A940056AB01 /* Timeline.swift */; };
-		D9CFDB561E528A940056AB01 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CFDB451E528A940056AB01 /* Validation.swift */; };
 		D9D85B4F1F2D0BAF002A99D5 /* KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D85B4A1F2D0BAE002A99D5 /* KeyboardHandler.swift */; };
 		D9D85B501F2D0BAF002A99D5 /* UIKitHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D85B4B1F2D0BAE002A99D5 /* UIKitHelpers.swift */; };
 		D9D85B511F2D0BAF002A99D5 /* AutoLayoutHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D85B4D1F2D0BAF002A99D5 /* AutoLayoutHelpers.swift */; };
@@ -150,7 +133,7 @@
 		D90866F61B91C8B8002A6F87 /* UIFont+TrolleyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+TrolleyTracker.swift"; sourceTree = "<group>"; };
 		D90866FA1B91D519002A6F87 /* String+TrolleyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+TrolleyTracker.swift"; sourceTree = "<group>"; };
 		D90867021B91F4D9002A6F87 /* EnvironmentVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentVariables.swift; sourceTree = "<group>"; };
-		D908670E1B921229002A6F87 /* TrolleyStopAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrolleyStopAnnotationView.swift; path = TrolleyStopAnnotationView.swift; sourceTree = "<group>"; };
+		D908670E1B921229002A6F87 /* TrolleyStopAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyStopAnnotationView.swift; sourceTree = "<group>"; };
 		D90867101B921431002A6F87 /* UIView+TrolleyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+TrolleyTracker.swift"; sourceTree = "<group>"; };
 		D90867121B9217D8002A6F87 /* Drawing.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Drawing.playground; sourceTree = "<group>"; };
 		D914FADD1B30DEF0002DACF8 /* UserLocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocationService.swift; sourceTree = "<group>"; };
@@ -167,7 +150,7 @@
 		D92876D61BCD05A1003333EA /* ScheduleOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleOperations.swift; sourceTree = "<group>"; };
 		D93FD09D1C78FDE20089CDBE /* Schedule.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Schedule.storyboard; sourceTree = "<group>"; };
 		D93FD09F1C78FED60089CDBE /* RouteDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDetailViewController.swift; sourceTree = "<group>"; };
-		D93FD0BA1C79D04D0089CDBE /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = More.storyboard; path = More.storyboard; sourceTree = "<group>"; };
+		D93FD0BA1C79D04D0089CDBE /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 		D95A658F1D6D050B002CE650 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		D95A65901D6D050B002CE650 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		D95DAFC41B7F60EE00BBC906 /* TrolleyRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyRequests.swift; sourceTree = "<group>"; };
@@ -200,24 +183,7 @@
 		D98CF65C1E83C3AF005048FF /* Formatters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		D98CF65E1E83C4B2005048FF /* GeographyHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeographyHelpers.swift; sourceTree = "<group>"; };
 		D99B71551E87D6D800F36E55 /* RouteFetchOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteFetchOperations.swift; sourceTree = "<group>"; };
-		D9CFDB331E528A8A0056AB01 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
-		D9CFDB351E528A940056AB01 /* AFError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = AFError.swift; sourceTree = "<group>"; };
-		D9CFDB361E528A940056AB01 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Alamofire.swift; sourceTree = "<group>"; };
-		D9CFDB371E528A940056AB01 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
-		D9CFDB381E528A940056AB01 /* MultipartFormData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = MultipartFormData.swift; sourceTree = "<group>"; };
-		D9CFDB391E528A940056AB01 /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = NetworkReachabilityManager.swift; sourceTree = "<group>"; };
-		D9CFDB3A1E528A940056AB01 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Notifications.swift; sourceTree = "<group>"; };
-		D9CFDB3B1E528A940056AB01 /* ParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
-		D9CFDB3C1E528A940056AB01 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Request.swift; sourceTree = "<group>"; };
-		D9CFDB3D1E528A940056AB01 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Response.swift; sourceTree = "<group>"; };
-		D9CFDB3E1E528A940056AB01 /* ResponseSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = ResponseSerialization.swift; sourceTree = "<group>"; };
-		D9CFDB3F1E528A940056AB01 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Result.swift; sourceTree = "<group>"; };
-		D9CFDB401E528A940056AB01 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = ServerTrustPolicy.swift; sourceTree = "<group>"; };
-		D9CFDB411E528A940056AB01 /* SessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = SessionDelegate.swift; sourceTree = "<group>"; };
-		D9CFDB421E528A940056AB01 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = SessionManager.swift; sourceTree = "<group>"; };
-		D9CFDB431E528A940056AB01 /* TaskDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskDelegate.swift; path = TaskDelegate.swift; sourceTree = "<group>"; };
-		D9CFDB441E528A940056AB01 /* Timeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Timeline.swift; sourceTree = "<group>"; };
-		D9CFDB451E528A940056AB01 /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Validation.swift; sourceTree = "<group>"; };
+		D9CFDB331E528A8A0056AB01 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		D9D85B4A1F2D0BAE002A99D5 /* KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHandler.swift; sourceTree = "<group>"; };
 		D9D85B4B1F2D0BAE002A99D5 /* UIKitHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitHelpers.swift; sourceTree = "<group>"; };
 		D9D85B4C1F2D0BAF002A99D5 /* Anchorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anchorage.swift; sourceTree = "<group>"; };
@@ -270,7 +236,6 @@
 			children = (
 				D9019DAC1E526F0000D9E197 /* trolleyMock.json */,
 			);
-			name = MockData;
 			path = MockData;
 			sourceTree = "<group>";
 		};
@@ -289,7 +254,6 @@
 			children = (
 				D90866F21B91C633002A6F87 /* Montserrat-Bold.ttf */,
 			);
-			name = Fonts;
 			path = Fonts;
 			sourceTree = "<group>";
 		};
@@ -303,7 +267,6 @@
 				D90867101B921431002A6F87 /* UIView+TrolleyTracker.swift */,
 				D9617EF31BDF0A1600FF86CD /* UIViewController+Appearance.swift */,
 			);
-			name = Extensions;
 			path = Extensions;
 			sourceTree = "<group>";
 		};
@@ -316,7 +279,6 @@
 				D9650C991B8559EA0004A2AF /* TrolleyRoute.swift */,
 				D914FAE51B30DFC0002DACF8 /* TrolleyStop.swift */,
 			);
-			name = Models;
 			path = Models;
 			sourceTree = "<group>";
 		};
@@ -330,7 +292,6 @@
 				D92876D21BCB3A67003333EA /* TrolleyScheduleService.swift */,
 				D97A7F0F1BE1960E00B40766 /* TrolleyServiceProtocols.swift */,
 			);
-			name = Services;
 			path = Services;
 			sourceTree = "<group>";
 		};
@@ -340,7 +301,6 @@
 				D98CF6571E827D66005048FF /* ViewControllers */,
 				D98CF6551E827D61005048FF /* ApplicationController.swift */,
 			);
-			name = Controllers;
 			path = Controllers;
 			sourceTree = "<group>";
 		};
@@ -351,7 +311,6 @@
 				D90866EF1B91292F002A6F87 /* TrolleyAnnotationView.swift */,
 				D908670E1B921229002A6F87 /* TrolleyStopAnnotationView.swift */,
 			);
-			name = Views;
 			path = Views;
 			sourceTree = "<group>";
 		};
@@ -365,7 +324,6 @@
 				D97055C11BD7078E002B9A8B /* SpacerView.swift */,
 				D9E240481BDBCACB00F16CF8 /* SubHeadingLabel.swift */,
 			);
-			name = Schedule;
 			path = Schedule;
 			sourceTree = "<group>";
 		};
@@ -376,7 +334,6 @@
 				D98715481B8A7E0C00489594 /* GetETAOperation.swift */,
 				D92876D61BCD05A1003333EA /* ScheduleOperations.swift */,
 			);
-			name = Operations;
 			path = Operations;
 			sourceTree = "<group>";
 		};
@@ -388,7 +345,6 @@
 				D98CF6511E827982005048FF /* MapViewHelpers.swift */,
 				D98CF6581E827E12005048FF /* ViewControllerInitialization.swift */,
 			);
-			name = Helpers;
 			path = Helpers;
 			sourceTree = "<group>";
 		};
@@ -399,7 +355,6 @@
 				D914FADF1B30DEFE002DACF8 /* TrolleyRouteService.swift */,
 				D97A7F0D1BE194F200B40766 /* TrolleyRouteServiceFake.swift */,
 			);
-			name = Routes;
 			path = Routes;
 			sourceTree = "<group>";
 		};
@@ -410,7 +365,6 @@
 				D97A7F111BE197AD00B40766 /* TrolleyLocationServiceFake.swift */,
 				D914FADD1B30DEF0002DACF8 /* UserLocationService.swift */,
 			);
-			name = Locations;
 			path = Locations;
 			sourceTree = "<group>";
 		};
@@ -430,14 +384,12 @@
 				D92876CA1BCB0CE5003333EA /* SettingsDataSource.swift */,
 				E71A678D1B30DCEF0036FE10 /* SettingsViewController.swift */,
 			);
-			name = ViewControllers;
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		D9CFDB301E5289DE0056AB01 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				D9CFDB311E528A6B0056AB01 /* Alamofire */,
 				D9CFDB321E528A7B0056AB01 /* SwiftyJSON */,
 				D9D85B4C1F2D0BAF002A99D5 /* Anchorage.swift */,
 				D9D85B4E1F2D0BAF002A99D5 /* AnimationHelpers.swift */,
@@ -446,33 +398,7 @@
 				D914FAFB1B30EA84002DACF8 /* ObserverSet.swift */,
 				D9D85B4B1F2D0BAE002A99D5 /* UIKitHelpers.swift */,
 			);
-			name = Dependencies;
 			path = Dependencies;
-			sourceTree = "<group>";
-		};
-		D9CFDB311E528A6B0056AB01 /* Alamofire */ = {
-			isa = PBXGroup;
-			children = (
-				D9CFDB351E528A940056AB01 /* AFError.swift */,
-				D9CFDB361E528A940056AB01 /* Alamofire.swift */,
-				D9CFDB371E528A940056AB01 /* DispatchQueue+Alamofire.swift */,
-				D9CFDB381E528A940056AB01 /* MultipartFormData.swift */,
-				D9CFDB391E528A940056AB01 /* NetworkReachabilityManager.swift */,
-				D9CFDB3A1E528A940056AB01 /* Notifications.swift */,
-				D9CFDB3B1E528A940056AB01 /* ParameterEncoding.swift */,
-				D9CFDB3C1E528A940056AB01 /* Request.swift */,
-				D9CFDB3D1E528A940056AB01 /* Response.swift */,
-				D9CFDB3E1E528A940056AB01 /* ResponseSerialization.swift */,
-				D9CFDB3F1E528A940056AB01 /* Result.swift */,
-				D9CFDB401E528A940056AB01 /* ServerTrustPolicy.swift */,
-				D9CFDB411E528A940056AB01 /* SessionDelegate.swift */,
-				D9CFDB421E528A940056AB01 /* SessionManager.swift */,
-				D9CFDB431E528A940056AB01 /* TaskDelegate.swift */,
-				D9CFDB441E528A940056AB01 /* Timeline.swift */,
-				D9CFDB451E528A940056AB01 /* Validation.swift */,
-			);
-			name = Alamofire;
-			path = Alamofire;
 			sourceTree = "<group>";
 		};
 		D9CFDB321E528A7B0056AB01 /* SwiftyJSON */ = {
@@ -480,7 +406,6 @@
 			children = (
 				D9CFDB331E528A8A0056AB01 /* SwiftyJSON.swift */,
 			);
-			name = SwiftyJSON;
 			path = SwiftyJSON;
 			sourceTree = "<group>";
 		};
@@ -539,7 +464,6 @@
 				D90867021B91F4D9002A6F87 /* EnvironmentVariables.swift */,
 				EFA4B1FA1A1C201F00BEA42C /* Info.plist */,
 			);
-			name = "Supporting Files";
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
@@ -558,7 +482,6 @@
 			children = (
 				EFA4B2101A1C201F00BEA42C /* Info.plist */,
 			);
-			name = "Supporting Files";
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
@@ -766,22 +689,18 @@
 				CAA6F6301EC1CC1400EEE5AE /* StringDemo.swift in Sources */,
 				D95EF76C1B889B00009B5779 /* UIImage+TrolleyTracker.swift in Sources */,
 				D95EF7671B87302F009B5779 /* TrolleyRouteOverlay.swift in Sources */,
-				D9CFDB461E528A940056AB01 /* AFError.swift in Sources */,
 				D9617EFF1BE0D61600FF86CD /* AboutViewController.swift in Sources */,
 				D914FADE1B30DEF0002DACF8 /* UserLocationService.swift in Sources */,
 				D98715491B8A7E0C00489594 /* GetETAOperation.swift in Sources */,
 				D914FAFC1B30EA84002DACF8 /* ObserverSet.swift in Sources */,
 				D9D85B511F2D0BAF002A99D5 /* AutoLayoutHelpers.swift in Sources */,
 				D914FAE21B30DF14002DACF8 /* TrolleyLocationService.swift in Sources */,
-				D9CFDB4B1E528A940056AB01 /* Notifications.swift in Sources */,
 				D98715411B8A7D8200489594 /* TimeAndDistanceService.swift in Sources */,
 				EFA4B1FC1A1C201F00BEA42C /* AppDelegate.swift in Sources */,
 				D97A7F121BE197AD00B40766 /* TrolleyLocationServiceFake.swift in Sources */,
 				D98CF6591E827E12005048FF /* ViewControllerInitialization.swift in Sources */,
 				E71A678C1B30DCE60036FE10 /* DetailViewController.swift in Sources */,
 				D9D85B4F1F2D0BAF002A99D5 /* KeyboardHandler.swift in Sources */,
-				D9CFDB4E1E528A940056AB01 /* Response.swift in Sources */,
-				D9CFDB531E528A940056AB01 /* SessionManager.swift in Sources */,
 				D92876CF1BCB3737003333EA /* MapViewDelegate.swift in Sources */,
 				E71A678E1B30DCEF0036FE10 /* SettingsViewController.swift in Sources */,
 				D9617EF41BDF0A1600FF86CD /* UIViewController+Appearance.swift in Sources */,
@@ -792,7 +711,6 @@
 				D9650C9A1B8559EA0004A2AF /* TrolleyRoute.swift in Sources */,
 				D90866F01B91292F002A6F87 /* TrolleyAnnotationView.swift in Sources */,
 				D9617EF21BDDC60700FF86CD /* AlertControllerColor.swift in Sources */,
-				D9CFDB541E528A940056AB01 /* TaskDelegate.swift in Sources */,
 				D90867111B921431002A6F87 /* UIView+TrolleyTracker.swift in Sources */,
 				D92876CB1BCB0CE5003333EA /* SettingsDataSource.swift in Sources */,
 				D95DAFC51B7F60EE00BBC906 /* TrolleyRequests.swift in Sources */,
@@ -803,44 +721,32 @@
 				D9617EEE1BDDA37A00FF86CD /* ScheduleViewController+SortByRoute.swift in Sources */,
 				D98CF6521E827982005048FF /* MapViewHelpers.swift in Sources */,
 				D9617EF71BDF84F400FF86CD /* ScheduleViewCell.swift in Sources */,
-				D9CFDB4C1E528A940056AB01 /* ParameterEncoding.swift in Sources */,
 				D9617EEA1BDDA1C800FF86CD /* ScheduleViewController+SortByDay.swift in Sources */,
 				D9D85B501F2D0BAF002A99D5 /* UIKitHelpers.swift in Sources */,
-				D9CFDB501E528A940056AB01 /* Result.swift in Sources */,
 				D9D85B521F2D0BAF002A99D5 /* Anchorage.swift in Sources */,
-				D9CFDB4D1E528A940056AB01 /* Request.swift in Sources */,
 				D92876D71BCD05A1003333EA /* ScheduleOperations.swift in Sources */,
 				D92876D11BCB3A53003333EA /* ScheduleViewController.swift in Sources */,
 				D97055C01BD7077B002B9A8B /* BodyLabel.swift in Sources */,
 				D914FAE41B30DFA8002DACF8 /* Trolley.swift in Sources */,
 				D908670F1B921229002A6F87 /* TrolleyStopAnnotationView.swift in Sources */,
 				D97A7F101BE1960E00B40766 /* TrolleyServiceProtocols.swift in Sources */,
-				D9CFDB4F1E528A940056AB01 /* ResponseSerialization.swift in Sources */,
 				D98CF65D1E83C3AF005048FF /* Formatters.swift in Sources */,
 				D98715471B8A7DDC00489594 /* ConcurrentOperation.swift in Sources */,
-				D9CFDB4A1E528A940056AB01 /* NetworkReachabilityManager.swift in Sources */,
 				D97055C21BD7078E002B9A8B /* SpacerView.swift in Sources */,
 				D98CF6561E827D61005048FF /* ApplicationController.swift in Sources */,
-				D9CFDB521E528A940056AB01 /* SessionDelegate.swift in Sources */,
 				D92876D31BCB3A67003333EA /* TrolleyScheduleService.swift in Sources */,
-				D9CFDB491E528A940056AB01 /* MultipartFormData.swift in Sources */,
-				D9CFDB471E528A940056AB01 /* Alamofire.swift in Sources */,
-				D9CFDB551E528A940056AB01 /* Timeline.swift in Sources */,
 				D99B71561E87D6D800F36E55 /* RouteFetchOperations.swift in Sources */,
 				D9E240491BDBCACB00F16CF8 /* SubHeadingLabel.swift in Sources */,
 				D9650CA41B86A9F10004A2AF /* UIColor+TrolleyTracker.swift in Sources */,
 				D9D85B531F2D0BAF002A99D5 /* AnimationHelpers.swift in Sources */,
 				D9CFDB341E528A8A0056AB01 /* SwiftyJSON.swift in Sources */,
 				D90866F71B91C8B8002A6F87 /* UIFont+TrolleyTracker.swift in Sources */,
-				D9CFDB511E528A940056AB01 /* ServerTrustPolicy.swift in Sources */,
 				D93FD0A01C78FED60089CDBE /* RouteDetailViewController.swift in Sources */,
 				D9617EFD1BE0634A00FF86CD /* AttributionViewController.swift in Sources */,
 				D9617EF91BE02B9200FF86CD /* ScheduleDisplayModels.swift in Sources */,
 				E71A678A1B30DCD30036FE10 /* MapViewController.swift in Sources */,
 				D98CF65F1E83C4B2005048FF /* GeographyHelpers.swift in Sources */,
 				D914FAE01B30DEFE002DACF8 /* TrolleyRouteService.swift in Sources */,
-				D9CFDB481E528A940056AB01 /* DispatchQueue+Alamofire.swift in Sources */,
-				D9CFDB561E528A940056AB01 /* Validation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
