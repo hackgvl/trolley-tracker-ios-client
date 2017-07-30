@@ -20,7 +20,7 @@ class ContainerViewController: UIViewController {
         super.viewDidLoad()
 
         tabBarItem.image = #imageLiteral(resourceName: "Map")
-        tabBarItem.title = "Map"
+        tabBarItem.title = LS.mapTitle
 
         view.backgroundColor = .red
     }

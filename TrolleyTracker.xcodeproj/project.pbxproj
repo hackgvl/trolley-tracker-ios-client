@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		CA6C2B781E94059100F33B52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA6C2B7A1E94059100F33B52 /* Main.storyboard */; };
-		CAA6F6301EC1CC1400EEE5AE /* StringDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA6F62F1EC1CC1400EEE5AE /* StringDemo.swift */; };
+		CA75463A1F2E843000E1A6CA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA75463C1F2E843000E1A6CA /* Localizable.strings */; };
+		CA75463E1F2E848000E1A6CA /* LocalizationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA75463D1F2E848000E1A6CA /* LocalizationHelper.swift */; };
 		CAAB6EE01F2D74BF0092F20E /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB6EDF1F2D74BF0092F20E /* ContainerController.swift */; };
 		CAAB6EE21F2D79840092F20E /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB6EE11F2D79840092F20E /* ContainerViewController.swift */; };
 		CAF997141F2E7C0800480618 /* MoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF997131F2E7C0800480618 /* MoreController.swift */; };
@@ -133,7 +134,8 @@
 
 /* Begin PBXFileReference section */
 		CA6C2B791E94059100F33B52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		CAA6F62F1EC1CC1400EEE5AE /* StringDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringDemo.swift; sourceTree = "<group>"; };
+		CA75463B1F2E843000E1A6CA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CA75463D1F2E848000E1A6CA /* LocalizationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationHelper.swift; sourceTree = "<group>"; };
 		CAAB6EDF1F2D74BF0092F20E /* ContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
 		CAAB6EE11F2D79840092F20E /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		CAF997131F2E7C0800480618 /* MoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreController.swift; sourceTree = "<group>"; };
@@ -521,7 +523,6 @@
 				CA6C2B7A1E94059100F33B52 /* Main.storyboard */,
 				D93FD0BA1C79D04D0089CDBE /* More.storyboard */,
 				D93FD09D1C78FDE20089CDBE /* Schedule.storyboard */,
-				CAA6F62F1EC1CC1400EEE5AE /* StringDemo.swift */,
 				D95EF7661B87302F009B5779 /* TrolleyRouteOverlay.swift */,
 			);
 			path = TrolleyTracker;
@@ -533,6 +534,8 @@
 				D97055BA1BD6FB25002B9A8B /* Box.swift */,
 				D90867021B91F4D9002A6F87 /* EnvironmentVariables.swift */,
 				EFA4B1FA1A1C201F00BEA42C /* Info.plist */,
+				CA75463C1F2E843000E1A6CA /* Localizable.strings */,
+				CA75463D1F2E848000E1A6CA /* LocalizationHelper.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -681,6 +684,7 @@
 				EFA4B2061A1C201F00BEA42C /* LaunchScreen.xib in Resources */,
 				D93FD0BB1C79D04D0089CDBE /* More.storyboard in Resources */,
 				EFA4B2031A1C201F00BEA42C /* Images.xcassets in Resources */,
+				CA75463A1F2E843000E1A6CA /* Localizable.strings in Resources */,
 				D90866F41B91C79F002A6F87 /* Montserrat-Bold.ttf in Resources */,
 				CA6C2B781E94059100F33B52 /* Main.storyboard in Resources */,
 				D93FD09E1C78FDE20089CDBE /* Schedule.storyboard in Resources */,
@@ -756,7 +760,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAA6F6301EC1CC1400EEE5AE /* StringDemo.swift in Sources */,
 				D95EF76C1B889B00009B5779 /* UIImage+TrolleyTracker.swift in Sources */,
 				CAAB6EE21F2D79840092F20E /* ContainerViewController.swift in Sources */,
 				D95EF7671B87302F009B5779 /* TrolleyRouteOverlay.swift in Sources */,
@@ -809,6 +812,7 @@
 				D98CF65D1E83C3AF005048FF /* Formatters.swift in Sources */,
 				D98715471B8A7DDC00489594 /* ConcurrentOperation.swift in Sources */,
 				D97055C21BD7078E002B9A8B /* SpacerView.swift in Sources */,
+				CA75463E1F2E848000E1A6CA /* LocalizationHelper.swift in Sources */,
 				D98CF6561E827D61005048FF /* ApplicationController.swift in Sources */,
 				D92876D31BCB3A67003333EA /* TrolleyScheduleService.swift in Sources */,
 				D99B71561E87D6D800F36E55 /* RouteFetchOperations.swift in Sources */,
@@ -861,6 +865,14 @@
 			);
 			name = Main.storyboard;
 			path = .;
+			sourceTree = "<group>";
+		};
+		CA75463C1F2E843000E1A6CA /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CA75463B1F2E843000E1A6CA /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		EFA4B2041A1C201F00BEA42C /* LaunchScreen.xib */ = {
