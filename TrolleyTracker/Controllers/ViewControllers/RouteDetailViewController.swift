@@ -70,18 +70,18 @@ class RouteDetailViewController: UIViewController, MKMapViewDelegate, Storyboard
             return
         }
         
-        appController.trolleyRouteService.loadTrolleyRoute(id) { routes in
-            
-            guard var route = routes.first else { return }
-            
-            self.setDimmingOverlayVisible(false, animated: true)
-            self.routeNameLabel.text = route.longName
-            self.mapView.add(route.overlay)
-            
-            for stop in route.stops {
-                self.mapView.addAnnotation(stop)
-            }
-        }
+//        appController.trolleyRouteService.loadTrolleyRoute(id) { routes in
+//            
+//            guard var route = routes.first else { return }
+//            
+//            self.setDimmingOverlayVisible(false, animated: true)
+//            self.routeNameLabel.text = route.longName
+//            self.mapView.add(route.overlay)
+//            
+//            for stop in route.stops {
+//                self.mapView.addAnnotation(stop)
+//            }
+//        }
     }
     
     fileprivate final func setDimmingOverlayVisible(_ visible: Bool, animated: Bool) {

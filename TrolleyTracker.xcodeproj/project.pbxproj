@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		CA6C2B781E94059100F33B52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA6C2B7A1E94059100F33B52 /* Main.storyboard */; };
 		CAA6F6301EC1CC1400EEE5AE /* StringDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA6F62F1EC1CC1400EEE5AE /* StringDemo.swift */; };
+		CAAB6EE01F2D74BF0092F20E /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB6EDF1F2D74BF0092F20E /* ContainerController.swift */; };
+		CAAB6EE21F2D79840092F20E /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB6EE11F2D79840092F20E /* ContainerViewController.swift */; };
+		CAF997141F2E7C0800480618 /* MoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF997131F2E7C0800480618 /* MoreController.swift */; };
+		CAF997161F2E7C2900480618 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF997151F2E7C2900480618 /* MoreViewController.swift */; };
+		CAF997181F2E7C4A00480618 /* ScheduleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF997171F2E7C4A00480618 /* ScheduleController.swift */; };
+		CAF9971A1F2E7C5700480618 /* ScheduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF997191F2E7C5700480618 /* ScheduleVC.swift */; };
+		CAF9971D1F2E7D7E00480618 /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF9971C1F2E7D7E00480618 /* Dependencies.swift */; };
+		CAF9971F1F2E806000480618 /* FunctionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF9971E1F2E806000480618 /* FunctionController.swift */; };
 		CAFDD40A1F2D576A00C7836E /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFDD4091F2D576A00C7836E /* Result.swift */; };
 		D9019DAD1E526F0000D9E197 /* trolleyMock.json in Resources */ = {isa = PBXBuildFile; fileRef = D9019DAC1E526F0000D9E197 /* trolleyMock.json */; };
 		D9019DB51E5277DB00D9E197 /* TrolleyTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9019DB41E5277DB00D9E197 /* TrolleyTrackerUITests.swift */; };
@@ -126,6 +134,14 @@
 /* Begin PBXFileReference section */
 		CA6C2B791E94059100F33B52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CAA6F62F1EC1CC1400EEE5AE /* StringDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringDemo.swift; sourceTree = "<group>"; };
+		CAAB6EDF1F2D74BF0092F20E /* ContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
+		CAAB6EE11F2D79840092F20E /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		CAF997131F2E7C0800480618 /* MoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreController.swift; sourceTree = "<group>"; };
+		CAF997151F2E7C2900480618 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
+		CAF997171F2E7C4A00480618 /* ScheduleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleController.swift; sourceTree = "<group>"; };
+		CAF997191F2E7C5700480618 /* ScheduleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleVC.swift; sourceTree = "<group>"; };
+		CAF9971C1F2E7D7E00480618 /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
+		CAF9971E1F2E806000480618 /* FunctionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionController.swift; sourceTree = "<group>"; };
 		CAFDD4091F2D576A00C7836E /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		D9019DAC1E526F0000D9E197 /* trolleyMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = trolleyMock.json; sourceTree = "<group>"; };
 		D9019DB21E5277DB00D9E197 /* TrolleyTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrolleyTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -235,6 +251,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CAAB6EDE1F2D74270092F20E /* MapContainer */ = {
+			isa = PBXGroup;
+			children = (
+				CAAB6EDF1F2D74BF0092F20E /* ContainerController.swift */,
+				CAAB6EE11F2D79840092F20E /* ContainerViewController.swift */,
+			);
+			path = MapContainer;
+			sourceTree = "<group>";
+		};
+		CAF997111F2E7BF400480618 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				CAF997171F2E7C4A00480618 /* ScheduleController.swift */,
+				CAF997191F2E7C5700480618 /* ScheduleVC.swift */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
+		CAF997121F2E7BF900480618 /* More */ = {
+			isa = PBXGroup;
+			children = (
+				CAF997131F2E7C0800480618 /* MoreController.swift */,
+				CAF997151F2E7C2900480618 /* MoreViewController.swift */,
+			);
+			path = More;
+			sourceTree = "<group>";
+		};
+		CAF9971B1F2E7D6C00480618 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				D98CF6551E827D61005048FF /* ApplicationController.swift */,
+				CAF9971C1F2E7D7E00480618 /* Dependencies.swift */,
+				CAF9971E1F2E806000480618 /* FunctionController.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
 		D9019D9E1E526EB400D9E197 /* MockData */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,8 +363,11 @@
 		D9650CA01B86A4030004A2AF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CAF9971B1F2E7D6C00480618 /* Application */,
+				CAF997121F2E7BF900480618 /* More */,
+				CAF997111F2E7BF400480618 /* Schedule */,
+				CAAB6EDE1F2D74270092F20E /* MapContainer */,
 				D98CF6571E827D66005048FF /* ViewControllers */,
-				D98CF6551E827D61005048FF /* ApplicationController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -702,11 +758,13 @@
 			files = (
 				CAA6F6301EC1CC1400EEE5AE /* StringDemo.swift in Sources */,
 				D95EF76C1B889B00009B5779 /* UIImage+TrolleyTracker.swift in Sources */,
+				CAAB6EE21F2D79840092F20E /* ContainerViewController.swift in Sources */,
 				D95EF7671B87302F009B5779 /* TrolleyRouteOverlay.swift in Sources */,
 				D9617EFF1BE0D61600FF86CD /* AboutViewController.swift in Sources */,
 				D914FADE1B30DEF0002DACF8 /* UserLocationService.swift in Sources */,
 				D98715491B8A7E0C00489594 /* GetETAOperation.swift in Sources */,
 				D914FAFC1B30EA84002DACF8 /* ObserverSet.swift in Sources */,
+				CAF997181F2E7C4A00480618 /* ScheduleController.swift in Sources */,
 				D9D85B511F2D0BAF002A99D5 /* AutoLayoutHelpers.swift in Sources */,
 				D914FAE21B30DF14002DACF8 /* TrolleyLocationService.swift in Sources */,
 				D98715411B8A7D8200489594 /* TimeAndDistanceService.swift in Sources */,
@@ -715,6 +773,7 @@
 				D97A7F121BE197AD00B40766 /* TrolleyLocationServiceFake.swift in Sources */,
 				D98CF6591E827E12005048FF /* ViewControllerInitialization.swift in Sources */,
 				E71A678C1B30DCE60036FE10 /* DetailViewController.swift in Sources */,
+				CAF997141F2E7C0800480618 /* MoreController.swift in Sources */,
 				D9D85B4F1F2D0BAF002A99D5 /* KeyboardHandler.swift in Sources */,
 				D92876CF1BCB3737003333EA /* MapViewDelegate.swift in Sources */,
 				E71A678E1B30DCEF0036FE10 /* SettingsViewController.swift in Sources */,
@@ -725,6 +784,7 @@
 				D97055BB1BD6FB25002B9A8B /* Box.swift in Sources */,
 				D97A7F0E1BE194F200B40766 /* TrolleyRouteServiceFake.swift in Sources */,
 				D9650C9A1B8559EA0004A2AF /* TrolleyRoute.swift in Sources */,
+				CAF9971D1F2E7D7E00480618 /* Dependencies.swift in Sources */,
 				D90866F01B91292F002A6F87 /* TrolleyAnnotationView.swift in Sources */,
 				D9617EF21BDDC60700FF86CD /* AlertControllerColor.swift in Sources */,
 				D90867111B921431002A6F87 /* UIView+TrolleyTracker.swift in Sources */,
@@ -736,6 +796,7 @@
 				D9617EEE1BDDA37A00FF86CD /* ScheduleViewController+SortByRoute.swift in Sources */,
 				D98CF6521E827982005048FF /* MapViewHelpers.swift in Sources */,
 				D9617EF71BDF84F400FF86CD /* ScheduleViewCell.swift in Sources */,
+				CAF997161F2E7C2900480618 /* MoreViewController.swift in Sources */,
 				D9617EEA1BDDA1C800FF86CD /* ScheduleViewController+SortByDay.swift in Sources */,
 				D9D85B501F2D0BAF002A99D5 /* UIKitHelpers.swift in Sources */,
 				D9D85B521F2D0BAF002A99D5 /* Anchorage.swift in Sources */,
@@ -754,12 +815,15 @@
 				D9E240491BDBCACB00F16CF8 /* SubHeadingLabel.swift in Sources */,
 				D9650CA41B86A9F10004A2AF /* UIColor+TrolleyTracker.swift in Sources */,
 				D9D85B531F2D0BAF002A99D5 /* AnimationHelpers.swift in Sources */,
+				CAF9971F1F2E806000480618 /* FunctionController.swift in Sources */,
 				D9CFDB341E528A8A0056AB01 /* SwiftyJSON.swift in Sources */,
 				D90866F71B91C8B8002A6F87 /* UIFont+TrolleyTracker.swift in Sources */,
 				D93FD0A01C78FED60089CDBE /* RouteDetailViewController.swift in Sources */,
 				D9617EFD1BE0634A00FF86CD /* AttributionViewController.swift in Sources */,
 				D9617EF91BE02B9200FF86CD /* ScheduleDisplayModels.swift in Sources */,
+				CAAB6EE01F2D74BF0092F20E /* ContainerController.swift in Sources */,
 				E71A678A1B30DCD30036FE10 /* MapViewController.swift in Sources */,
+				CAF9971A1F2E7C5700480618 /* ScheduleVC.swift in Sources */,
 				D98CF65F1E83C4B2005048FF /* GeographyHelpers.swift in Sources */,
 				D914FAE01B30DEFE002DACF8 /* TrolleyRouteService.swift in Sources */,
 				D9618F661F2D0E0100E38C36 /* APIClient.swift in Sources */,
@@ -960,7 +1024,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "TrolleyTracker/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.codeforgreenville.trolleytracker$(BUNDLE_ID_SUFFIX)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1043,7 +1107,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "TrolleyTracker/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.codeforgreenville.trolleytracker$(BUNDLE_ID_SUFFIX)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1171,7 +1235,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "TrolleyTracker/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.codeforgreenville.trolleytracker$(BUNDLE_ID_SUFFIX)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1195,7 +1259,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "TrolleyTracker/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.codeforgreenville.trolleytracker$(BUNDLE_ID_SUFFIX)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -64,13 +64,13 @@ class ScheduleViewController: UIViewController, UINavigationBarDelegate, Storybo
             scheduleFormattingSegmentedControl.setTitle(displayType.displayString(), forSegmentAt: displayType.rawValue)
         }
         
-        appController.trolleyScheduleService.loadTrolleySchedules { (schedules) -> Void in
-            DispatchQueue.main.async {
-                self.schedules = schedules
-                self.clearCachedViews()
-                self.displaySchedulesByRoute(schedules)
-            }
-        }
+//        appController.trolleyScheduleService.loadTrolleySchedules { (schedules) -> Void in
+//            DispatchQueue.main.async {
+//                self.schedules = schedules
+//                self.clearCachedViews()
+//                self.displaySchedulesByRoute(schedules)
+//            }
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -31,7 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.tintColor = UIColor.ttTintColor()
         self.window?.backgroundColor = UIColor.black
         UINavigationBar.setDefaultAppearance()
-        UITabBar.setDefaultAppearance() 
+        UITabBar.setDefaultAppearance()
+
+        appController.install(in: window!)
         
         Fabric.with([Crashlytics.self])
         

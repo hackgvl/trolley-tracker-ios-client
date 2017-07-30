@@ -62,9 +62,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         }
         mapView.delegate = mapViewDelegate
         
-        let _ = appController.trolleyLocationService.trolleyPresentObservers.add(updateTrolleyPresent)
-        let _ = appController.trolleyLocationService.trolleyObservers.add(updateTrolley)
-        
+//        let _ = appController.trolleyLocationService.trolleyPresentObservers.add(updateTrolleyPresent)
+//        let _ = appController.trolleyLocationService.trolleyObservers.add(updateTrolley)
+
         locationManager.requestWhenInUseAuthorization()
         
         mapView.setRegionToDowntownGreenville()
@@ -74,14 +74,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
         super.viewDidAppear(animated)
 
         loadRoutes()
-        appController.trolleyLocationService.startTrackingTrolleys()
+//        appController.trolleyLocationService.startTrackingTrolleys()
         startRefreshTimer()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         
-        appController.trolleyLocationService.stopTrackingTrolley()
+//        appController.trolleyLocationService.stopTrackingTrolley()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -114,9 +114,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     }
     
     fileprivate func loadRoutes() {
-        appController.trolleyRouteService.loadTrolleyRoutes { routes in
-            self.mapView.replaceCurrentRoutes(with: routes)
-        }
+//        appController.trolleyRouteService.loadTrolleyRoutes { routes in
+//            self.mapView.replaceCurrentRoutes(with: routes)
+//        }
     }
     
     fileprivate func setDetailViewVisible(_ visible: Bool, animated: Bool) {
