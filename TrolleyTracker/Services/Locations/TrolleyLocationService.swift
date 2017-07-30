@@ -11,14 +11,18 @@ import Foundation
 
 class TrolleyLocationServiceLive: TrolleyLocationService {
     
-    static var sharedService = TrolleyLocationServiceLive()
-    
     var trolleyObservers = ObserverSet<[Trolley]>()
     var trolleyPresentObservers = ObserverSet<Bool>()
     
     fileprivate var updateTimer: Timer?
     
     fileprivate var allTrolleys: [Trolley] = []
+
+    private let client: APIClient
+
+    init(client: APIClient) {
+        self.client = client
+    }
     
     func startTrackingTrolleys() {
         
@@ -38,13 +42,15 @@ class TrolleyLocationServiceLive: TrolleyLocationService {
         }
         
         // Otherwise, retrieve list of all trolleys first
-        TrolleyRequests.AllTrolleys.responseJSON { (response) -> Void in
-            guard let json = response.result.value else { return }
-            
-            // -- Store the list so we can reference it later
-            self.allTrolleys = self.parseTrolleysFromJSON(json as AnyObject?)
-            
-            startUpdating()
+
+        client.fetchAllTrolleys { result in
+            switch result {
+            case .failure:
+                break
+            case .success(let data):
+                self.allTrolleys = self.parseTrolleysFromJSON(data as AnyObject?)
+                startUpdating()
+            }
         }
     }
     
@@ -54,27 +60,29 @@ class TrolleyLocationServiceLive: TrolleyLocationService {
     
     @objc fileprivate func getRunningTrolleys() {
 
-        let request = TrolleyRequests.RunningTrolleys
-        request.responseJSON{(response) in
-            
-            guard let json = response.result.value else { return }
+        client.fetchRunningTrolleys { result in
+            switch result {
+            case .failure:
+                break
+            case .success(let data):
 
-            let trolleys = self.parseTrolleysFromJSON(json as AnyObject?)
+                let trolleys = self.parseTrolleysFromJSON(data as AnyObject?)
 
-            let trolleysPresent = !trolleys.isEmpty
+                let trolleysPresent = !trolleys.isEmpty
 
-            DispatchQueue.main.async {
-                self.trolleyPresentObservers.notify(trolleysPresent)
-            }
+                DispatchQueue.main.async {
+                    self.trolleyPresentObservers.notify(trolleysPresent)
+                }
 
-            for trolley in trolleys {
-                self.updateTrolleysWithTrolley(trolley)
-            }
+                for trolley in trolleys {
+                    self.updateTrolleysWithTrolley(trolley)
+                }
 
-            let activateUpdatedTrolleys = self.allTrolleys.matching(trolleys)
+                let activateUpdatedTrolleys = self.allTrolleys.matching(trolleys)
 
-            DispatchQueue.main.async {
-                self.trolleyObservers.notify(activateUpdatedTrolleys)
+                DispatchQueue.main.async {
+                    self.trolleyObservers.notify(activateUpdatedTrolleys)
+                }
             }
         }
     }

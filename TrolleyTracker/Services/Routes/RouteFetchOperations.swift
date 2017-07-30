@@ -13,11 +13,13 @@ class FetchRouteDetailOperation: ConcurrentOperation {
 
     private let group = DispatchGroup()
     private let routeIDs: [Int]
+    private let client: APIClient
 
     internal private(set) var fetchedRoutes: [TrolleyRoute] = []
 
-    init(routeIDs: [Int]) {
+    init(routeIDs: [Int], client: APIClient) {
         self.routeIDs = routeIDs
+        self.client = client
     }
 
     override func execute() {
@@ -37,17 +39,21 @@ class FetchRouteDetailOperation: ConcurrentOperation {
         }
     }
 
-    private func loadRouteDetail(_ routeID: Int, colorIndex: Int = 0, completion: @escaping LoadTrolleyRouteCompletion) {
+    private func loadRouteDetail(_ routeID: Int,
+                                 colorIndex: Int = 0,
+                                 completion: @escaping LoadTrolleyRouteCompletion) {
 
-        TrolleyRequests.RouteDetail("\(routeID)").responseJSON { (response) -> Void in
-
-            guard let json = response.result.value,
-                let route = TrolleyRoute(json: JSON(json), colorIndex: colorIndex) else {
-                    completion([])
-                    return
+        client.fetchRouteDetail(for: "\(routeID)") { result in
+            switch result {
+            case .failure:
+                completion([]); return
+            case .success(let data):
+                let json = JSON(data)
+                guard let route = TrolleyRoute(json: json, colorIndex: colorIndex) else {
+                    completion([]); return
+                }
+                completion([route])
             }
-
-            completion([route])
         }
     }
 }
@@ -56,21 +62,27 @@ class FetchActiveRouteIDsOperation: ConcurrentOperation {
 
     internal private(set) var fetchedRouteIDs: [Int] = []
 
+    private let client: APIClient
+
+    init(client: APIClient) {
+        self.client = client
+    }
+
     override func execute() {
 
-        let request = TrolleyRequests.RoutesActive()
-        request.responseJSON { (response) -> Void in
+        client.fetchActiveRoutes { result in
 
             defer {
                 self.finish()
             }
 
-            guard let json = response.result.value else {
+            switch result {
+            case .failure:
                 return
+            case .success(let data):
+                let jsonArray =  JSON(data).arrayValue
+                self.fetchedRouteIDs = jsonArray.flatMap { $0["ID"].int }
             }
-
-            let jsonArray = JSON(json).arrayValue
-            self.fetchedRouteIDs = jsonArray.flatMap { $0["ID"].int }
         }
     }
 }

@@ -30,20 +30,25 @@ class OperationQueues {
 class LoadRoutesFromNetworkOperation: ConcurrentOperation {
 
     let results: Box<[JSON]>
+    private let client: APIClient
 
-    init(results: inout Box<[JSON]>) {
+    init(results: inout Box<[JSON]>, client: APIClient) {
         self.results = results
+        self.client = client
     }
     
     override func execute() {
-        
-        let request = TrolleyRequests.Routes
-        request.responseJSON { (response) -> Void in
-            guard let resultValue = response.result.value else { self.finish(); return; }
-            guard let jsonArray = JSON(resultValue).array else { self.finish(); return; }
 
-            self.results.value?.append(contentsOf: jsonArray)
-            self.finish()
+        client.fetchAllRoutes { result in
+
+            defer { self.finish() }
+
+            switch result {
+            case .failure: break
+            case .success(let data):
+                let array = JSON(data).arrayValue
+                self.results.value?.append(contentsOf: array)
+            }
         }
     }
 }
@@ -51,20 +56,26 @@ class LoadRoutesFromNetworkOperation: ConcurrentOperation {
 class LoadSchedulesFromNetworkOperation: ConcurrentOperation {
     
     let results: Box<[JSON]>
+    private let client: APIClient
     
-    init(boxedResults: inout Box<[JSON]>) {
+    init(boxedResults: inout Box<[JSON]>, client: APIClient) {
         self.results = boxedResults
+        self.client = client
     }
     
     override func execute() {
-        
-        let request = TrolleyRequests.RouteSchedules()
-        request.responseJSON { (response) -> Void in
-            guard let resultValue = response.result.value else { self.finish(); return; }
-            guard let jsonArray = JSON(resultValue).array else { self.finish(); return; }
 
-            self.results.value?.append(contentsOf: jsonArray)
-            self.finish()
+        client.fetchRouteSchedules { result in
+
+            defer { self.finish() }
+
+            switch result {
+            case .failure:
+                break
+            case .success(let data):
+                let jsonArray = JSON(data).arrayValue
+                self.results.value?.append(contentsOf: jsonArray)
+            }
         }
     }
 }

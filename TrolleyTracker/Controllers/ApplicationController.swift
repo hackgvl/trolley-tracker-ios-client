@@ -10,24 +10,19 @@ import Foundation
 
 class ApplicationController {
 
+    let client: APIClient
     let trolleyRouteService: TrolleyRouteService
     let trolleyLocationService: TrolleyLocationService
     let trolleyScheduleService: TrolleyScheduleService
 
     init() {
 
-        trolleyScheduleService = TrolleyScheduleService()
+        let c = APIClient()
+        self.client = c
 
-        trolleyLocationService = TrolleyLocationServiceLive.sharedService
-        trolleyRouteService = TrolleyRouteServiceLive()
+        trolleyScheduleService = TrolleyScheduleService(client: client)
 
-//        switch EnvironmentVariables.currentBuildConfiguration() {
-//        case .Release:
-//            trolleyLocationService = TrolleyLocationServiceLive.sharedService
-//            trolleyRouteService = TrolleyRouteServiceLive()
-//        case .Test:
-//            trolleyLocationService = TrolleyLocationServiceFake()
-//            trolleyRouteService = TrolleyRouteServiceFake()
-//        }
+        trolleyLocationService = TrolleyLocationServiceLive(client: client)
+        trolleyRouteService = TrolleyRouteServiceLive(client: client)
     }
 }

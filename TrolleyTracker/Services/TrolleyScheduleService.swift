@@ -12,9 +12,10 @@ import Foundation
 class TrolleyScheduleService {
     
     typealias LoadScheduleCompletion = (_ schedules: [RouteSchedule]) -> Void
+    private let client: APIClient
     
-    init() {
-
+    init(client: APIClient) {
+        self.client = client
     }
     
     func loadTrolleySchedules(_ completion: @escaping LoadScheduleCompletion) {
@@ -37,11 +38,11 @@ class TrolleyScheduleService {
         
         // Load all Routes so we have names for the RouteSchedules (associated by RouteID)
         var routes = Box<[JSON]>(value: [JSON]())
-        let routesOperation = LoadRoutesFromNetworkOperation(results: &routes)
+        let routesOperation = LoadRoutesFromNetworkOperation(results: &routes, client: client)
         
         // Load all schedules
         var schedules = Box<[JSON]>(value: [JSON]())
-        let schedulesOperation = LoadSchedulesFromNetworkOperation(boxedResults: &schedules)
+        let schedulesOperation = LoadSchedulesFromNetworkOperation(boxedResults: &schedules, client: client)
         
         // Aggregate schedules, assigning names from the Routes we retrieved
         let aggregateOperation = AggregateSchedulesOperation(schedules: &schedules, routes: &routes)

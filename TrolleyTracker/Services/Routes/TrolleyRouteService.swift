@@ -45,10 +45,15 @@ private struct CacheItem<T> {
 
 class TrolleyRouteServiceLive: TrolleyRouteService {
 
+    private let client: APIClient
     private let queue: OperationQueue = OperationQueue()
     
     fileprivate var memoryCachedActiveRoutes: CacheItem<[TrolleyRoute]>?
     fileprivate var memoryCachedRoutes = [Int : TrolleyRoute]()
+
+    init(client: APIClient) {
+        self.client = client
+    }
 
     func loadTrolleyRoutes(_ completion: @escaping LoadTrolleyRouteCompletion) {
 
@@ -61,7 +66,7 @@ class TrolleyRouteServiceLive: TrolleyRouteService {
             return
         }
 
-        let op = FetchActiveRouteIDsOperation()
+        let op = FetchActiveRouteIDsOperation(client: client)
         op.completionBlock = { [weak op] in
             guard let ids = op?.fetchedRouteIDs else {
                 DispatchQueue.main.async {
@@ -77,7 +82,7 @@ class TrolleyRouteServiceLive: TrolleyRouteService {
     func loadTrolleyRoute(_ routeID: Int, completion: @escaping LoadTrolleyRouteCompletion) {
         if let route = memoryCachedRoutes[routeID] { completion([route]); return }
 
-        let op = FetchRouteDetailOperation(routeIDs: [routeID])
+        let op = FetchRouteDetailOperation(routeIDs: [routeID], client: client)
         op.completionBlock = { [weak op] in
 
             guard let fetchedRoute = op?.fetchedRoutes.first else {
@@ -98,7 +103,7 @@ class TrolleyRouteServiceLive: TrolleyRouteService {
     private func fetchActiveRouteIDsFromNetwork(_ routeIDs: [Int],
                                                 completion: @escaping LoadTrolleyRouteCompletion) {
 
-        let op = FetchRouteDetailOperation(routeIDs: routeIDs)
+        let op = FetchRouteDetailOperation(routeIDs: routeIDs, client: client)
         op.completionBlock = { [weak op] in
 
             guard let fetchedRoutes = op?.fetchedRoutes else { completion([]); return }
