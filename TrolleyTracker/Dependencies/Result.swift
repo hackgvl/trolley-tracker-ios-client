@@ -49,7 +49,9 @@ public enum Result<Value> {
         else if let error = error {
             self = .failure(error)
         }
-        self = .failure(ResultParsingError.noValueOrError)
+        else {
+            self = .failure(ResultParsingError.noValueOrError)
+        }
     }
 
     /// Convenience tester/getter for the value

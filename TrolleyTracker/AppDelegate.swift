@@ -32,12 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.backgroundColor = UIColor.black
         UINavigationBar.setDefaultAppearance()
         UITabBar.setDefaultAppearance() 
-
-        URLSession.shared.configuration.httpAdditionalHeaders = [
-            "Cache-Control":"no-cache",
-            "Authorization":"Basic SU9TQ2xpZW50OklPU2lzdGhlYmVzdCEx",
-            "Content-Type":"application/json",
-        ]
         
         Fabric.with([Crashlytics.self])
         

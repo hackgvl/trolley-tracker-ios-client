@@ -17,7 +17,7 @@ class ApplicationController {
 
     init() {
 
-        let c = APIClient()
+        let c = APIClient(session: URLSession.shared)
         self.client = c
 
         trolleyScheduleService = TrolleyScheduleService(client: client)
