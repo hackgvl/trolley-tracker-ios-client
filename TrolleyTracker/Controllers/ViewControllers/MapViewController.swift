@@ -20,7 +20,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     // MARK: - Properties
     //==================================================================
 
-    private let appController: ApplicationController
+//    private let appController: ApplicationController
 
     var detailViewController: DetailViewController!
     
@@ -45,8 +45,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, DetailViewControll
     //==================================================================
 
     required init?(coder aDecoder: NSCoder) {
-        self.appController = MapViewController.getDependencies()
         super.init(coder: aDecoder)
+    }
+
+    init() {
+        super.init(nibName: nil, bundle: nil)
     }
     
     override func viewDidLoad() {

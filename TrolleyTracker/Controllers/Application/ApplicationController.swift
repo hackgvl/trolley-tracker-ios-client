@@ -13,6 +13,8 @@ class ApplicationController: FunctionController {
     private let client: APIClient
     private let dependencies: AppDependencies
 
+    var childControllers = [FunctionController]()
+
     override init() {
 
         let c = APIClient(session: URLSession.shared)

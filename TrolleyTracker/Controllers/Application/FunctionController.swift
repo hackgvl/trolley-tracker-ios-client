@@ -10,6 +10,4 @@ import Foundation
 
 class FunctionController {
 
-    var childControllers = [FunctionController]()
-    
 }
