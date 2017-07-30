@@ -56,6 +56,12 @@ extension UIView {
         return v
     }
 
+    public static func container() -> UIView {
+        let v = UIView().useAutolayout()
+        v.backgroundColor = .clear
+        return v
+    }
+
     public func pin(view: UIView) {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.edgeAnchors == edgeAnchors

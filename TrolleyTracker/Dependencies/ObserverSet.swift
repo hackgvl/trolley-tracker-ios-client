@@ -44,7 +44,7 @@ open class ObserverSet<Parameters>: CustomStringConvertible {
         return entry
     }
     
-    open func add(_ f: @escaping (Parameters) -> Void) -> ObserverSetEntry<Parameters> {
+    @discardableResult open func add(_ f: @escaping (Parameters) -> Void) -> ObserverSetEntry<Parameters> {
         return self.add(self, { ignored in f })
     }
     

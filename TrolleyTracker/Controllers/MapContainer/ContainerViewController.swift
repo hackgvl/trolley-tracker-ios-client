@@ -20,6 +20,10 @@ class ContainerViewController: UIViewController {
     private let detailViewController: UIViewController
     private let messageViewController: UIViewController
 
+    private let mapContainer: UIView = .container()
+    private let detailContainer: UIView = .container()
+    private let messageContainer: UIView = .container()
+
     init(mapViewController: UIViewController,
          detailViewController: UIViewController,
          messageViewController: UIViewController) {
@@ -39,6 +43,38 @@ class ContainerViewController: UIViewController {
         tabBarItem.image = #imageLiteral(resourceName: "Map")
         tabBarItem.title = LS.mapTitle
 
-        view.backgroundColor = .red
+        setupViews()
+        setupChildren()
+    }
+
+    private func setupViews() {
+        for container in [mapContainer, detailContainer, messageContainer] {
+            view.addSubview(container)
+        }
+        mapContainer.edgeAnchors == view.edgeAnchors
+
+        detailContainer.horizontalAnchors == view.horizontalAnchors
+        detailContainer.heightAnchor == view.heightAnchor * 0.3
+        detailContainer.topAnchor == view.bottomAnchor
+
+        messageContainer.horizontalAnchors == view.horizontalAnchors
+        messageContainer.heightAnchor == view.heightAnchor * 0.2
+        messageContainer.topAnchor == view.bottomAnchor
+    }
+
+    private func setupChildren() {
+        addAndPin(mapViewController, to: mapContainer)
+        addAndPin(detailViewController, to: detailContainer)
+        addAndPin(messageViewController, to: messageContainer)
+    }
+
+    // MARK: - API
+
+    func setDetail(visible: Bool, animated: Bool) {
+
+    }
+
+    func setMessage(visible: Bool, animated: Bool) {
+
     }
 }

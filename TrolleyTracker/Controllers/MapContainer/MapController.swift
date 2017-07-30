@@ -7,18 +7,98 @@
 //
 
 import UIKit
+import MapKit
+
+protocol MapControllerDelegate: class {
+    func annotationSelected(_ annotation: MKAnnotation?,
+                            userLocation: MKUserLocation?)
+}
 
 class MapController: FunctionController {
 
     typealias Dependencies = HasRouteService & HasLocationService
 
-    private let viewController: MapViewController
+    weak var delegate: MapControllerDelegate?
+
+    fileprivate let viewController: MapViewController
+    private let dependencies: Dependencies
+    private let locationManager = CLLocationManager()
+    private let mapDelegate = TrolleyMapViewDelegate()
+
+    fileprivate let refreshTimer = RefreshTimer(interval: 60)
+
+    fileprivate var locationService: TrolleyLocationService {
+        return dependencies.locationService
+    }
+    fileprivate var routeService: TrolleyRouteService {
+        return dependencies.routeService
+    }
 
     init(dependencies: Dependencies) {
+        self.dependencies = dependencies
         self.viewController = MapViewController()
     }
 
     func prepare() -> UIViewController {
+
+        viewController.delegate = self
+
+        locationManager.requestWhenInUseAuthorization()
+
+        locationService.trolleyPresentObservers.add(handleNoTrolleysPresent(_:))
+        locationService.trolleyObservers.add(handleTrolleyUpdate(_:))
+
+        viewController.mapView.setRegionToDowntownGreenville()
+        viewController.mapView.delegate = mapDelegate
+
+        mapDelegate.annotationSelectionAction = { view in
+            let user = self.viewController.mapView.userLocation
+            self.delegate?.annotationSelected(view.annotation,
+                                              userLocation: user)
+        }
+        mapDelegate.annotationDeselectionAction = { view in
+            self.delegate?.annotationSelected(nil, userLocation: nil)
+        }
+
+        refreshTimer.action = loadRoutes
+
         return viewController
+    }
+
+    private func handleNoTrolleysPresent(_ present: Bool) {
+//        setNoTrolleyMessageVisible(!present, animated: true)
+    }
+
+    private func handleTrolleyUpdate(_ trolleys: [Trolley]) {
+        viewController.mapView.addOrUpdateTrolley(trolleys)
+    }
+
+    fileprivate func loadRoutes() {
+        routeService.loadTrolleyRoutes { routes in
+            self.viewController.mapView.replaceCurrentRoutes(with: routes)
+        }
+    }
+}
+
+extension MapController: MapVCDelegate {
+
+    func locateMeButtonTapped() {
+        viewController.mapView.centerOnUser(context: viewController)
+    }
+
+    func annotationSelected(_ annotation: MKAnnotation?,
+                            userLocation: MKUserLocation?) {
+        // pass to detail controller
+    }
+
+    func viewAppeared() {
+        loadRoutes()
+        locationService.startTrackingTrolleys()
+        refreshTimer.start()
+    }
+
+    func viewDisappeared() {
+        refreshTimer.stop()
+        locationService.stopTrackingTrolley()
     }
 }

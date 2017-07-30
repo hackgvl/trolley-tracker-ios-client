@@ -22,7 +22,7 @@ extension MKMapView {
         return overlays.flatMap { $0 as? TrolleyRouteOverlay }
     }
 
-    func centerOnUserPossible(presentationContext: UIViewController) {
+    func centerOnUser(context: UIViewController) {
 
         let userCoordinate = userLocation.coordinate
         if userCoordinate.latitude != 0 && userCoordinate.longitude != 0 {

@@ -17,13 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private let appController = ApplicationController()
 
     var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
-
-    override init() {
-        super.init()
-
-        MapViewController.setDependencies(appController)
-        ScheduleViewController.setDependencies(appController)
-    }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
