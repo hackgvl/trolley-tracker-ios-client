@@ -32,7 +32,7 @@ extension MKMapView {
             let controller = AlertController(title: nil, message: "We're sorry, we can't find your current location right now.", preferredStyle: UIAlertControllerStyle.alert)
             controller.tintColor = UIColor.ttAlternateTintColor()
             controller.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-            presentationContext.present(controller, animated: true, completion: nil)
+            context.present(controller, animated: true, completion: nil)
         }
     }
 
