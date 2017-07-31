@@ -5,6 +5,33 @@
 
 import UIKit
 
+extension UIViewController {
+
+    func setVisible(visible: Bool,
+                    animated: Bool,
+                    duration: TimeInterval = 0.25,
+                    visibleConstraint: NSLayoutConstraint?,
+                    hiddenConstraint: NSLayoutConstraint?) {
+
+        if visible {
+            hiddenConstraint?.isActive = false
+            visibleConstraint?.isActive = true
+        }
+        else {
+            visibleConstraint?.isActive = false
+            hiddenConstraint?.isActive = true
+        }
+
+        guard animated else {
+            view.layoutIfNeeded(); return
+        }
+
+        UIView.animate(withDuration: duration) {
+            self.view.layoutIfNeeded()
+        }
+    }
+}
+
 extension UIView {
 
     static func setViews(hidden: [UIView], visible: [UIView],

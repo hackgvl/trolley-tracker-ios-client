@@ -10,3 +10,6 @@
 "Schedule.Title" = "Schedule";
 "More.Title" = "More";
 
+"Detail.Button.Directions" = "Directions";
+"Detail.Button.WalkingTime" = "Get Walking Time";
+"Detail.Label.Title" = "Trolly or Stop Name";

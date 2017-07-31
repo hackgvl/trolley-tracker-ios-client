@@ -269,7 +269,10 @@
 				CAAB6EDF1F2D74BF0092F20E /* ContainerController.swift */,
 				CAAB6EE11F2D79840092F20E /* ContainerViewController.swift */,
 				CA75463F1F2E85DE00E1A6CA /* MapController.swift */,
+				E71A67891B30DCD30036FE10 /* MapViewController.swift */,
+				D92876CE1BCB3737003333EA /* MapViewDelegate.swift */,
 				CA7546411F2E85E600E1A6CA /* DetailController.swift */,
+				E71A678B1B30DCE60036FE10 /* DetailViewController.swift */,
 				CA7546431F2E85EC00E1A6CA /* MessageController.swift */,
 				CA7546451F2E881000E1A6CA /* MessageViewController.swift */,
 			);
@@ -458,9 +461,6 @@
 				D9617EFE1BE0D61600FF86CD /* AboutViewController.swift */,
 				D9617EF11BDDC60700FF86CD /* AlertControllerColor.swift */,
 				D9617EFC1BE0634A00FF86CD /* AttributionViewController.swift */,
-				E71A678B1B30DCE60036FE10 /* DetailViewController.swift */,
-				E71A67891B30DCD30036FE10 /* MapViewController.swift */,
-				D92876CE1BCB3737003333EA /* MapViewDelegate.swift */,
 				D93FD09F1C78FED60089CDBE /* RouteDetailViewController.swift */,
 				D9617EE91BDDA1C800FF86CD /* ScheduleViewController+SortByDay.swift */,
 				D9617EED1BDDA37A00FF86CD /* ScheduleViewController+SortByRoute.swift */,
@@ -1050,6 +1050,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 5SN74W2EB7;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1060,7 +1061,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.codeforgreenville.trolleytracker$(BUNDLE_ID_SUFFIX)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "4a44af42-db60-4e94-bbe0-18df4cb3989f";
+				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
 				SWIFT_VERSION = 3.0;
 			};
 			name = "Debug Test";

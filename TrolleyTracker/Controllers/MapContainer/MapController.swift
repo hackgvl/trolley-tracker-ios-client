@@ -49,6 +49,7 @@ class MapController: FunctionController {
         locationService.trolleyPresentObservers.add(handleNoTrolleysPresent(_:))
         locationService.trolleyObservers.add(handleTrolleyUpdate(_:))
 
+        viewController.mapView.showsUserLocation = true
         viewController.mapView.setRegionToDowntownGreenville()
         viewController.mapView.delegate = mapDelegate
 

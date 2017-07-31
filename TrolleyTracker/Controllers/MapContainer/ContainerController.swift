@@ -7,17 +7,18 @@
 //
 
 import UIKit
+import MapKit
 
 class ContainerController: FunctionController {
 
     typealias Dependencies = HasLocationService & HasRouteService
 
     private let dependencies: Dependencies
-    private let viewController: ContainerViewController
+    fileprivate let viewController: ContainerViewController
 
-    private let mapController: MapController
-    private let detailController: DetailController
-    private let messageController: MessageController
+    fileprivate let mapController: MapController
+    fileprivate let detailController: DetailController
+    fileprivate let messageController: MessageController
 
     init(dependencies: Dependencies) {
         self.dependencies = dependencies
@@ -34,9 +35,29 @@ class ContainerController: FunctionController {
         self.viewController = ContainerViewController(mapViewController: mapC.prepare(),
                                                       detailViewController: detailC.prepare(),
                                                       messageViewController: messageC.prepare())
+
+        super.init()
+        
+        mapC.delegate = self
     }
 
     func prepare() -> UIViewController {
         return viewController
+    }
+}
+
+extension ContainerController: MapControllerDelegate {
+
+    func annotationSelected(_ annotation: MKAnnotation?,
+                            userLocation: MKUserLocation?) {
+
+        detailController.show(annotation: annotation, userLocation: userLocation)
+
+        let shouldShow = annotation != nil
+        viewController.setDetail(visible: shouldShow, animated: true)
+    }
+
+    func handleNoTrolleysUpdate(_ trolleysPresent: Bool) {
+        // TODO: Pass to Message Controller
     }
 }

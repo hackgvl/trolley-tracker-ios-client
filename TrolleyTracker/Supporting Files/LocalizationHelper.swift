@@ -22,6 +22,16 @@ struct LS {
         return string(for: "More.Title")
     }
 
+    static var detailDirectionsButton: String {
+        return string(for: "Detail.Button.Directions")
+    }
+    static var detailWalkingButton: String {
+        return string(for: "Detail.Button.WalkingTime")
+    }
+    static var detailTitleLabel: String {
+        return string(for: "Detail.Label.Title")
+    }
+
 
     private static func string(for key: String) -> String {
         return NSLocalizedString(key, comment: "")

@@ -28,7 +28,10 @@ class TimeAndDistanceService {
         return queue
         }()
     
-    static func walkingTravelTimeBetweenPoints(_ pointA: MKMapItem, pointB: MKMapItem, cacheResultsOnly: Bool, completion: @escaping TravelTimeCompletion) {
+    static func walkingTravelTimeBetween(pointA: MKMapItem,
+                                         pointB: MKMapItem,
+                                         cacheResultsOnly: Bool,
+                                         completion: @escaping TravelTimeCompletion) {
         
         for cacheResult in TimeAndDistanceService.etaCache {
             
@@ -47,24 +50,35 @@ class TimeAndDistanceService {
             if pointBDistance > 50 { shouldUseCacheResult = false }
             
             if shouldUseCacheResult {
-                completion(cacheResult.resultRaw, cacheResult.resultFormatted)
+                DispatchQueue.main.async {
+                    completion(cacheResult.resultRaw, cacheResult.resultFormatted)
+                }
                 return
             }
         }
         
         if cacheResultsOnly {
-            completion(nil, nil)
+            DispatchQueue.main.async {
+                completion(nil, nil)
+            }
             return
         }
         
         let operation = GetETAOperation(source: pointA, destination: pointB)
         operation.completionBlock = { [unowned operation] in
             
-            if let rawTime = operation.expectedTravelTime, let formattedTime = operation.formattedTravelTime {
-                TimeAndDistanceService.etaCache.append(ETAResult(pointA: pointA, pointB: pointB, resultRaw: rawTime, resultFormatted: formattedTime))
+            if let rawTime = operation.expectedTravelTime,
+                let formattedTime = operation.formattedTravelTime {
+                let result = ETAResult(pointA: pointA,
+                                       pointB: pointB,
+                                       resultRaw: rawTime,
+                                       resultFormatted: formattedTime)
+                TimeAndDistanceService.etaCache.append(result)
+
+                DispatchQueue.main.async {
+                    completion(rawTime, formattedTime)
+                }
             }
-            
-            completion(operation.expectedTravelTime, operation.formattedTravelTime)
         }
         
         etaRequestQueue.cancelAllOperations()
