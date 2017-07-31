@@ -44,14 +44,6 @@ class MapViewController: UIViewController {
     //==================================================================
     // MARK: - Lifecycle
     //==================================================================
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-
-    init() {
-        super.init(nibName: nil, bundle: nil)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,20 +63,7 @@ class MapViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return UIStatusBarStyle.default
     }
-    
-    //==================================================================
-    // MARK: - Actions
-    //==================================================================
-    
-    @IBAction func handleNoTrolleyLabelTap(_ sender: UITapGestureRecognizer) {
-        // TODO: Transfer to message controller
-        tabBarController?.selectedIndex = 1
-    }
-    
-    //==========================================================================
-    // MARK: - Actions
-    //==========================================================================
-    
+
     @objc private func handleLocateMeButton(_ sender: UIButton) {
         delegate?.locateMeButtonTapped()
     }
@@ -103,10 +82,5 @@ class MapViewController: UIViewController {
         locateMeButton.bottomAnchor == bottomLayoutGuide.topAnchor - 12
         locateMeButton.widthAnchor == 44
         locateMeButton.heightAnchor == 44
-
-//        noTrolleyLabel.text = "No Trolleys are being tracked right now.\nView the Schedule to see run times and select a route to preview it on the map."
-//
-//        noTrolleyLabel.backgroundColor = UIColor.ttLightGreen()
-//        noTrolleyLabel.textColor = UIColor.white
     }
 }

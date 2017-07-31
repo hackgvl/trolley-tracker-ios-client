@@ -19,4 +19,14 @@ class MessageController: FunctionController {
     func prepare() -> UIViewController {
         return viewController
     }
+
+//    @IBAction func handleNoTrolleyLabelTap(_ sender: UITapGestureRecognizer) {
+//        // TODO: Transfer to message controller
+//        tabBarController?.selectedIndex = 1
+//    }
+
+    //        noTrolleyLabel.text = "No Trolleys are being tracked right now.\nView the Schedule to see run times and select a route to preview it on the map."
+    //
+    //        noTrolleyLabel.backgroundColor = UIColor.ttLightGreen()
+    //        noTrolleyLabel.textColor = UIColor.white
 }

@@ -12,6 +12,7 @@ import MapKit
 protocol MapControllerDelegate: class {
     func annotationSelected(_ annotation: MKAnnotation?,
                             userLocation: MKUserLocation?)
+    func handleNoTrolleysUpdate(_ trolleysPresent: Bool)
 }
 
 class MapController: FunctionController {
@@ -66,7 +67,7 @@ class MapController: FunctionController {
     }
 
     private func handleNoTrolleysPresent(_ present: Bool) {
-//        setNoTrolleyMessageVisible(!present, animated: true)
+        delegate?.handleNoTrolleysUpdate(present)
     }
 
     private func handleTrolleyUpdate(_ trolleys: [Trolley]) {
@@ -88,7 +89,7 @@ extension MapController: MapVCDelegate {
 
     func annotationSelected(_ annotation: MKAnnotation?,
                             userLocation: MKUserLocation?) {
-        // pass to detail controller
+        delegate?.annotationSelected(annotation, userLocation: userLocation)
     }
 
     func viewAppeared() {
