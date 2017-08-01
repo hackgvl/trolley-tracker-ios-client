@@ -10,8 +10,33 @@ import UIKit
 
 class ScheduleViewCell: UITableViewCell {
 
-    @IBOutlet var headingLabel: UILabel!
-    @IBOutlet var timesLabel: UILabel!
+    private let headingLabel: UILabel = {
+        let l = UILabel().useAutolayout()
+        l.font = .systemFont(ofSize: 14)
+        return l
+    }()
+    private let timesLabel: UILabel = {
+        let l = UILabel().useAutolayout()
+        l.font = .italicSystemFont(ofSize: 14)
+        return l
+    }()
+
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: .default, reuseIdentifier: reuseIdentifier)
+
+        let sv = UIStackView().useAutolayout()
+        sv.axis = .vertical
+        contentView.addSubview(sv)
+        sv.edgeAnchors == contentView.edgeAnchors + 8
+
+        for label in [headingLabel, timesLabel] {
+            sv.addArrangedSubview(label)
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     func displayItem(_ item: ScheduleItem) {
         selectionStyle = item.selectable ? .gray : .none

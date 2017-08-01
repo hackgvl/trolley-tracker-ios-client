@@ -8,11 +8,9 @@
 
 import UIKit
 
-typealias ScheduleHeaderViewTapAction = (_ routeID: Int) -> Void
-
 class ScheduleHeaderView: UITableViewHeaderFooterView {
     
-    var tapAction: ScheduleHeaderViewTapAction?
+    var tapAction: ScheduleDataSource.DisplayRouteAction?
     fileprivate var tapGesture: UITapGestureRecognizer!
     fileprivate var displayedRouteID: Int?
     

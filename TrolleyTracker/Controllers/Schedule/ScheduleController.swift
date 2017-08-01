@@ -10,17 +10,64 @@ import UIKit
 
 class ScheduleController: FunctionController {
 
-    typealias Dependencies = HasScheduleService
+    enum DisplayType: Int {
+        case route, day
+    }
+
+    typealias Dependencies = HasScheduleService & HasRouteService
 
     private let dependencies: Dependencies
-    private let viewController: ScheduleVC
+    fileprivate let viewController: ScheduleViewController
+    fileprivate let dataSource: ScheduleDataSource
+
+    private var routeController: RouteController?
 
     init(dependencies: Dependencies) {
         self.dependencies = dependencies
-        self.viewController = ScheduleVC()
+        self.dataSource = ScheduleDataSource()
+        self.viewController = ScheduleViewController()
     }
 
     func prepare() -> UIViewController {
-        return viewController
+
+        dataSource.displayRouteAction = displayRoute(_:)
+
+        viewController.tabBarItem.image = #imageLiteral(resourceName: "Schedule")
+        viewController.tabBarItem.title = LS.scheduleTitle
+
+        viewController.delegate = self
+
+        let nav = UINavigationController(rootViewController: viewController)
+
+        viewController.tableView.dataSource = dataSource
+        viewController.tableView.delegate = dataSource
+        loadSchedules()
+
+        return nav
+    }
+
+    private func loadSchedules() {
+        dependencies.scheduleService.loadTrolleySchedules(handleNewSchedules(_:))
+    }
+
+    private func handleNewSchedules(_ schedules: [RouteSchedule]) {
+        dataSource.set(schedules: schedules)
+        viewController.tableView.reloadData()
+    }
+
+    private func displayRoute(_ routeID: Int) {
+        routeController = RouteController(routeID: routeID,
+                                          presentationContext: viewController,
+                                          dependencies: dependencies)
+        routeController?.present()
+    }
+}
+
+extension ScheduleController: ScheduleVCDelegate {
+
+    func didSelectScheduleTypeIndex(_ index: Int) {
+        let displayType = ScheduleController.DisplayType(rawValue: index)!
+        dataSource.displayType = displayType
+        viewController.tableView.reloadData()
     }
 }
