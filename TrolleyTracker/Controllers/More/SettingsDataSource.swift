@@ -10,7 +10,7 @@ import UIKit
 import MessageUI
 
 struct SettingsItem {
-    
+
     let title: String
     let action: () -> Void
 }
@@ -20,7 +20,7 @@ struct SettingsSection {
     let items: [SettingsItem]
 }
 
-struct SettingsDataSource {
+class SettingsDataSource {
     
     let presentationController: UIViewController
     let mailDelegate = SettingsMailComposeViewControllerDelegate()

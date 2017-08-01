@@ -11,12 +11,24 @@ import UIKit
 class MoreController: FunctionController {
 
     private let viewController: MoreViewController
+    private let dataSource: MoreDataSource
 
     override init() {
-        self.viewController = MoreViewController()
+        let vc = MoreViewController()
+        self.viewController = vc
+        let ds = SettingsDataSource(presentationController: vc)
+        self.dataSource = MoreDataSource(settingsDataSource: ds)
     }
 
     func prepare() -> UIViewController {
-        return viewController
+
+        viewController.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 0)
+
+        viewController.tableView.dataSource = dataSource
+        viewController.tableView.delegate = dataSource
+
+        let nav = UINavigationController(rootViewController: viewController)
+
+        return nav
     }
 }

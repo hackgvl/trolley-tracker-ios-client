@@ -17,6 +17,7 @@
 		CAA4CE031F2E951400F808F1 /* RefreshTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA4CE021F2E951400F808F1 /* RefreshTimer.swift */; };
 		CAAB6EE01F2D74BF0092F20E /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB6EDF1F2D74BF0092F20E /* ContainerController.swift */; };
 		CAAB6EE21F2D79840092F20E /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB6EE11F2D79840092F20E /* ContainerViewController.swift */; };
+		CAD3A75A1F2FFCD5004D1325 /* MoreDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3A7591F2FFCD5004D1325 /* MoreDataSource.swift */; };
 		CAF997141F2E7C0800480618 /* MoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF997131F2E7C0800480618 /* MoreController.swift */; };
 		CAF997161F2E7C2900480618 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF997151F2E7C2900480618 /* MoreViewController.swift */; };
 		CAF997181F2E7C4A00480618 /* ScheduleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF997171F2E7C4A00480618 /* ScheduleController.swift */; };
@@ -91,7 +92,6 @@
 		D9E83ACC1E52796400E9D799 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E83ACB1E52796400E9D799 /* SnapshotHelper.swift */; };
 		E71A678A1B30DCD30036FE10 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71A67891B30DCD30036FE10 /* MapViewController.swift */; };
 		E71A678C1B30DCE60036FE10 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71A678B1B30DCE60036FE10 /* DetailViewController.swift */; };
-		E71A678E1B30DCEF0036FE10 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71A678D1B30DCEF0036FE10 /* SettingsViewController.swift */; };
 		EFA4B1FC1A1C201F00BEA42C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA4B1FB1A1C201F00BEA42C /* AppDelegate.swift */; };
 		EFA4B2031A1C201F00BEA42C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFA4B2021A1C201F00BEA42C /* Images.xcassets */; };
 		EFA4B2061A1C201F00BEA42C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFA4B2041A1C201F00BEA42C /* LaunchScreen.xib */; };
@@ -148,6 +148,7 @@
 		CAA4CE021F2E951400F808F1 /* RefreshTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTimer.swift; sourceTree = "<group>"; };
 		CAAB6EDF1F2D74BF0092F20E /* ContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
 		CAAB6EE11F2D79840092F20E /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		CAD3A7591F2FFCD5004D1325 /* MoreDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreDataSource.swift; sourceTree = "<group>"; };
 		CAF997131F2E7C0800480618 /* MoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreController.swift; sourceTree = "<group>"; };
 		CAF997151F2E7C2900480618 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		CAF997171F2E7C4A00480618 /* ScheduleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleController.swift; sourceTree = "<group>"; };
@@ -225,7 +226,6 @@
 		D9E83ACB1E52796400E9D799 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		E71A67891B30DCD30036FE10 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		E71A678B1B30DCE60036FE10 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		E71A678D1B30DCEF0036FE10 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		EFA4B1F61A1C201F00BEA42C /* TrolleyTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrolleyTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFA4B1FA1A1C201F00BEA42C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EFA4B1FB1A1C201F00BEA42C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -293,6 +293,10 @@
 			children = (
 				CAF997131F2E7C0800480618 /* MoreController.swift */,
 				CAF997151F2E7C2900480618 /* MoreViewController.swift */,
+				CAD3A7591F2FFCD5004D1325 /* MoreDataSource.swift */,
+				D92876CA1BCB0CE5003333EA /* SettingsDataSource.swift */,
+				D9617EFC1BE0634A00FF86CD /* AttributionViewController.swift */,
+				D9617EFE1BE0D61600FF86CD /* AboutViewController.swift */,
 			);
 			path = More;
 			sourceTree = "<group>";
@@ -458,15 +462,11 @@
 		D98CF6571E827D66005048FF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				D9617EFE1BE0D61600FF86CD /* AboutViewController.swift */,
 				D9617EF11BDDC60700FF86CD /* AlertControllerColor.swift */,
-				D9617EFC1BE0634A00FF86CD /* AttributionViewController.swift */,
 				D93FD09F1C78FED60089CDBE /* RouteDetailViewController.swift */,
 				D9617EE91BDDA1C800FF86CD /* ScheduleViewController+SortByDay.swift */,
 				D9617EED1BDDA37A00FF86CD /* ScheduleViewController+SortByRoute.swift */,
 				D92876D01BCB3A53003333EA /* ScheduleViewController.swift */,
-				D92876CA1BCB0CE5003333EA /* SettingsDataSource.swift */,
-				E71A678D1B30DCEF0036FE10 /* SettingsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -797,7 +797,6 @@
 				CAF997141F2E7C0800480618 /* MoreController.swift in Sources */,
 				D9D85B4F1F2D0BAF002A99D5 /* KeyboardHandler.swift in Sources */,
 				D92876CF1BCB3737003333EA /* MapViewDelegate.swift in Sources */,
-				E71A678E1B30DCEF0036FE10 /* SettingsViewController.swift in Sources */,
 				CAFDD40A1F2D576A00C7836E /* Result.swift in Sources */,
 				D9617EF41BDF0A1600FF86CD /* UIViewController+Appearance.swift in Sources */,
 				D90867031B91F4D9002A6F87 /* EnvironmentVariables.swift in Sources */,
@@ -840,6 +839,7 @@
 				D9650CA41B86A9F10004A2AF /* UIColor+TrolleyTracker.swift in Sources */,
 				D9D85B531F2D0BAF002A99D5 /* AnimationHelpers.swift in Sources */,
 				CAF9971F1F2E806000480618 /* FunctionController.swift in Sources */,
+				CAD3A75A1F2FFCD5004D1325 /* MoreDataSource.swift in Sources */,
 				D9CFDB341E528A8A0056AB01 /* SwiftyJSON.swift in Sources */,
 				D90866F71B91C8B8002A6F87 /* UIFont+TrolleyTracker.swift in Sources */,
 				D93FD0A01C78FED60089CDBE /* RouteDetailViewController.swift in Sources */,
