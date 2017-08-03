@@ -68,17 +68,6 @@ class RouteDetailViewController: UIViewController, MKMapViewDelegate {
         setupViews()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationController?.navigationBar.barStyle = .black
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return UIStatusBarStyle.lightContent
-    }
-
     //==================================================================
     // MARK: - Implementation
     //==================================================================

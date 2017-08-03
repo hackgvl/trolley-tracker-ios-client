@@ -8,10 +8,9 @@
 
 import UIKit
 
-private enum ScheduleDisplayType: Int {
-    case route, day
-    
-    fileprivate func displayString() -> String {
+private extension ScheduleController.DisplayType {
+
+    func displayString() -> String {
         switch self {
         case .route:
             return "By Route"
@@ -38,15 +37,14 @@ class ScheduleViewController: UIViewController, UINavigationBarDelegate {
         return tv
     }()
 
-    lazy var scheduleFormattingSegmentedControl: UISegmentedControl = {
+    lazy var displayTypeControl: UISegmentedControl = {
         let sc = UISegmentedControl().useAutolayout()
         sc.tintColor = UIColor.ttLightGray()
-        for displayType in [ScheduleDisplayType.route, ScheduleDisplayType.day] {
+        for displayType in ScheduleController.DisplayType.all {
             let index = displayType.rawValue
             let title = displayType.displayString()
             sc.insertSegment(withTitle: title, at: index, animated: false)
         }
-        sc.selectedSegmentIndex = ScheduleDisplayType.route.rawValue
         sc.addTarget(self,
                      action: #selector(segmentedControlValueChanged(_:)),
                      for: .valueChanged)
@@ -55,25 +53,29 @@ class ScheduleViewController: UIViewController, UINavigationBarDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationController?.navigationBar.barTintColor = .ttAlternateTintColor()
-        view.backgroundColor = UIColor.ttLightGray()
 
-        navigationItem.titleView = scheduleFormattingSegmentedControl
+        navigationController?.navigationBar.barStyle = .black
+        view.backgroundColor = .ttLightGray()
 
-        view.addSubview(tableView)
-        tableView.edgeAnchors == view.edgeAnchors
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
-    func position(for bar: UIBarPositioning) -> UIBarPosition {
-        return UIBarPosition.topAttached
+        setupViews()
     }
 
     @objc private func segmentedControlValueChanged(_ sender: UISegmentedControl) {
         delegate?.didSelectScheduleTypeIndex(sender.selectedSegmentIndex)
+    }
+
+    private func setupViews() {
+
+        navigationItem.titleView = displayTypeControl
+
+        view.addSubview(tableView)
+        tableView.edgeAnchors == view.edgeAnchors
+
+        let barBackground = UIView().useAutolayout()
+        barBackground.backgroundColor = .black
+        view.addSubview(barBackground)
+        barBackground.horizontalAnchors == view.horizontalAnchors
+        barBackground.topAnchor == view.topAnchor
+        barBackground.bottomAnchor == topLayoutGuide.bottomAnchor
     }
 }

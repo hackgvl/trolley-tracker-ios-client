@@ -12,6 +12,14 @@ class ScheduleController: FunctionController {
 
     enum DisplayType: Int {
         case route, day
+
+        static var all: [DisplayType] {
+            return [.route, .day]
+        }
+
+        static var `default`: DisplayType {
+            return .route
+        }
     }
 
     typealias Dependencies = HasScheduleService & HasRouteService
@@ -30,6 +38,9 @@ class ScheduleController: FunctionController {
 
     func prepare() -> UIViewController {
 
+        let type = DisplayType.default
+        dataSource.displayType = type
+        viewController.displayTypeControl.selectedSegmentIndex = type.rawValue
         dataSource.displayRouteAction = displayRoute(_:)
 
         viewController.tabBarItem.image = #imageLiteral(resourceName: "Schedule")
