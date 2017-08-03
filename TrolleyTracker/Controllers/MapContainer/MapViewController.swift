@@ -77,6 +77,13 @@ class MapViewController: UIViewController {
         view.addSubview(mapView)
         mapView.edgeAnchors == view.edgeAnchors
 
+        let effect = UIBlurEffect(style: .light)
+        let statusBarBlur = UIVisualEffectView(effect: effect).useAutolayout()
+        view.addSubview(statusBarBlur)
+        statusBarBlur.horizontalAnchors == view.horizontalAnchors
+        statusBarBlur.topAnchor == view.topAnchor
+        statusBarBlur.bottomAnchor == topLayoutGuide.bottomAnchor
+
         view.addSubview(locateMeButton)
         locateMeButton.trailingAnchor == view.trailingAnchor - 12
         locateMeButton.bottomAnchor == bottomLayoutGuide.topAnchor - 12
