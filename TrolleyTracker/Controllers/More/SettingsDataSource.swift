@@ -86,18 +86,18 @@ class SettingsDataSource {
     fileprivate func attributionItemWithPresentationController(_ presentationController: UIViewController) -> SettingsItem {
         
         return SettingsItem(title: NSLocalizedString("Acknowledgements", comment: "")) {
-            
-            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AttributionViewController") as! AttributionViewController
-            presentationController.navigationController!.pushViewController(controller, animated: true)
+            let controller = AttributionViewController()
+            let nav = presentationController.navigationController
+            nav?.pushViewController(controller, animated: true)
         }
     }
     
     fileprivate func aboutItemWithPresentationController(_ presentationController: UIViewController) -> SettingsItem {
         
         return SettingsItem(title: NSLocalizedString("About", comment: "")) {
-            
-            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AboutViewController") as! AboutViewController
-            presentationController.navigationController!.pushViewController(controller, animated: true)
+            let controller = AboutViewController()
+            let nav = presentationController.navigationController
+            nav?.pushViewController(controller, animated: true)
         }
     }
 }

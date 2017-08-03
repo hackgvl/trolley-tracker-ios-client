@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		CA136F051F308F7F00381A02 /* ScheduleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA136F041F308F7F00381A02 /* ScheduleDataSource.swift */; };
 		CA4A6B3F1F3005E3006386E0 /* ScheduleSorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4A6B3E1F3005E3006386E0 /* ScheduleSorting.swift */; };
-		CA6C2B781E94059100F33B52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA6C2B7A1E94059100F33B52 /* Main.storyboard */; };
 		CA75463A1F2E843000E1A6CA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA75463C1F2E843000E1A6CA /* Localizable.strings */; };
 		CA75463E1F2E848000E1A6CA /* LocalizationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA75463D1F2E848000E1A6CA /* LocalizationHelper.swift */; };
 		CA7546401F2E85DE00E1A6CA /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA75463F1F2E85DE00E1A6CA /* MapController.swift */; };
@@ -47,9 +46,7 @@
 		D92876D31BCB3A67003333EA /* TrolleyScheduleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92876D21BCB3A67003333EA /* TrolleyScheduleService.swift */; };
 		D92876D51BCC89BE003333EA /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92876D41BCC89BE003333EA /* Schedule.swift */; };
 		D92876D71BCD05A1003333EA /* ScheduleOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92876D61BCD05A1003333EA /* ScheduleOperations.swift */; };
-		D93FD09E1C78FDE20089CDBE /* Schedule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D93FD09D1C78FDE20089CDBE /* Schedule.storyboard */; };
 		D93FD0A01C78FED60089CDBE /* RouteDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93FD09F1C78FED60089CDBE /* RouteDetailViewController.swift */; };
-		D93FD0BB1C79D04D0089CDBE /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D93FD0BA1C79D04D0089CDBE /* More.storyboard */; };
 		D95A65911D6D050B002CE650 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D95A658F1D6D050B002CE650 /* Fabric.framework */; };
 		D95A65921D6D050B002CE650 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D95A65901D6D050B002CE650 /* Crashlytics.framework */; };
 		D95EF7671B87302F009B5779 /* TrolleyRouteOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95EF7661B87302F009B5779 /* TrolleyRouteOverlay.swift */; };
@@ -77,7 +74,6 @@
 		D98715491B8A7E0C00489594 /* GetETAOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98715481B8A7E0C00489594 /* GetETAOperation.swift */; };
 		D98CF6521E827982005048FF /* MapViewHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98CF6511E827982005048FF /* MapViewHelpers.swift */; };
 		D98CF6561E827D61005048FF /* ApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98CF6551E827D61005048FF /* ApplicationController.swift */; };
-		D98CF6591E827E12005048FF /* ViewControllerInitialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98CF6581E827E12005048FF /* ViewControllerInitialization.swift */; };
 		D98CF65D1E83C3AF005048FF /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98CF65C1E83C3AF005048FF /* Formatters.swift */; };
 		D98CF65F1E83C4B2005048FF /* GeographyHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98CF65E1E83C4B2005048FF /* GeographyHelpers.swift */; };
 		D99B71561E87D6D800F36E55 /* RouteFetchOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99B71551E87D6D800F36E55 /* RouteFetchOperations.swift */; };
@@ -140,7 +136,6 @@
 /* Begin PBXFileReference section */
 		CA136F041F308F7F00381A02 /* ScheduleDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDataSource.swift; sourceTree = "<group>"; };
 		CA4A6B3E1F3005E3006386E0 /* ScheduleSorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSorting.swift; sourceTree = "<group>"; };
-		CA6C2B791E94059100F33B52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CA75463B1F2E843000E1A6CA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CA75463D1F2E848000E1A6CA /* LocalizationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationHelper.swift; sourceTree = "<group>"; };
 		CA75463F1F2E85DE00E1A6CA /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
@@ -181,9 +176,7 @@
 		D92876D21BCB3A67003333EA /* TrolleyScheduleService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyScheduleService.swift; sourceTree = "<group>"; };
 		D92876D41BCC89BE003333EA /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		D92876D61BCD05A1003333EA /* ScheduleOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleOperations.swift; sourceTree = "<group>"; };
-		D93FD09D1C78FDE20089CDBE /* Schedule.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Schedule.storyboard; sourceTree = "<group>"; };
 		D93FD09F1C78FED60089CDBE /* RouteDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDetailViewController.swift; sourceTree = "<group>"; };
-		D93FD0BA1C79D04D0089CDBE /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 		D95A658F1D6D050B002CE650 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		D95A65901D6D050B002CE650 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		D95EF7661B87302F009B5779 /* TrolleyRouteOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyRouteOverlay.swift; sourceTree = "<group>"; };
@@ -211,7 +204,6 @@
 		D98715481B8A7E0C00489594 /* GetETAOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetETAOperation.swift; sourceTree = "<group>"; };
 		D98CF6511E827982005048FF /* MapViewHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewHelpers.swift; sourceTree = "<group>"; };
 		D98CF6551E827D61005048FF /* ApplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationController.swift; sourceTree = "<group>"; };
-		D98CF6581E827E12005048FF /* ViewControllerInitialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerInitialization.swift; sourceTree = "<group>"; };
 		D98CF65C1E83C3AF005048FF /* Formatters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		D98CF65E1E83C4B2005048FF /* GeographyHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeographyHelpers.swift; sourceTree = "<group>"; };
 		D99B71551E87D6D800F36E55 /* RouteFetchOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteFetchOperations.swift; sourceTree = "<group>"; };
@@ -437,7 +429,6 @@
 				D98CF65C1E83C3AF005048FF /* Formatters.swift */,
 				D98CF65E1E83C4B2005048FF /* GeographyHelpers.swift */,
 				D98CF6511E827982005048FF /* MapViewHelpers.swift */,
-				D98CF6581E827E12005048FF /* ViewControllerInitialization.swift */,
 				CAA4CE021F2E951400F808F1 /* RefreshTimer.swift */,
 			);
 			path = Helpers;
@@ -522,6 +513,8 @@
 			isa = PBXGroup;
 			children = (
 				D9650CA01B86A4030004A2AF /* Controllers */,
+				D9650CA11B86A40A0004A2AF /* Views */,
+				D914FADC1B30DEB4002DACF8 /* Services */,
 				D9CFDB301E5289DE0056AB01 /* Dependencies */,
 				D90866F81B91C8BF002A6F87 /* Extensions */,
 				D90866F11B91C60F002A6F87 /* Fonts */,
@@ -529,15 +522,10 @@
 				D914FADB1B30DEA4002DACF8 /* Models */,
 				D98715451B8A7DA100489594 /* Operations */,
 				D9618F641F2D0DDD00E38C36 /* Networking */,
-				D914FADC1B30DEB4002DACF8 /* Services */,
 				EFA4B1F91A1C201F00BEA42C /* Supporting Files */,
-				D9650CA11B86A40A0004A2AF /* Views */,
 				EFA4B1FB1A1C201F00BEA42C /* AppDelegate.swift */,
 				EFA4B2021A1C201F00BEA42C /* Images.xcassets */,
 				EFA4B2041A1C201F00BEA42C /* LaunchScreen.xib */,
-				CA6C2B7A1E94059100F33B52 /* Main.storyboard */,
-				D93FD0BA1C79D04D0089CDBE /* More.storyboard */,
-				D93FD09D1C78FDE20089CDBE /* Schedule.storyboard */,
 				D95EF7661B87302F009B5779 /* TrolleyRouteOverlay.swift */,
 			);
 			path = TrolleyTracker;
@@ -697,12 +685,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFA4B2061A1C201F00BEA42C /* LaunchScreen.xib in Resources */,
-				D93FD0BB1C79D04D0089CDBE /* More.storyboard in Resources */,
 				EFA4B2031A1C201F00BEA42C /* Images.xcassets in Resources */,
 				CA75463A1F2E843000E1A6CA /* Localizable.strings in Resources */,
 				D90866F41B91C79F002A6F87 /* Montserrat-Bold.ttf in Resources */,
-				CA6C2B781E94059100F33B52 /* Main.storyboard in Resources */,
-				D93FD09E1C78FDE20089CDBE /* Schedule.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -791,7 +776,6 @@
 				EFA4B1FC1A1C201F00BEA42C /* AppDelegate.swift in Sources */,
 				CA7546421F2E85E600E1A6CA /* DetailController.swift in Sources */,
 				D97A7F121BE197AD00B40766 /* TrolleyLocationServiceFake.swift in Sources */,
-				D98CF6591E827E12005048FF /* ViewControllerInitialization.swift in Sources */,
 				E71A678C1B30DCE60036FE10 /* DetailViewController.swift in Sources */,
 				CA7546401F2E85DE00E1A6CA /* MapController.swift in Sources */,
 				CAF997141F2E7C0800480618 /* MoreController.swift in Sources */,
@@ -878,15 +862,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		CA6C2B7A1E94059100F33B52 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CA6C2B791E94059100F33B52 /* Base */,
-			);
-			name = Main.storyboard;
-			path = .;
-			sourceTree = "<group>";
-		};
 		CA75463C1F2E843000E1A6CA /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

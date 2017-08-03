@@ -13,3 +13,7 @@
 "Detail.Button.Directions" = "Directions";
 "Detail.Button.WalkingTime" = "Get Walking Time";
 "Detail.Label.Title" = "Trolly or Stop Name";
+
+"OpenSource.Title" = "TrolleyTracker is created and maintained by Code for Greenville, more information can be found at http://trackthetrolley.com \n\nTrolleyTracker is open source software that can be found at https://github.com/codeforgreenville";
+
+"Attribution.Title" = "TrolleyTracker has benefited from the following open source software.";

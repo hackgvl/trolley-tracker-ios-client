@@ -32,6 +32,13 @@ struct LS {
         return string(for: "Detail.Label.Title")
     }
 
+    static var openSourceTitle: String {
+        return string(for: "OpenSource.Title")
+    }
+
+    static var attributionTitle: String {
+        return string(for: "Attribution.Title")
+    }
 
     private static func string(for key: String) -> String {
         return NSLocalizedString(key, comment: "")

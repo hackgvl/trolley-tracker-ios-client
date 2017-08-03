@@ -10,20 +10,32 @@ import UIKit
 
 class AboutViewController: UIViewController {
 
-    @IBOutlet var textView: UITextView! {
-        didSet {
-            textView.text = "TrolleyTracker is created and maintained by Code for Greenville, more information can be found at http://trackthetrolley.com \n\nTrolleyTracker is open source software that can be found at https://github.com/codeforgreenville"
-            textView.font = UIFont.systemFont(ofSize: 17)
-            textView.dataDetectorTypes = [UIDataDetectorTypes.link]
-            textView.tintColor = UIColor.ttAlternateTintColor()
-        }
+    private let textView: UITextView = {
+        let tv = UITextView().useAutolayout()
+        tv.text = LS.openSourceTitle
+        tv.font = .systemFont(ofSize: 17)
+        tv.dataDetectorTypes = [.link]
+        tv.tintColor = .ttAlternateTintColor()
+        tv.backgroundColor = .clear
+        return tv
+    }()
+
+    init() {
+        super.init(nibName: nil, bundle: nil)
     }
-    
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.barStyle = UIBarStyle.blackTranslucent
-        view.backgroundColor = UIColor.ttLightGray()
+        navigationController?.navigationBar.barStyle = .blackTranslucent
+        view.backgroundColor = .ttLightGray()
+
+        view.addSubview(textView)
+        textView.edgeAnchors == edgeAnchors + 20
     }
     
     override func viewWillAppear(_ animated: Bool) {
