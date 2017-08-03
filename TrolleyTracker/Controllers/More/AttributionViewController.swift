@@ -34,8 +34,10 @@ class AttributionViewController: UIViewController {
     }
 
     fileprivate var attributionItems: [AttributionItem] = [
-        AttributionItem(name: "Alamofire",
-                        urlString: "https://www.github.com/Alamofire"),
+        AttributionItem(name: "Anchorage",
+                        urlString: "https://github.com/Raizlabs/Anchorage"),
+        AttributionItem(name: "CwlResult",
+                        urlString: "https://github.com/mattgallagher/CwlUtils/blob/master/Sources/CwlUtils/CwlResult.swift"),
         AttributionItem(name: "ObserverSet",
                         urlString: "https://github.com/mikeash/SwiftObserverSet"),
         AttributionItem(name: "SwiftyJSON",
