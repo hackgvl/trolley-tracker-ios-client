@@ -26,6 +26,7 @@ extension UINavigationBar {
 extension UITabBar {
     
     class func setDefaultAppearance() {
-        UITabBar.appearance().barTintColor = UIColor.ttMediumPurple()
+        UITabBar.appearance().barTintColor = .ttMediumPurple()
+        UITabBar.appearance().tintColor = .ttTintColor()
     }
 }

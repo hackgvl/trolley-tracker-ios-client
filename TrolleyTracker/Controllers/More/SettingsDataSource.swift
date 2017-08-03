@@ -75,11 +75,14 @@ class SettingsDataSource {
     fileprivate func shareItemWithPresentationController(_ presentationController: UIViewController) -> SettingsItem {
         
         return SettingsItem(title: NSLocalizedString("Tell Friends", comment: "Share Button")) {
-            
-            let shareSheetViewController = UIActivityViewController(activityItems: [NSLocalizedString("Check out Trolley Tracker!", comment: "Share Action"), NSLocalizedString("http://yeahthattrolley.com", comment: "Marketing URL")], applicationActivities: nil)
-            shareSheetViewController.view.tintColor = UIColor.ttAlternateTintColor()
-            
-            presentationController.present(shareSheetViewController, animated: true, completion: nil)
+
+            let itemTitle = NSLocalizedString("Check out Trolley Tracker!", comment: "Share Action")
+            let itemURL = NSLocalizedString("http://yeahthattrolley.com", comment: "Marketing URL")
+
+            let controller = UIActivityViewController(activityItems: [itemTitle, itemURL],
+                                                        applicationActivities: nil)
+
+            presentationController.present(controller, animated: true, completion: nil)
         }
     }
     
