@@ -51,7 +51,7 @@
 		D95A65921D6D050B002CE650 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D95A65901D6D050B002CE650 /* Crashlytics.framework */; };
 		D95EF7671B87302F009B5779 /* TrolleyRouteOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95EF7661B87302F009B5779 /* TrolleyRouteOverlay.swift */; };
 		D95EF76C1B889B00009B5779 /* UIImage+TrolleyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95EF76B1B889B00009B5779 /* UIImage+TrolleyTracker.swift */; };
-		D9617EF21BDDC60700FF86CD /* AlertControllerColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9617EF11BDDC60700FF86CD /* AlertControllerColor.swift */; };
+		D9617EF21BDDC60700FF86CD /* AlertControllerHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9617EF11BDDC60700FF86CD /* AlertControllerHelpers.swift */; };
 		D9617EF41BDF0A1600FF86CD /* UIViewController+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9617EF31BDF0A1600FF86CD /* UIViewController+Appearance.swift */; };
 		D9617EF71BDF84F400FF86CD /* ScheduleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9617EF61BDF84F400FF86CD /* ScheduleViewCell.swift */; };
 		D9617EF91BE02B9200FF86CD /* ScheduleDisplayModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9617EF81BE02B9200FF86CD /* ScheduleDisplayModels.swift */; };
@@ -181,7 +181,7 @@
 		D95A65901D6D050B002CE650 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		D95EF7661B87302F009B5779 /* TrolleyRouteOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyRouteOverlay.swift; sourceTree = "<group>"; };
 		D95EF76B1B889B00009B5779 /* UIImage+TrolleyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+TrolleyTracker.swift"; sourceTree = "<group>"; };
-		D9617EF11BDDC60700FF86CD /* AlertControllerColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertControllerColor.swift; sourceTree = "<group>"; };
+		D9617EF11BDDC60700FF86CD /* AlertControllerHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertControllerHelpers.swift; sourceTree = "<group>"; };
 		D9617EF31BDF0A1600FF86CD /* UIViewController+Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Appearance.swift"; sourceTree = "<group>"; };
 		D9617EF61BDF84F400FF86CD /* ScheduleViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewCell.swift; sourceTree = "<group>"; };
 		D9617EF81BE02B9200FF86CD /* ScheduleDisplayModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleDisplayModels.swift; sourceTree = "<group>"; };
@@ -386,7 +386,7 @@
 				CAF997121F2E7BF900480618 /* More */,
 				CAF997111F2E7BF400480618 /* Schedule */,
 				CAAB6EDE1F2D74270092F20E /* MapContainer */,
-				D98CF6571E827D66005048FF /* ViewControllers */,
+				D98CF6571E827D66005048FF /* Helpers */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -454,12 +454,12 @@
 			path = Locations;
 			sourceTree = "<group>";
 		};
-		D98CF6571E827D66005048FF /* ViewControllers */ = {
+		D98CF6571E827D66005048FF /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				D9617EF11BDDC60700FF86CD /* AlertControllerColor.swift */,
+				D9617EF11BDDC60700FF86CD /* AlertControllerHelpers.swift */,
 			);
-			path = ViewControllers;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		D9CFDB301E5289DE0056AB01 /* Dependencies */ = {
@@ -790,7 +790,7 @@
 				D9650C9A1B8559EA0004A2AF /* TrolleyRoute.swift in Sources */,
 				CAF9971D1F2E7D7E00480618 /* Dependencies.swift in Sources */,
 				D90866F01B91292F002A6F87 /* TrolleyAnnotationView.swift in Sources */,
-				D9617EF21BDDC60700FF86CD /* AlertControllerColor.swift in Sources */,
+				D9617EF21BDDC60700FF86CD /* AlertControllerHelpers.swift in Sources */,
 				D90867111B921431002A6F87 /* UIView+TrolleyTracker.swift in Sources */,
 				CA7546461F2E881000E1A6CA /* MessageViewController.swift in Sources */,
 				D92876CB1BCB0CE5003333EA /* SettingsDataSource.swift in Sources */,

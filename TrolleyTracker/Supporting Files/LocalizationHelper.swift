@@ -12,6 +12,14 @@ struct LS {
 
     private init() {}
 
+    static var genericErrorTitle: String {
+        return string(for: "Generic.Error.Title")
+    }
+
+    static var genericOKButton: String {
+        return string(for: "Generic.Button.OK")
+    }
+
     static var mapTitle: String {
         return string(for: "Map.Title")
     }
@@ -32,6 +40,34 @@ struct LS {
         return string(for: "Detail.Label.Title")
     }
 
+    static var moreTitleGeneral: String {
+        return string(for: "More.Title.General")
+    }
+
+    static var moreItemFeedback: String {
+        return string(for: "More.Item.Feedback")
+    }
+
+    static var moreItemShare: String {
+        return string(for: "More.Item.Share")
+    }
+
+    static var moreItemShareTitle: String {
+        return string(for: "More.Item.Share.Title")
+    }
+
+    static var moreItemShareURL: String {
+        return string(for: "More.Item.Share.URL")
+    }
+
+    static var moreItemAcknowledgements: String {
+        return string(for: "More.Item.Acknowledgements")
+    }
+
+    static var moreItemAbout: String {
+        return string(for: "More.Item.About")
+    }
+
     static var openSourceTitle: String {
         return string(for: "OpenSource.Title")
     }
@@ -39,6 +75,19 @@ struct LS {
     static var attributionTitle: String {
         return string(for: "Attribution.Title")
     }
+
+    static var feedbackTitle: String {
+        return string(for: "Feedback.Title")
+    }
+
+    static var feedbackMessage: String {
+        return string(for: "Feedback.Message")
+    }
+
+    static var feedbackErrorNoMail: String {
+        return string(for: "Feedback.Error.NoMail")
+    }
+
 
     private static func string(for key: String) -> String {
         return NSLocalizedString(key, comment: "")

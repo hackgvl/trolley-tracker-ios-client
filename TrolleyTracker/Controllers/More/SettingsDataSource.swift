@@ -28,11 +28,11 @@ class SettingsDataSource {
     lazy var sections: [SettingsSection] = {
         
         return [
-            SettingsSection(title: "General", items: [
-                self.feedbackItemWithPresentationController(self.presentationController),
-                self.shareItemWithPresentationController(self.presentationController),
-                self.attributionItemWithPresentationController(self.presentationController),
-                self.aboutItemWithPresentationController(self.presentationController)
+            SettingsSection(title: LS.moreTitleGeneral, items: [
+                self.feedbackItem(with: self.presentationController),
+                self.shareItem(with:self.presentationController),
+                self.attributionItem(with: self.presentationController),
+                self.aboutItem(with: self.presentationController)
                 ])
         ]
     }()
@@ -41,65 +41,55 @@ class SettingsDataSource {
         self.presentationController = presentationController
     }
     
-    fileprivate func feedbackItemWithPresentationController(_ presentationController: UIViewController) -> SettingsItem {
+    fileprivate func feedbackItem(with context: UIViewController) -> SettingsItem {
         
-        return SettingsItem(title: NSLocalizedString("Feedback", comment: "Feedback Button")) {
-            
-            let emailTitle = "TrolleyTracker Feedback"
-            let messageBody = "Hi TrolleyTracker,\n\nI have some feedback to provide about my application using experience:\n\n"
-            let toRecipents = ["YeahThatTrolley@gmail.com"]
-            
-            if MFMailComposeViewController.canSendMail() {
-                
-                UINavigationBar.setLightAppearance()
+        return SettingsItem(title: LS.moreItemFeedback) {
 
-                let mc: MFMailComposeViewController = MFMailComposeViewController()
-                mc.view.tintColor = UIColor.ttAlternateTintColor()
-                mc.setSubject(emailTitle)
-                mc.setMessageBody(messageBody, isHTML: false)
-                mc.setToRecipients(toRecipents)
-                mc.mailComposeDelegate = self.mailDelegate
-                presentationController.present(mc, animated: true, completion: nil)
+            guard MFMailComposeViewController.canSendMail() else {
+                let controller = AlertController.errorPopup(with: LS.feedbackErrorNoMail)
+                context.present(controller, animated: true, completion: nil)
+                return
             }
-            else {
-                // Show error
-                let controller = AlertController(title: "Error", message: "No email accounts are available on this device.", preferredStyle: UIAlertControllerStyle.alert)
-                controller.tintColor = UIColor.ttAlternateTintColor()
-                let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-                controller.addAction(action)
-                presentationController.present(controller, animated: true, completion: nil)
-            }
+
+            UINavigationBar.setLightAppearance()
+
+            let mc: MFMailComposeViewController = MFMailComposeViewController()
+            mc.view.tintColor = .ttAlternateTintColor()
+            mc.setSubject(LS.feedbackTitle)
+            mc.setMessageBody(LS.feedbackMessage, isHTML: false)
+            mc.setToRecipients(["YeahThatTrolley@gmail.com"])
+            mc.mailComposeDelegate = self.mailDelegate
+
+            context.present(mc, animated: true, completion: nil)
         }
     }
     
-    fileprivate func shareItemWithPresentationController(_ presentationController: UIViewController) -> SettingsItem {
+    fileprivate func shareItem(with context: UIViewController) -> SettingsItem {
         
-        return SettingsItem(title: NSLocalizedString("Tell Friends", comment: "Share Button")) {
+        return SettingsItem(title: LS.moreItemShare) {
 
-            let itemTitle = NSLocalizedString("Check out Trolley Tracker!", comment: "Share Action")
-            let itemURL = NSLocalizedString("http://yeahthattrolley.com", comment: "Marketing URL")
+            let items = [LS.moreItemShareTitle, LS.moreItemShareURL]
+            let controller = UIActivityViewController(activityItems: items,
+                                                      applicationActivities: nil)
 
-            let controller = UIActivityViewController(activityItems: [itemTitle, itemURL],
-                                                        applicationActivities: nil)
-
-            presentationController.present(controller, animated: true, completion: nil)
+            context.present(controller, animated: true, completion: nil)
         }
     }
     
-    fileprivate func attributionItemWithPresentationController(_ presentationController: UIViewController) -> SettingsItem {
+    fileprivate func attributionItem(with context: UIViewController) -> SettingsItem {
         
-        return SettingsItem(title: NSLocalizedString("Acknowledgements", comment: "")) {
+        return SettingsItem(title: LS.moreItemAcknowledgements) {
             let controller = AttributionViewController()
-            let nav = presentationController.navigationController
+            let nav = context.navigationController
             nav?.pushViewController(controller, animated: true)
         }
     }
     
-    fileprivate func aboutItemWithPresentationController(_ presentationController: UIViewController) -> SettingsItem {
+    fileprivate func aboutItem(with context: UIViewController) -> SettingsItem {
         
-        return SettingsItem(title: NSLocalizedString("About", comment: "")) {
+        return SettingsItem(title: LS.moreItemAbout) {
             let controller = AboutViewController()
-            let nav = presentationController.navigationController
+            let nav = context.navigationController
             nav?.pushViewController(controller, animated: true)
         }
     }
@@ -107,19 +97,9 @@ class SettingsDataSource {
 
 class SettingsMailComposeViewControllerDelegate: NSObject, MFMailComposeViewControllerDelegate {
     
-    func mailComposeController(_ controller:MFMailComposeViewController, didFinishWith result:MFMailComposeResult, error:Error?) {
-        switch result.rawValue {
-        case MFMailComposeResult.cancelled.rawValue:
-            NSLog("Mail cancelled")
-        case MFMailComposeResult.saved.rawValue:
-            NSLog("Mail saved")
-        case MFMailComposeResult.sent.rawValue:
-            NSLog("Mail sent")
-        case MFMailComposeResult.failed.rawValue:
-            NSLog("Mail sent failure: %@", [error?.localizedDescription ?? ""])
-        default:
-            break
-        }
+    func mailComposeController(_ controller:MFMailComposeViewController,
+                               didFinishWith result:MFMailComposeResult,
+                               error:Error?) {
         
         UINavigationBar.setDefaultAppearance()
         controller.presentingViewController?.dismiss(animated: true, completion: nil)

@@ -41,8 +41,7 @@ class MoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        settingsDataSource.sections[(indexPath as NSIndexPath).section].items[(indexPath as NSIndexPath).row].action()
+        settingsDataSource.sections[indexPath.section].items[indexPath.row].action()
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
