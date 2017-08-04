@@ -80,7 +80,7 @@ extension Array where Element == RouteSchedule {
         for (day, routes) in days {
             for route in routes {
                 // Check to see if we have already handled this route
-                if let matching = flattenedDays[day]?.filter({ $0.name == route.name }) , matching.count > 0 { continue }
+                if let matching = flattenedDays[day]?.filter({ $0.name == route.name }), matching.count > 0 { continue }
 
                 // Find all matching routes
                 let matchingRoutes = routes.filter { $0.name == route.name }
@@ -93,29 +93,28 @@ extension Array where Element == RouteSchedule {
             }
         }
 
-
         // Create Schedule Display items
-
-        var scheduleSections = [ScheduleSection]()
-
-        for day in Day.sortedDays {
+        let sections: [ScheduleSection] = Day.sortedDays.flatMap { day in
 
             // Don't display days with no routes
-            guard let routes = flattenedDays[day] , routes.count > 0 else { continue }
+            guard let routes = flattenedDays[day] , !routes.isEmpty else { return nil }
 
-            var scheduleItems = [ScheduleItem]()
-
-            for route in routes {
-                var scheduleTimes = [String]()
-                for time in route.times {
-                    scheduleTimes.append(time)
-                }
-                scheduleItems.append(ScheduleItem(title: route.name, routeID: route.ID, times: scheduleTimes, selectable: true))
-            }
-            scheduleSections.append(ScheduleSection(title: day.rawValue, items: scheduleItems, selectable: false))
+            let scheduleItems = routes.map { ScheduleItem(route: $0) }
+            return ScheduleSection(title: day.rawValue,
+                                   items: scheduleItems,
+                                   selectable: false)
         }
 
-        return scheduleSections
+        return sections
+    }
+}
+
+extension ScheduleItem {
+    fileprivate init(route: GroupedRoute) {
+        self.routeID = route.ID
+        self.times = route.times
+        self.title = route.name
+        self.selectable = true
     }
 }
 
