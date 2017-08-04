@@ -30,6 +30,14 @@ struct LS {
         return string(for: "More.Title")
     }
 
+    static var mapMessageNoTrolleys: String {
+        return string(for: "Message.NoTrolleys")
+    }
+
+    static var mapMessageDisclaimer: String {
+        return string(for: "Message.Disclaimer")
+    }
+
     static var detailDirectionsButton: String {
         return string(for: "Detail.Button.Directions")
     }

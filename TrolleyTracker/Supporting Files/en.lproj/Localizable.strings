@@ -6,13 +6,21 @@
   Copyright © 2017 Code For Greenville. All rights reserved.
 */
 
+
+// Generic
 "Generic.Error.Title" = "Error";
 "Generic.Button.OK" = "OK";
 
+// Tab Bar
 "Map.Title" = "Map";
 "Schedule.Title" = "Schedule";
 "More.Title" = "More";
 
+// Map View
+"Message.NoTrolleys" = "No Trolleys are being tracked right now.\nView the Schedule to see run times and select a route to preview it on the map.";
+"Message.Disclaimer" = "To ensure safety, passengers are restricted to board and exit the trolley at designated trolley stops.";
+
+// Detail View
 "Detail.Button.Directions" = "Directions";
 "Detail.Button.WalkingTime" = "Get Walking Time";
 "Detail.Label.Title" = "Trolly or Stop Name";

@@ -12,6 +12,7 @@ class ApplicationController: FunctionController {
 
     private let client: APIClient
     private let dependencies: AppDependencies
+    fileprivate let rootViewController: UITabBarController
 
     var childControllers = [FunctionController]()
 
@@ -21,12 +22,15 @@ class ApplicationController: FunctionController {
         self.client = c
 
         self.dependencies = AppDependencies(client: c)
+
+        self.rootViewController = UITabBarController()
     }
 
     func install(in window: UIWindow) {
 
         let container = ContainerController(dependencies: dependencies)
         let containerVC = container.prepare()
+        container.delegate = self
         childControllers.append(container)
 
         let schedule = ScheduleController(dependencies: dependencies)
@@ -37,11 +41,18 @@ class ApplicationController: FunctionController {
         let moreVC = more.prepare()
         childControllers.append(more)
 
-        let tabC = UITabBarController()
-        tabC.viewControllers = [containerVC, scheduleVC, moreVC]
+        rootViewController.viewControllers = [containerVC, scheduleVC, moreVC]
 
-        window.rootViewController = tabC
+        window.rootViewController = rootViewController
 
         window.makeKeyAndVisible()
+
+        container.showStopsDisclaimer()
+    }
+}
+
+extension ApplicationController: ContainerControllerDelegate {
+    func showSchedule() {
+        rootViewController.selectedIndex = 1
     }
 }

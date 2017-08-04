@@ -9,12 +9,18 @@
 import UIKit
 import MapKit
 
+protocol ContainerControllerDelegate: class {
+    func showSchedule()
+}
+
 class ContainerController: FunctionController {
 
     typealias Dependencies = HasLocationService & HasRouteService
 
     private let dependencies: Dependencies
     fileprivate let viewController: ContainerViewController
+
+    weak var delegate: ContainerControllerDelegate?
 
     fileprivate let mapController: MapController
     fileprivate let detailController: DetailController
@@ -39,10 +45,28 @@ class ContainerController: FunctionController {
         super.init()
         
         mapC.delegate = self
+        messageC.delegate = self
     }
 
     func prepare() -> UIViewController {
         return viewController
+    }
+
+    func showStopsDisclaimer() {
+        messageController.showStopsDisclaimerMessage()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+            self.messageController.hideStopsDisclaimerMessage()
+        }
+    }
+}
+
+extension ContainerController: MessageControllerDelegate {
+    func showSchedule() {
+        delegate?.showSchedule()
+    }
+
+    func setMessageController(visible: Bool) {
+        viewController.setMessage(visible: visible, animated: true)
     }
 }
 
@@ -58,6 +82,7 @@ extension ContainerController: MapControllerDelegate {
     }
 
     func handleNoTrolleysUpdate(_ trolleysPresent: Bool) {
-        // TODO: Pass to Message Controller
+        if trolleysPresent { messageController.hideNoTrolleysMessage() }
+        else { messageController.showNoTrolleysMessage() }
     }
 }

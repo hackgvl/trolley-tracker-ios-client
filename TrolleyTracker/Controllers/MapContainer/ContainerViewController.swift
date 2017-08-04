@@ -27,6 +27,9 @@ class ContainerViewController: UIViewController {
     private var detailVisibleConstraint: NSLayoutConstraint?
     private var detailHiddenConstraint: NSLayoutConstraint?
 
+    private var messageHiddenConstraint: NSLayoutConstraint?
+    private var messageVisibleConstraint: NSLayoutConstraint?
+
     init(mapViewController: UIViewController,
          detailViewController: UIViewController,
          messageViewController: UIViewController) {
@@ -67,8 +70,9 @@ class ContainerViewController: UIViewController {
         detailVisibleConstraint = detailAnchor.constraint(equalTo: viewAnchor)
 
         messageContainer.horizontalAnchors == view.horizontalAnchors
-        messageContainer.heightAnchor == view.heightAnchor * 0.2
-        messageContainer.topAnchor == view.bottomAnchor
+        messageHiddenConstraint = messageContainer.topAnchor == view.bottomAnchor
+        let messageAnchor = messageContainer.bottomAnchor
+        messageVisibleConstraint = messageAnchor.constraint(equalTo: viewAnchor)
     }
 
     private func setupChildren() {
@@ -86,6 +90,8 @@ class ContainerViewController: UIViewController {
     }
 
     func setMessage(visible: Bool, animated: Bool) {
-
+        setVisible(visible: visible, animated: animated,
+                   visibleConstraint: messageVisibleConstraint,
+                   hiddenConstraint: messageHiddenConstraint)
     }
 }
