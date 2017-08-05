@@ -78,6 +78,7 @@
 		D98CF65D1E83C3AF005048FF /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98CF65C1E83C3AF005048FF /* Formatters.swift */; };
 		D98CF65F1E83C4B2005048FF /* GeographyHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98CF65E1E83C4B2005048FF /* GeographyHelpers.swift */; };
 		D99B71561E87D6D800F36E55 /* RouteFetchOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99B71551E87D6D800F36E55 /* RouteFetchOperations.swift */; };
+		D9A0BC831F3622AF00E49E14 /* DateHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A0BC821F3622AF00E49E14 /* DateHelpers.swift */; };
 		D9A6A61F1F329583005205C6 /* RouteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A6A61E1F329583005205C6 /* RouteController.swift */; };
 		D9CFDB341E528A8A0056AB01 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CFDB331E528A8A0056AB01 /* SwiftyJSON.swift */; };
 		D9D85B4F1F2D0BAF002A99D5 /* KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D85B4A1F2D0BAE002A99D5 /* KeyboardHandler.swift */; };
@@ -209,6 +210,7 @@
 		D98CF65C1E83C3AF005048FF /* Formatters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		D98CF65E1E83C4B2005048FF /* GeographyHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeographyHelpers.swift; sourceTree = "<group>"; };
 		D99B71551E87D6D800F36E55 /* RouteFetchOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteFetchOperations.swift; sourceTree = "<group>"; };
+		D9A0BC821F3622AF00E49E14 /* DateHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelpers.swift; sourceTree = "<group>"; };
 		D9A6A61E1F329583005205C6 /* RouteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteController.swift; sourceTree = "<group>"; };
 		D9CFDB331E528A8A0056AB01 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		D9D85B4A1F2D0BAE002A99D5 /* KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHandler.swift; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 				D95EF76B1B889B00009B5779 /* UIImage+TrolleyTracker.swift */,
 				D90867101B921431002A6F87 /* UIView+TrolleyTracker.swift */,
 				D9617EF31BDF0A1600FF86CD /* UIViewController+Appearance.swift */,
+				D9A0BC821F3622AF00E49E14 /* DateHelpers.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -829,6 +832,7 @@
 				D9D85B531F2D0BAF002A99D5 /* AnimationHelpers.swift in Sources */,
 				CAF9971F1F2E806000480618 /* FunctionController.swift in Sources */,
 				CAD3A75A1F2FFCD5004D1325 /* MoreDataSource.swift in Sources */,
+				D9A0BC831F3622AF00E49E14 /* DateHelpers.swift in Sources */,
 				D9CFDB341E528A8A0056AB01 /* SwiftyJSON.swift in Sources */,
 				D90866F71B91C8B8002A6F87 /* UIFont+TrolleyTracker.swift in Sources */,
 				D93FD0A01C78FED60089CDBE /* RouteDetailViewController.swift in Sources */,

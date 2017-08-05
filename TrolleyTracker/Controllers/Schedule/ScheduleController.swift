@@ -29,6 +29,7 @@ class ScheduleController: FunctionController {
     fileprivate let dataSource: ScheduleDataSource
 
     private var routeController: RouteController?
+    private var lastFetchRequestDate: Date?
 
     init(dependencies: Dependencies) {
         self.dependencies = dependencies
@@ -57,7 +58,22 @@ class ScheduleController: FunctionController {
         return nav
     }
 
+    fileprivate func loadSchedulesIfNeeded() {
+
+        guard let lastDate = lastFetchRequestDate else {
+            loadSchedules()
+            return
+        }
+
+        guard lastDate.hasCrossedQuarterHourBoundry else {
+            return
+        }
+
+        loadSchedules()
+    }
+
     private func loadSchedules() {
+        lastFetchRequestDate = Date()
         dependencies.scheduleService.loadTrolleySchedules(handleNewSchedules(_:))
     }
 
@@ -75,6 +91,10 @@ class ScheduleController: FunctionController {
 }
 
 extension ScheduleController: ScheduleVCDelegate {
+
+    func viewDidAppear() {
+        loadSchedulesIfNeeded()
+    }
 
     func didSelectScheduleTypeIndex(_ index: Int) {
         let displayType = ScheduleController.DisplayType(rawValue: index)!

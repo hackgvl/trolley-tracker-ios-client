@@ -22,6 +22,7 @@ private extension ScheduleController.DisplayType {
 
 protocol ScheduleVCDelegate: class {
     func didSelectScheduleTypeIndex(_ index: Int)
+    func viewDidAppear()
 }
 
 class ScheduleViewController: UIViewController, UINavigationBarDelegate {
@@ -58,6 +59,11 @@ class ScheduleViewController: UIViewController, UINavigationBarDelegate {
         view.backgroundColor = .ttLightGray()
 
         setupViews()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        delegate?.viewDidAppear()
     }
 
     @objc private func segmentedControlValueChanged(_ sender: UISegmentedControl) {

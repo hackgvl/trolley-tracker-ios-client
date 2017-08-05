@@ -17,30 +17,6 @@ private struct CacheItem<T> {
         let allowedSeconds = TimeInterval(minutes * 60)
         return timestamp.timeIntervalSinceNow > -allowedSeconds
     }
-
-    func hasCrossedQuarterHourBoundry() -> Bool {
-
-        let calendar = Calendar.current
-        let cacheComps = calendar.component(.minute, from: timestamp)
-        let nowComps = Calendar.current.component(.minute, from: Date())
-
-        // If `cache` minutes are greater than `now` minutes,
-        // the range spans the top of the hour
-        guard nowComps > cacheComps else {
-            return true
-        }
-
-        let range = cacheComps..<nowComps
-        let boundryMarkers = [0, 15, 30, 45, 60]
-
-        for marker in boundryMarkers {
-            if range.contains(marker) {
-                return true
-            }
-        }
-
-        return false
-    }
 }
 
 class TrolleyRouteServiceLive: TrolleyRouteService {
@@ -59,7 +35,7 @@ class TrolleyRouteServiceLive: TrolleyRouteService {
 
         if let cachedRoutes = memoryCachedActiveRoutes,
             cachedRoutes.isNewerThan(15),
-            !cachedRoutes.hasCrossedQuarterHourBoundry() {
+            !cachedRoutes.timestamp.hasCrossedQuarterHourBoundry {
             DispatchQueue.main.async {
                 completion(cachedRoutes.payload)
             }
