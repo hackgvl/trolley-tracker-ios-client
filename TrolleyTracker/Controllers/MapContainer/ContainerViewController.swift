@@ -56,7 +56,7 @@ class ContainerViewController: UIViewController {
     }
 
     private func setupViews() {
-        for container in [mapContainer, detailContainer, messageContainer] {
+        for container in [mapContainer, messageContainer, detailContainer] {
             view.addSubview(container)
         }
         mapContainer.edgeAnchors == view.edgeAnchors
