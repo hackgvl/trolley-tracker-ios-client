@@ -39,13 +39,14 @@ class ScheduleViewController: UIViewController, UINavigationBarDelegate {
     }()
 
     lazy var displayTypeControl: UISegmentedControl = {
-        let sc = UISegmentedControl().useAutolayout()
+        let sc = UISegmentedControl()
         sc.tintColor = UIColor.ttLightGray()
         for displayType in ScheduleController.DisplayType.all {
             let index = displayType.rawValue
             let title = displayType.displayString()
             sc.insertSegment(withTitle: title, at: index, animated: false)
         }
+        sc.sizeToFit()
         sc.addTarget(self,
                      action: #selector(segmentedControlValueChanged(_:)),
                      for: .valueChanged)
