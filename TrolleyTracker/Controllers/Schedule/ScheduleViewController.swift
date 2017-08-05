@@ -13,9 +13,9 @@ private extension ScheduleController.DisplayType {
     func displayString() -> String {
         switch self {
         case .route:
-            return "By Route"
+            return LS.scheduleTypeRoute
         case .day:
-            return "By Day"
+            return LS.scheduleTypeDay
         }
     }
 }

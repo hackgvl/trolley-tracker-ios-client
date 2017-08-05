@@ -19,11 +19,16 @@
 // Map View
 "Message.NoTrolleys" = "No Trolleys are being tracked right now.\nView the Schedule to see run times and select a route to preview it on the map.";
 "Message.Disclaimer" = "To ensure safety, passengers are restricted to board and exit the trolley at designated trolley stops.";
+"Message.Error.NoUserLocation" = "We're sorry, we can't find your current location right now.";
 
 // Detail View
 "Detail.Button.Directions" = "Directions";
 "Detail.Button.WalkingTime" = "Get Walking Time";
 "Detail.Label.Title" = "Trolly or Stop Name";
+
+// Schedule View
+"Schedule.Type.Day" = "By Day";
+"Schedule.Type.Route" = "By Route";
 
 // More View
 

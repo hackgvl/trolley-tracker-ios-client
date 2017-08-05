@@ -29,7 +29,9 @@ extension MKMapView {
             setCenter(userCoordinate, animated: true)
         }
         else {
-            let controller = AlertController(title: nil, message: "We're sorry, we can't find your current location right now.", preferredStyle: UIAlertControllerStyle.alert)
+            let controller = AlertController(title: nil,
+                                             message: LS.mapUserLocationError,
+                                             preferredStyle: UIAlertControllerStyle.alert)
             controller.tintColor = UIColor.ttAlternateTintColor()
             controller.addAction(UIAlertAction(title: LS.genericOKButton,
                                                style: .default,

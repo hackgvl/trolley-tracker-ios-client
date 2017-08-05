@@ -38,6 +38,10 @@ struct LS {
         return string(for: "Message.Disclaimer")
     }
 
+    static var mapUserLocationError: String {
+        return string(for: "Message.Error.NoUserLocation")
+    }
+
     static var detailDirectionsButton: String {
         return string(for: "Detail.Button.Directions")
     }
@@ -94,6 +98,14 @@ struct LS {
 
     static var feedbackErrorNoMail: String {
         return string(for: "Feedback.Error.NoMail")
+    }
+
+    static var scheduleTypeRoute: String {
+        return string(for: "Schedule.Type.Route")
+    }
+
+    static var scheduleTypeDay: String {
+        return string(for: "Schedule.Type.Day")
     }
 
 
