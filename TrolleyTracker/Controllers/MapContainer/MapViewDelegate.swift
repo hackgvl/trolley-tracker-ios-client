@@ -9,6 +9,12 @@
 import MapKit
 
 class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
+
+    private enum Identifiers {
+        static let trolley = "TrolleyAnnotation"
+        static let stop = "StopAnnotation"
+        static let user = "UserAnnotation"
+    }
     
     typealias MapViewSelectionAction = (_ annotationView: MKAnnotationView) -> Void
     
@@ -16,61 +22,55 @@ class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
     var annotationDeselectionAction: MapViewSelectionAction?
     var shouldShowCallouts: Bool = false
     
-    let trolleyAnnotationReuseIdentifier = "TrolleyAnnotation"
-    let stopAnnotationReuseIdentifier = "StopAnnotation"
-    let userAnnotationReuseIdentifier = "UserAnnotation"
-    
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        var returnView: MKAnnotationView?
-        
+    func mapView(_ mapView: MKMapView,
+                 viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+
+        // User
         if (annotation is MKUserLocation) {
-            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: userAnnotationReuseIdentifier)
-            if annotationView == nil {
-                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: userAnnotationReuseIdentifier)
-                annotationView!.image = UIImage.ttUserPin
-                annotationView!.centerOffset = CGPoint(x: 0, y: -(annotationView!.image!.size.height / 2))
-            }
-            
-            annotationView!.annotation = annotation
-            
-            returnView = annotationView
+
+            let view = mapView.dequeueAnnotationView(ofType: MKAnnotationView.self,
+                                                     for: annotation)
+
+            let image = UIImage.ttUserPin
+            view.image = image
+            view.centerOffset = CGPoint(x: 0,
+                                        y: -(image.size.height / 2))
+
+            view.annotation = annotation
+
+            return view
         }
             
-            // Handle Stops
-        else if let stopAnnotation = annotation as? TrolleyStop {
+        // Trolley Stops
+        if let stopAnnotation = annotation as? TrolleyStop {
+
+            let view = mapView.dequeueAnnotationView(ofType: TrolleyStopAnnotationView.self,
+                                                     for: annotation)
+
+            view.frame = CGRect(x: 0, y: 0, width: 22, height: 22)
+            view.canShowCallout = shouldShowCallouts
+            view.annotation = annotation
+            view.tintColor = .stopColorForIndex(stopAnnotation.colorIndex)
             
-            var annotationView: TrolleyStopAnnotationView! = mapView.dequeueReusableAnnotationView(withIdentifier: stopAnnotationReuseIdentifier) as? TrolleyStopAnnotationView
-            if annotationView == nil {
-                annotationView = TrolleyStopAnnotationView(annotation: annotation, reuseIdentifier: stopAnnotationReuseIdentifier)
-                annotationView.frame = CGRect(x: 0, y: 0, width: 22, height: 22)
-            }
-            
-            annotationView.canShowCallout = shouldShowCallouts
-            annotationView.annotation = annotation
-            annotationView.tintColor = UIColor.stopColorForIndex(stopAnnotation.colorIndex)
-            
-            returnView = annotationView
+            return view
         }
             
             
-            // Handle Trolleys
-        else if let trolleyAnnotation = annotation as? Trolley {
+        // Trolleys
+        if let trolleyAnnotation = annotation as? Trolley {
+
+            let view = mapView.dequeueAnnotationView(ofType: TrolleyAnnotationView.self,
+                                                     for: annotation)
+
+            view.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+            view.tintColor = trolleyAnnotation.tintColor
+            view.trolleyNumber = trolleyAnnotation.ID
+            view.annotation = trolleyAnnotation
             
-            var annotationView: TrolleyAnnotationView! = mapView.dequeueReusableAnnotationView(withIdentifier: trolleyAnnotationReuseIdentifier) as? TrolleyAnnotationView
-            if annotationView == nil {
-                annotationView = TrolleyAnnotationView(annotation: trolleyAnnotation, reuseIdentifier: trolleyAnnotationReuseIdentifier)
-                annotationView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-            }
-            
-            annotationView.tintColor = trolleyAnnotation.tintColor
-            annotationView.trolleyNumber = trolleyAnnotation.ID
-            annotationView.annotation = trolleyAnnotation
-            
-            returnView = annotationView
+            return view
         }
-        
-        return returnView
+
+        return nil
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -80,7 +80,7 @@ class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
         renderer.lineWidth = 6.0
         
         if let routeOverlay = overlay as? TrolleyRouteOverlay {
-            renderer.strokeColor = UIColor.routeColorForIndex(routeOverlay.colorIndex)
+            renderer.strokeColor = .routeColorForIndex(routeOverlay.colorIndex)
         }
         
         return renderer
@@ -100,9 +100,20 @@ class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
         guard mapView.selectedAnnotations.isEmpty else { return }
         annotationDeselectionAction?(view)
     }
-    
-    //    func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
-    //        let region = MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.01, 0.01))
-    //        mapView.setRegion(region, animated: true)
-    //    }    
+}
+
+extension MKMapView {
+
+    func dequeueAnnotationView<T>(ofType type: T.Type,
+                                  for annotation: MKAnnotation) -> T where T: MKAnnotationView {
+
+        let id = String(describing: type)
+        let view = dequeueReusableAnnotationView(withIdentifier: id)
+
+        if let typedView = view as? T {
+            return typedView
+        }
+
+        return T(annotation: annotation, reuseIdentifier: id)
+    }
 }
