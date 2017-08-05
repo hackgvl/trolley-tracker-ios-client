@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import CoreLocation
 
 class TrolleyLocationServiceLive: TrolleyLocationService {
     
@@ -32,7 +32,11 @@ class TrolleyLocationServiceLive: TrolleyLocationService {
             self.getRunningTrolleys()
             
             // -- Start a timer for updating currently running trolleys (trolleys/running)
-            self.updateTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(TrolleyLocationServiceLive.getRunningTrolleys), userInfo: nil, repeats: true)
+            self.updateTimer = Timer.scheduledTimer(timeInterval: 10,
+                                                    target: self,
+                                                    selector: #selector(self.getRunningTrolleys),
+                                                    userInfo: nil,
+                                                    repeats: true)
         }
         
         // If we have already retrieved the Trolley list, just start updating them.
@@ -95,7 +99,9 @@ class TrolleyLocationServiceLive: TrolleyLocationService {
         guard let index = trolleys.index(of: trolley) else { return }
 
         // Create a new trolley with an updated location
-        let updatedTrolley = Trolley(trolley: trolleys[index], location: trolley.location)
+        let location = CLLocation(latitude: trolley.coordinate.latitude,
+                                  longitude: trolley.coordinate.longitude)
+        let updatedTrolley = Trolley(trolley: trolleys[index], location: location)
 
         // Store that back in the array
         trolleys.remove(at: index)

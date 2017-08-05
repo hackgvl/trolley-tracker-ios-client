@@ -31,7 +31,9 @@ extension MKMapView {
         else {
             let controller = AlertController(title: nil, message: "We're sorry, we can't find your current location right now.", preferredStyle: UIAlertControllerStyle.alert)
             controller.tintColor = UIColor.ttAlternateTintColor()
-            controller.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            controller.addAction(UIAlertAction(title: LS.genericOKButton,
+                                               style: .default,
+                                               handler: nil))
             context.present(controller, animated: true, completion: nil)
         }
     }
@@ -58,27 +60,51 @@ extension MKMapView {
         // Get our Trolley Annotations
         let existing = trolleyAnnotations
 
-        for trolley in trolleys {
-
-            // If we're already showing this Trolly, just update it
-            if let index = existing.index(of: trolley) {
-                let existingAnnotation = existing[index]
-                existingAnnotation.coordinate = trolley.location.coordinate
-            }
-                // Otherwise, add it
-            else {
-                addAnnotation(trolley)
-            }
+        let trolleysToAdd = trolleys.filter {
+            !existing.contains($0)
+        }
+        let trolleysToUpdate = trolleys.filter {
+            existing.contains($0)
+        }
+        let trolleysToRemove = existing.filter {
+            !trolleys.contains($0)
         }
 
+        for trolley in trolleysToUpdate {
+            guard let index = existing.index(of: trolley) else { continue }
+            let existingAnnotation = existing[index]
+            existingAnnotation.coordinate = trolley.coordinate
+        }
+
+        removeAnnotations(trolleysToRemove)
+        addAnnotations(trolleysToAdd)
     }
 
     func setRegionToDowntownGreenville() {
-        region = MKCoordinateRegion(center: CLLocationCoordinate2DMake(34.851887, -82.398366), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+        region = .downtownGreenville
     }
 
     func removeTrolleyRoutesAndStops() {
         removeOverlays(trolleyRouteOverlays)
         removeAnnotations(trolleyStopAnnotations)
+    }
+}
+
+extension MKCoordinateRegion {
+    static var downtownGreenville: MKCoordinateRegion {
+        return MKCoordinateRegion(center: .downtownGreenville,
+                                  span: .defaultSpan)
+    }
+}
+
+extension CLLocationCoordinate2D {
+    static var downtownGreenville: CLLocationCoordinate2D {
+        return CLLocationCoordinate2DMake(34.851887, -82.398366)
+    }
+}
+
+extension MKCoordinateSpan {
+    static var defaultSpan: MKCoordinateSpan {
+        return MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
     }
 }

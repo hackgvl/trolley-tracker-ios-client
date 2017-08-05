@@ -113,7 +113,8 @@ private extension MKAnnotation {
 
     var directionLocation: CLLocation? {
         if let trolley = self as? Trolley {
-            return trolley.location
+            return CLLocation(latitude: trolley.coordinate.latitude,
+                              longitude: trolley.coordinate.longitude)
         }
         if let stop = self as? TrolleyStop {
             return stop.location

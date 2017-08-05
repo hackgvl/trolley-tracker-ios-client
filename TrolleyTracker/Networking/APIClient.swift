@@ -50,12 +50,15 @@ class APIClient {
 
     private func startDataTask(with request: URLRequest,
                                completion: @escaping JSONResponse) {
+        
         let task = session.dataTask(with: request) { (data, response, error) in
             let json = data.flatMap {
                 try? JSONSerialization.jsonObject(with: $0, options: [])
             }
             let result = Result(value: json, error: error)
-            completion(result)
+            DispatchQueue.main.async {
+                completion(result)
+            }
         }
         task.resume()
     }

@@ -13,7 +13,10 @@ import MapKit
 class Trolley: NSObject {
     
     let ID: Int
-    var location: CLLocation
+    var coordinate: CLLocationCoordinate2D {
+        willSet { willChangeValue(forKey: "coordinate") }
+        didSet { didChangeValue(forKey: "coordinate") }
+    }
     let name: String?
     let number: Int?
     let iconColor: String?
@@ -21,7 +24,7 @@ class Trolley: NSObject {
     init(identifier: Int, location: CLLocation, name: String?, number: Int?, iconColor: String?) {
         self.name = name
         self.ID = identifier
-        self.location = location
+        self.coordinate = location.coordinate
         self.number = number
         self.iconColor = iconColor
     }
@@ -39,7 +42,8 @@ class Trolley: NSObject {
         if longitude == nil { longitude = json["Lon"].stringValue }
         
         self.ID = json["ID"].intValue
-        self.location = CLLocation(latitude: (latitude! as NSString).doubleValue, longitude: (longitude! as NSString).doubleValue)
+        self.coordinate = CLLocation(latitude: (latitude! as NSString).doubleValue,
+                                     longitude: (longitude! as NSString).doubleValue).coordinate
         
         self.number = json["Number"].int
         self.name = json["TrolleyName"].stringValue// + " - " + "\(self.ID)"
@@ -49,7 +53,7 @@ class Trolley: NSObject {
     init(trolley: Trolley, location: CLLocation) {
         
         self.ID = trolley.ID
-        self.location = location
+        self.coordinate = location.coordinate
         self.name = trolley.name
         self.number = trolley.number
         self.iconColor = trolley.iconColor
@@ -71,18 +75,7 @@ extension Trolley {
 }
 
 extension Trolley: MKAnnotation {
-    
-    dynamic var coordinate: CLLocationCoordinate2D {
-        get {
-            return location.coordinate
-        }
-        set(newValue) {
-            self.willChangeValue(forKey: "coordinate")
-            location = CLLocation(latitude: newValue.latitude, longitude: newValue.longitude)
-            self.didChangeValue(forKey: "coordinate")
-        }
-    }
-    
+
     var title: String? {
         return name
     }
