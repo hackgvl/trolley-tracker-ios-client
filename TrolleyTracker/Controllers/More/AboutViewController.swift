@@ -12,11 +12,12 @@ class AboutViewController: UIViewController {
 
     private let textView: UITextView = {
         let tv = UITextView().useAutolayout()
-        tv.text = LS.openSourceTitle
         tv.font = .systemFont(ofSize: 17)
-        tv.dataDetectorTypes = [.link]
         tv.tintColor = .ttAlternateTintColor()
         tv.backgroundColor = .clear
+        tv.isEditable = false
+        tv.isSelectable = true
+        tv.dataDetectorTypes = [.link]
         return tv
     }()
 
@@ -36,6 +37,8 @@ class AboutViewController: UIViewController {
 
         view.addSubview(textView)
         textView.edgeAnchors == edgeAnchors + 20
+
+        textView.text = LS.openSourceTitle
     }
     
     override func viewWillAppear(_ animated: Bool) {
