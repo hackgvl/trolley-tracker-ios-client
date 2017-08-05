@@ -38,6 +38,9 @@ class MapViewController: UIViewController {
         b.backgroundColor = UIColor.ttAlternateTintColor()
         b.tintColor = UIColor.ttTintColor()
         b.layer.cornerRadius = 5
+        b.addTarget(self,
+                    action: #selector(handleLocateMeButton(_:)),
+                    for: .touchUpInside)
         return b
     }()
     
