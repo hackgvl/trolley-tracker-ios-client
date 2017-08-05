@@ -43,8 +43,7 @@ class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
             var annotationView: TrolleyStopAnnotationView! = mapView.dequeueReusableAnnotationView(withIdentifier: stopAnnotationReuseIdentifier) as? TrolleyStopAnnotationView
             if annotationView == nil {
                 annotationView = TrolleyStopAnnotationView(annotation: annotation, reuseIdentifier: stopAnnotationReuseIdentifier)
-                annotationView.frame = CGRect(x: 0, y: 0, width: 30, height: 50)
-                annotationView.centerOffset = CGPoint(x: 0, y: -(annotationView.frame.height / 2))
+                annotationView.frame = CGRect(x: 0, y: 0, width: 22, height: 22)
             }
             
             annotationView.canShowCallout = shouldShowCallouts
@@ -71,10 +70,6 @@ class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
             returnView = annotationView
         }
         
-        DispatchQueue.main.async {
-            self.updateAnnotationZIndexesInMapView(mapView)
-        }
-        
         return returnView
     }
     
@@ -93,7 +88,6 @@ class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         annotationSelectionAction?(view)
-        updateAnnotationZIndexesInMapView(mapView)
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
@@ -105,25 +99,10 @@ class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
     private func deSelectIfNeeded(_ mapView: MKMapView, view: MKAnnotationView) {
         guard mapView.selectedAnnotations.isEmpty else { return }
         annotationDeselectionAction?(view)
-        updateAnnotationZIndexesInMapView(mapView)
     }
     
     //    func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
     //        let region = MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.01, 0.01))
     //        mapView.setRegion(region, animated: true)
-    //    }
-    
-    fileprivate func updateAnnotationZIndexesInMapView(_ mapView: MKMapView) {
-        
-        for annotation in mapView.annotations {
-            if let trolley = annotation as? Trolley,
-                let view = mapView.view(for: trolley) {
-                    view.superview?.bringSubview(toFront: view)
-            }
-        }
-        
-        if let view = mapView.view(for: mapView.userLocation) {
-            view.superview?.bringSubview(toFront: view)
-        }
-    }
+    //    }    
 }

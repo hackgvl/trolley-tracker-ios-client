@@ -15,6 +15,7 @@
 		CA7546421F2E85E600E1A6CA /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7546411F2E85E600E1A6CA /* DetailController.swift */; };
 		CA7546441F2E85EC00E1A6CA /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7546431F2E85EC00E1A6CA /* MessageController.swift */; };
 		CA7546461F2E881000E1A6CA /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7546451F2E881000E1A6CA /* MessageViewController.swift */; };
+		CA9CFAA01F360C6C00B5FC92 /* ZLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CFA9F1F360C6C00B5FC92 /* ZLayer.swift */; };
 		CAA4CE031F2E951400F808F1 /* RefreshTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA4CE021F2E951400F808F1 /* RefreshTimer.swift */; };
 		CAAB6EE01F2D74BF0092F20E /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB6EDF1F2D74BF0092F20E /* ContainerController.swift */; };
 		CAAB6EE21F2D79840092F20E /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB6EE11F2D79840092F20E /* ContainerViewController.swift */; };
@@ -142,6 +143,7 @@
 		CA7546411F2E85E600E1A6CA /* DetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailController.swift; sourceTree = "<group>"; };
 		CA7546431F2E85EC00E1A6CA /* MessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageController.swift; sourceTree = "<group>"; };
 		CA7546451F2E881000E1A6CA /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		CA9CFA9F1F360C6C00B5FC92 /* ZLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLayer.swift; sourceTree = "<group>"; };
 		CAA4CE021F2E951400F808F1 /* RefreshTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTimer.swift; sourceTree = "<group>"; };
 		CAAB6EDF1F2D74BF0092F20E /* ContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
 		CAAB6EE11F2D79840092F20E /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 			children = (
 				D97055BC1BD706CE002B9A8B /* Schedule */,
 				D90866EF1B91292F002A6F87 /* TrolleyAnnotationView.swift */,
+				CA9CFA9F1F360C6C00B5FC92 /* ZLayer.swift */,
 				D908670E1B921229002A6F87 /* TrolleyStopAnnotationView.swift */,
 			);
 			path = Views;
@@ -774,6 +777,7 @@
 				D98715411B8A7D8200489594 /* TimeAndDistanceService.swift in Sources */,
 				D9618F681F2D0E5700E38C36 /* URLs.swift in Sources */,
 				EFA4B1FC1A1C201F00BEA42C /* AppDelegate.swift in Sources */,
+				CA9CFAA01F360C6C00B5FC92 /* ZLayer.swift in Sources */,
 				CA7546421F2E85E600E1A6CA /* DetailController.swift in Sources */,
 				D97A7F121BE197AD00B40766 /* TrolleyLocationServiceFake.swift in Sources */,
 				E71A678C1B30DCE60036FE10 /* DetailViewController.swift in Sources */,

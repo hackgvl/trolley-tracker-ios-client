@@ -10,6 +10,10 @@ import UIKit
 import MapKit
 
 class TrolleyAnnotationView: MKAnnotationView {
+
+    override class var layerClass: AnyClass {
+        return ZLayer.self
+    }
     
     /// Will be shown on the view
     var trolleyNumber: Int = 0 {
@@ -36,6 +40,15 @@ class TrolleyAnnotationView: MKAnnotationView {
     fileprivate let textWidthPercentage: CGFloat = 0.5 // The width of the text area, as a percentage of the view's width
     fileprivate let textHeightPercentage: CGFloat = 0.25 // The height of the text area, as a percentage of the view's height
     fileprivate let textHeightOffset: CGFloat = -0.035 // The vertical offset of the text, starting at the bottom of the image, as a percentage of the view's height
+
+    override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
+        super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
+        (layer as? ZLayer)?.zOffset = 5
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func draw(_ rect: CGRect) {
         
