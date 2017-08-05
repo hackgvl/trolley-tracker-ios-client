@@ -2,9 +2,9 @@
 
 # A list of devices you want to take the screenshots from
  devices([
-   "iPhone 7",
-#   "iPhone 6 Plus",
-   "iPhone 5"
+#   "iPhone 7",
+   "iPhone 7 Plus",
+#   "iPhone 5"
 #   "iPad Pro (12.9 inch)",
 #   "iPad Pro (9.7 inch)",
 #   "Apple TV 1080p"
@@ -18,7 +18,8 @@ languages([
 ])
 
 # The name of the scheme which contains the UI Tests
- scheme "TrolleyTrackerScreenshots"
+ #scheme "TrolleyTrackerTest"
+ scheme "TrolleyTracker"
 
 # Where should the resulting screenshots be stored?
 # output_directory "./screenshots"
