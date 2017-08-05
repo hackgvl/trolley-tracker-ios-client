@@ -15,6 +15,7 @@
 		CA7546421F2E85E600E1A6CA /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7546411F2E85E600E1A6CA /* DetailController.swift */; };
 		CA7546441F2E85EC00E1A6CA /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7546431F2E85EC00E1A6CA /* MessageController.swift */; };
 		CA7546461F2E881000E1A6CA /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7546451F2E881000E1A6CA /* MessageViewController.swift */; };
+		CA82E0261F36441000D548D6 /* SolidButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA82E0251F36441000D548D6 /* SolidButton.swift */; };
 		CA9CFAA01F360C6C00B5FC92 /* ZLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9CFA9F1F360C6C00B5FC92 /* ZLayer.swift */; };
 		CAA4CE031F2E951400F808F1 /* RefreshTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA4CE021F2E951400F808F1 /* RefreshTimer.swift */; };
 		CAAB6EE01F2D74BF0092F20E /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB6EDF1F2D74BF0092F20E /* ContainerController.swift */; };
@@ -53,7 +54,7 @@
 		D95EF7671B87302F009B5779 /* TrolleyRouteOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95EF7661B87302F009B5779 /* TrolleyRouteOverlay.swift */; };
 		D95EF76C1B889B00009B5779 /* UIImage+TrolleyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95EF76B1B889B00009B5779 /* UIImage+TrolleyTracker.swift */; };
 		D9617EF21BDDC60700FF86CD /* AlertControllerHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9617EF11BDDC60700FF86CD /* AlertControllerHelpers.swift */; };
-		D9617EF41BDF0A1600FF86CD /* UIViewController+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9617EF31BDF0A1600FF86CD /* UIViewController+Appearance.swift */; };
+		D9617EF41BDF0A1600FF86CD /* AppearanceHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9617EF31BDF0A1600FF86CD /* AppearanceHelpers.swift */; };
 		D9617EF71BDF84F400FF86CD /* ScheduleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9617EF61BDF84F400FF86CD /* ScheduleViewCell.swift */; };
 		D9617EF91BE02B9200FF86CD /* ScheduleDisplayModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9617EF81BE02B9200FF86CD /* ScheduleDisplayModels.swift */; };
 		D9617EFB1BE0573100FF86CD /* ScheduleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9617EFA1BE0573100FF86CD /* ScheduleHeaderView.swift */; };
@@ -144,6 +145,7 @@
 		CA7546411F2E85E600E1A6CA /* DetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailController.swift; sourceTree = "<group>"; };
 		CA7546431F2E85EC00E1A6CA /* MessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageController.swift; sourceTree = "<group>"; };
 		CA7546451F2E881000E1A6CA /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		CA82E0251F36441000D548D6 /* SolidButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolidButton.swift; sourceTree = "<group>"; };
 		CA9CFA9F1F360C6C00B5FC92 /* ZLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLayer.swift; sourceTree = "<group>"; };
 		CAA4CE021F2E951400F808F1 /* RefreshTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTimer.swift; sourceTree = "<group>"; };
 		CAAB6EDF1F2D74BF0092F20E /* ContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
@@ -185,7 +187,7 @@
 		D95EF7661B87302F009B5779 /* TrolleyRouteOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyRouteOverlay.swift; sourceTree = "<group>"; };
 		D95EF76B1B889B00009B5779 /* UIImage+TrolleyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+TrolleyTracker.swift"; sourceTree = "<group>"; };
 		D9617EF11BDDC60700FF86CD /* AlertControllerHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertControllerHelpers.swift; sourceTree = "<group>"; };
-		D9617EF31BDF0A1600FF86CD /* UIViewController+Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Appearance.swift"; sourceTree = "<group>"; };
+		D9617EF31BDF0A1600FF86CD /* AppearanceHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceHelpers.swift; sourceTree = "<group>"; };
 		D9617EF61BDF84F400FF86CD /* ScheduleViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewCell.swift; sourceTree = "<group>"; };
 		D9617EF81BE02B9200FF86CD /* ScheduleDisplayModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleDisplayModels.swift; sourceTree = "<group>"; };
 		D9617EFA1BE0573100FF86CD /* ScheduleHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleHeaderView.swift; sourceTree = "<group>"; };
@@ -345,7 +347,7 @@
 				D90866F61B91C8B8002A6F87 /* UIFont+TrolleyTracker.swift */,
 				D95EF76B1B889B00009B5779 /* UIImage+TrolleyTracker.swift */,
 				D90867101B921431002A6F87 /* UIView+TrolleyTracker.swift */,
-				D9617EF31BDF0A1600FF86CD /* UIViewController+Appearance.swift */,
+				D9617EF31BDF0A1600FF86CD /* AppearanceHelpers.swift */,
 				D9A0BC821F3622AF00E49E14 /* DateHelpers.swift */,
 			);
 			path = Extensions;
@@ -403,6 +405,7 @@
 				D90866EF1B91292F002A6F87 /* TrolleyAnnotationView.swift */,
 				CA9CFA9F1F360C6C00B5FC92 /* ZLayer.swift */,
 				D908670E1B921229002A6F87 /* TrolleyStopAnnotationView.swift */,
+				CA82E0251F36441000D548D6 /* SolidButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -789,7 +792,7 @@
 				D9D85B4F1F2D0BAF002A99D5 /* KeyboardHandler.swift in Sources */,
 				D92876CF1BCB3737003333EA /* MapViewDelegate.swift in Sources */,
 				CAFDD40A1F2D576A00C7836E /* Result.swift in Sources */,
-				D9617EF41BDF0A1600FF86CD /* UIViewController+Appearance.swift in Sources */,
+				D9617EF41BDF0A1600FF86CD /* AppearanceHelpers.swift in Sources */,
 				D90867031B91F4D9002A6F87 /* EnvironmentVariables.swift in Sources */,
 				D914FAE61B30DFC0002DACF8 /* TrolleyStop.swift in Sources */,
 				D97055BB1BD6FB25002B9A8B /* Box.swift in Sources */,
@@ -825,6 +828,7 @@
 				D97055C21BD7078E002B9A8B /* SpacerView.swift in Sources */,
 				CA75463E1F2E848000E1A6CA /* LocalizationHelper.swift in Sources */,
 				D98CF6561E827D61005048FF /* ApplicationController.swift in Sources */,
+				CA82E0261F36441000D548D6 /* SolidButton.swift in Sources */,
 				D92876D31BCB3A67003333EA /* TrolleyScheduleService.swift in Sources */,
 				D99B71561E87D6D800F36E55 /* RouteFetchOperations.swift in Sources */,
 				D9E240491BDBCACB00F16CF8 /* SubHeadingLabel.swift in Sources */,

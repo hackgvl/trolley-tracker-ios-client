@@ -8,7 +8,24 @@
 
 import UIKit
 
-extension UINavigationBar {
+struct AppearanceHelper {
+    private init() {}
+
+    static func setAppColors() {
+        UINavigationBar.setDefaultAppearance()
+        UITabBar.setDefaultAppearance()
+        SolidButton.setAppearance()
+    }
+
+    static func setLightNavigationColors() {
+        UINavigationBar.setLightAppearance()
+    }
+    static func setDefaultNavigationAppearance() {
+        UINavigationBar.setDefaultAppearance()
+    }
+}
+
+private extension UINavigationBar {
     
     class func setDefaultAppearance() {
         UINavigationBar.appearance().barTintColor = UIColor.ttMediumPurple()
@@ -23,10 +40,25 @@ extension UINavigationBar {
     }
 }
 
-extension UITabBar {
+private extension UITabBar {
     
     class func setDefaultAppearance() {
         UITabBar.appearance().barTintColor = .ttMediumPurple()
         UITabBar.appearance().tintColor = .ttTintColor()
+    }
+}
+
+private extension SolidButton {
+    static func setAppearance() {
+        SolidButton.appearance().backgroundColor = .white
+        SolidButton.appearance().titleColor = .ttAlternateTintColor()
+    }
+}
+
+extension UIButton {
+
+    var titleColor: UIColor? {
+        get { return titleColor(for: .normal) }
+        set { setTitleColor(newValue, for: .normal) }
     }
 }

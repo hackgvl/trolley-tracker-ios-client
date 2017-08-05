@@ -11,10 +11,11 @@ import UIKit
 class ScheduleHeaderView: UITableViewHeaderFooterView {
     
     var tapAction: ScheduleDataSource.DisplayRouteAction?
-    fileprivate var tapGesture: UITapGestureRecognizer!
-    fileprivate var displayedRouteID: Int?
+
+    private var tapGesture: UITapGestureRecognizer!
+    private var displayedRouteID: Int?
     
-    lazy var titleLabel: UILabel = {
+    private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
@@ -26,15 +27,14 @@ class ScheduleHeaderView: UITableViewHeaderFooterView {
         
         super.init(reuseIdentifier: reuseIdentifier)
         
-        contentView.backgroundColor = UIColor.white
+        contentView.backgroundColor = .white
         
         addSubview(titleLabel)
-        let views = ["label" : titleLabel]
-        let metrics = ["hMargin" : 8, "vMargin" : 4]
-        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(hMargin)-[label]-(hMargin)-|", options: [], metrics: metrics, views: views))
-        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|-(vMargin)-[label]-(vMargin)-|", options: [], metrics: metrics, views: views))
+        titleLabel.horizontalAnchors == horizontalAnchors + 8
+        titleLabel.verticalAnchors == verticalAnchors + 4
         
-        tapGesture = UITapGestureRecognizer(target: self, action: #selector(ScheduleHeaderView.handleTap(_:)))
+        tapGesture = UITapGestureRecognizer(target: self,
+                                            action: #selector(ScheduleHeaderView.handleTap(_:)))
         addGestureRecognizer(tapGesture)
     }
 

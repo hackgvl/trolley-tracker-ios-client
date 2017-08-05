@@ -62,7 +62,6 @@ class ContainerViewController: UIViewController {
         mapContainer.edgeAnchors == view.edgeAnchors
 
         detailContainer.horizontalAnchors == view.horizontalAnchors
-        detailContainer.heightAnchor == view.heightAnchor * 0.3
         detailHiddenConstraint = detailContainer.topAnchor == view.bottomAnchor
 
         let detailAnchor = detailContainer.bottomAnchor

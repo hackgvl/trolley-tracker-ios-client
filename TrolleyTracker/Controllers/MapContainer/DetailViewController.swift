@@ -25,6 +25,10 @@ class DetailViewController: UIViewController {
         
         setupViews()
     }
+
+    override func loadView() {
+        self.view = rootStack
+    }
     
     //==================================================================
     // MARK: - API
@@ -85,29 +89,56 @@ class DetailViewController: UIViewController {
     //==================================================================
 
     fileprivate func setupViews() {
-        
-        view.backgroundColor = UIColor.ttMediumPurple()
 
-        for subview in [
-            titleLabel, timeLabel, distanceLabel, walkingTimeButton,
-            directionsButton, timeLoadingIndicator] as [UIView] {
-                view.addSubview(subview)
-        }
-        
-        let views = ["titleLabel": titleLabel, "timeLabel": timeLabel, "distanceLabel": distanceLabel, "directionsButton": directionsButton, "timeButton": walkingTimeButton, "timeLoading": timeLoadingIndicator] as [String : Any]
-        let metrics = ["upperVerticalMargin": 16.0, "lowerVerticalMargin": 8.0, "horizontalMargin": 10.0, "verticalPadding": 8.0, "horizontalPadding": 10.0]
+        let backgroundView = UIView().useAutolayout()
+        backgroundView.backgroundColor = .ttMediumPurple()
+        view.addSubview(backgroundView)
+        backgroundView.edgeAnchors == view.edgeAnchors
 
-        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|-(upperVerticalMargin)-[titleLabel]-(verticalPadding)-[distanceLabel]-(>=verticalPadding)-[directionsButton]-(lowerVerticalMargin)-|", options: .alignAllLeft, metrics: metrics, views: views))
-        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(horizontalMargin)-[titleLabel]-(>=horizontalMargin)-|", options: [], metrics: metrics, views: views))
-        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:[distanceLabel]-(>=horizontalPadding)-[timeLabel]-(horizontalPadding)-|", options: .alignAllCenterY, metrics: metrics, views: views))
-        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:[directionsButton]-(>=horizontalPadding)-[timeButton]-(horizontalPadding)-|", options: .alignAllCenterY, metrics: metrics, views: views))
+        let vMargin: CGFloat = 14
+        let hMargin: CGFloat = 16
+        let vSpacing: CGFloat = 6
 
-        timeLabel.centerYAnchor == timeLoadingIndicator.centerYAnchor
+        let innerVStack = UIStackView().useAutolayout()
+        innerVStack.axis = .vertical
+        innerVStack.spacing = vSpacing
 
-        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:[timeLoading]-(horizontalMargin)-|", options: [], metrics: metrics, views: views))
+        let outerHStack = UIStackView().useAutolayout()
+        outerHStack.axis = .horizontal
+        rootStack.addArrangedSubview(outerHStack)
+        outerHStack.addArrangedSubview(.spacerView(width: hMargin))
+        outerHStack.addArrangedSubview(innerVStack)
+        outerHStack.addArrangedSubview(.spacerView(width: hMargin))
+
+        innerVStack.addArrangedSubview(.spacerView(height: vMargin))
+        innerVStack.addArrangedSubview(titleLabel)
+
+        let secondaryLabelStack = UIStackView().useAutolayout()
+        secondaryLabelStack.axis = .horizontal
+        innerVStack.addArrangedSubview(secondaryLabelStack)
+        secondaryLabelStack.addArrangedSubview(distanceLabel)
+        secondaryLabelStack.addArrangedSubview(.flexibleView())
+        secondaryLabelStack.addArrangedSubview(timeLabel)
+
+        innerVStack.addArrangedSubview(.spacerView(height: 10))
+
+        let buttonsStack = UIStackView().useAutolayout()
+        buttonsStack.axis = .horizontal
+        innerVStack.addArrangedSubview(buttonsStack)
+        buttonsStack.addArrangedSubview(directionsButton)
+        buttonsStack.addArrangedSubview(.flexibleView())
+        buttonsStack.addArrangedSubview(walkingTimeButton)
+
+        innerVStack.addArrangedSubview(.spacerView(height: vMargin))
     }
+
+    private let rootStack: UIStackView = {
+        let sv = UIStackView()
+        sv.axis = .vertical
+        return sv
+    }()
     
-    fileprivate lazy var titleLabel: UILabel = {
+    private let titleLabel: UILabel = {
         let label = UILabel().useAutolayout()
         label.font = UIFont.boldSystemFont(ofSize: 20.0)
         label.textColor = UIColor.ttLightTextColor()
@@ -119,7 +150,7 @@ class DetailViewController: UIViewController {
         return label
     }()
     
-    fileprivate lazy var timeLabel: UILabel = {
+    private let timeLabel: UILabel = {
         let label = UILabel().useAutolayout()
         label.font = UIFont.boldSystemFont(ofSize: 20.0)
         label.textColor = UIColor.ttLightTextColor()
@@ -128,7 +159,7 @@ class DetailViewController: UIViewController {
         return label
     }()
     
-    fileprivate lazy var distanceLabel: UILabel = {
+    private let distanceLabel: UILabel = {
         let label = UILabel().useAutolayout()
         label.font = UIFont.boldSystemFont(ofSize: 20.0)
         label.textColor = UIColor.ttLightTextColor()
@@ -137,8 +168,8 @@ class DetailViewController: UIViewController {
         return label
     }()
     
-    fileprivate lazy var walkingTimeButton: UIButton = {
-        let button = UIButton().useAutolayout()
+    private lazy var walkingTimeButton: UIButton = {
+        let button = SolidButton().useAutolayout()
         button.addTarget(self,
                          action: #selector(handleWalkingTimeButton(_:)),
                          for: .touchUpInside)
@@ -147,8 +178,8 @@ class DetailViewController: UIViewController {
         return button
     }()
     
-    fileprivate lazy var directionsButton: UIButton = {
-        let button = UIButton().useAutolayout()
+    private lazy var directionsButton: UIButton = {
+        let button = SolidButton().useAutolayout()
         button.addTarget(self,
                          action: #selector(handleDirectionsButton(_:)),
                          for: .touchUpInside)
@@ -157,7 +188,7 @@ class DetailViewController: UIViewController {
         return button
     }()
     
-    fileprivate lazy var timeLoadingIndicator: UIActivityIndicatorView = {
+    private let timeLoadingIndicator: UIActivityIndicatorView = {
         let i = UIActivityIndicatorView(activityIndicatorStyle: .white).useAutolayout()
         i.stopAnimating()
         i.hidesWhenStopped = true

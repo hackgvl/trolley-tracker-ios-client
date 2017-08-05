@@ -23,8 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window?.tintColor = UIColor.ttAlternateTintColor()
         self.window?.backgroundColor = UIColor.black
-        UINavigationBar.setDefaultAppearance()
-        UITabBar.setDefaultAppearance()
+        AppearanceHelper.setAppColors()
 
         appController.install(in: window!)
         

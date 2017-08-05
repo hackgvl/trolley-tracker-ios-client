@@ -22,7 +22,7 @@
 "Message.Error.NoUserLocation" = "We're sorry, we can't find your current location right now.";
 
 // Detail View
-"Detail.Button.Directions" = "Directions";
+"Detail.Button.Directions" = "Get Directions";
 "Detail.Button.WalkingTime" = "Get Walking Time";
 "Detail.Label.Title" = "Trolly or Stop Name";
 

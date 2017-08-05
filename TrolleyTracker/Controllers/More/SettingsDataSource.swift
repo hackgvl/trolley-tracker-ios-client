@@ -51,7 +51,7 @@ class SettingsDataSource {
                 return
             }
 
-            UINavigationBar.setLightAppearance()
+            AppearanceHelper.setLightNavigationColors()
 
             let mc: MFMailComposeViewController = MFMailComposeViewController()
             mc.view.tintColor = .ttAlternateTintColor()
@@ -101,7 +101,7 @@ class SettingsMailComposeViewControllerDelegate: NSObject, MFMailComposeViewCont
                                didFinishWith result:MFMailComposeResult,
                                error:Error?) {
         
-        UINavigationBar.setDefaultAppearance()
+        AppearanceHelper.setDefaultNavigationAppearance()
         controller.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }
