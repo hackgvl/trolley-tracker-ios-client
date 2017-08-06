@@ -10,17 +10,17 @@ import UIKit
 
 extension String {
     
-    func maxFontSizeForSize(_ maxSize: CGSize, attributes: [String : AnyObject]) -> CGFloat {
+    func maxFontSizeForSize(_ maxSize: CGSize, attributes: [NSAttributedStringKey : Any]) -> CGFloat {
         
         var newAttributes = attributes
-        let font = newAttributes[NSFontAttributeName] as? UIFont ?? UIFont.systemFont(ofSize: 1)
+        let font = newAttributes[.font] as? UIFont ?? UIFont.systemFont(ofSize: 1)
         var lastGoodSize: Int = Int(font.pointSize)
         
         for i in lastGoodSize..<100 {
             
-            newAttributes[NSFontAttributeName] = font.withSize(CGFloat(lastGoodSize))
+            newAttributes[.font] = font.withSize(CGFloat(lastGoodSize))
             
-            let size = (self as NSString).size(attributes: newAttributes)
+            let size = (self as NSString).size(withAttributes: newAttributes)
             
             if size.width < maxSize.width && size.height < maxSize.height {
                 lastGoodSize = i

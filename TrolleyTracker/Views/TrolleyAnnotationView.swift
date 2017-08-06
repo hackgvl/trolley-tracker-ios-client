@@ -80,14 +80,14 @@ class TrolleyAnnotationView: MKAnnotationView {
         let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
         paragraphStyle.alignment = NSTextAlignment.center
         
-        var attributes: [String : AnyObject] = [
-            NSForegroundColorAttributeName : UIColor.white,
-            NSParagraphStyleAttributeName : paragraphStyle,
-            NSFontAttributeName : UIFont.ttDefaultFont(6)
+        var attributes: [NSAttributedStringKey : Any] = [
+            .foregroundColor : UIColor.white,
+            .paragraphStyle : paragraphStyle,
+            .font : UIFont.ttDefaultFont(6)
         ]
-        
+
         let maxFontSize = labelText.maxFontSizeForSize(labelRect.size, attributes: attributes)
-        attributes[NSFontAttributeName] = UIFont.ttDefaultFont(maxFontSize)
+        attributes[.font] = UIFont.ttDefaultFont(maxFontSize)
         
         (labelText as NSString).draw(in: labelRect, withAttributes: attributes)
     }

@@ -49,10 +49,10 @@
         public typealias LayoutPriority = UILayoutPriority
         public typealias LayoutGuide = UILayoutGuide
 
-        public static let LayoutPriorityRequired = UILayoutPriorityRequired
-        public static let LayoutPriorityHigh = UILayoutPriorityDefaultHigh
-        public static let LayoutPriorityLow = UILayoutPriorityDefaultLow
-        public static let LayoutPriorityFittingSize = UILayoutPriorityFittingSizeLevel
+        public static let LayoutPriorityRequired = UILayoutPriority.required
+        public static let LayoutPriorityHigh = UILayoutPriority.defaultHigh
+        public static let LayoutPriorityLow = UILayoutPriority.defaultLow
+        public static let LayoutPriorityFittingSize = UILayoutPriority.fittingSizeLevel
     }
 #endif
 
@@ -360,13 +360,13 @@ extension NSLayoutYAxisAnchor : LayoutAxisType {}
         return .custom(Alias.LayoutPriority(Float(lhs)) - rhs.value)
     }
 
-//    private func + (lhs: Alias.LayoutPriority, rhs: Alias.LayoutPriority) -> Alias.LayoutPriority {
-//        return Alias.LayoutPriority(lhs.rawValue + rhs.rawValue)
-//    }
-//
-//    private func - (lhs: Alias.LayoutPriority, rhs: Alias.LayoutPriority) -> Alias.LayoutPriority {
-//        return Alias.LayoutPriority(lhs.rawValue - rhs.rawValue)
-//    }
+    private func + (lhs: Alias.LayoutPriority, rhs: Alias.LayoutPriority) -> Alias.LayoutPriority {
+        return Alias.LayoutPriority(lhs.rawValue + rhs.rawValue)
+    }
+
+    private func - (lhs: Alias.LayoutPriority, rhs: Alias.LayoutPriority) -> Alias.LayoutPriority {
+        return Alias.LayoutPriority(lhs.rawValue - rhs.rawValue)
+    }
 
 #endif
 

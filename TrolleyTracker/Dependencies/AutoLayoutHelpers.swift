@@ -31,14 +31,10 @@ extension UIView {
     public static func flexibleView() -> UIView {
         let v = UIView().useAutolayout()
         v.backgroundColor = .clear
-//        v.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .vertical)
-//        v.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .horizontal)
-//        v.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: .vertical)
-//        v.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: .horizontal)
-        v.setContentHuggingPriority(1, for: .vertical)
-        v.setContentHuggingPriority(1, for: .horizontal)
-        v.setContentCompressionResistancePriority(1, for: .vertical)
-        v.setContentCompressionResistancePriority(1, for: .horizontal)
+        v.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .vertical)
+        v.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .horizontal)
+        v.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: .vertical)
+        v.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         return v
     }
 

@@ -22,10 +22,12 @@ open class ObserverSetEntry<Parameters> {
 
 open class ObserverSet<Parameters>: CustomStringConvertible {
     // Locking support
+
+    typealias SyncType = () -> Void
     
     fileprivate var queue = DispatchQueue(label: "com.mikeash.ObserverSet", attributes: [])
     
-    fileprivate func synchronized(_ f: (Void) -> Void) {
+    fileprivate func synchronized(_ f: SyncType) {
         queue.sync(execute: f)
     }
     
