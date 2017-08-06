@@ -49,7 +49,7 @@ class ScheduleHeaderView: UITableViewHeaderFooterView {
         displayedRouteID = section.selectable ? section.items.first?.routeID : nil
     }
     
-    @objc fileprivate func handleTap(_ tap: UITapGestureRecognizer) {
+    @objc private func handleTap(_ tap: UITapGestureRecognizer) {
         guard let routeID = displayedRouteID else { return }
         tapAction?(routeID)
     }

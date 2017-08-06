@@ -25,16 +25,16 @@ open class ObserverSet<Parameters>: CustomStringConvertible {
 
     typealias SyncType = () -> Void
     
-    fileprivate var queue = DispatchQueue(label: "com.mikeash.ObserverSet", attributes: [])
+    private var queue = DispatchQueue(label: "com.mikeash.ObserverSet", attributes: [])
     
-    fileprivate func synchronized(_ f: SyncType) {
+    private func synchronized(_ f: SyncType) {
         queue.sync(execute: f)
     }
     
     
     // Main implementation
     
-    fileprivate var entries: [ObserverSetEntry<Parameters>] = []
+    private var entries: [ObserverSetEntry<Parameters>] = []
     
     public init() {}
     

@@ -39,7 +39,7 @@ extension RouteTime {
 // Dictionary
 extension RouteTime {
     
-    fileprivate enum RouteTimeDictionaryKeys: String {
+    private enum RouteTimeDictionaryKeys: String {
         case day, time
     }
     

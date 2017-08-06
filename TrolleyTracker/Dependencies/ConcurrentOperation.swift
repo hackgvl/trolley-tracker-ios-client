@@ -31,7 +31,7 @@ class ConcurrentOperation: Operation {
     }
     
     
-    fileprivate enum State: Int {
+    private enum State: Int {
         /// The initial state of an `Operation`.
         case initialized
         
@@ -45,9 +45,9 @@ class ConcurrentOperation: Operation {
         case cancelled
     }
     
-    fileprivate var _state = State.initialized
+    private var _state = State.initialized
     
-    fileprivate var state: State {
+    private var state: State {
         get {
             return _state
         }

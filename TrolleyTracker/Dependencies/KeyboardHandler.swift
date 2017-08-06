@@ -21,7 +21,7 @@ extension UIViewController {
         return guide.guide
     }
 
-    fileprivate func createKeyboardGuide() -> KeyboardGuide {
+    private func createKeyboardGuide() -> KeyboardGuide {
 
         let g = UILayoutGuide()
         view.addLayoutGuide(g)

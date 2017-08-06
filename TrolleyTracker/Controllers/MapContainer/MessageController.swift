@@ -15,7 +15,7 @@ protocol MessageControllerDelegate: class {
 
 class MessageController: FunctionController {
 
-    fileprivate enum MessageType {
+    private enum MessageType {
         case disclaimer
         case noTrolleys
         case none
@@ -32,7 +32,7 @@ class MessageController: FunctionController {
     private let viewController: MessageViewController
     weak var delegate: MessageControllerDelegate?
 
-    fileprivate var activeMessage: MessageType = .disclaimer {
+    private var activeMessage: MessageType = .disclaimer {
         didSet { viewController.setMessageText(activeMessage.displayValue) }
     }
     private var shouldShowDisclaimer = false {

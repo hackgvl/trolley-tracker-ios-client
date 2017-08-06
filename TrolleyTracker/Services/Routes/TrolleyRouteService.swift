@@ -24,8 +24,8 @@ class TrolleyRouteServiceLive: TrolleyRouteService {
     private let client: APIClient
     private let queue: OperationQueue = OperationQueue()
     
-    fileprivate var memoryCachedActiveRoutes: CacheItem<[TrolleyRoute]>?
-    fileprivate var memoryCachedRoutes = [Int : TrolleyRoute]()
+    private var memoryCachedActiveRoutes: CacheItem<[TrolleyRoute]>?
+    private var memoryCachedRoutes = [Int : TrolleyRoute]()
 
     init(client: APIClient) {
         self.client = client

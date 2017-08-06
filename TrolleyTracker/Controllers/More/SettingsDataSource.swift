@@ -41,7 +41,7 @@ class SettingsDataSource {
         self.presentationController = presentationController
     }
     
-    fileprivate func feedbackItem(with context: UIViewController) -> SettingsItem {
+    private func feedbackItem(with context: UIViewController) -> SettingsItem {
         
         return SettingsItem(title: LS.moreItemFeedback) {
 
@@ -64,7 +64,7 @@ class SettingsDataSource {
         }
     }
     
-    fileprivate func shareItem(with context: UIViewController) -> SettingsItem {
+    private func shareItem(with context: UIViewController) -> SettingsItem {
         
         return SettingsItem(title: LS.moreItemShare) {
 
@@ -76,7 +76,7 @@ class SettingsDataSource {
         }
     }
     
-    fileprivate func attributionItem(with context: UIViewController) -> SettingsItem {
+    private func attributionItem(with context: UIViewController) -> SettingsItem {
         
         return SettingsItem(title: LS.moreItemAcknowledgements) {
             let controller = AttributionViewController()
@@ -85,7 +85,7 @@ class SettingsDataSource {
         }
     }
     
-    fileprivate func aboutItem(with context: UIViewController) -> SettingsItem {
+    private func aboutItem(with context: UIViewController) -> SettingsItem {
         
         return SettingsItem(title: LS.moreItemAbout) {
             let controller = AboutViewController()

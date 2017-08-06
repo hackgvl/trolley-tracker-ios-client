@@ -18,11 +18,11 @@ private struct ETAResult {
 
 class TimeAndDistanceService {
     
-    fileprivate static var etaCache = [ETAResult]()
+    private static var etaCache = [ETAResult]()
     
     typealias TravelTimeCompletion = (_ rawTime: TimeInterval?, _ formattedTime: String?) -> Void
     
-    fileprivate static var etaRequestQueue: OperationQueue = {
+    private static var etaRequestQueue: OperationQueue = {
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
         return queue

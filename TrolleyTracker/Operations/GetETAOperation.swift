@@ -12,7 +12,7 @@ import MapKit
 
 class GetETAOperation: ConcurrentOperation {
     
-    fileprivate static let travelTimeDateFormatter: DateComponentsFormatter = {
+    private static let travelTimeDateFormatter: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .abbreviated
         
@@ -22,8 +22,8 @@ class GetETAOperation: ConcurrentOperation {
     var expectedTravelTime: TimeInterval?
     var formattedTravelTime: String?
     
-    fileprivate let source: MKMapItem
-    fileprivate let destination: MKMapItem
+    private let source: MKMapItem
+    private let destination: MKMapItem
     
     init(source: MKMapItem, destination: MKMapItem) {
         self.source = source

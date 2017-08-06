@@ -14,9 +14,9 @@ class TrolleyLocationServiceLive: TrolleyLocationService {
     var trolleyObservers = ObserverSet<[Trolley]>()
     var trolleyPresentObservers = ObserverSet<Bool>()
     
-    fileprivate var updateTimer: Timer?
+    private var updateTimer: Timer?
     
-    fileprivate var allTrolleys: [Trolley] = []
+    private var allTrolleys: [Trolley] = []
 
     private let client: APIClient
 
@@ -62,7 +62,7 @@ class TrolleyLocationServiceLive: TrolleyLocationService {
         updateTimer?.invalidate()
     }
     
-    @objc fileprivate func getRunningTrolleys() {
+    @objc private func getRunningTrolleys() {
 
         client.fetchRunningTrolleys { result in
             switch result {
@@ -91,7 +91,7 @@ class TrolleyLocationServiceLive: TrolleyLocationService {
         }
     }
 
-    fileprivate func updateTrolleysWithTrolley(_ trolley: Trolley) {
+    private func updateTrolleysWithTrolley(_ trolley: Trolley) {
        
         var trolleys = self.allTrolleys
         
@@ -109,7 +109,7 @@ class TrolleyLocationServiceLive: TrolleyLocationService {
         allTrolleys = trolleys
     }
 
-    fileprivate func parseTrolleysFromJSON(_ json: AnyObject?) -> [Trolley] {
+    private func parseTrolleysFromJSON(_ json: AnyObject?) -> [Trolley] {
 
         guard let json = json,
             let trolleyObjects = JSON(json).arrayObject

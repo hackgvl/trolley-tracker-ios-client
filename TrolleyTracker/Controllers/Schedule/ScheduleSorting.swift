@@ -109,8 +109,8 @@ extension Array where Element == RouteSchedule {
     }
 }
 
-extension ScheduleItem {
-    fileprivate init(route: GroupedRoute) {
+private extension ScheduleItem {
+    init(route: GroupedRoute) {
         self.routeID = route.ID
         self.times = route.times
         self.title = route.name
@@ -142,15 +142,15 @@ private enum Day: String {
 }
 
 private struct GroupedRoute {
-    fileprivate let name: String
-    fileprivate let ID: Int
-    fileprivate var times: [String]
+    let name: String
+    let ID: Int
+    var times: [String]
 }
 
 private struct Route: Hashable {
-    fileprivate let name: String
-    fileprivate let ID: Int
-    fileprivate let time: String
+    let name: String
+    let ID: Int
+    let time: String
     var hashValue: Int { get { return name.hashValue } }
 }
 

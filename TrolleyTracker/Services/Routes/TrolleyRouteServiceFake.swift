@@ -22,11 +22,11 @@ class TrolleyRouteServiceFake: TrolleyRouteService {
         completion(fakeRoutes())
     }
     
-    fileprivate func fakeRoutes() -> [TrolleyRoute] {
+    private func fakeRoutes() -> [TrolleyRoute] {
         return [TrolleyRoute(json: fakeRoute1(), colorIndex: 2)!]
     }
     
-    fileprivate func fakeRoute1() -> JSON {
+    private func fakeRoute1() -> JSON {
         
         let dictionary: [String : AnyObject] = [:]
 //        let dictionary: [String : AnyObject] = [

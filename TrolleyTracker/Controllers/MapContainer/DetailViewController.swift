@@ -66,7 +66,7 @@ class DetailViewController: UIViewController {
     // MARK: - Dislaying Annotations
     //==================================================================
     
-    fileprivate func resetLabels() {
+    private func resetLabels() {
         titleLabel.text = nil
         timeLabel.text = nil
         distanceLabel.text = nil
@@ -76,11 +76,11 @@ class DetailViewController: UIViewController {
     // MARK: - Actions
     //==================================================================
     
-    @objc fileprivate func handleDirectionsButton(_ sender: UIButton) {
+    @objc private func handleDirectionsButton(_ sender: UIButton) {
         delegate?.directionsButtonTapped()
     }
     
-    @objc fileprivate func handleWalkingTimeButton(_ sender: UIButton) {
+    @objc private func handleWalkingTimeButton(_ sender: UIButton) {
         delegate?.walkingTimeButtonTapped()
     }
 
@@ -88,7 +88,7 @@ class DetailViewController: UIViewController {
     // MARK: - Views
     //==================================================================
 
-    fileprivate func setupViews() {
+    private func setupViews() {
 
         let backgroundView = UIView().useAutolayout()
         backgroundView.backgroundColor = .ttMediumPurple()

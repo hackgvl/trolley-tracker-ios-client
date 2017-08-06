@@ -75,7 +75,7 @@ class MapViewController: UIViewController {
     // MARK: - Views
     //==========================================================================
     
-    fileprivate func setupViews() {
+    private func setupViews() {
 
         view.addSubview(mapView)
         mapView.edgeAnchors == view.edgeAnchors

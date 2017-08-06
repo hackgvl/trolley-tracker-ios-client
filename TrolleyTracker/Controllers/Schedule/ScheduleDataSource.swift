@@ -16,7 +16,7 @@ class ScheduleDataSource: NSObject {
 
     var displayRouteAction: DisplayRouteAction?
 
-    fileprivate var sections: [ScheduleSection] {
+    private var sections: [ScheduleSection] {
         switch displayType {
         case .day: return schedulesByDay
         case .route: return schedulesByRoute
@@ -31,7 +31,7 @@ class ScheduleDataSource: NSObject {
         schedulesByRoute = schedules.groupedByRoute()
     }
 
-    fileprivate func item(at indexPath: IndexPath) -> ScheduleItem {
+    private func item(at indexPath: IndexPath) -> ScheduleItem {
         return sections[indexPath.section].items[indexPath.row]
     }
 }

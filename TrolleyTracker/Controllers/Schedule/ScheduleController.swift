@@ -25,8 +25,8 @@ class ScheduleController: FunctionController {
     typealias Dependencies = HasScheduleService & HasRouteService
 
     private let dependencies: Dependencies
-    fileprivate let viewController: ScheduleViewController
-    fileprivate let dataSource: ScheduleDataSource
+    private let viewController: ScheduleViewController
+    private let dataSource: ScheduleDataSource
 
     private var routeController: RouteController?
     private var lastFetchRequestDate: Date?
@@ -58,7 +58,7 @@ class ScheduleController: FunctionController {
         return nav
     }
 
-    fileprivate func loadSchedulesIfNeeded() {
+    private func loadSchedulesIfNeeded() {
 
         guard let lastDate = lastFetchRequestDate else {
             loadSchedules()

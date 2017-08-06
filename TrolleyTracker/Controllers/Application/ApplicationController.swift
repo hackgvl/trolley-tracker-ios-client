@@ -12,7 +12,7 @@ class ApplicationController: FunctionController {
 
     private let client: APIClient
     private let dependencies: AppDependencies
-    fileprivate let rootViewController: UITabBarController
+    private let rootViewController: UITabBarController
 
     var childControllers = [FunctionController]()
 

@@ -18,13 +18,13 @@ class ContainerController: FunctionController {
     typealias Dependencies = HasLocationService & HasRouteService
 
     private let dependencies: Dependencies
-    fileprivate let viewController: ContainerViewController
+    private let viewController: ContainerViewController
 
     weak var delegate: ContainerControllerDelegate?
 
-    fileprivate let mapController: MapController
-    fileprivate let detailController: DetailController
-    fileprivate let messageController: MessageController
+    private let mapController: MapController
+    private let detailController: DetailController
+    private let messageController: MessageController
 
     init(dependencies: Dependencies) {
         self.dependencies = dependencies

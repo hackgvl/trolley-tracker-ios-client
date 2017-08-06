@@ -21,17 +21,17 @@ class MapController: FunctionController {
 
     weak var delegate: MapControllerDelegate?
 
-    fileprivate let viewController: MapViewController
+    private let viewController: MapViewController
     private let dependencies: Dependencies
     private let locationManager = CLLocationManager()
     private let mapDelegate = TrolleyMapViewDelegate()
 
-    fileprivate let refreshTimer = RefreshTimer(interval: 60)
+    private let refreshTimer = RefreshTimer(interval: 60)
 
-    fileprivate var locationService: TrolleyLocationService {
+    private var locationService: TrolleyLocationService {
         return dependencies.locationService
     }
-    fileprivate var routeService: TrolleyRouteService {
+    private var routeService: TrolleyRouteService {
         return dependencies.routeService
     }
 
@@ -75,7 +75,7 @@ class MapController: FunctionController {
         viewController.mapView.addOrUpdateTrolley(trolleys)
     }
 
-    fileprivate func loadRoutes() {
+    private func loadRoutes() {
         routeService.loadTrolleyRoutes { routes in
             self.viewController.mapView.replaceCurrentRoutes(with: routes)
         }

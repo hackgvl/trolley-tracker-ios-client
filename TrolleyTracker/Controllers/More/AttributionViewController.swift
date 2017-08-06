@@ -33,7 +33,7 @@ class AttributionViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    fileprivate var attributionItems: [AttributionItem] = [
+    private var attributionItems: [AttributionItem] = [
         AttributionItem(name: "Anchorage",
                         urlString: "https://github.com/Raizlabs/Anchorage"),
         AttributionItem(name: "CwlResult",

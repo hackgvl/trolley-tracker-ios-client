@@ -15,8 +15,8 @@ class DetailController: FunctionController {
 
     private let viewController: DetailViewController
 
-    fileprivate var currentUserLocation: MKUserLocation?
-    fileprivate var currentAnnotation: MKAnnotation?
+    private var currentUserLocation: MKUserLocation?
+    private var currentAnnotation: MKAnnotation?
 
     init(dependencies: Dependencies) {
         self.viewController = DetailViewController()
@@ -56,13 +56,13 @@ class DetailController: FunctionController {
         viewController.show(distance: string)
     }
 
-    fileprivate func getDirections(_ pointB: CLLocationCoordinate2D) {
+    private func getDirections(_ pointB: CLLocationCoordinate2D) {
         //TODO: Make this the name of the stop or Trolley
         let name = "Trolley"
         MKMapItem.openMapsFromCurrentLocation(toCoordinate: pointB, named: name)
     }
 
-    fileprivate func getWalkingTime(_ cacheResultsOnly: Bool) {
+    private func getWalkingTime(_ cacheResultsOnly: Bool) {
 
         guard let annotation = currentAnnotation else { return }
         guard let userLocation = currentUserLocation?.location else { return }

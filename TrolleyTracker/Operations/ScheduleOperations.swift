@@ -86,8 +86,8 @@ class LoadSchedulesFromNetworkOperation: ConcurrentOperation {
 
 class AggregateSchedulesOperation: ConcurrentOperation {
     
-    fileprivate let routes: Box<[JSON]>
-    fileprivate let schedules: Box<[JSON]>
+    private let routes: Box<[JSON]>
+    private let schedules: Box<[JSON]>
     
     var routeSchedules = [RouteSchedule]() // <-- Return value
     
@@ -137,7 +137,7 @@ private let UserDefaultsRouteScheduleKey = "UserDefaultsRouteScheduleKey"
 
 class SaveSchedulesOperation: Operation {
     
-    fileprivate let schedules: [RouteSchedule]
+    private let schedules: [RouteSchedule]
     
     init(schedules: [RouteSchedule]) {
         self.schedules = schedules

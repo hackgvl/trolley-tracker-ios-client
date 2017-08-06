@@ -22,24 +22,24 @@ class TrolleyAnnotationView: MKAnnotationView {
         }
     }
     
-    fileprivate var labelText: String {
+    private var labelText: String {
         get { return "#\(trolleyNumber)" }
     }
 
-    fileprivate let innerColorAlpha: CGFloat = 0.9
-    fileprivate let outerColorAlpha: CGFloat = 0.5
+    private let innerColorAlpha: CGFloat = 0.9
+    private let outerColorAlpha: CGFloat = 0.5
     
-    fileprivate let outerCirclePercentage: CGFloat = 0.9 // The diameter of the outer circle, as a percentage of the view's size
-    fileprivate let innerCirclePercentage: CGFloat = 0.73 // The diameter of the inner circle, as a percentage of the view's size
+    private let outerCirclePercentage: CGFloat = 0.9 // The diameter of the outer circle, as a percentage of the view's size
+    private let innerCirclePercentage: CGFloat = 0.73 // The diameter of the inner circle, as a percentage of the view's size
     
-    fileprivate let outerCircleWidthPercentage: CGFloat = 0.08 // The line width of the outerCircle, as a percentage of the view's width
+    private let outerCircleWidthPercentage: CGFloat = 0.08 // The line width of the outerCircle, as a percentage of the view's width
     
-    fileprivate let imageInsetPercentage: CGFloat = 0.35 // The size of the image, as a precentage of the view's size
-    fileprivate let verticalImageOffsetPercent: CGFloat = 0.1 // Controls how far the image is shifted vertically, as a percentage of the view's height
+    private let imageInsetPercentage: CGFloat = 0.35 // The size of the image, as a precentage of the view's size
+    private let verticalImageOffsetPercent: CGFloat = 0.1 // Controls how far the image is shifted vertically, as a percentage of the view's height
     
-    fileprivate let textWidthPercentage: CGFloat = 0.5 // The width of the text area, as a percentage of the view's width
-    fileprivate let textHeightPercentage: CGFloat = 0.25 // The height of the text area, as a percentage of the view's height
-    fileprivate let textHeightOffset: CGFloat = -0.035 // The vertical offset of the text, starting at the bottom of the image, as a percentage of the view's height
+    private let textWidthPercentage: CGFloat = 0.5 // The width of the text area, as a percentage of the view's width
+    private let textHeightPercentage: CGFloat = 0.25 // The height of the text area, as a percentage of the view's height
+    private let textHeightOffset: CGFloat = -0.035 // The vertical offset of the text, starting at the bottom of the image, as a percentage of the view's height
 
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)

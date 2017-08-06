@@ -34,7 +34,7 @@ class TrolleyScheduleService {
         loadSchedulesFromNetwork(completion)
     }
     
-    fileprivate func loadSchedulesFromNetwork(_ completion: @escaping LoadScheduleCompletion) {
+    private func loadSchedulesFromNetwork(_ completion: @escaping LoadScheduleCompletion) {
         
         // Load all Routes so we have names for the RouteSchedules (associated by RouteID)
         var routes = Box<[JSON]>(value: [JSON]())

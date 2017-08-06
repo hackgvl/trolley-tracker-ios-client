@@ -54,7 +54,7 @@ extension UIImage {
     //    get { return imageOrBlank("<#Name#>") }
     //    }
     
-    fileprivate class func imageOrBlank(_ named: String) -> UIImage {
+    private class func imageOrBlank(_ named: String) -> UIImage {
         
         if let image = UIImage(named: named) {
             return image
