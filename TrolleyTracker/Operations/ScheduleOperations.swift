@@ -29,11 +29,10 @@ class OperationQueues {
 
 class LoadRoutesFromNetworkOperation: ConcurrentOperation {
 
-    let results: Box<[JSON]>
+    var routes: [_APIRoute]?
     private let client: APIClient
 
-    init(results: inout Box<[JSON]>, client: APIClient) {
-        self.results = results
+    init(client: APIClient) {
         self.client = client
     }
     
@@ -41,25 +40,24 @@ class LoadRoutesFromNetworkOperation: ConcurrentOperation {
 
         client.fetchAllRoutes { result in
 
-            defer { self.finish() }
-
             switch result {
             case .failure: break
             case .success(let data):
-                let array = JSON(data).arrayValue
-                self.results.value?.append(contentsOf: array)
+                let decoder = JSONDecoder()
+                self.routes = try? decoder.decode([_APIRoute].self, from: data)
             }
+
+            self.finish()
         }
     }
 }
 
 class LoadSchedulesFromNetworkOperation: ConcurrentOperation {
     
-    let results: Box<[JSON]>
+    var schedules: [_APIRouteSchedule]?
     private let client: APIClient
     
-    init(boxedResults: inout Box<[JSON]>, client: APIClient) {
-        self.results = boxedResults
+    init(client: APIClient) {
         self.client = client
     }
     
@@ -67,15 +65,15 @@ class LoadSchedulesFromNetworkOperation: ConcurrentOperation {
 
         client.fetchRouteSchedules { result in
 
-            defer { self.finish() }
-
             switch result {
             case .failure:
                 break
             case .success(let data):
-                let jsonArray = JSON(data).arrayValue
-                self.results.value?.append(contentsOf: jsonArray)
+                let decoder = JSONDecoder()
+                self.schedules = try? decoder.decode([_APIRouteSchedule].self, from: data)
             }
+
+            self.finish()
         }
     }
 }
@@ -86,20 +84,15 @@ class LoadSchedulesFromNetworkOperation: ConcurrentOperation {
 
 class AggregateSchedulesOperation: ConcurrentOperation {
     
-    private let routes: Box<[JSON]>
-    private let schedules: Box<[JSON]>
+    var routes: [_APIRoute]?
+    var schedules: [_APIRouteSchedule]?
     
     var routeSchedules = [RouteSchedule]() // <-- Return value
     
-    init(schedules: inout Box<[JSON]>, routes: inout Box<[JSON]>) {
-        self.schedules = schedules
-        self.routes = routes
-    }
-    
     override func execute() {
         
-        guard let schedules = self.schedules.value else { self.finish(); return }
-        guard let routes = self.routes.value else { self.finish(); return }
+        guard let schedules = schedules else { finish(); return }
+        guard let routes = routes else { finish(); return }
         
         // Aggregate schedules by route ID (i.e. there should only be one schedule per route, but with multiple times per schedule)
         // e.g. RouteID: 1, RouteName: "Main to Flour Field", times: ["Sunday 4-6", "Friday 6-10"]
@@ -109,18 +102,20 @@ class AggregateSchedulesOperation: ConcurrentOperation {
             // for each route
             var routeTimes = [RouteTime]()
             // -- find any matching schedules
-            let matchingSchedules = schedules.filter { $0["RouteID"].number == route["ID"].number }
+            let matchingSchedules = schedules.filter { $0.ID == route.ID }
             
             for schedule in matchingSchedules {
-                guard let routeTime = RouteTime(json: schedule) else { continue }
-                // -- for any schedules that match, create a route time object from that schedule and add it to an array
+                // -- for any schedules that match,
+                // create a route time object from that schedule
+                // and add it to an array
+                let routeTime = RouteTime(rawSchedule: schedule)
                 routeTimes.append(routeTime)
             }
             
             // -- if matching schedules were found, create a new RouteSchedule object for them
             if routeTimes.count > 0 {
-                guard let name = route[RouteScheduleJSONKeys.Description.rawValue].string else { continue }
-                guard let routeID = route[RouteScheduleJSONKeys.ID.rawValue].int else { continue }
+                let name = route.Description
+                let routeID = route.ID
                 self.routeSchedules.append(RouteSchedule(name: name, ID: routeID, times: routeTimes))
             }
         }
@@ -144,8 +139,16 @@ class SaveSchedulesOperation: Operation {
     }
     
     override func main() {
-        let scheduleDictionaries = schedules.map { $0.dictionaryRepresentation() }
-        UserDefaults.standard.set(scheduleDictionaries, forKey: UserDefaultsRouteScheduleKey)
+
+        let encoder = JSONEncoder()
+        let datas = schedules.flatMap {
+            try? encoder.encode($0)
+        }
+
+        let key = UserDefaultsRouteScheduleKey
+        let defaults = UserDefaults.standard
+
+        defaults.set(datas, forKey: key)
     }
 }
 
@@ -154,13 +157,17 @@ class LoadLocalSchedulesOperation: Operation {
     var loadedSchedules: [RouteSchedule]?
     
     override func main() {
-        if let dictionaries = UserDefaults.standard.object(forKey: UserDefaultsRouteScheduleKey) as? [[String : AnyObject]] {
-            var schedules = [RouteSchedule]()
-            for dictionary in dictionaries {
-                guard let schedule = RouteSchedule(dictionary: dictionary) else { continue }
-                schedules.append(schedule)
-            }
-            loadedSchedules = schedules
+
+        let key = UserDefaultsRouteScheduleKey
+        let defaults = UserDefaults.standard
+
+        guard let datas = defaults.array(forKey: key) as? [Data] else {
+            return
+        }
+
+        let decoder = JSONDecoder()
+        loadedSchedules = datas.flatMap {
+            try? decoder.decode(RouteSchedule.self, from: $0)
         }
     }
 }

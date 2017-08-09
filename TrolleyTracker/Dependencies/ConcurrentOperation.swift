@@ -13,23 +13,14 @@ class ConcurrentOperation: Operation {
     override var isAsynchronous: Bool {
         return true
     }
-    
-    class func keyPathsForValuesAffectingIsReady() -> Set<NSObject> {
-        return ["state" as NSObject]
+
+    override class func keyPathsForValuesAffectingValue(forKey key: String) -> Set<String> {
+        let keys = ["isReady", "isExecuting", "isFinished", "isCancelled"]
+        if keys.contains(key) {
+            return ["state"]
+        }
+        return []
     }
-    
-    class func keyPathsForValuesAffectingIsExecuting() -> Set<NSObject> {
-        return ["state" as NSObject]
-    }
-    
-    class func keyPathsForValuesAffectingIsFinished() -> Set<NSObject> {
-        return ["state" as NSObject]
-    }
-    
-    class func keyPathsForValuesAffectingIsCancelled() -> Set<NSObject> {
-        return ["state" as NSObject]
-    }
-    
     
     private enum State: Int {
         /// The initial state of an `Operation`.

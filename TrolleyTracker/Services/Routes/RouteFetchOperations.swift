@@ -48,10 +48,12 @@ class FetchRouteDetailOperation: ConcurrentOperation {
             case .failure:
                 completion([]); return
             case .success(let data):
-                let json = JSON(data)
-                guard let route = TrolleyRoute(json: json, colorIndex: colorIndex) else {
-                    completion([]); return
+                let decoder = JSONDecoder()
+                guard let rawRoute = try? decoder.decode(_APITrolleyRoute.self, from: data) else {
+                    completion([])
+                    return
                 }
+                let route = rawRoute.route(with: colorIndex)
                 completion([route])
             }
         }
@@ -72,17 +74,20 @@ class FetchActiveRouteIDsOperation: ConcurrentOperation {
 
         client.fetchActiveRoutes { result in
 
-            defer {
-                self.finish()
-            }
-
             switch result {
             case .failure:
                 return
             case .success(let data):
-                let jsonArray =  JSON(data).arrayValue
-                self.fetchedRouteIDs = jsonArray.flatMap { $0["ID"].int }
+
+                let jsonDecoder = JSONDecoder()
+                guard let rawRoutes = try? jsonDecoder.decode([_APIRoute].self, from: data) else {
+                    self.finish()
+                    return
+                }
+                self.fetchedRouteIDs = rawRoutes.map { $0.ID }
             }
+
+            self.finish()
         }
     }
 }

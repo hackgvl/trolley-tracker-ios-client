@@ -10,15 +10,13 @@ import Foundation
 import MapKit
 
 
-
-func ==(lhs: TrolleyRoute, rhs: TrolleyRoute) -> Bool {
-    return lhs.ID == rhs.ID
-}
-
-
 /// Represents a route that trolleys follow. 
-struct TrolleyRoute {
-    
+struct TrolleyRoute: Codable, Equatable {
+
+    static func ==(lhs: TrolleyRoute, rhs: TrolleyRoute) -> Bool {
+        return lhs.ID == rhs.ID
+    }
+
     let ID: Int
     let shortName: String
     let longName: String
@@ -27,7 +25,11 @@ struct TrolleyRoute {
     let colorIndex: Int
     
     let stops: [TrolleyStop]
-    let shapePoints: [CLLocation]
+
+    private let _shapeCoordinates: [Coordinate]
+    var shapePoints: [CLLocation] {
+        return _shapeCoordinates.map { $0.location }
+    }
     
     lazy var overlay: MKOverlay = {
         
@@ -38,29 +40,85 @@ struct TrolleyRoute {
 
         return polyline
     }()
-    
-    init?(json: JSON, colorIndex: Int) {
-        
-        self.ID = json["ID"].intValue
-        self.shortName = json["ShortName"].stringValue
-        self.longName = json["LongName"].stringValue
-        self.routeDescription = json["Description"].stringValue
-        self.flagStopsOnly = json["FlagStopsOnly"].boolValue
+
+    init(id: Int,
+         shortName: String,
+         longName: String,
+         routeDescription: String,
+         flagStopsOnly: Bool,
+         stops: [TrolleyStop],
+         shapeCoordinates: [Coordinate],
+         colorIndex: Int) {
+        self.ID = id
+        self.shortName = shortName
+        self.longName = longName
+        self.routeDescription = routeDescription
+        self.flagStopsOnly = flagStopsOnly
+        self.stops = stops
+        self._shapeCoordinates = shapeCoordinates
         self.colorIndex = colorIndex
-        
-        self.stops = json["Stops"].arrayValue.map { TrolleyStop(json: $0, colorIndex: colorIndex) }.filter { $0 != nil }.map { $0! }
+    }    
+}
 
-        var points = [CLLocation]()
-        let jsonPoints = json["RouteShape"].arrayValue
+struct _APIRoute: Codable {
+    let ID: Int
+    let ShortName: String
+    let LongName: String
+    let Description: String
+    let FlagStopsOnly: Bool
+}
 
-        for point in jsonPoints {
-            let lat = point["Lat"].doubleValue
-            let lon = point["Lon"].doubleValue
-            points.append(CLLocation(latitude: lat, longitude: lon))
+struct _APITrolleyRoute: Codable {
+    let ID: Int
+    let ShortName: String
+    let LongName: String
+    let Description: String
+    let FlagStopsOnly: Bool
+
+    let RouteShape: [_APIShapePoint]
+    let Stops: [_APITrolleyStop]
+
+    func route(with index: Int) -> TrolleyRoute {
+        let stops = Stops.map {
+            $0.trolleyStop(with: index)
         }
-        
-        self.shapePoints = points 
+        let coords = RouteShape.map {
+            $0.coordinate
+        }
+        return TrolleyRoute(id: ID,
+                            shortName: ShortName,
+                            longName: LongName,
+                            routeDescription: Description,
+                            flagStopsOnly: FlagStopsOnly,
+                            stops: stops,
+                            shapeCoordinates: coords,
+                            colorIndex: index)
     }
 }
 
+struct _APITrolleyStop: Codable {
+    let ID: Int
+    let Name: String
+    let Description: String
+    let Lat: Double
+    let Lon: Double
+    let StopImageURL: String?
 
+    func trolleyStop(with index: Int) -> TrolleyStop {
+        return TrolleyStop(name: Name,
+                           latitude: Lat,
+                           longitude: Lon,
+                           description: Description,
+                           ID: ID,
+                           colorIndex: index)
+    }
+}
+
+struct _APIShapePoint: Codable {
+    let Lat: Double
+    let Lon: Double
+
+    var coordinate: Coordinate {
+        return Coordinate(latitude: Lat, longitude: Lon)
+    }
+}

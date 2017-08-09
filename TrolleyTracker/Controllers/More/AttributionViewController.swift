@@ -39,9 +39,7 @@ class AttributionViewController: UIViewController {
         AttributionItem(name: "CwlResult",
                         urlString: "https://github.com/mattgallagher/CwlUtils/blob/master/Sources/CwlUtils/CwlResult.swift"),
         AttributionItem(name: "ObserverSet",
-                        urlString: "https://github.com/mikeash/SwiftObserverSet"),
-        AttributionItem(name: "SwiftyJSON",
-                        urlString: "https://github.com/SwiftyJSON/SwiftyJSON")
+                        urlString: "https://github.com/mikeash/SwiftObserverSet")
     ]
     
     override func viewDidLoad() {

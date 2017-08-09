@@ -12,23 +12,24 @@ import Foundation
 class TrolleyRouteServiceFake: TrolleyRouteService {
     
     func loadTrolleyRoute(_ routeID: Int, completion: @escaping LoadTrolleyRouteCompletion) {
-        let route = fakeRoutes().filter({ $0.ID == routeID }).first
-        let routes = route != nil ? [route!] : [TrolleyRoute]()
-        completion(routes)
+        completion([])
+//        let route = fakeRoutes().filter({ $0.ID == routeID }).first
+//        let routes = route != nil ? [route!] : [TrolleyRoute]()
+//        completion(routes)
     }
     
     func loadTrolleyRoutes(_ completion: @escaping LoadTrolleyRouteCompletion) {
         
-        completion(fakeRoutes())
+        completion([])
     }
     
-    private func fakeRoutes() -> [TrolleyRoute] {
-        return [TrolleyRoute(json: fakeRoute1(), colorIndex: 2)!]
-    }
-    
-    private func fakeRoute1() -> JSON {
-        
-        let dictionary: [String : AnyObject] = [:]
+//    private func fakeRoutes() -> [TrolleyRoute] {
+//        return [TrolleyRoute(json: fakeRoute1(), colorIndex: 2)!]
+//    }
+
+//    private func fakeRoute1() -> JSON {
+//
+//        let dictionary: [String : AnyObject] = [:]
 //        let dictionary: [String : AnyObject] = [
 //            "ID": 1 as AnyObject,
 //            "ShortName": "ShortMain" as AnyObject,
@@ -952,6 +953,6 @@ class TrolleyRouteServiceFake: TrolleyRouteService {
 //        ]
         
         
-        return JSON(dictionary)
-    }
+//        return JSON(dictionary)
+//    }
 }

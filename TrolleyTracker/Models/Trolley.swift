@@ -9,56 +9,43 @@
 import Foundation
 import MapKit
 
-
-class Trolley: NSObject {
+class Trolley: NSObject, Codable {
     
     let ID: Int
     var coordinate: CLLocationCoordinate2D {
-        willSet { willChangeValue(forKey: "coordinate") }
-        didSet { didChangeValue(forKey: "coordinate") }
+        get { return _coordinate.coordinate }
+        set {
+            willChangeValue(forKey: "coordinate")
+            _coordinate = Coordinate(coordinate: coordinate)
+            didChangeValue(forKey: "coordinate")
+        }
     }
     let name: String?
     let number: Int?
     let iconColor: String?
+
+    private var _coordinate: Coordinate
     
-    init(identifier: Int, location: CLLocation, name: String?, number: Int?, iconColor: String?) {
+    init(identifier: Int,
+         coordinate: Coordinate,
+         name: String?,
+         number: Int?,
+         iconColor: String?) {
         self.name = name
         self.ID = identifier
-        self.coordinate = location.coordinate
+        self._coordinate = coordinate
         self.number = number
         self.iconColor = iconColor
     }
-    
-    init?(jsonData: Any) {
-        
-        let json = JSON(jsonData)
-        
-        let currentLat = json["CurrentLat"].float
-        var latitude: String? = currentLat != nil ? String(format: "%.7f", currentLat!) : nil
-        if latitude == nil { latitude = json["Lat"].stringValue }
-        
-        let currentLon = json["CurrentLon"].float
-        var longitude: String? = currentLon != nil ? String(format: "%.7f", currentLon!) : nil
-        if longitude == nil { longitude = json["Lon"].stringValue }
-        
-        self.ID = json["ID"].intValue
-        self.coordinate = CLLocation(latitude: (latitude! as NSString).doubleValue,
-                                     longitude: (longitude! as NSString).doubleValue).coordinate
-        
-        self.number = json["Number"].int
-        self.name = json["TrolleyName"].stringValue// + " - " + "\(self.ID)"
-        self.iconColor = json["IconColorRGB"].string
+
+    convenience init(trolley: Trolley, location: CLLocation) {
+        self.init(identifier: trolley.ID,
+                  coordinate: Coordinate(location: location),
+                  name: trolley.name,
+                  number: trolley.number,
+                  iconColor: trolley.iconColor)
     }
-    
-    init(trolley: Trolley, location: CLLocation) {
-        
-        self.ID = trolley.ID
-        self.coordinate = location.coordinate
-        self.name = trolley.name
-        self.number = trolley.number
-        self.iconColor = trolley.iconColor
-    }
-    
+
     override func isEqual(_ object: Any?) -> Bool {
         if let object = object as? Trolley , object.ID == self.ID { return true }
         return false
@@ -82,5 +69,30 @@ extension Trolley: MKAnnotation {
     
     @objc(subtitle) var subtitle: String? {
         return ""
+    }
+}
+
+struct _APIRunningTrolley: Codable {
+    let ID: Int
+    let Lat: Double
+    let Lon: Double
+}
+
+struct _APITrolley: Codable {
+    let CurrentLat: Double
+    let CurrentLon: Double
+    let ID: Int
+    let TrolleyName: String
+    let Number: Int
+    let IconColorRGB: String
+
+    var trolley: Trolley {
+        let c = Coordinate(latitude: CurrentLat,
+                           longitude: CurrentLon)
+        return Trolley(identifier: ID,
+                       coordinate: c,
+                       name: TrolleyName,
+                       number: Number,
+                       iconColor: IconColorRGB)
     }
 }

@@ -52,7 +52,7 @@ class TrolleyLocationServiceLive: TrolleyLocationService {
             case .failure:
                 break
             case .success(let data):
-                self.allTrolleys = self.parseTrolleysFromJSON(data as AnyObject?)
+                self.allTrolleys = self.parseTrolleysFromJSON(data)
                 startUpdating()
             }
         }
@@ -70,7 +70,7 @@ class TrolleyLocationServiceLive: TrolleyLocationService {
                 break
             case .success(let data):
 
-                let trolleys = self.parseTrolleysFromJSON(data as AnyObject?)
+                let trolleys = self.parseRunningTrolleysFromJSON(data)
 
                 let trolleysPresent = !trolleys.isEmpty
 
@@ -91,16 +91,20 @@ class TrolleyLocationServiceLive: TrolleyLocationService {
         }
     }
 
-    private func updateTrolleysWithTrolley(_ trolley: Trolley) {
+    private func updateTrolleysWithTrolley(_ runningTrolley: _APIRunningTrolley) {
        
         var trolleys = self.allTrolleys
         
         // Find the matching trolley in the allTrolleys array
-        guard let index = trolleys.index(of: trolley) else { return }
+        guard let index = trolleys.index(where: { trolley in
+            trolley.ID == runningTrolley.ID
+        }) else {
+            return
+        }
 
         // Create a new trolley with an updated location
-        let location = CLLocation(latitude: trolley.coordinate.latitude,
-                                  longitude: trolley.coordinate.longitude)
+        let location = CLLocation(latitude: runningTrolley.Lat,
+                                  longitude: runningTrolley.Lon)
         let updatedTrolley = Trolley(trolley: trolleys[index], location: location)
 
         // Store that back in the array
@@ -109,21 +113,27 @@ class TrolleyLocationServiceLive: TrolleyLocationService {
         allTrolleys = trolleys
     }
 
-    private func parseTrolleysFromJSON(_ json: AnyObject?) -> [Trolley] {
-
-        guard let json = json,
-            let trolleyObjects = JSON(json).arrayObject
-            else { return [] }
-
-
-        return trolleyObjects.flatMap { Trolley(jsonData: $0) }
+    private func parseTrolleysFromJSON(_ json: Data) -> [Trolley] {
+        let decoder = JSONDecoder()
+        guard let raw = try? decoder.decode([_APITrolley].self, from: json) else {
+            return []
+        }
+        return raw.map { $0.trolley }
     }
-    
+
+    private func parseRunningTrolleysFromJSON(_ json: Data) -> [_APIRunningTrolley] {
+        let decoder = JSONDecoder()
+        guard let raw = try? decoder.decode([_APIRunningTrolley].self, from: json) else {
+            return []
+        }
+        return raw
+    }
 }
 
 extension Array where Element == Trolley {
 
-    func matching(_ otherTrolleys: [Trolley]) -> [Trolley] {
-        return filter { otherTrolleys.contains($0) }
+    func matching(_ runningTrolleys: [_APIRunningTrolley]) -> [Trolley] {
+        let runningIDs = runningTrolleys.map { $0.ID }
+        return filter { runningIDs.contains($0.ID) }
     }
 }

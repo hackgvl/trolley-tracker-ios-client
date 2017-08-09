@@ -22,7 +22,7 @@ class APIClient {
         ]
     }
 
-    typealias JSONResponse = (Result<Any>) -> Void
+    typealias JSONResponse = (Result<Data>) -> Void
 
     func fetchAllTrolleys(completion: @escaping JSONResponse) {
         startDataTask(with: .allTrolleys, completion: completion)
@@ -52,10 +52,7 @@ class APIClient {
                                completion: @escaping JSONResponse) {
         
         let task = session.dataTask(with: request) { (data, response, error) in
-            let json = data.flatMap {
-                try? JSONSerialization.jsonObject(with: $0, options: [])
-            }
-            let result = Result(value: json, error: error)
+            let result = Result(value: data, error: error)
             DispatchQueue.main.async {
                 completion(result)
             }

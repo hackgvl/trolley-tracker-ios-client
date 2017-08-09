@@ -37,17 +37,13 @@ class TrolleyScheduleService {
     private func loadSchedulesFromNetwork(_ completion: @escaping LoadScheduleCompletion) {
         
         // Load all Routes so we have names for the RouteSchedules (associated by RouteID)
-        var routes = Box<[JSON]>(value: [JSON]())
-        let routesOperation = LoadRoutesFromNetworkOperation(results: &routes, client: client)
+        let routesOperation = LoadRoutesFromNetworkOperation(client: client)
         
         // Load all schedules
-        var schedules = Box<[JSON]>(value: [JSON]())
-        let schedulesOperation = LoadSchedulesFromNetworkOperation(boxedResults: &schedules, client: client)
+        let schedulesOperation = LoadSchedulesFromNetworkOperation(client: client)
         
         // Aggregate schedules, assigning names from the Routes we retrieved
-        let aggregateOperation = AggregateSchedulesOperation(schedules: &schedules, routes: &routes)
-        aggregateOperation.addDependency(schedulesOperation)
-        aggregateOperation.addDependency(routesOperation)
+        let aggregateOperation = AggregateSchedulesOperation()
         aggregateOperation.completionBlock = { [weak aggregateOperation] in
             guard let routeSchedules = aggregateOperation?.routeSchedules , routeSchedules.count > 0 else { return }
             DispatchQueue.main.async {
@@ -55,9 +51,20 @@ class TrolleyScheduleService {
                 completion(routeSchedules)
             }
         }
-        
+
+        let adapterOp = BlockOperation {
+            aggregateOperation.routes = routesOperation.routes
+            aggregateOperation.schedules = schedulesOperation.schedules
+        }
+
+        adapterOp.addDependency(schedulesOperation)
+        adapterOp.addDependency(routesOperation)
+
+        aggregateOperation.addDependency(adapterOp)
+
         OperationQueues.networkQueue.addOperation(routesOperation)
         OperationQueues.networkQueue.addOperation(schedulesOperation)
+        OperationQueues.computationQueue.addOperation(adapterOp)
         OperationQueues.computationQueue.addOperation(aggregateOperation)
     }
 }
