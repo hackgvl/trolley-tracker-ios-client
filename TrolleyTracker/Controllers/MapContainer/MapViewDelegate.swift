@@ -77,7 +77,7 @@ class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
         
         let renderer = MKPolylineRenderer(overlay: overlay)
         
-        renderer.lineWidth = 6.0
+        renderer.lineWidth = 4.0
         
         if let routeOverlay = overlay as? TrolleyRouteOverlay {
             renderer.strokeColor = .routeColorForIndex(routeOverlay.colorIndex)

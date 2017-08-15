@@ -82,7 +82,12 @@ class TrolleyRouteServiceLive: TrolleyRouteService {
         let op = FetchRouteDetailOperation(routeIDs: routeIDs, client: client)
         op.completionBlock = { [weak op] in
 
-            guard let fetchedRoutes = op?.fetchedRoutes else { completion([]); return }
+            guard let fetchedRoutes = op?.fetchedRoutes else {
+                DispatchQueue.main.async {
+                    completion([])
+                }
+                return
+            }
 
             self.memoryCachedActiveRoutes = CacheItem(timestamp: Date(), payload: fetchedRoutes)
             DispatchQueue.main.async {
