@@ -11,7 +11,7 @@ import MapKit
 
 class DetailController: FunctionController {
 
-    typealias Dependencies = HasRouteService & HasLocationService
+    typealias Dependencies = HasModelController
 
     private let viewController: DetailViewController
 

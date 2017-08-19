@@ -18,6 +18,13 @@ class ModelController {
         self.scheduleSerivce = TrolleyScheduleService(client: client)
         self.routeSerice = TrolleyRouteServiceLive(client: client)
         self.locationService = TrolleyLocationServiceLive(client: client)
+
+        locationService.trolleyObservers.add { trolleys in
+            self.trolleyObservers.notify(trolleys)
+        }
+        locationService.trolleyPresentObservers.add { present in
+            self.trolleyPresentObservers.notify(present)
+        }
     }
     
     var trolleyObservers = ObserverSet<[Trolley]>()
@@ -37,12 +44,10 @@ class ModelController {
     
     func startTrackingTrolleys() {
         locationService.startTrackingTrolleys()
-        // TODO: Hook up observers
     }
     
     func stopTrackingTrolleys() {
         locationService.stopTrackingTrolley()
-        // TODO: Hook up observers
     }
     
     // MARK: - Implementation

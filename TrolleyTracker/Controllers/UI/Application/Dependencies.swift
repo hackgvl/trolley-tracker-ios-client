@@ -8,28 +8,15 @@
 
 import Foundation
 
-protocol HasRouteService {
-    var routeService: TrolleyRouteService { get }
-}
-protocol HasLocationService {
-    var locationService: TrolleyLocationService { get }
-}
-protocol HasScheduleService {
-    var scheduleService: TrolleyScheduleService { get }
+protocol HasModelController {
+    var modelController: ModelController { get }
 }
 
-struct AppDependencies:
-    HasRouteService,
-    HasLocationService,
-HasScheduleService {
+struct AppDependencies: HasModelController {
 
-    let routeService: TrolleyRouteService
-    let locationService: TrolleyLocationService
-    let scheduleService: TrolleyScheduleService
+    let modelController: ModelController
 
     init(client: APIClient) {
-        scheduleService = TrolleyScheduleService(client: client)
-        locationService = TrolleyLocationServiceLive(client: client)
-        routeService = TrolleyRouteServiceLive(client: client)
+        modelController = ModelController(apiClient: client)
     }
 }

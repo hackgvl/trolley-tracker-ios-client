@@ -15,7 +15,7 @@ protocol ContainerControllerDelegate: class {
 
 class ContainerController: FunctionController {
 
-    typealias Dependencies = HasLocationService & HasRouteService
+    typealias Dependencies = HasModelController
 
     private let dependencies: Dependencies
     private let viewController: ContainerViewController

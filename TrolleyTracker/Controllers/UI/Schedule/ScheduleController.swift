@@ -22,7 +22,7 @@ class ScheduleController: FunctionController {
         }
     }
 
-    typealias Dependencies = HasScheduleService & HasRouteService
+    typealias Dependencies = HasModelController
 
     private let dependencies: Dependencies
     private let viewController: ScheduleViewController
@@ -74,7 +74,7 @@ class ScheduleController: FunctionController {
 
     private func loadSchedules() {
         lastFetchRequestDate = Date()
-        dependencies.scheduleService.loadTrolleySchedules(handleNewSchedules(_:))
+        dependencies.modelController.loadTrolleySchedules(handleNewSchedules(_:))
     }
 
     private func handleNewSchedules(_ schedules: [RouteSchedule]) {

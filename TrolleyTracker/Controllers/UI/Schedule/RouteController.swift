@@ -10,7 +10,7 @@ import UIKit
 
 class RouteController: FunctionController {
 
-    typealias Dependencies = HasRouteService
+    typealias Dependencies = HasModelController
 
     private let routeID: Int
     private let context: UIViewController
@@ -47,7 +47,7 @@ class RouteController: FunctionController {
 
         viewController.setWaitingUI(visible: true)
 
-        dependencies.routeService.loadTrolleyRoute(routeID) { routes in
+        dependencies.modelController.loadTrolleyRoute(routeID) { routes in
             self.viewController.setWaitingUI(visible: false)
             guard let route = routes.first else { return }
             self.viewController.display(route: route)

@@ -17,7 +17,7 @@ protocol MapControllerDelegate: class {
 
 class MapController: FunctionController {
 
-    typealias Dependencies = HasRouteService & HasLocationService
+    typealias Dependencies = HasModelController
 
     weak var delegate: MapControllerDelegate?
 
@@ -28,11 +28,8 @@ class MapController: FunctionController {
 
     private let refreshTimer = RefreshTimer(interval: 60)
 
-    private var locationService: TrolleyLocationService {
-        return dependencies.locationService
-    }
-    private var routeService: TrolleyRouteService {
-        return dependencies.routeService
+    private var modelController: ModelController {
+        return dependencies.modelController
     }
 
     init(dependencies: Dependencies) {
@@ -46,8 +43,8 @@ class MapController: FunctionController {
 
         locationManager.requestWhenInUseAuthorization()
 
-        locationService.trolleyPresentObservers.add(handleNoTrolleysPresent(_:))
-        locationService.trolleyObservers.add(handleTrolleyUpdate(_:))
+        modelController.trolleyPresentObservers.add(handleNoTrolleysPresent(_:))
+        modelController.trolleyObservers.add(handleTrolleyUpdate(_:))
 
         viewController.mapView.showsUserLocation = true
         viewController.mapView.setRegionToDowntownGreenville()
@@ -76,7 +73,7 @@ class MapController: FunctionController {
     }
 
     private func loadRoutes() {
-        routeService.loadTrolleyRoutes { routes in
+        modelController.loadTrolleyRoutes { routes in
             self.viewController.mapView.replaceCurrentRoutes(with: routes)
         }
     }
@@ -95,12 +92,12 @@ extension MapController: MapVCDelegate {
 
     func viewAppeared() {
         loadRoutes()
-        locationService.startTrackingTrolleys()
+        modelController.startTrackingTrolleys()
         refreshTimer.start()
     }
 
     func viewDisappeared() {
         refreshTimer.stop()
-        locationService.stopTrackingTrolley()
+        modelController.stopTrackingTrolleys()
     }
 }
