@@ -20,16 +20,12 @@ class ModelController {
         self.locationService = TrolleyLocationServiceLive(client: client)
 
         locationService.trolleyObservers.add { trolleys in
-            self.trolleyObservers.notify(trolleys)
-        }
-        locationService.trolleyPresentObservers.add { present in
-            self.trolleyPresentObservers.notify(present)
+            self.updateTrolleys(with: trolleys)
         }
     }
     
     var trolleyObservers = ObserverSet<[Trolley]>()
-    var trolleyPresentObservers = ObserverSet<Bool>()
-    
+
     func loadTrolleyRoutes(_ completion: @escaping LoadTrolleyRouteCompletion) {
         routeSerice.loadTrolleyRoutes(completion)
     }
@@ -55,4 +51,10 @@ class ModelController {
     private let scheduleSerivce: TrolleyScheduleService
     private let locationService: TrolleyLocationService
     private let routeSerice: TrolleyRouteService
+
+    private var links: [TrolleyRouteLink] = []
+
+    private func updateTrolleys(with trolleys: [Trolley]) {
+        trolleyObservers.notify(trolleys)
+    }
 }

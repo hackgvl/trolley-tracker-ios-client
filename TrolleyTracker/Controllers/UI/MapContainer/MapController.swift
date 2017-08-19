@@ -43,7 +43,6 @@ class MapController: FunctionController {
 
         locationManager.requestWhenInUseAuthorization()
 
-        modelController.trolleyPresentObservers.add(handleNoTrolleysPresent(_:))
         modelController.trolleyObservers.add(handleTrolleyUpdate(_:))
 
         viewController.mapView.showsUserLocation = true
@@ -64,12 +63,9 @@ class MapController: FunctionController {
         return viewController
     }
 
-    private func handleNoTrolleysPresent(_ present: Bool) {
-        delegate?.handleNoTrolleysUpdate(present)
-    }
-
     private func handleTrolleyUpdate(_ trolleys: [Trolley]) {
         viewController.mapView.addOrUpdateTrolley(trolleys)
+        delegate?.handleNoTrolleysUpdate(!trolleys.isEmpty)
     }
 
     private func loadRoutes() {

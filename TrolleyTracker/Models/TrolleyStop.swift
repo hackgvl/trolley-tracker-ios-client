@@ -17,12 +17,16 @@ class TrolleyStop: NSObject, Codable {
     let stopID: Int
     let name: String
     let stopDescription: String
-    let colorIndex: Int
+    private let colorIndex: Int
 
     private let _coordinate: Coordinate
 
     var location: CLLocation {
         return _coordinate.location
+    }
+
+    var color: UIColor {
+        return .stopColorForIndex(colorIndex)
     }
     
     init(name: String,

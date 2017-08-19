@@ -22,7 +22,7 @@ struct TrolleyRoute: Codable, Equatable {
     let longName: String
     let routeDescription: String
     let flagStopsOnly: Bool
-    let colorIndex: Int
+    private let colorIndex: Int
     
     let stops: [TrolleyStop]
 

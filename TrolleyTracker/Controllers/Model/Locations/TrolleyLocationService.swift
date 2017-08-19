@@ -12,8 +12,7 @@ import CoreLocation
 class TrolleyLocationServiceLive: TrolleyLocationService {
     
     var trolleyObservers = ObserverSet<[Trolley]>()
-    var trolleyPresentObservers = ObserverSet<Bool>()
-    
+
     private var updateTimer: Timer?
     
     private var allTrolleys: [Trolley] = []
@@ -71,12 +70,6 @@ class TrolleyLocationServiceLive: TrolleyLocationService {
             case .success(let data):
 
                 let trolleys = self.parseRunningTrolleysFromJSON(data)
-
-                let trolleysPresent = !trolleys.isEmpty
-
-                DispatchQueue.main.async {
-                    self.trolleyPresentObservers.notify(trolleysPresent)
-                }
 
                 for trolley in trolleys {
                     self.updateTrolleysWithTrolley(trolley)

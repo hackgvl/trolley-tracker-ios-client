@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 
-class Trolley: NSObject, Codable {
+class Trolley: NSObject {
     
     let ID: Int
     var coordinate: CLLocationCoordinate2D {
@@ -23,6 +23,8 @@ class Trolley: NSObject, Codable {
     let name: String?
     let number: Int?
     let iconColor: String?
+
+    var associatedRouteColor: UIColor?
 
     private var _coordinate: Coordinate
     
@@ -55,6 +57,9 @@ class Trolley: NSObject, Codable {
 extension Trolley {
 
     var tintColor: UIColor {
+        if let routeColor = associatedRouteColor {
+            return routeColor
+        }
         let trimCharacters = CharacterSet(charactersIn: "#")
         let hex = iconColor?.trimmingCharacters(in: trimCharacters) ?? "FFFFFF"
         return UIColor(hex: hex)

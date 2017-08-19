@@ -50,7 +50,7 @@ class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
             view.frame = CGRect(x: 0, y: 0, width: 22, height: 22)
             view.canShowCallout = shouldShowCallouts
             view.annotation = annotation
-            view.tintColor = .stopColorForIndex(stopAnnotation.colorIndex)
+            view.tintColor = stopAnnotation.color
             
             return view
         }
