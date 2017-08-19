@@ -27,6 +27,7 @@
 		CAF9971D1F2E7D7E00480618 /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF9971C1F2E7D7E00480618 /* Dependencies.swift */; };
 		CAF9971F1F2E806000480618 /* FunctionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF9971E1F2E806000480618 /* FunctionController.swift */; };
 		CAFDD40A1F2D576A00C7836E /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFDD4091F2D576A00C7836E /* Result.swift */; };
+		CE10CFC61F45A32A00B88A90 /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE10CFC51F45A32A00B88A90 /* ModelController.swift */; };
 		D9019DAD1E526F0000D9E197 /* trolleyMock.json in Resources */ = {isa = PBXBuildFile; fileRef = D9019DAC1E526F0000D9E197 /* trolleyMock.json */; };
 		D9019DB51E5277DB00D9E197 /* TrolleyTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9019DB41E5277DB00D9E197 /* TrolleyTrackerUITests.swift */; };
 		D90866F01B91292F002A6F87 /* TrolleyAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90866EF1B91292F002A6F87 /* TrolleyAnnotationView.swift */; };
@@ -157,6 +158,7 @@
 		CAF9971C1F2E7D7E00480618 /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
 		CAF9971E1F2E806000480618 /* FunctionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionController.swift; sourceTree = "<group>"; };
 		CAFDD4091F2D576A00C7836E /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		CE10CFC51F45A32A00B88A90 /* ModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelController.swift; sourceTree = "<group>"; };
 		D9019DAC1E526F0000D9E197 /* trolleyMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = trolleyMock.json; sourceTree = "<group>"; };
 		D9019DB21E5277DB00D9E197 /* TrolleyTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrolleyTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9019DB41E5277DB00D9E197 /* TrolleyTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrolleyTrackerUITests.swift; sourceTree = "<group>"; };
@@ -313,6 +315,33 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
+		CE10CFC31F45A30200B88A90 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				CAF9971B1F2E7D6C00480618 /* Application */,
+				CAF997121F2E7BF900480618 /* More */,
+				CAF997111F2E7BF400480618 /* Schedule */,
+				CAAB6EDE1F2D74270092F20E /* MapContainer */,
+				D98CF6571E827D66005048FF /* Helpers */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		CE10CFC41F45A31000B88A90 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D98715481B8A7E0C00489594 /* GetETAOperation.swift */,
+				D92876D61BCD05A1003333EA /* ScheduleOperations.swift */,
+				D98715401B8A7D8200489594 /* TimeAndDistanceService.swift */,
+				D92876D21BCB3A67003333EA /* TrolleyScheduleService.swift */,
+				D97A7F0F1BE1960E00B40766 /* TrolleyServiceProtocols.swift */,
+				D98CF6531E827BAF005048FF /* Routes */,
+				D98CF6541E827BD1005048FF /* Locations */,
+				CE10CFC51F45A32A00B88A90 /* ModelController.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		D9019D9E1E526EB400D9E197 /* MockData */ = {
 			isa = PBXGroup;
 			children = (
@@ -339,20 +368,6 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		D90866F81B91C8BF002A6F87 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				D90866FA1B91D519002A6F87 /* String+TrolleyTracker.swift */,
-				D9650CA31B86A9F10004A2AF /* UIColor+TrolleyTracker.swift */,
-				D90866F61B91C8B8002A6F87 /* UIFont+TrolleyTracker.swift */,
-				D95EF76B1B889B00009B5779 /* UIImage+TrolleyTracker.swift */,
-				D90867101B921431002A6F87 /* UIView+TrolleyTracker.swift */,
-				D9617EF31BDF0A1600FF86CD /* AppearanceHelpers.swift */,
-				D9A0BC821F3622AF00E49E14 /* DateHelpers.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		D914FADB1B30DEA4002DACF8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -364,18 +379,6 @@
 				D97FB6231F39283700F53BF7 /* Coordinate.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		D914FADC1B30DEB4002DACF8 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				D98CF6541E827BD1005048FF /* Locations */,
-				D98CF6531E827BAF005048FF /* Routes */,
-				D98715401B8A7D8200489594 /* TimeAndDistanceService.swift */,
-				D92876D21BCB3A67003333EA /* TrolleyScheduleService.swift */,
-				D97A7F0F1BE1960E00B40766 /* TrolleyServiceProtocols.swift */,
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 		D9618F641F2D0DDD00E38C36 /* Networking */ = {
@@ -390,11 +393,8 @@
 		D9650CA01B86A4030004A2AF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				CAF9971B1F2E7D6C00480618 /* Application */,
-				CAF997121F2E7BF900480618 /* More */,
-				CAF997111F2E7BF400480618 /* Schedule */,
-				CAAB6EDE1F2D74270092F20E /* MapContainer */,
-				D98CF6571E827D66005048FF /* Helpers */,
+				CE10CFC41F45A31000B88A90 /* Model */,
+				CE10CFC31F45A30200B88A90 /* UI */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -402,6 +402,7 @@
 		D9650CA11B86A40A0004A2AF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D95EF7661B87302F009B5779 /* TrolleyRouteOverlay.swift */,
 				D97055BC1BD706CE002B9A8B /* Schedule */,
 				D90866EF1B91292F002A6F87 /* TrolleyAnnotationView.swift */,
 				CA9CFA9F1F360C6C00B5FC92 /* ZLayer.swift */,
@@ -424,18 +425,16 @@
 			path = Schedule;
 			sourceTree = "<group>";
 		};
-		D98715451B8A7DA100489594 /* Operations */ = {
-			isa = PBXGroup;
-			children = (
-				D98715481B8A7E0C00489594 /* GetETAOperation.swift */,
-				D92876D61BCD05A1003333EA /* ScheduleOperations.swift */,
-			);
-			path = Operations;
-			sourceTree = "<group>";
-		};
 		D98CF6501E82796E005048FF /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				D90866FA1B91D519002A6F87 /* String+TrolleyTracker.swift */,
+				D9650CA31B86A9F10004A2AF /* UIColor+TrolleyTracker.swift */,
+				D90866F61B91C8B8002A6F87 /* UIFont+TrolleyTracker.swift */,
+				D95EF76B1B889B00009B5779 /* UIImage+TrolleyTracker.swift */,
+				D90867101B921431002A6F87 /* UIView+TrolleyTracker.swift */,
+				D9617EF31BDF0A1600FF86CD /* AppearanceHelpers.swift */,
+				D9A0BC821F3622AF00E49E14 /* DateHelpers.swift */,
 				D98CF65C1E83C3AF005048FF /* Formatters.swift */,
 				D98CF65E1E83C4B2005048FF /* GeographyHelpers.swift */,
 				D98CF6511E827982005048FF /* MapViewHelpers.swift */,
@@ -515,19 +514,15 @@
 			children = (
 				D9650CA01B86A4030004A2AF /* Controllers */,
 				D9650CA11B86A40A0004A2AF /* Views */,
-				D914FADC1B30DEB4002DACF8 /* Services */,
-				D9CFDB301E5289DE0056AB01 /* Dependencies */,
-				D90866F81B91C8BF002A6F87 /* Extensions */,
-				D90866F11B91C60F002A6F87 /* Fonts */,
-				D98CF6501E82796E005048FF /* Helpers */,
 				D914FADB1B30DEA4002DACF8 /* Models */,
-				D98715451B8A7DA100489594 /* Operations */,
 				D9618F641F2D0DDD00E38C36 /* Networking */,
+				D98CF6501E82796E005048FF /* Helpers */,
+				D9CFDB301E5289DE0056AB01 /* Dependencies */,
+				D90866F11B91C60F002A6F87 /* Fonts */,
 				EFA4B1F91A1C201F00BEA42C /* Supporting Files */,
 				EFA4B1FB1A1C201F00BEA42C /* AppDelegate.swift */,
 				EFA4B2021A1C201F00BEA42C /* Images.xcassets */,
 				EFA4B2041A1C201F00BEA42C /* LaunchScreen.xib */,
-				D95EF7661B87302F009B5779 /* TrolleyRouteOverlay.swift */,
 			);
 			path = TrolleyTracker;
 			sourceTree = "<group>";
@@ -823,6 +818,7 @@
 				D98CF6561E827D61005048FF /* ApplicationController.swift in Sources */,
 				CA82E0261F36441000D548D6 /* SolidButton.swift in Sources */,
 				D92876D31BCB3A67003333EA /* TrolleyScheduleService.swift in Sources */,
+				CE10CFC61F45A32A00B88A90 /* ModelController.swift in Sources */,
 				D99B71561E87D6D800F36E55 /* RouteFetchOperations.swift in Sources */,
 				D9E240491BDBCACB00F16CF8 /* SubHeadingLabel.swift in Sources */,
 				D9650CA41B86A9F10004A2AF /* UIColor+TrolleyTracker.swift in Sources */,

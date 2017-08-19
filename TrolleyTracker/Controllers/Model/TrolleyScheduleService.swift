@@ -11,14 +11,13 @@ import Foundation
 
 class TrolleyScheduleService {
     
-    typealias LoadScheduleCompletion = (_ schedules: [RouteSchedule]) -> Void
     private let client: APIClient
     
     init(client: APIClient) {
         self.client = client
     }
     
-    func loadTrolleySchedules(_ completion: @escaping LoadScheduleCompletion) {
+    func loadTrolleySchedules(_ completion: @escaping ModelController.LoadScheduleCompletion) {
         
         // check user defaults (should probably go in an operation)
         let localSchedulesOperation = LoadLocalSchedulesOperation()
@@ -34,7 +33,7 @@ class TrolleyScheduleService {
         loadSchedulesFromNetwork(completion)
     }
     
-    private func loadSchedulesFromNetwork(_ completion: @escaping LoadScheduleCompletion) {
+    private func loadSchedulesFromNetwork(_ completion: @escaping ModelController.LoadScheduleCompletion) {
         
         // Load all Routes so we have names for the RouteSchedules (associated by RouteID)
         let routesOperation = LoadRoutesFromNetworkOperation(client: client)
