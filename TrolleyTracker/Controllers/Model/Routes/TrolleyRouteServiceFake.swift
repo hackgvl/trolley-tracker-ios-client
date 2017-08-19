@@ -10,7 +10,9 @@ import Foundation
 
 
 class TrolleyRouteServiceFake: TrolleyRouteService {
-    
+
+    var currentActiveRoutes: [TrolleyRoute] = []
+
     func loadTrolleyRoute(_ routeID: Int, completion: @escaping LoadTrolleyRouteCompletion) {
         completion([])
 //        let route = fakeRoutes().filter({ $0.ID == routeID }).first

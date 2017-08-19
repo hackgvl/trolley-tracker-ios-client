@@ -11,6 +11,8 @@ import Foundation
 typealias LoadTrolleyRouteCompletion = (_ routes: [TrolleyRoute]) -> Void
 
 protocol TrolleyRouteService {
+
+    var currentActiveRoutes: [TrolleyRoute] { get }
     
     func loadTrolleyRoute(_ routeID: Int, completion: @escaping  LoadTrolleyRouteCompletion)
     func loadTrolleyRoutes(_ completion: @escaping LoadTrolleyRouteCompletion)

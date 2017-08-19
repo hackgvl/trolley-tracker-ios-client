@@ -27,6 +27,10 @@ class TrolleyRouteServiceLive: TrolleyRouteService {
     private var memoryCachedActiveRoutes: CacheItem<[TrolleyRoute]>?
     private var memoryCachedRoutes = [Int : TrolleyRoute]()
 
+    var currentActiveRoutes: [TrolleyRoute] {
+        return memoryCachedActiveRoutes?.payload ?? []
+    }
+
     init(client: APIClient) {
         self.client = client
     }

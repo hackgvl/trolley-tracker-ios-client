@@ -84,6 +84,7 @@
 		D9A0BC831F3622AF00E49E14 /* DateHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A0BC821F3622AF00E49E14 /* DateHelpers.swift */; };
 		D9A6A61F1F329583005205C6 /* RouteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A6A61E1F329583005205C6 /* RouteController.swift */; };
 		D9B215781F48B41000258C48 /* TrolleyRouteLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B215771F48B41000258C48 /* TrolleyRouteLink.swift */; };
+		D9D30FEF1F48BDBA00A39807 /* ArrayHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D30FEE1F48BDBA00A39807 /* ArrayHelpers.swift */; };
 		D9D85B4F1F2D0BAF002A99D5 /* KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D85B4A1F2D0BAE002A99D5 /* KeyboardHandler.swift */; };
 		D9D85B501F2D0BAF002A99D5 /* UIKitHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D85B4B1F2D0BAE002A99D5 /* UIKitHelpers.swift */; };
 		D9D85B511F2D0BAF002A99D5 /* AutoLayoutHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D85B4D1F2D0BAF002A99D5 /* AutoLayoutHelpers.swift */; };
@@ -219,6 +220,7 @@
 		D9A0BC821F3622AF00E49E14 /* DateHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelpers.swift; sourceTree = "<group>"; };
 		D9A6A61E1F329583005205C6 /* RouteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteController.swift; sourceTree = "<group>"; };
 		D9B215771F48B41000258C48 /* TrolleyRouteLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrolleyRouteLink.swift; sourceTree = "<group>"; };
+		D9D30FEE1F48BDBA00A39807 /* ArrayHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayHelpers.swift; sourceTree = "<group>"; };
 		D9D85B4A1F2D0BAE002A99D5 /* KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHandler.swift; sourceTree = "<group>"; };
 		D9D85B4B1F2D0BAE002A99D5 /* UIKitHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitHelpers.swift; sourceTree = "<group>"; };
 		D9D85B4C1F2D0BAF002A99D5 /* Anchorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anchorage.swift; sourceTree = "<group>"; };
@@ -442,6 +444,7 @@
 				D98CF65E1E83C4B2005048FF /* GeographyHelpers.swift */,
 				D98CF6511E827982005048FF /* MapViewHelpers.swift */,
 				CAA4CE021F2E951400F808F1 /* RefreshTimer.swift */,
+				D9D30FEE1F48BDBA00A39807 /* ArrayHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -796,6 +799,7 @@
 				D92876CB1BCB0CE5003333EA /* SettingsDataSource.swift in Sources */,
 				D97FB6241F39283700F53BF7 /* Coordinate.swift in Sources */,
 				D9A6A61F1F329583005205C6 /* RouteController.swift in Sources */,
+				D9D30FEF1F48BDBA00A39807 /* ArrayHelpers.swift in Sources */,
 				CA4A6B3F1F3005E3006386E0 /* ScheduleSorting.swift in Sources */,
 				D97055BE1BD70753002B9A8B /* HeadingLabel.swift in Sources */,
 				D9617EFB1BE0573100FF86CD /* ScheduleHeaderView.swift in Sources */,

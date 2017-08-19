@@ -15,8 +15,8 @@ class ModelController {
     typealias LoadScheduleCompletion = (_ schedules: [RouteSchedule]) -> Void
 
     init(apiClient client: APIClient) {
-        self.scheduleSerivce = TrolleyScheduleService(client: client)
-        self.routeSerice = TrolleyRouteServiceLive(client: client)
+        self.scheduleService = TrolleyScheduleService(client: client)
+        self.routeService = TrolleyRouteServiceLive(client: client)
         self.locationService = TrolleyLocationServiceLive(client: client)
 
         locationService.trolleyObservers.add { trolleys in
@@ -27,15 +27,21 @@ class ModelController {
     var trolleyObservers = ObserverSet<[Trolley]>()
 
     func loadTrolleyRoutes(_ completion: @escaping LoadTrolleyRouteCompletion) {
-        routeSerice.loadTrolleyRoutes(completion)
+        routeService.loadTrolleyRoutes { routes in
+            completion(routes)
+            self.updateTrolleys(with: self.lastTrolleys)
+        }
     }
     
     func loadTrolleyRoute(_ routeID: Int, completion: @escaping LoadTrolleyRouteCompletion) {
-        routeSerice.loadTrolleyRoute(routeID, completion: completion)
+        routeService.loadTrolleyRoute(routeID) { routes in
+            completion(routes)
+            self.updateTrolleys(with: self.lastTrolleys)
+        }
     }
     
     func loadTrolleySchedules(_ completion: @escaping LoadScheduleCompletion) {
-        scheduleSerivce.loadTrolleySchedules(completion)
+        scheduleService.loadTrolleySchedules(completion)
     }
     
     func startTrackingTrolleys() {
@@ -45,16 +51,31 @@ class ModelController {
     func stopTrackingTrolleys() {
         locationService.stopTrackingTrolley()
     }
+
+    func trolleys(for route: TrolleyRoute) -> [Trolley] {
+        return links[route]?.trolleys ?? []
+    }
     
     // MARK: - Implementation
     
-    private let scheduleSerivce: TrolleyScheduleService
+    private let scheduleService: TrolleyScheduleService
     private let locationService: TrolleyLocationService
-    private let routeSerice: TrolleyRouteService
+    private let routeService: TrolleyRouteService
 
     private var links: [TrolleyRouteLink] = []
+    private var lastTrolleys: [Trolley] = []
 
     private func updateTrolleys(with trolleys: [Trolley]) {
-        trolleyObservers.notify(trolleys)
+        lastTrolleys = trolleys
+        updateLinks(trolleys: trolleys)
+        let linkedTrolleys = links.trolleys
+        let unlinkedTrolleys = trolleys.subtract(linkedTrolleys)
+        let allTrolleys = linkedTrolleys + unlinkedTrolleys
+        trolleyObservers.notify(allTrolleys)
+    }
+
+    private func updateLinks(trolleys: [Trolley]) {
+        let routes = routeService.currentActiveRoutes
+        links = TrolleyRouteLink.link(trolleys: trolleys, to: routes)
     }
 }
