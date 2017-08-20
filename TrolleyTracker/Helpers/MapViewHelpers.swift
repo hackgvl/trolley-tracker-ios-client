@@ -76,6 +76,7 @@ extension MKMapView {
             guard let index = existing.index(of: trolley) else { continue }
             let existingAnnotation = existing[index]
             existingAnnotation.coordinate = trolley.coordinate
+            // TODO: Update trolley annotation color if needed
         }
 
         removeAnnotations(trolleysToRemove)

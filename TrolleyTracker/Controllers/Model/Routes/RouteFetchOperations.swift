@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import os.log
 
 class FetchRouteDetailOperation: ConcurrentOperation {
 
@@ -49,12 +49,17 @@ class FetchRouteDetailOperation: ConcurrentOperation {
                 completion([]); return
             case .success(let data):
                 let decoder = JSONDecoder()
-                guard let rawRoute = try? decoder.decode(_APITrolleyRoute.self, from: data) else {
+                decoder.dateDecodingStrategy = .iso8601
+                do {
+                    let rawRoute = try decoder.decode(_APITrolleyRoute.self, from: data)
+                    let route = rawRoute.route(with: colorIndex)
+                    completion([route])
+                }
+                catch let error {
+                    os_log("Error decoding _APITrolleyRoute: %@", error as CVarArg)
                     completion([])
                     return
                 }
-                let route = rawRoute.route(with: colorIndex)
-                completion([route])
             }
         }
     }

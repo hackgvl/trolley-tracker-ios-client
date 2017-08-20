@@ -17,6 +17,7 @@ class TrolleyStop: NSObject, Codable {
     let stopID: Int
     let name: String
     let stopDescription: String
+    let lastTrolleyArrivals: [Int: String]
     private let colorIndex: Int
 
     private let _coordinate: Coordinate
@@ -34,11 +35,13 @@ class TrolleyStop: NSObject, Codable {
          longitude: Double,
          description: String,
          ID: Int,
+         lastTrolleyArrivals: [Int: String],
          colorIndex: Int) {
         self.name = name
         self._coordinate = Coordinate(latitude: latitude, longitude: longitude)
         self.stopDescription = description
         self.stopID = ID
+        self.lastTrolleyArrivals = lastTrolleyArrivals
         self.colorIndex = colorIndex
     }
 
