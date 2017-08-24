@@ -24,7 +24,7 @@ struct TrolleyRoute {
     let longName: String
     let routeDescription: String
     let flagStopsOnly: Bool
-    let colorIndex: Int
+    let color: UIColor
     
     let stops: [TrolleyStop]
     let shapePoints: [CLLocation]
@@ -34,21 +34,22 @@ struct TrolleyRoute {
         let coordinates = self.shapePoints.map { $0.coordinate }
         let coordinatesPointer = UnsafeMutablePointer<CLLocationCoordinate2D>(mutating: coordinates)
         let polyline = TrolleyRouteOverlay(coordinates: coordinatesPointer, count: coordinates.count)
-        polyline.colorIndex = self.colorIndex
+        polyline.color = self.color
 
         return polyline
     }()
     
     init?(json: JSON, colorIndex: Int) {
-        
+
+        let sn = json["ShortName"].stringValue
         self.ID = json["ID"].intValue
-        self.shortName = json["ShortName"].stringValue
+        self.shortName = sn
         self.longName = json["LongName"].stringValue
         self.routeDescription = json["Description"].stringValue
         self.flagStopsOnly = json["FlagStopsOnly"].boolValue
-        self.colorIndex = colorIndex
+        self.color = GreenlinkColor(routeName: sn)?.color ?? .black
         
-        self.stops = json["Stops"].arrayValue.map { TrolleyStop(json: $0, colorIndex: colorIndex) }.filter { $0 != nil }.map { $0! }
+        self.stops = json["Stops"].arrayValue.map { TrolleyStop(json: $0) }.filter { $0 != nil }.map { $0! }
 
         var points = [CLLocation]()
         let jsonPoints = json["RouteShape"].arrayValue

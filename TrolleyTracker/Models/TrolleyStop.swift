@@ -18,17 +18,15 @@ class TrolleyStop: NSObject {
     let name: String
     let stopDescription: String
     let location: CLLocation
-    let colorIndex: Int
     
-    init(name: String, location: CLLocation, description: String, ID: Int, colorIndex: Int) {
+    init(name: String, location: CLLocation, description: String, ID: Int) {
         self.name = name
         self.location = location
         self.stopDescription = description
         self.stopID = ID
-        self.colorIndex = colorIndex
     }
     
-    init?(json: JSON, colorIndex: Int) {
+    init?(json: JSON) {
         
         let lat = json["Lat"].stringValue
         let lon = json["Lon"].stringValue
@@ -37,7 +35,6 @@ class TrolleyStop: NSObject {
         self.location = CLLocation(latitude: (lat as NSString).doubleValue, longitude: (lon as NSString).doubleValue)
         self.stopID = json["ID"].intValue
         self.name = json["Name"].stringValue
-        self.colorIndex = colorIndex
         
         super.init()
         
@@ -46,7 +43,7 @@ class TrolleyStop: NSObject {
     }
     
     convenience init?(jsonData: AnyObject, colorIndex: Int) {
-        self.init(json: JSON(jsonData), colorIndex: colorIndex)
+        self.init(json: JSON(jsonData))
     }
     
     override func isEqual(_ object: Any?) -> Bool {
