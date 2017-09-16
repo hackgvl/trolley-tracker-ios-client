@@ -24,11 +24,11 @@ class FetchRouteDetailOperation: ConcurrentOperation {
 
     override func execute() {
 
-        for (index, routeID) in routeIDs.enumerated() {
+        for routeID in routeIDs {
 
             group.enter()
 
-            loadRouteDetail(routeID, colorIndex: index, completion: { (routes) in
+            loadRouteDetail(routeID, completion: { (routes) in
                 self.fetchedRoutes += routes
                 self.group.leave()
             })
@@ -40,7 +40,6 @@ class FetchRouteDetailOperation: ConcurrentOperation {
     }
 
     private func loadRouteDetail(_ routeID: Int,
-                                 colorIndex: Int = 0,
                                  completion: @escaping LoadTrolleyRouteCompletion) {
 
         client.fetchRouteDetail(for: "\(routeID)") { result in
@@ -52,7 +51,7 @@ class FetchRouteDetailOperation: ConcurrentOperation {
                 decoder.dateDecodingStrategy = .iso8601
                 do {
                     let rawRoute = try decoder.decode(_APITrolleyRoute.self, from: data)
-                    let route = rawRoute.route(with: colorIndex)
+                    let route = rawRoute.route()
                     completion([route])
                 }
                 catch let error {

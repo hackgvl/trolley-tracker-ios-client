@@ -42,7 +42,7 @@ class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
         }
             
         // Trolley Stops
-        if let stopAnnotation = annotation as? TrolleyStop {
+        if annotation is TrolleyStop {
 
             let view = mapView.dequeueAnnotationView(ofType: TrolleyStopAnnotationView.self,
                                                      for: annotation)
@@ -50,7 +50,7 @@ class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
             view.frame = CGRect(x: 0, y: 0, width: 22, height: 22)
             view.canShowCallout = shouldShowCallouts
             view.annotation = annotation
-            view.tintColor = stopAnnotation.color
+            view.tintColor = UIColor(white: 0.3, alpha: 1)
             
             return view
         }
@@ -80,7 +80,7 @@ class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
         renderer.lineWidth = 4.0
         
         if let routeOverlay = overlay as? TrolleyRouteOverlay {
-            renderer.strokeColor = .routeColorForIndex(routeOverlay.colorIndex)
+            renderer.strokeColor = routeOverlay.color
         }
         
         return renderer

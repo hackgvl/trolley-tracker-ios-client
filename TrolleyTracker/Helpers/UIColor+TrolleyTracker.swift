@@ -8,7 +8,39 @@
 
 import UIKit
 
+enum GreenlinkColor {
+    case heartOfMain, topOfMain, artsWest, augusta
+
+    init?(routeName: String) {
+        switch routeName {
+        case "HeartOfMain":
+            self = .heartOfMain
+        case "TopOfMain":
+            self = .topOfMain
+        case "ArtsWest":
+            self = .artsWest
+        case "Augusta":
+            self = .augusta
+        default:
+            return nil
+        }
+    }
+
+    var color: UIColor {
+        switch self {
+        case .artsWest: return .rgb(145, 188, 86)
+        case .augusta: return .rgb(125, 121, 167)
+        case .heartOfMain: return .rgb(153, 49, 47)
+        case .topOfMain: return .rgb(247, 189, 59)
+        }
+    }
+}
+
 extension UIColor {
+
+    static func rgb(_ r: CGFloat, _ g: CGFloat, _ b: CGFloat) -> UIColor {
+        return UIColor(red: r/255, green: g/255, blue: b/255, alpha: 1)
+    }
     
     class func ttTintColor() -> UIColor { return UIColor.white }
     class func ttAlternateTintColor() -> UIColor { return UIColor.ttDarkPurple() }

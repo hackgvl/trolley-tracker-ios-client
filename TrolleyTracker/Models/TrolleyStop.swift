@@ -12,12 +12,13 @@ import MapKit
 
 
 /// Represents a point where the Trolleys stop for passengers.
-class TrolleyStop: NSObject, Codable {
+class TrolleyStop: NSObject {
     
     let stopID: Int
     let name: String
     let stopDescription: String
     let lastTrolleyArrivals: [Int: String]
+    let color: UIColor
     private let colorIndex: Int
 
     private let _coordinate: Coordinate
@@ -36,13 +37,13 @@ class TrolleyStop: NSObject, Codable {
          description: String,
          ID: Int,
          lastTrolleyArrivals: [Int: String],
-         colorIndex: Int) {
+         color: UIColor) {
         self.name = name
         self._coordinate = Coordinate(latitude: latitude, longitude: longitude)
         self.stopDescription = description
         self.stopID = ID
         self.lastTrolleyArrivals = lastTrolleyArrivals
-        self.colorIndex = colorIndex
+        self.color = color
     }
 
     override func isEqual(_ object: Any?) -> Bool {

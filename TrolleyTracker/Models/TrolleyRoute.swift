@@ -11,7 +11,7 @@ import MapKit
 
 
 /// Represents a route that trolleys follow. 
-struct TrolleyRoute: Codable, Equatable {
+struct TrolleyRoute: Equatable {
 
     static func ==(lhs: TrolleyRoute, rhs: TrolleyRoute) -> Bool {
         return lhs.ID == rhs.ID
@@ -22,12 +22,7 @@ struct TrolleyRoute: Codable, Equatable {
     let longName: String
     let routeDescription: String
     let flagStopsOnly: Bool
-    private let colorIndex: Int
-
-    var color: UIColor? {
-        return stops.first?.color
-    }
-    
+    let color: UIColor
     let stops: [TrolleyStop]
 
     private let _shapeCoordinates: [Coordinate]
@@ -40,7 +35,7 @@ struct TrolleyRoute: Codable, Equatable {
         let coordinates = self.shapePoints.map { $0.coordinate }
         let coordinatesPointer = UnsafeMutablePointer<CLLocationCoordinate2D>(mutating: coordinates)
         let polyline = TrolleyRouteOverlay(coordinates: coordinatesPointer, count: coordinates.count)
-        polyline.colorIndex = self.colorIndex
+        polyline.color = color
 
         return polyline
     }()
@@ -52,7 +47,7 @@ struct TrolleyRoute: Codable, Equatable {
          flagStopsOnly: Bool,
          stops: [TrolleyStop],
          shapeCoordinates: [Coordinate],
-         colorIndex: Int) {
+         color: UIColor) {
         self.ID = id
         self.shortName = shortName
         self.longName = longName
@@ -60,7 +55,7 @@ struct TrolleyRoute: Codable, Equatable {
         self.flagStopsOnly = flagStopsOnly
         self.stops = stops
         self._shapeCoordinates = shapeCoordinates
-        self.colorIndex = colorIndex
+        self.color = color
     }    
 }
 
@@ -82,9 +77,12 @@ struct _APITrolleyRoute: Codable {
     let RouteShape: [_APIShapePoint]
     let Stops: [_APITrolleyStop]
 
-    func route(with index: Int) -> TrolleyRoute {
+    func route() -> TrolleyRoute {
+
+        let color = GreenlinkColor(routeName: ShortName)?.color ?? .black
+
         let stops = Stops.map {
-            $0.trolleyStop(with: index)
+            $0.trolleyStop(with: color)
         }
         let coords = RouteShape.map {
             $0.coordinate
@@ -96,7 +94,7 @@ struct _APITrolleyRoute: Codable {
                             flagStopsOnly: FlagStopsOnly,
                             stops: stops,
                             shapeCoordinates: coords,
-                            colorIndex: index)
+                            color: color)
     }
 }
 
@@ -109,14 +107,14 @@ struct _APITrolleyStop: Codable {
     let StopImageURL: String?
     let LastTrolleyArrivalTime: [Int: String]
 
-    func trolleyStop(with index: Int) -> TrolleyStop {
+    func trolleyStop(with color: UIColor) -> TrolleyStop {
         return TrolleyStop(name: Name,
                            latitude: Lat,
                            longitude: Lon,
                            description: Description,
                            ID: ID,
                            lastTrolleyArrivals: LastTrolleyArrivalTime,
-                           colorIndex: index)
+                           color: color)
     }
 }
 
