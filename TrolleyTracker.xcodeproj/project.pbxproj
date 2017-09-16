@@ -1269,7 +1269,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.codeforgreenville.trolleytracker$(BUNDLE_ID_SUFFIX)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4a44af42-db60-4e94-bbe0-18df4cb3989f";
+				PROVISIONING_PROFILE = "2b1be18b-cc2f-4b34-bc78-5cfbd12186b7";
 				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
 			};
 			name = Debug;

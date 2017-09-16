@@ -102,7 +102,7 @@ class AggregateSchedulesOperation: ConcurrentOperation {
             // for each route
             var routeTimes = [RouteTime]()
             // -- find any matching schedules
-            let matchingSchedules = schedules.filter { $0.ID == route.ID }
+            let matchingSchedules = schedules.filter { $0.RouteID == route.ID }
             
             for schedule in matchingSchedules {
                 // -- for any schedules that match,

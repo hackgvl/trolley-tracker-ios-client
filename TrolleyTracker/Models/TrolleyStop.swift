@@ -19,16 +19,11 @@ class TrolleyStop: NSObject {
     let stopDescription: String
     let lastTrolleyArrivals: [Int: String]
     let color: UIColor
-    private let colorIndex: Int
 
     private let _coordinate: Coordinate
 
     var location: CLLocation {
         return _coordinate.location
-    }
-
-    var color: UIColor {
-        return .stopColorForIndex(colorIndex)
     }
     
     init(name: String,
