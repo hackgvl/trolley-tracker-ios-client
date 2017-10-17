@@ -23,6 +23,7 @@ class TrolleyRouteServiceLive: TrolleyRouteService {
 
     private let client: APIClient
     private let queue: OperationQueue = OperationQueue()
+    private let metadataStore: RouteMetadataStore
     
     private var memoryCachedActiveRoutes: CacheItem<[TrolleyRoute]>?
     private var memoryCachedRoutes = [Int : TrolleyRoute]()
@@ -33,6 +34,7 @@ class TrolleyRouteServiceLive: TrolleyRouteService {
 
     init(client: APIClient) {
         self.client = client
+        self.metadataStore = RouteMetadataStore()
     }
 
     func loadTrolleyRoutes(_ completion: @escaping LoadTrolleyRouteCompletion) {
@@ -46,7 +48,7 @@ class TrolleyRouteServiceLive: TrolleyRouteService {
             return
         }
 
-        let op = FetchActiveRouteIDsOperation(client: client)
+        let op = FetchActiveRouteIDsOperation(client: client, metadataStore: metadataStore)
         op.completionBlock = { [weak op] in
             guard let ids = op?.fetchedRouteIDs else {
                 DispatchQueue.main.async {
@@ -62,7 +64,7 @@ class TrolleyRouteServiceLive: TrolleyRouteService {
     func loadTrolleyRoute(_ routeID: Int, completion: @escaping LoadTrolleyRouteCompletion) {
         if let route = memoryCachedRoutes[routeID] { completion([route]); return }
 
-        let op = FetchRouteDetailOperation(routeIDs: [routeID], client: client)
+        let op = FetchRouteDetailOperation(routeIDs: [routeID], client: client, metadataStore: metadataStore)
         op.completionBlock = { [weak op] in
 
             guard let fetchedRoute = op?.fetchedRoutes.first else {
@@ -83,7 +85,7 @@ class TrolleyRouteServiceLive: TrolleyRouteService {
     private func fetchActiveRouteIDsFromNetwork(_ routeIDs: [Int],
                                                 completion: @escaping LoadTrolleyRouteCompletion) {
 
-        let op = FetchRouteDetailOperation(routeIDs: routeIDs, client: client)
+        let op = FetchRouteDetailOperation(routeIDs: routeIDs, client: client, metadataStore: metadataStore)
         op.completionBlock = { [weak op] in
 
             guard let fetchedRoutes = op?.fetchedRoutes else {
@@ -99,5 +101,26 @@ class TrolleyRouteServiceLive: TrolleyRouteService {
             }
         }
         queue.addOperation(op)
+    }
+}
+
+class RouteMetadataStore {
+
+    private var metadata: [Int: RouteMetadata] = [:]
+
+    func store(route: _APIRoute) {
+        metadata[route.ID] = RouteMetadata(route: route)
+    }
+
+    func metadata(forRoute route: _APITrolleyRoute) -> RouteMetadata? {
+        return metadata[route.ID]
+    }
+}
+
+struct RouteMetadata {
+    let colorString: String
+
+    init(route: _APIRoute) {
+        self.colorString = route.RouteColorRGB
     }
 }

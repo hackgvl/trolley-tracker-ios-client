@@ -65,6 +65,7 @@ struct _APIRoute: Codable {
     let LongName: String
     let Description: String
     let FlagStopsOnly: Bool
+    let RouteColorRGB: String
 }
 
 struct _APITrolleyRoute: Codable {
@@ -77,9 +78,9 @@ struct _APITrolleyRoute: Codable {
     let RouteShape: [_APIShapePoint]
     let Stops: [_APITrolleyStop]
 
-    func route() -> TrolleyRoute {
+    func route(withMetadata metadata: RouteMetadata?) -> TrolleyRoute {
 
-        let color = GreenlinkColor(routeName: ShortName)?.color ?? .black
+        let color = metadata.map { UIColor(hex: $0.colorString) } ?? GreenlinkColor(routeName: ShortName)?.color ?? .black
 
         let stops = Stops.map {
             $0.trolleyStop(with: color)

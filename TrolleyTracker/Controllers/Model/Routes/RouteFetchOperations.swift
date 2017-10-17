@@ -14,12 +14,16 @@ class FetchRouteDetailOperation: ConcurrentOperation {
     private let group = DispatchGroup()
     private let routeIDs: [Int]
     private let client: APIClient
+    private let metadataStore: RouteMetadataStore
 
     internal private(set) var fetchedRoutes: [TrolleyRoute] = []
 
-    init(routeIDs: [Int], client: APIClient) {
+    init(routeIDs: [Int],
+         client: APIClient,
+         metadataStore: RouteMetadataStore) {
         self.routeIDs = routeIDs
         self.client = client
+        self.metadataStore = metadataStore
     }
 
     override func execute() {
@@ -51,7 +55,8 @@ class FetchRouteDetailOperation: ConcurrentOperation {
                 decoder.dateDecodingStrategy = .iso8601
                 do {
                     let rawRoute = try decoder.decode(_APITrolleyRoute.self, from: data)
-                    let route = rawRoute.route()
+                    let metadata = self.metadataStore.metadata(forRoute: rawRoute)
+                    let route = rawRoute.route(withMetadata: metadata)
                     completion([route])
                 }
                 catch let error {
@@ -69,9 +74,11 @@ class FetchActiveRouteIDsOperation: ConcurrentOperation {
     internal private(set) var fetchedRouteIDs: [Int] = []
 
     private let client: APIClient
+    private let metadataStore: RouteMetadataStore
 
-    init(client: APIClient) {
+    init(client: APIClient, metadataStore: RouteMetadataStore) {
         self.client = client
+        self.metadataStore = metadataStore
     }
 
     override func execute() {
@@ -89,6 +96,9 @@ class FetchActiveRouteIDsOperation: ConcurrentOperation {
                     return
                 }
                 self.fetchedRouteIDs = rawRoutes.map { $0.ID }
+                for route in rawRoutes {
+                    self.metadataStore.store(route: route)
+                }
             }
 
             self.finish()

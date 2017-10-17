@@ -112,7 +112,9 @@ extension UIColor {
 extension UIColor {
     
     convenience init(hex: String) {
-        let scanner = Scanner(string: hex)
+        let set = CharacterSet(charactersIn: "#")
+        let trimmedHex = hex.trimmingCharacters(in: set)
+        let scanner = Scanner(string: trimmedHex)
         scanner.scanLocation = 0
 
         var rgbValue: UInt64 = 0
