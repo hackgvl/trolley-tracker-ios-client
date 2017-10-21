@@ -36,6 +36,18 @@ enum GreenlinkColor {
     }
 }
 
+extension CGFloat {
+
+    static let fadedStop: CGFloat = 0.5
+    static let unfadedStop: CGFloat = 1
+
+    static let fadedRoute: CGFloat = 0.3
+    static let unfadedRoute: CGFloat = 1
+
+    static let fadedTrolley: CGFloat = 0.3
+    static let unfadedTrolley: CGFloat = 1
+}
+
 extension UIColor {
 
     static func rgb(_ r: CGFloat, _ g: CGFloat, _ b: CGFloat) -> UIColor {

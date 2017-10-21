@@ -22,6 +22,15 @@ class MapViewController: UIViewController {
 
     typealias ViewControllerDependencies = ApplicationController
 
+    //==========================================================================
+    // MARK: - API
+    //==========================================================================
+
+    func dimTrolleysOtherThan(_ trolleyToSkip: Trolley) {
+        guard let trolleyView = mapView.view(for: trolleyToSkip) else { return }
+        mapView.dimTrolleyAnnotationsExcept(trolleyView)
+    }
+
     //==================================================================
     // MARK: - Properties
     //==================================================================

@@ -53,7 +53,9 @@ extension Array where Element == TrolleyRouteLink {
     subscript(trolley: Trolley) -> TrolleyRoute? {
         get {
             guard let i = index(where: { link in
-                link.trolleys.contains(trolley)
+                link.trolleys.contains(where: { linkTrolley in
+                    linkTrolley.ID == trolley.ID
+                })
             }) else { return nil }
             return self[i].route
         }

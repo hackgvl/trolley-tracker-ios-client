@@ -91,6 +91,32 @@ extension MKMapView {
         removeOverlays(trolleyRouteOverlays)
         removeAnnotations(trolleyStopAnnotations)
     }
+
+    func reloadRouteOverlays() {
+        let current = trolleyRouteOverlays
+        removeOverlays(trolleyRouteOverlays)
+        addOverlays(current)
+    }
+
+    func dimTrolleyAnnotationsExcept(_ annotationToSkip: MKAnnotationView) {
+        for annotation in trolleyAnnotations {
+            guard let view = self.view(for: annotation) else { continue }
+            guard view != annotationToSkip else { continue }
+            view.alpha = .fadedTrolley
+        }
+    }
+
+    func undimAllTrolleyAnnotations() {
+        for annotation in trolleyAnnotations {
+            view(for: annotation)?.alpha = .unfadedTrolley
+        }
+    }
+
+    func setStops(faded: Bool) {
+        for annotation in trolleyStopAnnotations {
+            view(for: annotation)?.alpha = faded ? .fadedStop : .unfadedStop
+        }
+    }
 }
 
 extension MKCoordinateRegion {

@@ -53,9 +53,11 @@ class MapController: FunctionController {
             let user = self.viewController.mapView.userLocation
             self.delegate?.annotationSelected(view.annotation,
                                               userLocation: user)
+            self.dimItemsNotRelated(toView: view)
         }
         mapDelegate.annotationDeselectionAction = { view in
             self.delegate?.annotationSelected(nil, userLocation: nil)
+            self.undimAllItems()
         }
 
         refreshTimer.action = loadRoutes
@@ -72,6 +74,31 @@ class MapController: FunctionController {
         modelController.loadTrolleyRoutes { routes in
             self.viewController.mapView.replaceCurrentRoutes(with: routes)
         }
+    }
+
+    private func dimItemsNotRelated(toView view: MKAnnotationView) {
+        guard let trolleyView = view as? TrolleyAnnotationView,
+            let trolley = trolleyView.annotation as? Trolley,
+            let route = modelController.route(for: trolley) else {
+                return
+        }
+
+        mapDelegate.highlightedTrolley = trolley
+        mapDelegate.highlightedRoute = route
+        mapDelegate.shouldDimStops = true
+
+        viewController.mapView.setStops(faded: true)
+        viewController.mapView.reloadRouteOverlays()
+        viewController.dimTrolleysOtherThan(trolley)
+    }
+
+    private func undimAllItems() {
+        mapDelegate.highlightedTrolley = nil
+        mapDelegate.highlightedRoute = nil
+        mapDelegate.shouldDimStops = false
+        viewController.mapView.undimAllTrolleyAnnotations()
+        viewController.mapView.reloadRouteOverlays()
+        viewController.mapView.setStops(faded: false)
     }
 }
 

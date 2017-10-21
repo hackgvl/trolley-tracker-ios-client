@@ -21,6 +21,10 @@ class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
     var annotationSelectionAction: MapViewSelectionAction?
     var annotationDeselectionAction: MapViewSelectionAction?
     var shouldShowCallouts: Bool = false
+
+    var highlightedRoute: TrolleyRoute?
+    var highlightedTrolley: Trolley?
+    var shouldDimStops: Bool = false
     
     func mapView(_ mapView: MKMapView,
                  viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -51,6 +55,7 @@ class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
             view.canShowCallout = shouldShowCallouts
             view.annotation = annotation
             view.tintColor = UIColor(white: 0.3, alpha: 1)
+            view.alpha = shouldDimStops ? .fadedStop : .unfadedStop
             
             return view
         }
@@ -66,6 +71,14 @@ class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
             view.tintColor = trolleyAnnotation.tintColor
             view.trolleyNumber = trolleyAnnotation.ID
             view.annotation = trolleyAnnotation
+
+            if let highlighted = highlightedTrolley {
+                view.alpha = highlighted.ID == trolleyAnnotation.ID ? .unfadedTrolley : .fadedTrolley
+            }
+            else {
+                // No highlighted Trolley, all should be equal
+                view.alpha = .unfadedTrolley
+            }
             
             return view
         }
@@ -78,11 +91,17 @@ class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
         let renderer = MKPolylineRenderer(overlay: overlay)
         
         renderer.lineWidth = 4.0
-        
-        if let routeOverlay = overlay as? TrolleyRouteOverlay {
-            renderer.strokeColor = routeOverlay.color
+
+        guard let routeOverlay = overlay as? TrolleyRouteOverlay else {
+            return renderer
         }
-        
+
+        renderer.strokeColor = routeOverlay.color
+
+        if let highlighted = highlightedRoute {
+            renderer.alpha = highlighted.color == routeOverlay.color ? .unfadedRoute : .fadedRoute
+        }
+
         return renderer
     }
     
