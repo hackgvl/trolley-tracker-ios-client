@@ -12,20 +12,11 @@ import MapKit
 class Trolley: NSObject {
     
     let ID: Int
-    var coordinate: CLLocationCoordinate2D {
-        get { return _coordinate.coordinate }
-        set {
-            willChangeValue(forKey: "coordinate")
-            _coordinate = Coordinate(coordinate: coordinate)
-            didChangeValue(forKey: "coordinate")
-        }
-    }
+    @objc dynamic var coordinate: CLLocationCoordinate2D
     let name: String?
     let number: Int?
     let iconColor: String
 
-    private var _coordinate: Coordinate
-    
     init(identifier: Int,
          coordinate: Coordinate,
          name: String?,
@@ -33,7 +24,7 @@ class Trolley: NSObject {
          iconColor: String) {
         self.name = name
         self.ID = identifier
-        self._coordinate = coordinate
+        self.coordinate = coordinate.coordinate
         self.number = number
         self.iconColor = iconColor
     }
