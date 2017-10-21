@@ -22,9 +22,7 @@ class Trolley: NSObject {
     }
     let name: String?
     let number: Int?
-    let iconColor: String?
-
-    var associatedRouteColor: UIColor?
+    let iconColor: String
 
     private var _coordinate: Coordinate
     
@@ -32,7 +30,7 @@ class Trolley: NSObject {
          coordinate: Coordinate,
          name: String?,
          number: Int?,
-         iconColor: String?) {
+         iconColor: String) {
         self.name = name
         self.ID = identifier
         self._coordinate = coordinate
@@ -57,12 +55,7 @@ class Trolley: NSObject {
 extension Trolley {
 
     var tintColor: UIColor {
-        if let routeColor = associatedRouteColor {
-            return routeColor
-        }
-        let trimCharacters = CharacterSet(charactersIn: "#")
-        let hex = iconColor?.trimmingCharacters(in: trimCharacters) ?? "FFFFFF"
-        return UIColor(hex: hex)
+        return UIColor(hex: iconColor)
     }
 }
 
