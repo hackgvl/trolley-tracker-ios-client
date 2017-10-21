@@ -55,6 +55,10 @@ class ModelController {
     func trolleys(for route: TrolleyRoute) -> [Trolley] {
         return links[route]?.trolleys ?? []
     }
+
+    func route(for trolley: Trolley) -> TrolleyRoute? {
+        return links[trolley]
+    }
     
     // MARK: - Implementation
     

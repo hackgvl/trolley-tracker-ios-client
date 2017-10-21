@@ -50,6 +50,15 @@ extension Array where Element == TrolleyRouteLink {
         }
     }
 
+    subscript(trolley: Trolley) -> TrolleyRoute? {
+        get {
+            guard let i = index(where: { link in
+                link.trolleys.contains(trolley)
+            }) else { return nil }
+            return self[i].route
+        }
+    }
+
     var trolleys: [Trolley] {
         return flatMap { $0.trolleys }
     }
