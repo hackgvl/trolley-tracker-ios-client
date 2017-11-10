@@ -89,7 +89,7 @@ private extension URL {
         case .Test:
             return "http://yeahthattrolley.azurewebsites.net/api"
         default:
-            return "http://tracker.wallinginfosystems.com/api"
+            return "http://api.yeahthattrolley.com/api"
         }
     }
 
