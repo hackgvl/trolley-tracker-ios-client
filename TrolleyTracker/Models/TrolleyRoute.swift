@@ -106,7 +106,7 @@ struct _APITrolleyStop: Codable {
     let Lat: Double
     let Lon: Double
     let StopImageURL: String?
-    let LastTrolleyArrivalTime: [Int: String]
+    let NextTrolleyArrivalTime: [Int: String]
 
     func trolleyStop(with color: UIColor) -> TrolleyStop {
         return TrolleyStop(name: Name,
@@ -114,7 +114,7 @@ struct _APITrolleyStop: Codable {
                            longitude: Lon,
                            description: Description,
                            ID: ID,
-                           lastTrolleyArrivals: LastTrolleyArrivalTime,
+                           lastTrolleyArrivals: NextTrolleyArrivalTime,
                            color: color)
     }
 }
