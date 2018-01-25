@@ -33,10 +33,10 @@ class DetailController: FunctionController {
         currentAnnotation = annotation
 
         if let trolley = annotation as? Trolley {
-            viewController.show(titleText: trolley.name ?? "")
+            viewController.show(displayValue: .title(trolley.name ?? ""))
         }
         else if let stop = annotation as? TrolleyStop {
-            viewController.show(titleText: stop.name)
+            viewController.show(displayValue: .stop(stop))
         }
         else {
             viewController.resetUI()
@@ -53,7 +53,7 @@ class DetailController: FunctionController {
                 return
         }
         let string = MKDistanceFormatter.standard.string(fromDistance: c1.distance(from: c2))
-        viewController.show(distance: string)
+        viewController.show(displayValue: .distance(string))
     }
 
     private func getDirections(_ pointB: CLLocationCoordinate2D) {
@@ -86,10 +86,10 @@ class DetailController: FunctionController {
     private func handleWalkingTimeResult(_ rawTime: TimeInterval?,
                                          _ formattedTime: String?) {
         guard let formattedTime = formattedTime else {
-            viewController.show(walkingTime: "")
+            viewController.show(displayValue: .walkingTime(""))
             return
         }
-        viewController.show(walkingTime: formattedTime)
+        viewController.show(displayValue: .walkingTime(formattedTime))
     }
 }
 

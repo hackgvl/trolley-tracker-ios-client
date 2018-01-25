@@ -17,7 +17,7 @@ class TrolleyStop: NSObject {
     let stopID: Int
     let name: String
     let stopDescription: String
-    let lastTrolleyArrivals: [Int: String]
+    let nextTrolleyArrivals: [TrolleyArrivalTime]
     let color: UIColor
 
     private let _coordinate: Coordinate
@@ -37,7 +37,7 @@ class TrolleyStop: NSObject {
         self._coordinate = Coordinate(latitude: latitude, longitude: longitude)
         self.stopDescription = description
         self.stopID = ID
-        self.lastTrolleyArrivals = lastTrolleyArrivals
+        self.nextTrolleyArrivals = TrolleyArrivalTime.from(lastTrolleyArrivals)
         self.color = color
     }
 
@@ -59,5 +59,26 @@ extension TrolleyStop: MKAnnotation {
     
     var subtitle: String? {
         return ""
+    }
+}
+
+struct TrolleyArrivalTime {
+    let trolleyID: Int
+    let date: Date
+
+    private static var formatter: DateFormatter = {
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        return df
+    }()
+
+    static func from(_ values: [Int : String]) -> [TrolleyArrivalTime] {
+        return values.flatMap {
+            let string = Array($0.1.components(separatedBy: ".")).dropLast().joined()
+            guard let date = TrolleyArrivalTime.formatter.date(from: string) else {
+                return nil
+            }
+            return TrolleyArrivalTime(trolleyID: $0.key, date: date)
+        }
     }
 }

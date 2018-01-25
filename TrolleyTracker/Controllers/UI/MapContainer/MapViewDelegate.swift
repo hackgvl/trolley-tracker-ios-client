@@ -67,9 +67,9 @@ class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
             let view = mapView.dequeueAnnotationView(ofType: TrolleyAnnotationView.self,
                                                      for: annotation)
 
-            view.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+            view.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
             view.tintColor = trolleyAnnotation.tintColor
-            view.trolleyNumber = trolleyAnnotation.ID
+            view.trolleyNumber = trolleyAnnotation.number ?? 0
             view.annotation = trolleyAnnotation
 
             if let highlighted = highlightedTrolley {

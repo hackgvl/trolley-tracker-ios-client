@@ -23,7 +23,7 @@ class TrolleyAnnotationView: MKAnnotationView {
     }
     
     private var labelText: String {
-        get { return "#\(trolleyNumber)" }
+        get { return "\(trolleyNumber)" }
     }
 
     private let innerColorAlpha: CGFloat = 0.9

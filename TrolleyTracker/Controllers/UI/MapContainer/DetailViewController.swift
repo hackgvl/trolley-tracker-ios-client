@@ -16,6 +16,13 @@ protocol DetailViewControllerDelegate: class {
 
 class DetailViewController: UIViewController {
 
+    enum DisplayValue {
+        case walkingTime(String)
+        case distance(String)
+        case title(String)
+        case stop(TrolleyStop)
+    }
+
     //==================================================================
     // MARK: - Lifecycle
     //==================================================================
@@ -48,18 +55,39 @@ class DetailViewController: UIViewController {
         timeLoadingIndicator.startAnimating()
     }
 
-    func show(walkingTime: String) {
+    func show(displayValue: DisplayValue) {
+
+        switch displayValue {
+        case .distance(let text):
+            show(distance: text)
+        case .stop(let stop):
+            resetUI()
+            show(titleText: stop.name)
+            show(arrivalTimes: stop.nextTrolleyArrivals)
+        case .title(let text):
+            resetUI()
+            show(titleText: text)
+        case .walkingTime(let text):
+            show(walkingTime: text)
+        }
+    }
+
+    private func show(walkingTime: String) {
         timeLabel.text = walkingTime
         walkingTimeButton.isEnabled = true
         timeLoadingIndicator.stopAnimating()
     }
 
-    func show(distance: String) {
+    private func show(distance: String) {
         distanceLabel.text = distance
     }
 
-    func show(titleText: String) {
+    private func show(titleText: String) {
         titleLabel.text = titleText
+    }
+
+    private func show(arrivalTimes: [TrolleyArrivalTime]) {
+        addArrivalTimeLabels(for: arrivalTimes)
     }
     
     //==================================================================
@@ -70,6 +98,43 @@ class DetailViewController: UIViewController {
         titleLabel.text = nil
         timeLabel.text = nil
         distanceLabel.text = nil
+        for view in arrivalTimesStack.subviews {
+            view.removeFromSuperview()
+        }
+    }
+
+    private static var timesFormatter: DateFormatter = {
+        let tf = DateFormatter()
+        tf.timeStyle = .short
+        return tf
+    }()
+
+    private func addArrivalTimeLabels(for times: [TrolleyArrivalTime]) {
+
+        if !times.isEmpty {
+            let l = UILabel().useAutolayout()
+            l.textColor = UIColor.ttLightTextColor()
+            l.text = "Estimated Trolley arrival times"
+            arrivalTimesStack.addArrangedSubview(l)
+        }
+
+        for time in times {
+
+            let stack = UIStackView().useAutolayout()
+            stack.axis = .horizontal
+            arrivalTimesStack.addArrangedSubview(stack)
+
+            let trolleyLabel = UILabel().useAutolayout()
+            trolleyLabel.textColor = UIColor.ttLightTextColor()
+            trolleyLabel.text = "\(time.trolleyID)"
+
+            let timeLabel = UILabel().useAutolayout()
+            timeLabel.textColor = UIColor.ttLightTextColor()
+            timeLabel.text = DetailViewController.timesFormatter.string(from: time.date)
+
+            stack.addArrangedSubview(trolleyLabel)
+            stack.addArrangedSubview(timeLabel)
+        }
     }
     
     //==================================================================
@@ -122,6 +187,10 @@ class DetailViewController: UIViewController {
 
         innerVStack.addArrangedSubview(.spacerView(height: 10))
 
+        innerVStack.addArrangedSubview(arrivalTimesStack)
+
+        innerVStack.addArrangedSubview(.spacerView(height: 10))
+
         let buttonsStack = UIStackView().useAutolayout()
         buttonsStack.axis = .horizontal
         innerVStack.addArrangedSubview(buttonsStack)
@@ -134,6 +203,12 @@ class DetailViewController: UIViewController {
 
     private let rootStack: UIStackView = {
         let sv = UIStackView()
+        sv.axis = .vertical
+        return sv
+    }()
+
+    private let arrivalTimesStack: UIStackView = {
+        let sv = UIStackView().useAutolayout()
         sv.axis = .vertical
         return sv
     }()
