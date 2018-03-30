@@ -94,7 +94,7 @@ extension Array where Element == RouteSchedule {
         }
 
         // Create Schedule Display items
-        let sections: [ScheduleSection] = Day.sortedDays.flatMap { day in
+        let sections: [ScheduleSection] = Day.sortedDays.compactMap { day in
 
             // Don't display days with no routes
             guard let routes = flattenedDays[day] , !routes.isEmpty else { return nil }

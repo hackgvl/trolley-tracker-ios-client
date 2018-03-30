@@ -141,7 +141,7 @@ class SaveSchedulesOperation: Operation {
     override func main() {
 
         let encoder = JSONEncoder()
-        let datas = schedules.flatMap {
+        let datas = schedules.compactMap {
             try? encoder.encode($0)
         }
 
@@ -166,7 +166,7 @@ class LoadLocalSchedulesOperation: Operation {
         }
 
         let decoder = JSONDecoder()
-        loadedSchedules = datas.flatMap {
+        loadedSchedules = datas.compactMap {
             try? decoder.decode(RouteSchedule.self, from: $0)
         }
     }

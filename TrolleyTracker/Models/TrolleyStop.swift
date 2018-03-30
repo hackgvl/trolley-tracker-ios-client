@@ -73,7 +73,7 @@ struct TrolleyArrivalTime {
     }()
 
     static func from(_ values: [Int : String]) -> [TrolleyArrivalTime] {
-        return values.flatMap {
+        return values.compactMap {
             let string = Array($0.1.components(separatedBy: ".")).dropLast().joined()
             guard let date = TrolleyArrivalTime.formatter.date(from: string) else {
                 return nil
