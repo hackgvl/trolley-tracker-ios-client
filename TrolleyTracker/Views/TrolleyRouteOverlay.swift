@@ -10,5 +10,5 @@ import MapKit
 
 class TrolleyRouteOverlay: MKPolyline {
 
-    var color = UIColor.black
+    var color: UIColor = .black
 }

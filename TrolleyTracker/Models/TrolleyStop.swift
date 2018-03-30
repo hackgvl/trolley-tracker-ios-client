@@ -38,7 +38,25 @@ class TrolleyStop: NSObject {
         self.stopDescription = description
         self.stopID = ID
         self.nextTrolleyArrivals = TrolleyArrivalTime.from(lastTrolleyArrivals)
+    
+    init?(json: JSON) {
+        
+        let lat = json["Lat"].stringValue
+        let lon = json["Lon"].stringValue
+        
+        self.stopDescription = json["Description"].stringValue
+        self.location = CLLocation(latitude: (lat as NSString).doubleValue, longitude: (lon as NSString).doubleValue)
+        self.stopID = json["ID"].intValue
+        self.name = json["Name"].stringValue
+        
+        super.init()
+        
+        let ID = json["ID"].int
         self.color = color
+    }
+    
+    convenience init?(jsonData: AnyObject, colorIndex: Int) {
+        self.init(json: JSON(jsonData))
     }
 
     override func isEqual(_ object: Any?) -> Bool {
