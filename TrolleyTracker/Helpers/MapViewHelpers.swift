@@ -11,15 +11,15 @@ import MapKit
 extension MKMapView {
 
     var trolleyAnnotations: [Trolley] {
-        return annotations.flatMap { $0 as? Trolley }
+        return annotations.compactMap { $0 as? Trolley }
     }
 
     var trolleyStopAnnotations: [TrolleyStop] {
-        return annotations.flatMap { $0 as? TrolleyStop }
+        return annotations.compactMap { $0 as? TrolleyStop }
     }
 
     var trolleyRouteOverlays: [TrolleyRouteOverlay] {
-        return overlays.flatMap { $0 as? TrolleyRouteOverlay }
+        return overlays.compactMap { $0 as? TrolleyRouteOverlay }
     }
 
     func centerOnUser(context: UIViewController) {
