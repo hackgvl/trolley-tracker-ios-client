@@ -34,14 +34,19 @@ class TrolleyTrackerTests: XCTestCase {
             XCTAssert(false, "No Trolley Data to test with")
             return
         }
-        guard let jsonData = try? JSONSerialization.jsonObject(with: trolleyData, options: []) else {
-            XCTAssert(false, "Unable to create JSON Data from mock data")
+
+        let decoder = JSONDecoder()
+        let apiTrolley: _APITrolley
+        do {
+            apiTrolley = try decoder.decode(_APITrolley.self, from: trolleyData)
+        }
+        catch let error {
+            print(error)
+            XCTAssert(false)
             return
         }
-        guard let trolley = Trolley(jsonData: jsonData) else {
-            XCTAssert(false, "Unable to parse Trolley from data: \(String(describing: mockTrolleyData))")
-            return
-        }
+
+        let trolley = apiTrolley.trolley
 
         XCTAssertEqual(trolley.ID, 6)
         XCTAssertEqual(trolley.name, "Limo Trolley")
