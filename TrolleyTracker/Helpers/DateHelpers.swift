@@ -10,23 +10,23 @@ import Foundation
 
 extension Date {
 
-    var hasCrossedQuarterHourBoundry: Bool {
+    func isAcrossQuarterHourBoundry(comparedTo otherDate: Date) -> Bool {
 
         let calendar = Calendar.current
-        let cacheComps = calendar.component(.minute, from: self)
-        let nowComps = Calendar.current.component(.minute, from: Date())
+        let selfComps = calendar.component(.minute, from: self)
+        let otherComps = Calendar.current.component(.minute, from: otherDate)
 
-        guard cacheComps != nowComps else {
+        guard selfComps != otherComps else {
             return false
         }
 
-        // If self minutes are greater than `now` minutes,
+        // If `other` minutes are greater than `self` minutes,
         // the range spans the top of the hour
-        guard nowComps > cacheComps else {
+        guard selfComps > otherComps else {
             return true
         }
 
-        let range = cacheComps..<nowComps
+        let range = otherComps..<selfComps
         let boundryMarkers = [0, 15, 30, 45, 60]
 
         for marker in boundryMarkers {
@@ -36,5 +36,10 @@ extension Date {
         }
 
         return false
+    }
+
+    var isAcrossQuarterHourBoundryFromNow: Bool {
+        let now = Date()
+        return isAcrossQuarterHourBoundry(comparedTo: now)
     }
 }

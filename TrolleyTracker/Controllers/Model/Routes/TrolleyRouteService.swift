@@ -41,7 +41,7 @@ class TrolleyRouteServiceLive: TrolleyRouteService {
 
         if let cachedRoutes = memoryCachedActiveRoutes,
             cachedRoutes.isNewerThan(15),
-            !cachedRoutes.timestamp.hasCrossedQuarterHourBoundry {
+            !cachedRoutes.timestamp.isAcrossQuarterHourBoundryFromNow {
             DispatchQueue.main.async {
                 completion(cachedRoutes.payload)
             }

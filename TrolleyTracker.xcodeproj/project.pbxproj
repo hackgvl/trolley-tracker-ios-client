@@ -28,6 +28,8 @@
 		CAF9971F1F2E806000480618 /* FunctionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF9971E1F2E806000480618 /* FunctionController.swift */; };
 		CAFDD40A1F2D576A00C7836E /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFDD4091F2D576A00C7836E /* Result.swift */; };
 		CE10CFC61F45A32A00B88A90 /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE10CFC51F45A32A00B88A90 /* ModelController.swift */; };
+		CE2EBBAC2079859E00E96E4A /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2EBBAB2079859E00E96E4A /* DateTests.swift */; };
+		CE6DA90020798CF200942318 /* ArrayHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DA8FF20798CF200942318 /* ArrayHelperTests.swift */; };
 		D9019DAD1E526F0000D9E197 /* trolleyMock.json in Resources */ = {isa = PBXBuildFile; fileRef = D9019DAC1E526F0000D9E197 /* trolleyMock.json */; };
 		D9019DB51E5277DB00D9E197 /* TrolleyTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9019DB41E5277DB00D9E197 /* TrolleyTrackerUITests.swift */; };
 		D90866F01B91292F002A6F87 /* TrolleyAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90866EF1B91292F002A6F87 /* TrolleyAnnotationView.swift */; };
@@ -161,6 +163,8 @@
 		CAF9971E1F2E806000480618 /* FunctionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionController.swift; sourceTree = "<group>"; };
 		CAFDD4091F2D576A00C7836E /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		CE10CFC51F45A32A00B88A90 /* ModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelController.swift; sourceTree = "<group>"; };
+		CE2EBBAB2079859E00E96E4A /* DateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
+		CE6DA8FF20798CF200942318 /* ArrayHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayHelperTests.swift; sourceTree = "<group>"; };
 		D9019DAC1E526F0000D9E197 /* trolleyMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = trolleyMock.json; sourceTree = "<group>"; };
 		D9019DB21E5277DB00D9E197 /* TrolleyTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrolleyTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9019DB41E5277DB00D9E197 /* TrolleyTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrolleyTrackerUITests.swift; sourceTree = "<group>"; };
@@ -551,6 +555,8 @@
 				D9019D9E1E526EB400D9E197 /* MockData */,
 				EFA4B20F1A1C201F00BEA42C /* Supporting Files */,
 				EFA4B2111A1C201F00BEA42C /* TrolleyTrackerTests.swift */,
+				CE2EBBAB2079859E00E96E4A /* DateTests.swift */,
+				CE6DA8FF20798CF200942318 /* ArrayHelperTests.swift */,
 			);
 			path = TrolleyTrackerTests;
 			sourceTree = "<group>";
@@ -850,7 +856,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE6DA90020798CF200942318 /* ArrayHelperTests.swift in Sources */,
 				EFA4B2121A1C201F00BEA42C /* TrolleyTrackerTests.swift in Sources */,
+				CE2EBBAC2079859E00E96E4A /* DateTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

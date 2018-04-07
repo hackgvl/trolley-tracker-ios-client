@@ -65,7 +65,7 @@ class ScheduleController: FunctionController {
             return
         }
 
-        guard lastDate.hasCrossedQuarterHourBoundry else {
+        guard lastDate.isAcrossQuarterHourBoundryFromNow else {
             return
         }
 
