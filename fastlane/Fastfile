@@ -23,7 +23,7 @@ platform :ios do
     commit_version_bump(xcodeproj: "TrolleyTracker.xcodeproj")
     add_git_tag()
     build_app(scheme: "TrolleyTracker")
-    upload_to_testflight(username: ENV["FASTLANE_ITC_USERNAME"])
+    upload_to_testflight(username: ENV["FASTLANE_ITC_USERNAME"], skip_submission: true)
   end
   
   desc "Run unit tests"
