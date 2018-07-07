@@ -68,14 +68,6 @@ class ContainerController: FunctionController {
             self.messageController.hideStopsDisclaimerMessage()
         }
     }
-
-    func showSearchingMessage() {
-        messageController.showSearchingMessage()
-    }
-
-    func hideSearchingMessage() {
-        messageController.hideSearchingMessage()
-    }
 }
 
 extension ContainerController: MessageControllerDelegate {
