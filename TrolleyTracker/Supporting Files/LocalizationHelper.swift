@@ -30,6 +30,10 @@ struct LS {
         return string(for: "More.Title")
     }
 
+    static var mapMessageSearching: String {
+        return string(for: "Message.Searching")
+    }
+
     static var mapMessageNoTrolleys: String {
         return string(for: "Message.NoTrolleys")
     }

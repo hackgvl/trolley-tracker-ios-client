@@ -17,12 +17,14 @@ class MessageController: FunctionController {
 
     fileprivate enum MessageType {
         case disclaimer
+        case searching
         case noTrolleys
         case none
 
         var displayValue: String {
             switch self {
             case .disclaimer: return LS.mapMessageDisclaimer
+            case .searching: return LS.mapMessageSearching
             case .noTrolleys: return LS.mapMessageNoTrolleys
             case .none: return ""
             }
@@ -36,6 +38,9 @@ class MessageController: FunctionController {
         didSet { viewController.setMessageText(activeMessage.displayValue) }
     }
     private var shouldShowDisclaimer = false {
+        didSet { updateMessage() }
+    }
+    private var shouldShowSearching = false {
         didSet { updateMessage() }
     }
     private var shouldShowNoTrolleys = false {
@@ -73,6 +78,17 @@ class MessageController: FunctionController {
         shouldShowDisclaimer = false
     }
 
+    func showSearchingMessage() {
+        shouldShowSearching = true
+    }
+
+    func hideSearchingMessage() {
+        shouldShowSearching = false
+    }
+
+    // It probably makes sense to add a different function to handle the listener for the API response triggering the show/hideSearchingMessage
+    // Would love your thoughts/assistance here Austin - Jeremy Wight
+    
     private func updateMessage() {
         switch (shouldShowNoTrolleys, shouldShowDisclaimer) {
         case (true, true), (true, false):
@@ -97,6 +113,7 @@ extension MessageController: MessageVCDelegate {
         switch activeMessage {
         case .none: return
         case .disclaimer: hideStopsDisclaimerMessage()
+        case .searching: return
         case .noTrolleys: delegate?.showSchedule()
         }
     }
