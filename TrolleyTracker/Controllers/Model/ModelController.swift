@@ -62,9 +62,9 @@ class ModelController {
     
     // MARK: - Implementation
     
-    private let scheduleService: TrolleyScheduleService
-    private let locationService: TrolleyLocationService
-    private let routeService: TrolleyRouteService
+    let scheduleService: TrolleyScheduleService
+    let locationService: TrolleyLocationService
+    let routeService: TrolleyRouteService
 
     private var links: [TrolleyRouteLink] = []
     private var lastTrolleys: [Trolley] = []

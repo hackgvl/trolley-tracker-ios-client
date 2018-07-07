@@ -26,6 +26,8 @@ class ContainerController: FunctionController {
     private let detailController: DetailController
     private let messageController: MessageController
 
+    private var trolleyObserver: ObserverSetEntry<[Trolley]>?
+
     init(dependencies: Dependencies) {
         self.dependencies = dependencies
 
@@ -53,11 +55,25 @@ class ContainerController: FunctionController {
         return viewController
     }
 
+    func showSearchingMessageUntilNextTrolleyFetch() {
+        messageController.showSearchingMessage()
+        let observers = dependencies.modelController.locationService.trolleyObservers
+        trolleyObserver = observers.add(handleTrolleyObserverNotification(_:))
+    }
+
     func showStopsDisclaimer() {
         messageController.showStopsDisclaimerMessage()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
             self.messageController.hideStopsDisclaimerMessage()
         }
+    }
+
+    private func handleTrolleyObserverNotification(_ trolleys: [Trolley]) {
+        messageController.hideSearchingMessage()
+        trolleyObserver.map {
+            self.dependencies.modelController.locationService.trolleyObservers.remove($0)
+        }
+        trolleyObserver = nil
     }
 }
 

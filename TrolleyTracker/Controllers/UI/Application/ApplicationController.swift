@@ -48,6 +48,7 @@ class ApplicationController: FunctionController {
         window.makeKeyAndVisible()
 
         container.showStopsDisclaimer()
+        container.showSearchingMessageUntilNextTrolleyFetch()
     }
 }
 

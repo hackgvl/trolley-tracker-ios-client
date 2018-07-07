@@ -27,6 +27,7 @@
 		D914FAE41B30DFA8002DACF8 /* Trolley.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FAE31B30DFA8002DACF8 /* Trolley.swift */; };
 		D914FAE61B30DFC0002DACF8 /* TrolleyStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FAE51B30DFC0002DACF8 /* TrolleyStop.swift */; };
 		D914FAFC1B30EA84002DACF8 /* ObserverSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FAFB1B30EA84002DACF8 /* ObserverSet.swift */; };
+		D9208F7420F131DC0078BA3A /* MapMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9208F7320F131DC0078BA3A /* MapMessages.swift */; };
 		D92876D51BCC89BE003333EA /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92876D41BCC89BE003333EA /* Schedule.swift */; };
 		D93353992096687500917887 /* TrolleyRouteOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93353982096687500917887 /* TrolleyRouteOverlay.swift */; };
 		D93615C22096671D0027ADBF /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93615952096671C0027ADBF /* ModelController.swift */; };
@@ -166,6 +167,7 @@
 		D914FAE31B30DFA8002DACF8 /* Trolley.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trolley.swift; sourceTree = "<group>"; };
 		D914FAE51B30DFC0002DACF8 /* TrolleyStop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyStop.swift; sourceTree = "<group>"; };
 		D914FAFB1B30EA84002DACF8 /* ObserverSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObserverSet.swift; sourceTree = "<group>"; };
+		D9208F7320F131DC0078BA3A /* MapMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapMessages.swift; path = TrolleyTracker/Controllers/MapContainer/MapMessages.swift; sourceTree = SOURCE_ROOT; };
 		D92876D41BCC89BE003333EA /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		D92876D61BCD05A1003333EA /* ScheduleOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleOperations.swift; sourceTree = "<group>"; };
 		D93353982096687500917887 /* TrolleyRouteOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyRouteOverlay.swift; sourceTree = "<group>"; };
@@ -410,6 +412,7 @@
 		D93615B62096671C0027ADBF /* MapContainer */ = {
 			isa = PBXGroup;
 			children = (
+				D9208F7320F131DC0078BA3A /* MapMessages.swift */,
 				D93615B72096671C0027ADBF /* ContainerController.swift */,
 				D93615B82096671C0027ADBF /* MessageController.swift */,
 				D93615B92096671C0027ADBF /* MapViewController.swift */,
@@ -816,6 +819,7 @@
 				D90867111B921431002A6F87 /* UIView+TrolleyTracker.swift in Sources */,
 				D97FB6241F39283700F53BF7 /* Coordinate.swift in Sources */,
 				D9D30FEF1F48BDBA00A39807 /* ArrayHelpers.swift in Sources */,
+				D9208F7420F131DC0078BA3A /* MapMessages.swift in Sources */,
 				D93615D02096671D0027ADBF /* RouteDetailViewController.swift in Sources */,
 				D93615C52096671D0027ADBF /* ScheduleOperations.swift in Sources */,
 				D97055BE1BD70753002B9A8B /* HeadingLabel.swift in Sources */,
