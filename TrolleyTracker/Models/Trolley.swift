@@ -48,6 +48,26 @@ extension Trolley {
     var tintColor: UIColor {
         return UIColor(hex: iconColor)
     }
+
+    var displayNameShort: String {
+
+        let fallbackName = String(number ?? 0)
+
+        guard let name = name else {
+            return fallbackName
+        }
+
+        let comps = name.split(separator: " ")
+        guard comps.count > 1 else {
+            return fallbackName
+        }
+
+        return String(comps[1])
+    }
+
+    var displayNameLong: String {
+        return "Trolley " + displayNameShort
+    }
 }
 
 extension Trolley: MKAnnotation {

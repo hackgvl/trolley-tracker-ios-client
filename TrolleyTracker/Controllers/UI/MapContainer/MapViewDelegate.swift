@@ -69,7 +69,7 @@ class TrolleyMapViewDelegate: NSObject, MKMapViewDelegate {
 
             view.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
             view.tintColor = trolleyAnnotation.tintColor
-            view.trolleyNumber = trolleyAnnotation.number ?? 0
+            view.trolleyName = trolleyAnnotation.displayNameShort
             view.annotation = trolleyAnnotation
 
             if let highlighted = highlightedTrolley {

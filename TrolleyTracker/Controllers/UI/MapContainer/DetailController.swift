@@ -35,7 +35,7 @@ class DetailController: FunctionController {
         currentAnnotation = annotation
 
         if let trolley = annotation as? Trolley {
-            let displayValue = "Trolley " + String(trolley.number ?? 0)
+            let displayValue = trolley.displayNameLong
             let routeName = dependencies.modelController.routeName(for: trolley)
             let subtitle = "Current Route: \(routeName)"
             viewController.show(displayValue: .titleAndSubtitle(displayValue, subtitle))

@@ -16,14 +16,14 @@ class TrolleyAnnotationView: MKAnnotationView {
     }
     
     /// Will be shown on the view
-    var trolleyNumber: Int = 0 {
+    var trolleyName: String = "" {
         didSet {
             self.setNeedsDisplay()
         }
     }
     
     private var labelText: String {
-        get { return "\(trolleyNumber)" }
+        get { return trolleyName }
     }
 
     private let innerColorAlpha: CGFloat = 0.9
