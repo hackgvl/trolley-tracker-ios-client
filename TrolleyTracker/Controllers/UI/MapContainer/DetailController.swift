@@ -33,7 +33,8 @@ class DetailController: FunctionController {
         currentAnnotation = annotation
 
         if let trolley = annotation as? Trolley {
-            viewController.show(displayValue: .title(trolley.name ?? ""))
+            let displayValue = "Trolley " + String(trolley.number ?? 0)
+            viewController.show(displayValue: .title(displayValue))
         }
         else if let stop = annotation as? TrolleyStop {
             viewController.show(displayValue: .stop(stop))
