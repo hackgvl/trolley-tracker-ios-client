@@ -24,4 +24,5 @@ protocol TrolleyLocationService {
 
     func startTrackingTrolleys()
     func stopTrackingTrolley()
+    func resetTrolleys()
 }

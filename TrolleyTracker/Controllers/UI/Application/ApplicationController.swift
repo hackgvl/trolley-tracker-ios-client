@@ -50,6 +50,15 @@ class ApplicationController: FunctionController {
         container.showStopsDisclaimer()
         container.showSearchingMessageUntilNextTrolleyFetch()
     }
+
+    func handleTransitionToBackground() {
+        dependencies.modelController.stopTrackingTrolleys()
+    }
+
+    func handleTransitionToForeground() {
+        dependencies.modelController.resetTrolleys()
+        dependencies.modelController.startTrackingTrolleys()
+    }
 }
 
 extension ApplicationController: ContainerControllerDelegate {

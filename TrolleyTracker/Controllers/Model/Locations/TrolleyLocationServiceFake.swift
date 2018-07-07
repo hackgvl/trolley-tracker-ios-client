@@ -26,6 +26,10 @@ class TrolleyLocationServiceFake: TrolleyLocationService {
     func stopTrackingTrolley() {
         updateTimer?.invalidate()
     }
+
+    func resetTrolleys() {
+        
+    }
     
     @objc private func updateTrolleys() {
         

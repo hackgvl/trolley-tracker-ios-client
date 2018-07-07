@@ -52,6 +52,10 @@ class ModelController {
         locationService.stopTrackingTrolley()
     }
 
+    func resetTrolleys() {
+        locationService.resetTrolleys()
+    }
+
     func trolleys(for route: TrolleyRoute) -> [Trolley] {
         return links[route]?.trolleys ?? []
     }

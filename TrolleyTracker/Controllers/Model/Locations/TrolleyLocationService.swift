@@ -60,6 +60,10 @@ class TrolleyLocationServiceLive: TrolleyLocationService {
     func stopTrackingTrolley() {
         updateTimer?.invalidate()
     }
+
+    func resetTrolleys() {
+        allTrolleys.removeAll(keepingCapacity: true)
+    }
     
     @objc private func getRunningTrolleys() {
 
