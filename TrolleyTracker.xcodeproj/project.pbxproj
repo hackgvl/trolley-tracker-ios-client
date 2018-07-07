@@ -42,6 +42,8 @@
 		D914FAE41B30DFA8002DACF8 /* Trolley.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FAE31B30DFA8002DACF8 /* Trolley.swift */; };
 		D914FAE61B30DFC0002DACF8 /* TrolleyStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FAE51B30DFC0002DACF8 /* TrolleyStop.swift */; };
 		D914FAFC1B30EA84002DACF8 /* ObserverSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D914FAFB1B30EA84002DACF8 /* ObserverSet.swift */; };
+		D9208F7020F129860078BA3A /* MapMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9208F6F20F129860078BA3A /* MapMessages.swift */; };
+		D9208F7220F12C2D0078BA3A /* MapMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9208F7120F12C2D0078BA3A /* MapMessageTests.swift */; };
 		D92876CB1BCB0CE5003333EA /* SettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92876CA1BCB0CE5003333EA /* SettingsDataSource.swift */; };
 		D92876CF1BCB3737003333EA /* MapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92876CE1BCB3737003333EA /* MapViewDelegate.swift */; };
 		D92876D11BCB3A53003333EA /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92876D01BCB3A53003333EA /* ScheduleViewController.swift */; };
@@ -175,6 +177,8 @@
 		D914FAE31B30DFA8002DACF8 /* Trolley.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trolley.swift; sourceTree = "<group>"; };
 		D914FAE51B30DFC0002DACF8 /* TrolleyStop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrolleyStop.swift; sourceTree = "<group>"; };
 		D914FAFB1B30EA84002DACF8 /* ObserverSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObserverSet.swift; sourceTree = "<group>"; };
+		D9208F6F20F129860078BA3A /* MapMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMessages.swift; sourceTree = "<group>"; };
+		D9208F7120F12C2D0078BA3A /* MapMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMessageTests.swift; sourceTree = "<group>"; };
 		D92876CA1BCB0CE5003333EA /* SettingsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsDataSource.swift; sourceTree = "<group>"; };
 		D92876CE1BCB3737003333EA /* MapViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewDelegate.swift; sourceTree = "<group>"; };
 		D92876D01BCB3A53003333EA /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
@@ -273,6 +277,7 @@
 				E71A678B1B30DCE60036FE10 /* DetailViewController.swift */,
 				CA7546431F2E85EC00E1A6CA /* MessageController.swift */,
 				CA7546451F2E881000E1A6CA /* MessageViewController.swift */,
+				D9208F6F20F129860078BA3A /* MapMessages.swift */,
 			);
 			path = MapContainer;
 			sourceTree = "<group>";
@@ -558,6 +563,7 @@
 				D9019D9E1E526EB400D9E197 /* MockData */,
 				EFA4B20F1A1C201F00BEA42C /* Supporting Files */,
 				EFA4B2111A1C201F00BEA42C /* TrolleyTrackerTests.swift */,
+				D9208F7120F12C2D0078BA3A /* MapMessageTests.swift */,
 			);
 			path = TrolleyTrackerTests;
 			sourceTree = "<group>";
@@ -827,6 +833,7 @@
 				D98715471B8A7DDC00489594 /* ConcurrentOperation.swift in Sources */,
 				D97055C21BD7078E002B9A8B /* SpacerView.swift in Sources */,
 				CA75463E1F2E848000E1A6CA /* LocalizationHelper.swift in Sources */,
+				D9208F7020F129860078BA3A /* MapMessages.swift in Sources */,
 				D98CF6561E827D61005048FF /* ApplicationController.swift in Sources */,
 				CA82E0261F36441000D548D6 /* SolidButton.swift in Sources */,
 				D92876D31BCB3A67003333EA /* TrolleyScheduleService.swift in Sources */,
@@ -854,6 +861,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9208F7220F12C2D0078BA3A /* MapMessageTests.swift in Sources */,
 				EFA4B2121A1C201F00BEA42C /* TrolleyTrackerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

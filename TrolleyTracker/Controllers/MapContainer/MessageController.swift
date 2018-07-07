@@ -15,37 +15,17 @@ protocol MessageControllerDelegate: class {
 
 class MessageController: FunctionController {
 
-    fileprivate enum MessageType {
-        case disclaimer
-        case searching
-        case noTrolleys
-        case none
-
-        var displayValue: String {
-            switch self {
-            case .disclaimer: return LS.mapMessageDisclaimer
-            case .searching: return LS.mapMessageSearching
-            case .noTrolleys: return LS.mapMessageNoTrolleys
-            case .none: return ""
-            }
-        }
-    }
-
     private let viewController: MessageViewController
     weak var delegate: MessageControllerDelegate?
 
-    fileprivate var activeMessage: MessageType = .disclaimer {
+    fileprivate var activeMessage: MapMessageType = .disclaimer {
         didSet { viewController.setMessageText(activeMessage.displayValue) }
     }
-    private var shouldShowDisclaimer = false {
+
+    private var requestedMessages: Set<MapMessageType> = Set() {
         didSet { updateMessage() }
     }
-    private var shouldShowSearching = false {
-        didSet { updateMessage() }
-    }
-    private var shouldShowNoTrolleys = false {
-        didSet { updateMessage() }
-    }
+
     private var showMessageRequested = false {
         didSet {
             guard oldValue != showMessageRequested else { return }
@@ -63,47 +43,35 @@ class MessageController: FunctionController {
     }
 
     func showNoTrolleysMessage() {
-        shouldShowNoTrolleys = true
+        requestedMessages.insert(.noTrolleys)
     }
 
     func hideNoTrolleysMessage() {
-        shouldShowNoTrolleys = false
+        requestedMessages.remove(.noTrolleys)
     }
 
     func showStopsDisclaimerMessage() {
-        shouldShowDisclaimer = true
+        requestedMessages.insert(.disclaimer)
     }
 
     func hideStopsDisclaimerMessage() {
-        shouldShowDisclaimer = false
+        requestedMessages.remove(.disclaimer)
     }
 
     func showSearchingMessage() {
-        shouldShowSearching = true
+        requestedMessages.insert(.searching)
     }
 
     func hideSearchingMessage() {
-        shouldShowSearching = false
+        requestedMessages.remove(.searching)
     }
 
     // It probably makes sense to add a different function to handle the listener for the API response triggering the show/hideSearchingMessage
     // Would love your thoughts/assistance here Austin - Jeremy Wight
     
     private func updateMessage() {
-        switch (shouldShowNoTrolleys, shouldShowDisclaimer) {
-        case (true, true), (true, false):
-            // Both messages are requested, or only the no trolleys message is requested
-            activeMessage = .noTrolleys
-            showMessageRequested = true
-        case (false, true):
-            // Only the disclaimer message is requested
-            activeMessage = .disclaimer
-            showMessageRequested = true
-        case (false, false):
-            // No messages are requested
-            activeMessage = .none
-            showMessageRequested = false
-        }
+        activeMessage = requestedMessages.highestPriorityMessage
+        showMessageRequested = activeMessage != .none
     }
 }
 
