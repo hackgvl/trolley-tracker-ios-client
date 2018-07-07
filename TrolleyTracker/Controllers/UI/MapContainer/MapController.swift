@@ -50,6 +50,7 @@ class MapController: FunctionController {
         viewController.mapView.delegate = mapDelegate
 
         mapDelegate.annotationSelectionAction = { view in
+            self.undimAllItems()
             let user = self.viewController.mapView.userLocation
             self.delegate?.annotationSelected(view.annotation,
                                               userLocation: user)
