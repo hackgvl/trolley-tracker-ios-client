@@ -46,6 +46,7 @@ class ContainerController: FunctionController {
         
         mapC.delegate = self
         messageC.delegate = self
+        viewController.delegate = self
     }
 
     func prepare() -> UIViewController {
@@ -72,17 +73,28 @@ extension ContainerController: MessageControllerDelegate {
 
 extension ContainerController: MapControllerDelegate {
 
-    func annotationSelected(_ annotation: MKAnnotation?,
+    func annotationSelected(_ annotation: MKAnnotationView?,
                             userLocation: MKUserLocation?) {
-
-        detailController.show(annotation: annotation, userLocation: userLocation)
+        
+        detailController.show(annotation: annotation?.annotation, userLocation: userLocation)
 
         let shouldShow = annotation != nil
-        viewController.setDetail(visible: shouldShow, animated: true)
+        viewController.setDetail(visible: shouldShow, animated: true) {
+            annotation.map {
+                self.viewController.ensureViewIsNotObscured($0)
+            }
+        }
     }
 
     func handleNoTrolleysUpdate(_ trolleysPresent: Bool) {
         if trolleysPresent { messageController.hideNoTrolleysMessage() }
         else { messageController.showNoTrolleysMessage() }
+    }
+}
+
+extension ContainerController: ContainerVCDelegate {
+
+    func handleObscuredView(_ view: UIView) {
+        mapController.unobscure(view)
     }
 }

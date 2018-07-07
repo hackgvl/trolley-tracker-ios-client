@@ -11,7 +11,8 @@ extension UIViewController {
                     animated: Bool,
                     duration: TimeInterval = 0.25,
                     visibleConstraint: NSLayoutConstraint?,
-                    hiddenConstraint: NSLayoutConstraint?) {
+                    hiddenConstraint: NSLayoutConstraint?,
+                    completion: (() -> Void)?) {
 
         if visible {
             hiddenConstraint?.isActive = false
@@ -23,11 +24,13 @@ extension UIViewController {
         }
 
         guard animated else {
-            view.layoutIfNeeded(); return
+            view.layoutIfNeeded();
+            completion?()
+            return
         }
 
-        UIView.animate(withDuration: duration) {
-            self.view.layoutIfNeeded()
+        UIView.animate(withDuration: duration, animations: { self.view.layoutIfNeeded() }) { _ in
+            completion?()
         }
     }
 }

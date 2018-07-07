@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 protocol MapControllerDelegate: class {
-    func annotationSelected(_ annotation: MKAnnotation?,
+    func annotationSelected(_ annotation: MKAnnotationView?,
                             userLocation: MKUserLocation?)
     func handleNoTrolleysUpdate(_ trolleysPresent: Bool)
 }
@@ -52,7 +52,7 @@ class MapController: FunctionController {
         mapDelegate.annotationSelectionAction = { view in
             self.undimAllItems()
             let user = self.viewController.mapView.userLocation
-            self.delegate?.annotationSelected(view.annotation,
+            self.delegate?.annotationSelected(view,
                                               userLocation: user)
             self.dimItemsNotRelated(toView: view)
         }
@@ -101,6 +101,14 @@ class MapController: FunctionController {
         viewController.mapView.reloadRouteOverlays()
         viewController.mapView.setStops(faded: false)
     }
+
+    func unobscure(_ view: UIView) {
+        guard
+            let annotationView = view as? MKAnnotationView,
+            let annotation = annotationView.annotation
+            else { return }
+        viewController.mapView.setCenter(annotation.coordinate, animated: true)
+    }
 }
 
 extension MapController: MapVCDelegate {
@@ -109,7 +117,7 @@ extension MapController: MapVCDelegate {
         viewController.mapView.centerOnUser(context: viewController)
     }
 
-    func annotationSelected(_ annotation: MKAnnotation?,
+    func annotationSelected(_ annotation: MKAnnotationView?,
                             userLocation: MKUserLocation?) {
         delegate?.annotationSelected(annotation, userLocation: userLocation)
     }

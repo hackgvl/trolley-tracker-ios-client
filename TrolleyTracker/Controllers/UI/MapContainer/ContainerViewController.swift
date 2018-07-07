@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ContainerVCDelegate: class {
-
+    func handleObscuredView(_ view: UIView)
 }
 
 class ContainerViewController: UIViewController {
@@ -52,7 +52,7 @@ class ContainerViewController: UIViewController {
         setupViews()
         setupChildren()
 
-        setDetail(visible: false, animated: false)
+        setDetail(visible: false, animated: false, completion: nil)
     }
 
     private func setupViews() {
@@ -82,15 +82,25 @@ class ContainerViewController: UIViewController {
 
     // MARK: - API
 
-    func setDetail(visible: Bool, animated: Bool) {
+    func setDetail(visible: Bool, animated: Bool, completion: (() -> Void)?) {
         setVisible(visible: visible, animated: animated,
                    visibleConstraint: detailVisibleConstraint,
-                   hiddenConstraint: detailHiddenConstraint)
+                   hiddenConstraint: detailHiddenConstraint,
+                   completion: completion)
     }
 
     func setMessage(visible: Bool, animated: Bool) {
         setVisible(visible: visible, animated: animated,
                    visibleConstraint: messageVisibleConstraint,
-                   hiddenConstraint: messageHiddenConstraint)
+                   hiddenConstraint: messageHiddenConstraint,
+                   completion: nil)
+    }
+
+    func ensureViewIsNotObscured(_ subview: UIView) {
+        let subviewFrame = view.convert(subview.frame, from: subview.superview)
+        let detailFrame = view.convert(detailContainer.frame, from: detailContainer.superview)
+        let obscured = detailFrame.contains(subviewFrame)
+        guard obscured else { return }
+        delegate?.handleObscuredView(subview)
     }
 }
