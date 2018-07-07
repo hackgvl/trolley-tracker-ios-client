@@ -71,9 +71,6 @@ class ModelController {
 
     private func updateTrolleys(with trolleys: [Trolley]) {
 
-        // TODO: Remove this line, Trolley AnnotationView should be reloaded if tintColor has changed
-        guard routeService.currentActiveRoutes.count > 0 else { return }
-
         lastTrolleys = trolleys
         updateLinks(trolleys: trolleys)
         let linkedTrolleys = links.trolleys
