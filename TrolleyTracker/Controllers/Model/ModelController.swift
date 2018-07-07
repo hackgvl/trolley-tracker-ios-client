@@ -59,6 +59,13 @@ class ModelController {
     func route(for trolley: Trolley) -> TrolleyRoute? {
         return links[trolley]
     }
+
+    func routeName(for trolley: Trolley) -> String {
+        guard let route = links[trolley] else {
+            return "Detour"
+        }
+        return route.shortName
+    }
     
     // MARK: - Implementation
     

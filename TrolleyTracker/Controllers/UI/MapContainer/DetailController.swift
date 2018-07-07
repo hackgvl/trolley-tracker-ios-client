@@ -14,11 +14,13 @@ class DetailController: FunctionController {
     typealias Dependencies = HasModelController
 
     private let viewController: DetailViewController
+    private let dependencies: Dependencies
 
     private var currentUserLocation: MKUserLocation?
     private var currentAnnotation: MKAnnotation?
 
     init(dependencies: Dependencies) {
+        self.dependencies = dependencies
         self.viewController = DetailViewController()
     }
 
@@ -34,7 +36,9 @@ class DetailController: FunctionController {
 
         if let trolley = annotation as? Trolley {
             let displayValue = "Trolley " + String(trolley.number ?? 0)
-            viewController.show(displayValue: .title(displayValue))
+            let routeName = dependencies.modelController.routeName(for: trolley)
+            let subtitle = "Current Route: \(routeName)"
+            viewController.show(displayValue: .titleAndSubtitle(displayValue, subtitle))
         }
         else if let stop = annotation as? TrolleyStop {
             viewController.show(displayValue: .stop(stop))

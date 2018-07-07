@@ -19,7 +19,7 @@ class DetailViewController: UIViewController {
     enum DisplayValue {
         case walkingTime(String)
         case distance(String)
-        case title(String)
+        case titleAndSubtitle(String, String?)
         case stop(TrolleyStop)
     }
 
@@ -64,9 +64,10 @@ class DetailViewController: UIViewController {
             resetUI()
             show(titleText: stop.name)
             show(arrivalTimes: stop.nextTrolleyArrivals)
-        case .title(let text):
+        case .titleAndSubtitle(let title, let subtitle):
             resetUI()
-            show(titleText: text)
+            show(titleText: title)
+            show(subtitleText: subtitle)
         case .walkingTime(let text):
             show(walkingTime: text)
         }
@@ -86,6 +87,10 @@ class DetailViewController: UIViewController {
         titleLabel.text = titleText
     }
 
+    private func show(subtitleText: String?) {
+        subtitleLabel.text = subtitleText
+    }
+
     private func show(arrivalTimes: [TrolleyArrivalTime]) {
         addArrivalTimeLabels(for: arrivalTimes)
     }
@@ -96,6 +101,7 @@ class DetailViewController: UIViewController {
     
     private func resetLabels() {
         titleLabel.text = nil
+        subtitleLabel.text = nil
         timeLabel.text = nil
         distanceLabel.text = nil
         for view in arrivalTimesStack.subviews {
@@ -177,6 +183,7 @@ class DetailViewController: UIViewController {
 
         innerVStack.addArrangedSubview(.spacerView(height: vMargin))
         innerVStack.addArrangedSubview(titleLabel)
+        innerVStack.addArrangedSubview(subtitleLabel)
 
         let secondaryLabelStack = UIStackView().useAutolayout()
         secondaryLabelStack.axis = .horizontal
@@ -223,6 +230,14 @@ class DetailViewController: UIViewController {
         label.adjustsFontSizeToFitWidth = true
     
         return label
+    }()
+
+    private let subtitleLabel: UILabel = {
+        let l = UILabel().useAutolayout()
+        l.font = UIFont.systemFont(ofSize: 16)
+        l.textColor = UIColor.ttLightTextColor().withAlphaComponent(0.8)
+        l.numberOfLines = 0
+        return l
     }()
     
     private let timeLabel: UILabel = {
