@@ -95,6 +95,10 @@ extension ContainerController: MapControllerDelegate {
         detailController.show(annotation: annotation?.annotation, userLocation: userLocation)
 
         let shouldShow = annotation != nil
+        guard shouldShow != viewController.isDetailViewVisible else {
+            return
+        }
+
         viewController.setDetail(visible: shouldShow, animated: true) {
             annotation.map {
                 self.viewController.ensureViewIsNotObscured($0)

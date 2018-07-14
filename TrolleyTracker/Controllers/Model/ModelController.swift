@@ -70,6 +70,12 @@ class ModelController {
         }
         return route.shortName
     }
+
+    func trolleyName(for trolleyID: Int) -> String? {
+        return lastTrolleys.filter {
+            $0.number == trolleyID
+        }.first?.displayNameShort
+    }
     
     // MARK: - Implementation
     

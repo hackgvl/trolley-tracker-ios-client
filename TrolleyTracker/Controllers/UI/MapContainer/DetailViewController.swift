@@ -12,6 +12,8 @@ import MapKit
 protocol DetailViewControllerDelegate: class {
     func directionsButtonTapped()
     func walkingTimeButtonTapped()
+
+    func name(forTrolleyID: Int) -> String?
 }
 
 class DetailViewController: UIViewController {
@@ -119,12 +121,24 @@ class DetailViewController: UIViewController {
 
         if !times.isEmpty {
             let l = UILabel().useAutolayout()
-            l.textColor = UIColor.ttLightTextColor()
+            l.textColor = UIColor.ttLightTextColor().withAlphaComponent(0.8)
             l.text = "Estimated Trolley arrival times"
             arrivalTimesStack.addArrangedSubview(l)
         }
 
+        var hasValidTimes: Bool = false
+
         for time in times {
+
+            guard
+                let delegate = delegate,
+                let name = delegate.name(forTrolleyID: time.trolleyID) else {
+                    continue
+            }
+
+            hasValidTimes = true
+
+            let fontSize: CGFloat = 17
 
             let stack = UIStackView().useAutolayout()
             stack.axis = .horizontal
@@ -132,14 +146,21 @@ class DetailViewController: UIViewController {
 
             let trolleyLabel = UILabel().useAutolayout()
             trolleyLabel.textColor = UIColor.ttLightTextColor()
-            trolleyLabel.text = "\(time.trolleyID)"
+            trolleyLabel.font = UIFont.systemFont(ofSize: fontSize)
+            trolleyLabel.text = "Trolley \(name): "
 
             let timeLabel = UILabel().useAutolayout()
             timeLabel.textColor = UIColor.ttLightTextColor()
+            timeLabel.font = UIFont.boldSystemFont(ofSize: fontSize)
             timeLabel.text = DetailViewController.timesFormatter.string(from: time.date)
 
             stack.addArrangedSubview(trolleyLabel)
             stack.addArrangedSubview(timeLabel)
+            stack.addArrangedSubview(.flexibleView())
+        }
+
+        if !hasValidTimes {
+            arrivalTimesStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
         }
     }
     

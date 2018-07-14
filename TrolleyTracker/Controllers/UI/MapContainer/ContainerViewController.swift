@@ -82,6 +82,10 @@ class ContainerViewController: UIViewController {
 
     // MARK: - API
 
+    var isDetailViewVisible: Bool {
+        return detailVisibleConstraint?.isActive ?? false
+    }
+
     func setDetail(visible: Bool, animated: Bool, completion: (() -> Void)?) {
         setVisible(visible: visible, animated: animated,
                    visibleConstraint: detailVisibleConstraint,

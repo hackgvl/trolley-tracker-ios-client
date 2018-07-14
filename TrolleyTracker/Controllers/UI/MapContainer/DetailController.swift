@@ -112,6 +112,10 @@ extension DetailController: DetailViewControllerDelegate {
     func walkingTimeButtonTapped() {
         getWalkingTime(false)
     }
+
+    func name(forTrolleyID id: Int) -> String? {
+        return dependencies.modelController.trolleyName(for: id)
+    }
 }
 
 private extension MKAnnotation {
